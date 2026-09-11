@@ -15,3 +15,28 @@
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--success { border-color: var(--ld-success); color: var(--ld-success); }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--warning { border-color: var(--ld-warning); color: var(--ld-warning); }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--danger  { border-color: var(--ld-danger);  color: var(--ld-danger); }
+
+/* Compact size — dashboard pills inside .ld-status-card__meta and row trails. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--sm {
+  padding: 0.125rem 0.375rem;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge[href] { text-decoration: none; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge[href]:hover { filter: brightness(1.1); }
+
+/* Pulse — the one solid, glowing call to action (work is waiting on you). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--pulse {
+  background: var(--ld-warning);
+  border-color: transparent;
+  color: var(--ld-bg);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--ld-warning) 60%, transparent);
+  animation: ld-nb-badge-pulse 2s ease-in-out infinite;
+}
+@keyframes ld-nb-badge-pulse {
+  0%, 100% { box-shadow: 0 0 6px color-mix(in srgb, var(--ld-warning) 50%, transparent); }
+  50%      { box-shadow: 0 0 16px color-mix(in srgb, var(--ld-warning) 90%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--pulse { animation: none; }
+}

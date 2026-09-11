@@ -223,6 +223,37 @@ test("every theme carries the hold-to-confirm button contract", () => {
   }
 });
 
+test("every theme carries the status-card contract", () => {
+  // .ld-status-card and its parts (issue #27): the React StatusCard writes
+  // the tone modifier, data-ld-attention, and data-ld-changed, so every theme
+  // must style the same hooks. The compact and pulsing badge variants are
+  // part of the same contract — the card's meta row is built from them.
+  const PARTS = [
+    ".ld-status-card", ".ld-status-card--info", ".ld-status-card--success",
+    ".ld-status-card--warning", ".ld-status-card--danger",
+    "[data-ld-attention]", '[data-ld-attention="info"]', '[data-ld-attention="success"]',
+    '[data-ld-attention="danger"]', "[data-ld-changed]",
+    ".ld-status-card__watermark", ".ld-status-card__head", ".ld-status-card__prefix",
+    ".ld-status-card__title", ".ld-status-card__meta", ".ld-status-card__note",
+    ".ld-status-card__rows", ".ld-status-card__row", ".ld-status-card__row-lead",
+    ".ld-status-card__row-main", ".ld-status-card__row-trail",
+    ".ld-status-card__footer", ".ld-status-card__empty",
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "status-card.css");
+    assert.ok(existsSync(file), `${theme}: components/status-card.css missing`);
+    const { selectors, keyframes } = parseCss(readFileSync(file, "utf-8"));
+    for (const part of PARTS) {
+      assert.ok(selectors.some((s) => s.includes(part)), `${theme}: status-card.css never styles ${part}`);
+    }
+    assert.ok(keyframes.some((k) => k.endsWith("-status-flash")), `${theme}: no status-flash keyframes`);
+    const badge = parseCss(readFileSync(join(ROOT, theme, "components", "badge.css"), "utf-8"));
+    for (const part of [".ld-badge--sm", ".ld-badge--pulse"]) {
+      assert.ok(badge.selectors.some((s) => s.includes(part)), `${theme}: badge.css never styles ${part}`);
+    }
+  }
+});
+
 test("keyframe names are ld-prefixed and unique across all themes", () => {
   const seen = new Map();
   for (const theme of themeDirs) {
