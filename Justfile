@@ -1,4 +1,4 @@
-# ui-std-lib — shared design-system styles and React components
+# lepid-design — shared design-system styles and React components
 # Requires: just, node, pnpm
 
 default:

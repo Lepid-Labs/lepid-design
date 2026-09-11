@@ -1,6 +1,6 @@
 /* summer-cloud — design tokens
  * Source of truth for the summer-cloud theme. Consume via:
- *   @import "@nazuraki/styles/summer-cloud/tokens";
+ *   @import "@lepid-labs/styles/summer-cloud/tokens";
  * or pull the whole theme with ./index.css.
  *
  * Nothing applies until an element carries data-ld-style="summer-cloud"
