@@ -62,6 +62,7 @@
   --ld-radius-lg: 0.5rem; /* one radius everywhere is the look */
   --ld-blur: 12px;
   --ld-transition: 0.3s;
+  --ld-hold-duration: 250ms; /* (extra) hold-to-confirm commitment window */
 
   /* spacing */
   --ld-space-1: 0.25rem;

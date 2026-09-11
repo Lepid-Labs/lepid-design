@@ -203,6 +203,26 @@ test("every theme's button.css declares a guarded .ld-btn--sm compact variant", 
   }
 });
 
+test("every theme carries the hold-to-confirm button contract", () => {
+  // .ld-btn--hold and its subparts (issue #29): the React HoldButton writes
+  // --ld-hold and data-ld-hold, so every theme must style the same hooks and
+  // publish its commitment window as --ld-hold-duration.
+  const PARTS = [
+    ".ld-btn--hold", ".ld-btn__ring", ".ld-btn__body", ".ld-btn__label",
+    ".ld-btn__hint", ".ld-btn__meter", '[data-ld-hold="fired"]',
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "button-hold.css");
+    assert.ok(existsSync(file), `${theme}: components/button-hold.css missing`);
+    const { selectors } = parseCss(readFileSync(file, "utf-8"));
+    for (const part of PARTS) {
+      assert.ok(selectors.some((s) => s.includes(part)), `${theme}: button-hold.css never styles ${part}`);
+    }
+    const tokens = readFileSync(join(ROOT, theme, "tokens.css"), "utf-8");
+    assert.match(tokens, /--ld-hold-duration:\s*[\d.]+m?s\s*;/, `${theme}: --ld-hold-duration token`);
+  }
+});
+
 test("keyframe names are ld-prefixed and unique across all themes", () => {
   const seen = new Map();
   for (const theme of themeDirs) {
