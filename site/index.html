@@ -175,7 +175,7 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
   // here (and in any consumer that reads it) with no site change.
   const select = document.getElementById("style-select");
   const apply = () => {
-    document.documentElement.dataset.nbStyle = select.value;
+    document.documentElement.dataset.ldStyle = select.value;
     history.replaceState(null, "", `?style=${select.value}`);
   };
   fetch("styles/manifest.json")
@@ -184,7 +184,7 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
       const names = Object.keys(themes);
       for (const s of names) select.add(new Option(s, s));
       const requested = new URLSearchParams(location.search).get("style");
-      select.value = names.includes(requested) ? requested : document.documentElement.dataset.nbStyle;
+      select.value = names.includes(requested) ? requested : document.documentElement.dataset.ldStyle;
       select.addEventListener("change", apply);
       apply();
     });

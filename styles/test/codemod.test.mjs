@@ -54,11 +54,13 @@ test("rewrites markup, JSX class strings, and prose across file types", () => {
   const out = codemod({
     "index.html": '<html data-nb-style="neon-butterfly"><body class="nb-bg"><a class="nb-link nb-btn--primary">',
     "src/Button.tsx": 'const classes = ["nb-btn"]; classes.push(`nb-btn--${variant}`);',
+    "src/theme.ts": 'document.documentElement.dataset.nbStyle = name; // nbStyled stays',
     "docs/README.md": "Use `--nb-*` tokens and `nb-*` classes; set `data-nb-style`.",
     "notes.rst": ".nb-card is not touched: unknown extension",
   });
   assert.equal(out["index.html"], '<html data-ld-style="neon-butterfly"><body class="ld-bg"><a class="ld-link ld-btn--primary">');
   assert.equal(out["src/Button.tsx"], 'const classes = ["ld-btn"]; classes.push(`ld-btn--${variant}`);');
+  assert.equal(out["src/theme.ts"], 'document.documentElement.dataset.ldStyle = name; // nbStyled stays');
   assert.equal(out["docs/README.md"], "Use `--ld-*` tokens and `ld-*` classes; set `data-ld-style`.");
   assert.equal(out["notes.rst"], ".nb-card is not touched: unknown extension");
 });

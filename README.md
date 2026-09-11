@@ -87,7 +87,8 @@ curl -fsSL https://raw.githubusercontent.com/nazuraki/ui-std-lib/main/scripts/re
   | bash -s -- src index.html
 ```
 
-It rewrites `--nb-*` → `--ld-*`, `data-nb-style` → `data-ld-style`, and any
+It rewrites `--nb-*` → `--ld-*`, `data-nb-style` → `data-ld-style`,
+`dataset.nbStyle` → `dataset.ldStyle`, and any
 `nb-` that starts an identifier → `ld-` (CSS, HTML, JS/TS/JSX, Svelte, Vue,
 Markdown, JSON). It is idempotent, and it skips `node_modules`, `dist`, and
 `.git`. Review the diff; identifiers of your own that happen to start with

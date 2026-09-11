@@ -4,6 +4,7 @@
 # Rewrites every design-system identifier in place:
 #   --nb-<token>          → --ld-<token>
 #   data-nb-style         → data-ld-style
+#   dataset.nbStyle       → dataset.ldStyle   (the DOM camelCase form)
 #   nb-<class|keyframe>   → ld-<...>   (only where nb- starts an identifier)
 #
 # Theme-scoped keyframe names keep their inner theme tag: nb-nb-pulse-glow
@@ -30,6 +31,7 @@ rewrite() {
   perl -pi -e '
     s/--nb-/--ld-/g;
     s/data-nb-style/data-ld-style/g;
+    s/\bnbStyle\b/ldStyle/g;
     s/(?<![\w-])nb-/ld-/g;
   ' "$@"
 }

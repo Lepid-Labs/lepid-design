@@ -201,7 +201,7 @@ test("no legacy nb- prefix survives anywhere the system is defined or documented
   // or data-nb-style guard would silently do nothing under the ld- guard.
   // Keyframe names legitimately keep an inner theme tag (ld-nb-spin), so the
   // check requires nb- to start an identifier.
-  const LEGACY = /--nb-|data-nb-|(?<![\w-])nb-/;
+  const LEGACY = /--nb-|data-nb-|\bnbStyle\b|(?<![\w-])nb-/;
   const REPO = resolve(ROOT, "..");
   const roots = [ROOT, join(REPO, "components/react/src"), join(REPO, "site"), join(REPO, "skills")];
   const files = [join(REPO, "README.md")];
