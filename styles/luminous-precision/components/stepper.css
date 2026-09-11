@@ -1,0 +1,108 @@
+/* luminous-precision — stepper: a milestone rail with labelled step nodes.
+ * Orchid rail and complete nodes; the current node lights up electric teal,
+ * the theme's active-path signal.
+ *   .ld-stepper__step--complete   solid orchid node, dark icon
+ *   .ld-stepper__step--current    indigo node, 2px teal border, teal glow
+ *   .ld-stepper__step--upcoming   sunken node, hairline border, faint icon
+ * The fill follows the state modifiers — no progress value to compute. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper {
+  display: flex;
+  align-items: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  text-align: center;
+}
+/* rail segment: from this node's centre to the next node's centre; the track is
+ * ::before, the fill ::after. Segments meet under the nodes, so the rail reads
+ * as one bar and the fill ends exactly at the current node. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step::after {
+  content: "";
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 1rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step:last-child::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step:last-child::after { display: none; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step::before {
+  background: var(--ld-surface-sunken);
+  box-shadow: inset 0 0 0 1px var(--ld-border);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step::after {
+  width: 0;
+  background: var(--ld-primary);
+  box-shadow: 0 0 8px var(--ld-primary-glow);
+  transition: width var(--ld-transition);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--complete::after { width: 100%; }
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__node {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  box-sizing: border-box;
+  font-family: var(--ld-font-mono);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-bold);
+  line-height: 1;
+  transition: background var(--ld-transition), color var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__node > svg { width: 1rem; height: 1rem; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--complete .ld-stepper__node {
+  background: var(--ld-primary);
+  color: var(--ld-on-primary);
+  box-shadow: 0 0 8px var(--ld-primary-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--current .ld-stepper__node {
+  background: var(--ld-surface);
+  border: 2px solid var(--ld-accent);
+  color: var(--ld-accent);
+  box-shadow: 0 0 12px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--upcoming .ld-stepper__node {
+  background: var(--ld-surface-sunken);
+  border: 1px solid var(--ld-border);
+  color: var(--ld-faint);
+}
+
+/* label voice: uppercase 600 mono, tracked 0.05em */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__label {
+  font-family: var(--ld-font-mono);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--ld-tracking-wide);
+  line-height: 1.3;
+  color: var(--ld-faint);
+  transition: color var(--ld-transition), text-shadow var(--ld-transition);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--complete .ld-stepper__label { color: var(--ld-on-surface); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--current .ld-stepper__label {
+  color: var(--ld-accent);
+  text-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step--upcoming .ld-stepper__label { color: var(--ld-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__step::after,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__node,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-stepper__label { transition: none; }
+}

@@ -254,6 +254,39 @@ test("every theme carries the status-card contract", () => {
   }
 });
 
+test("every theme carries the stepper contract", () => {
+  // .ld-stepper and its parts (issue #13): the React Stepper writes the three
+  // state modifiers and aria-current="step" on the active node, and every
+  // theme derives the rail fill from those same hooks — so each must style
+  // all of them, or a stepper would lose its rail when data-ld-style swaps.
+  const PARTS = [
+    ".ld-stepper", ".ld-stepper__step", ".ld-stepper__step::before", ".ld-stepper__step::after",
+    ".ld-stepper__step--complete", ".ld-stepper__step--current", ".ld-stepper__step--upcoming",
+    ".ld-stepper__node", ".ld-stepper__label",
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "stepper.css");
+    assert.ok(existsSync(file), `${theme}: components/stepper.css missing`);
+    const { selectors } = parseCss(readFileSync(file, "utf-8"));
+    for (const part of PARTS) {
+      assert.ok(selectors.some((s) => s.includes(part)), `${theme}: stepper.css never styles ${part}`);
+    }
+    // the fill must follow the complete modifier, not a caller-computed value
+    assert.ok(
+      selectors.some((s) => s.includes(".ld-stepper__step--complete::after")),
+      `${theme}: stepper.css never fills the rail segment of a complete step`,
+    );
+    for (const state of ["complete", "current", "upcoming"]) {
+      for (const part of ["__node", "__label"]) {
+        assert.ok(
+          selectors.some((s) => s.includes(`.ld-stepper__step--${state} .ld-stepper${part}`)),
+          `${theme}: stepper.css never styles ${part} in the ${state} state`,
+        );
+      }
+    }
+  }
+});
+
 test("keyframe names are ld-prefixed and unique across all themes", () => {
   const seen = new Map();
   for (const theme of themeDirs) {

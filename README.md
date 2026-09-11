@@ -140,6 +140,21 @@ make the body. `Badge` gained `size="sm"` and `pulse` for the meta row.
 </StatusCard>
 ```
 
+`Stepper` is the horizontal milestone rail (a delivery tracker, a checkout
+flow). Pass `steps` and the `current` index; earlier steps render complete,
+later ones upcoming, and the theme fills the rail up to the current node —
+nothing to compute. Icons are optional (a check mark once complete, the step
+number otherwise); pass `steps.length` as `current` when everything is done.
+
+```tsx
+<Stepper current={2} steps={[
+  { id: "placed", label: "Order placed" },
+  { id: "packed", label: "Packed" },
+  { id: "out", label: "Out for delivery", icon: <TruckIcon /> },
+  { id: "delivered", label: "Delivered" },
+]} />
+```
+
 ## Developing
 
 ```

@@ -87,6 +87,13 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   the teal left bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid
   indicators (`--accent` bar variant in teal).
+- **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
+  rail: glowing orchid fill on a sunken track, 2rem nodes, uppercase mono
+  labels. `__step--complete` is a solid orchid node; `--current` lights the
+  active path in teal — 2px teal border, teal icon and glow, teal label;
+  `--upcoming` a hairline sunken node in faint. The rail is per-step
+  (`::before` track, `::after` fill), so the fill follows the modifiers and
+  `aria-current="step"` marks the active node.
 - **Muted text** `.ld-muted` — faint secondary/empty-state text;
   `color: var(--ld-faint)`, italic.
 - **Pre / log block** `.ld-pre` — command/log `<pre>`; the surface-sunken

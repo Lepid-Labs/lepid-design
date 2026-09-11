@@ -13,6 +13,8 @@ export {
   type StatusCardFooterProps,
 } from "./StatusCard.js";
 export { attentionTone, statusCardAttrs, type StatusTone } from "./status-card.js";
+export { Stepper, type StepperProps, type StepItem } from "./Stepper.js";
+export { stepAttrs, stepState, type StepState } from "./stepper-state.js";
 export { NavLink, type NavLinkProps } from "./NavLink.js";
 export {
   Input,

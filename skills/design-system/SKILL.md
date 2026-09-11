@@ -83,6 +83,7 @@ non-React apps):
 | `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
 | `Tabs` | `.ld-tabs` | `items: {id, label, content}[]` |
 | `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
+| `Stepper` | `.ld-stepper` | milestone rail; `steps: {id, label, icon?}[]`, `current` index derives complete/current/upcoming and the rail fill; `aria-current="step"` on the active node |
 | — (CSS only) | `.ld-table` | style `<table>` directly |
 
 Theme-specific additions (styled only under that theme — check before using):

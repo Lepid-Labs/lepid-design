@@ -74,6 +74,13 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow.
 - **Table** `.ld-table` — lilac header rule, glass row hover.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
+- **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
+  rail: glowing lilac fill on a surface track, 2rem nodes, uppercase mono
+  labels. `__step--complete` is a solid lilac node; `--current` is the
+  activity signal — 2px lime border, lime icon and glow, lime label;
+  `--upcoming` a hairline surface node in faint. The rail is per-step
+  (`::before` track, `::after` fill), so the fill follows the modifiers and
+  `aria-current="step"` marks the active node.
 - **Muted text** `.ld-muted` — faint secondary/empty-state text;
   `color: var(--ld-faint)` only, no italic — this theme's mono/uppercase
   terminal voice never reaches for a literary flourish.

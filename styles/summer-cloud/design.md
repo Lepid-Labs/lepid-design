@@ -113,6 +113,14 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
   `.ld-num` to numeric cells for the mono/right-aligned treatment.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
+- **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
+  rail from the Retail Dashboard "Active Delivery" box: glowing violet fill on
+  a blend track, 2rem nodes. `__step--complete` is a solid violet node with a
+  white icon and an on-surface label; `--current` a white node with a 2px
+  violet border, violet icon, raised shadow, and violet label; `--upcoming` a
+  sunken node with faint icon and label. The rail is per-step
+  (`::before` track, `::after` fill), so the fill follows the modifiers and
+  `aria-current="step"` marks the active node.
 - **Muted text** `.ld-muted` — faint secondary/empty-state text;
   `color: var(--ld-faint)`, italic — a friendly, soft touch consistent with
   the theme's airy, optimistic voice.
