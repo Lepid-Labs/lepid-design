@@ -53,6 +53,13 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover.
 - **Button** `.ld-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
   compact size (badge-scaled) for inline/table-row actions.
+- **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
+  `__meter`) — hold-to-confirm: a 3px conic ring around the icon well fills
+  as `--ld-hold` goes 0→1. `--danger` paints it **lime** — this theme reads
+  the ring as an activity signal, not a warning; `--primary` lilac,
+  `--accent` lime. `data-ld-hold="fired"` lights the border and glows
+  (dropped under reduced motion; the fill stays). Window:
+  `--ld-hold-duration` 250 ms — terminal-quick.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
 - **Badge** `.ld-badge` + semantic modifiers.

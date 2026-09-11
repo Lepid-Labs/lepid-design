@@ -54,6 +54,33 @@
       <button class="ld-btn ld-btn--sm ld-btn--danger">Danger</button>
       <button class="ld-btn ld-btn--sm" disabled>Disabled</button>
     </div>
+    <!-- Hold-to-confirm: the ring is the confirmation. Press and hold; release early to cancel.
+         Same markup HoldButton renders; site/hold-demo.js supplies the behaviour here. -->
+    <div class="row" style="margin-top: 1.25rem">
+      <button class="ld-btn ld-btn--danger ld-btn--hold" data-hold-demo="hold-fired" data-hold-confirmed="Deleted" aria-describedby="hold-hint-1">
+        <span class="ld-btn__ring" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4M6.5 7v4M9.5 7v4"/></svg>
+        </span>
+        <span class="ld-btn__body">
+          <span class="ld-btn__label">Hold to delete</span>
+          <span class="ld-btn__hint" id="hold-hint-1">hold 300 ms</span>
+        </span>
+        <span class="ld-btn__meter" aria-hidden="true">0%</span>
+      </button>
+      <button class="ld-btn ld-btn--hold" data-hold-demo="hold-fired" aria-describedby="hold-hint-2">
+        <span class="ld-btn__ring" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h12v8.5H2zM2 5l1.5-2.5h9L14 5M6.5 8h3"/></svg>
+        </span>
+        <span class="ld-btn__body">
+          <span class="ld-btn__label">Hold to archive</span>
+          <span class="ld-btn__hint" id="hold-hint-2">hold 300 ms</span>
+        </span>
+        <span class="ld-btn__meter" aria-hidden="true">0%</span>
+      </button>
+      <span class="ld-badge ld-badge--danger" id="hold-fired" style="display:none">fired at 300 ms</span>
+      <span id="hold-live" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></span>
+    </div>
+    <p class="ld-muted" style="margin: 0.75rem 0 0">Pointer: press and hold until the ring closes. Keyboard: focus the button, then hold Space or Enter; release early (or press Escape) to cancel. The window is the theme's <code>--ld-hold-duration</code>.</p>
   </section>
 
   <section>
@@ -199,5 +226,6 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
     });
   });
 </script>
+<script src="hold-demo.js"></script>
 </body>
 </html>
