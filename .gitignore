@@ -5,3 +5,6 @@ dist/
 
 # local preview symlink (Pages workflow copies styles for real)
 site/styles
+
+# Claude Code local tooling
+.claude/
