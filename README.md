@@ -52,6 +52,11 @@ themes can load at once and swapping is one attribute flip.
 <html data-ld-style="luminous-precision">
 ```
 
+The same subpaths work as side-effect imports in JS/TS (`import
+"@lepid-labs/styles/luminous-precision"`). Every CSS export carries a `types`
+condition, so TypeScript 6 (which requires side-effect imports to resolve to
+typed modules) needs no local `declare module` shim.
+
 No-build apps can pull from jsDelivr instead:
 
 ```html
@@ -108,7 +113,7 @@ Import a theme's CSS once at the app root; components carry only class names
 ```
 pnpm install
 pnpm build
-pnpm --filter @lepid-labs/styles test   # theme contract + release-bump tests
+pnpm --filter @lepid-labs/styles test   # theme contract, TS consumer, and release-bump tests
 ```
 
 The contract test enforces the theme rules: every selector guarded by its
@@ -142,9 +147,10 @@ an app repo by symlinking or copying into `.claude/skills/design-system/`.
 styles/                    @lepid-labs/styles
   manifest.json            theme roster: name, scheme, font links
   all.css                  every theme in one import
+  css.d.ts                 types target for every CSS export (TS 6 side-effect imports)
   neon-butterfly/          tokens.css, base.css, components/*.css, index.css, design.md
   summer-cloud/            same layout, same --ld-* token names, different values
-  test/                    theme contract + release-bump tests (node:test)
+  test/                    theme contract, TS consumer, and release-bump tests (node:test)
 components/
   react/                   @lepid-labs/ui-react (tsc → dist/)
 site/                      GH Pages showcase (no build; styles copied in by CI)
