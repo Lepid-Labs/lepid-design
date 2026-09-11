@@ -1,109 +1,109 @@
 /* neon-butterfly — form controls: input, textarea, select, checkbox, radio, switch */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-input,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-select,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-textarea {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-select,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-textarea {
   display: block;
   width: 100%;
-  padding: var(--nb-space-2) var(--nb-space-3);
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-mono);
-  font-weight: var(--nb-font-weight);
-  font-size: var(--nb-text-sm);
-  transition: border-color var(--nb-transition), box-shadow var(--nb-transition);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-mono);
+  font-weight: var(--ld-font-weight);
+  font-size: var(--ld-text-sm);
+  transition: border-color var(--ld-transition), box-shadow var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-select {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-select {
   appearance: none;
   padding-right: 2.25rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23958da1' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-input::placeholder,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-textarea::placeholder {
-  color: var(--nb-faint);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input::placeholder,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-textarea::placeholder {
+  color: var(--ld-faint);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-input:focus,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-select:focus,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-textarea:focus {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input:focus,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-select:focus,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-textarea:focus {
   outline: none;
-  border-color: var(--nb-primary-border);
+  border-color: var(--ld-primary-border);
   box-shadow: 0 0 8px rgba(210, 187, 255, 0.3);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-input[aria-invalid="true"],
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-textarea[aria-invalid="true"] {
-  border-color: var(--nb-danger);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input[aria-invalid="true"],
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-textarea[aria-invalid="true"] {
+  border-color: var(--ld-danger);
 }
 
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-label {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-label {
   display: block;
-  margin-bottom: var(--nb-space-1);
-  color: var(--nb-faint);
+  margin-bottom: var(--ld-space-1);
+  color: var(--ld-faint);
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: var(--nb-font-weight-bold);
-  letter-spacing: var(--nb-tracking-wide);
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
 }
 
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-field {
-  margin-bottom: var(--nb-space-3);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-field {
+  margin-bottom: var(--ld-space-3);
 }
 
 /* checkbox & radio */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-checkbox,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-radio {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-checkbox,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-radio {
   appearance: none;
   width: 1.1rem;
   height: 1.1rem;
   margin: 0;
   vertical-align: text-bottom;
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-border);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: border-color var(--nb-transition), box-shadow var(--nb-transition);
+  transition: border-color var(--ld-transition), box-shadow var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-radio {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-radio {
   border-radius: 50%;
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-checkbox:checked,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-radio:checked {
-  border-color: var(--nb-accent);
-  box-shadow: inset 0 0 0 3px var(--nb-surface), inset 0 0 0 1rem var(--nb-accent),
-    0 0 6px var(--nb-accent-glow);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-checkbox:checked,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-radio:checked {
+  border-color: var(--ld-accent);
+  box-shadow: inset 0 0 0 3px var(--ld-surface), inset 0 0 0 1rem var(--ld-accent),
+    0 0 6px var(--ld-accent-glow);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-checkbox:focus-visible,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-radio:focus-visible,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-switch:focus-visible {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-checkbox:focus-visible,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-radio:focus-visible,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-switch:focus-visible {
   outline: none;
-  border-color: var(--nb-primary-border);
+  border-color: var(--ld-primary-border);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-choice {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-choice {
   display: inline-flex;
   align-items: center;
-  gap: var(--nb-space-2);
-  color: var(--nb-on-surface);
-  font-size: var(--nb-text-sm);
+  gap: var(--ld-space-2);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
   cursor: pointer;
 }
 
 /* switch */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-switch {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-switch {
   appearance: none;
   width: 2.4rem;
   height: 1.3rem;
   margin: 0;
   vertical-align: text-bottom;
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-border);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
   border-radius: 1rem;
   cursor: pointer;
   position: relative;
-  transition: border-color var(--nb-transition);
+  transition: border-color var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-switch::after {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-switch::after {
   content: "";
   position: absolute;
   top: 2px;
@@ -111,14 +111,14 @@
   width: calc(1.3rem - 6px);
   height: calc(1.3rem - 6px);
   border-radius: 50%;
-  background: var(--nb-faint);
-  transition: transform var(--nb-transition), background var(--nb-transition);
+  background: var(--ld-faint);
+  transition: transform var(--ld-transition), background var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-switch:checked {
-  border-color: var(--nb-accent);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-switch:checked {
+  border-color: var(--ld-accent);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-switch:checked::after {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-switch:checked::after {
   transform: translateX(1.1rem);
-  background: var(--nb-accent);
-  box-shadow: 0 0 6px var(--nb-accent-glow);
+  background: var(--ld-accent);
+  box-shadow: 0 0 6px var(--ld-accent-glow);
 }

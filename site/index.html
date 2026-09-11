@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-nb-style="neon-butterfly">
+<html lang="en" data-ld-style="neon-butterfly">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<!-- every theme loads at once; the html data-nb-style attribute picks which one applies -->
+<!-- every theme loads at once; the html data-ld-style attribute picks which one applies -->
 <link rel="stylesheet" href="styles/all.css">
 <style>
   /* showcase chrome only — component styling comes entirely from the theme */
@@ -20,87 +20,87 @@
   header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
   .picker { display: flex; align-items: center; gap: 0.5rem; }
-  .picker .nb-select { width: auto; }
+  .picker .ld-select { width: auto; }
   section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
   .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   @media (max-width: 40rem) { .grid2 { grid-template-columns: 1fr; } }
 </style>
 </head>
-<body class="nb-bg">
+<body class="ld-bg">
 <main>
   <header class="page">
     <h1>ui-std-lib</h1>
     <label class="picker">
-      <span class="nb-label" style="margin:0">style</span>
-      <select id="style-select" class="nb-select"></select>
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
     </label>
   </header>
 
   <section>
     <h2>Buttons</h2>
     <div class="row">
-      <button class="nb-btn">Default</button>
-      <button class="nb-btn nb-btn--primary">Primary</button>
-      <button class="nb-btn nb-btn--accent">Accent</button>
-      <button class="nb-btn nb-btn--danger">Danger</button>
-      <button class="nb-btn" disabled>Disabled</button>
+      <button class="ld-btn">Default</button>
+      <button class="ld-btn ld-btn--primary">Primary</button>
+      <button class="ld-btn ld-btn--accent">Accent</button>
+      <button class="ld-btn ld-btn--danger">Danger</button>
+      <button class="ld-btn" disabled>Disabled</button>
     </div>
     <!-- Same variants at the compact --sm size, for a default-vs-sm comparison. -->
     <div class="row" style="margin-top: 0.75rem">
-      <button class="nb-btn nb-btn--sm">Default</button>
-      <button class="nb-btn nb-btn--sm nb-btn--primary">Primary</button>
-      <button class="nb-btn nb-btn--sm nb-btn--accent">Accent</button>
-      <button class="nb-btn nb-btn--sm nb-btn--danger">Danger</button>
-      <button class="nb-btn nb-btn--sm" disabled>Disabled</button>
+      <button class="ld-btn ld-btn--sm">Default</button>
+      <button class="ld-btn ld-btn--sm ld-btn--primary">Primary</button>
+      <button class="ld-btn ld-btn--sm ld-btn--accent">Accent</button>
+      <button class="ld-btn ld-btn--sm ld-btn--danger">Danger</button>
+      <button class="ld-btn ld-btn--sm" disabled>Disabled</button>
     </div>
   </section>
 
   <section>
     <h2>Nav links</h2>
     <div class="grid2">
-      <a class="nb-link" href="#">switchboard</a>
-      <a class="nb-link" href="#">backplane</a>
+      <a class="ld-link" href="#">switchboard</a>
+      <a class="ld-link" href="#">backplane</a>
     </div>
   </section>
 
   <section>
     <h2>Card</h2>
-    <div class="nb-card">
+    <div class="ld-card">
       <p>A frosted-glass surface for grouped content. Borders stay faint until the content inside needs attention.</p>
       <div class="row">
-        <span class="nb-badge nb-badge--primary">primary</span>
-        <span class="nb-badge nb-badge--success">success</span>
-        <span class="nb-badge nb-badge--warning">warning</span>
-        <span class="nb-badge nb-badge--danger">danger</span>
-        <span class="nb-badge nb-badge--info">info</span>
-        <span class="nb-badge">neutral</span>
+        <span class="ld-badge ld-badge--primary">primary</span>
+        <span class="ld-badge ld-badge--success">success</span>
+        <span class="ld-badge ld-badge--warning">warning</span>
+        <span class="ld-badge ld-badge--danger">danger</span>
+        <span class="ld-badge ld-badge--info">info</span>
+        <span class="ld-badge">neutral</span>
       </div>
     </div>
   </section>
 
   <section>
     <h2>Form</h2>
-    <div class="nb-card">
+    <div class="ld-card">
       <div class="grid2">
-        <div class="nb-field">
-          <label class="nb-label" for="f-name">Name</label>
-          <input id="f-name" class="nb-input" placeholder="lorepath">
+        <div class="ld-field">
+          <label class="ld-label" for="f-name">Name</label>
+          <input id="f-name" class="ld-input" placeholder="lorepath">
         </div>
-        <div class="nb-field">
-          <label class="nb-label" for="f-kind">Kind</label>
-          <select id="f-kind" class="nb-select"><option>app</option><option>service</option><option>library</option></select>
+        <div class="ld-field">
+          <label class="ld-label" for="f-kind">Kind</label>
+          <select id="f-kind" class="ld-select"><option>app</option><option>service</option><option>library</option></select>
         </div>
       </div>
-      <div class="nb-field">
-        <label class="nb-label" for="f-desc">Description</label>
-        <textarea id="f-desc" class="nb-textarea" rows="2" placeholder="What does it do?"></textarea>
+      <div class="ld-field">
+        <label class="ld-label" for="f-desc">Description</label>
+        <textarea id="f-desc" class="ld-textarea" rows="2" placeholder="What does it do?"></textarea>
       </div>
       <div class="row">
-        <label class="nb-choice"><input type="checkbox" class="nb-checkbox" checked> deploy</label>
-        <label class="nb-choice"><input type="radio" name="env" class="nb-radio" checked> lan</label>
-        <label class="nb-choice"><input type="radio" name="env" class="nb-radio"> edge</label>
-        <label class="nb-choice"><input type="checkbox" role="switch" class="nb-switch" checked> monitoring</label>
+        <label class="ld-choice"><input type="checkbox" class="ld-checkbox" checked> deploy</label>
+        <label class="ld-choice"><input type="radio" name="env" class="ld-radio" checked> lan</label>
+        <label class="ld-choice"><input type="radio" name="env" class="ld-radio"> edge</label>
+        <label class="ld-choice"><input type="checkbox" role="switch" class="ld-switch" checked> monitoring</label>
       </div>
     </div>
   </section>
@@ -108,63 +108,63 @@
   <section>
     <h2>Alerts</h2>
     <div style="display:grid;gap:1rem">
-      <div class="nb-alert nb-alert--info"><span class="nb-alert__title">Info</span>Deploy queued behind two other jobs.</div>
-      <div class="nb-alert nb-alert--success"><span class="nb-alert__title">Success</span>backplane rolled out cleanly.</div>
-      <div class="nb-alert nb-alert--warning"><span class="nb-alert__title">Warning</span>Certificate renews in 3 days.</div>
-      <div class="nb-alert nb-alert--danger"><span class="nb-alert__title">Danger</span>Health check failing on usr.</div>
+      <div class="ld-alert ld-alert--info"><span class="ld-alert__title">Info</span>Deploy queued behind two other jobs.</div>
+      <div class="ld-alert ld-alert--success"><span class="ld-alert__title">Success</span>backplane rolled out cleanly.</div>
+      <div class="ld-alert ld-alert--warning"><span class="ld-alert__title">Warning</span>Certificate renews in 3 days.</div>
+      <div class="ld-alert ld-alert--danger"><span class="ld-alert__title">Danger</span>Health check failing on usr.</div>
     </div>
   </section>
 
   <section>
     <h2>Text utilities</h2>
     <div style="display:grid;gap:1rem">
-      <p class="nb-muted">No jobs yet — submit a prompt above.</p>
-      <pre class="nb-pre">$ pnpm --filter @nazuraki/styles test
+      <p class="ld-muted">No jobs yet — submit a prompt above.</p>
+      <pre class="ld-pre">$ pnpm --filter @nazuraki/styles test
 ok 1 - manifest, package.json, and theme directories agree
-ok 23 - keyframe names are nb-prefixed and unique across all themes</pre>
+ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
     </div>
   </section>
 
   <section>
     <h2>Tabs</h2>
     <div id="tabs-demo">
-      <div class="nb-tabs" role="tablist">
-        <button class="nb-tab nb-tab--active" role="tab" aria-selected="true">Overview</button>
-        <button class="nb-tab" role="tab" aria-selected="false">Logs</button>
-        <button class="nb-tab" role="tab" aria-selected="false">Settings</button>
+      <div class="ld-tabs" role="tablist">
+        <button class="ld-tab ld-tab--active" role="tab" aria-selected="true">Overview</button>
+        <button class="ld-tab" role="tab" aria-selected="false">Logs</button>
+        <button class="ld-tab" role="tab" aria-selected="false">Settings</button>
       </div>
-      <div class="nb-tabpanel">Active tabs glow in the primary color; idle tabs stay faint.</div>
+      <div class="ld-tabpanel">Active tabs glow in the primary color; idle tabs stay faint.</div>
     </div>
   </section>
 
   <section>
     <h2>Table</h2>
-    <table class="nb-table">
+    <table class="ld-table">
       <thead><tr><th>App</th><th>Framework</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td>vigil</td><td>react</td><td><span class="nb-badge nb-badge--success">live</span></td></tr>
-        <tr><td>lorepath</td><td>svelte → react</td><td><span class="nb-badge nb-badge--warning">migrating</span></td></tr>
-        <tr><td>switchboard</td><td>static</td><td><span class="nb-badge nb-badge--success">live</span></td></tr>
+        <tr><td>vigil</td><td>react</td><td><span class="ld-badge ld-badge--success">live</span></td></tr>
+        <tr><td>lorepath</td><td>svelte → react</td><td><span class="ld-badge ld-badge--warning">migrating</span></td></tr>
+        <tr><td>switchboard</td><td>static</td><td><span class="ld-badge ld-badge--success">live</span></td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
     <h2>Progress &amp; dialog</h2>
-    <div class="nb-card">
+    <div class="ld-card">
       <div class="row" style="margin-bottom:1rem">
-        <span class="nb-spinner"></span>
-        <div class="nb-progress" style="flex:1"><div class="nb-progress__bar" style="width:65%"></div></div>
-        <div class="nb-progress" style="flex:1"><div class="nb-progress__bar nb-progress__bar--accent" style="width:30%"></div></div>
+        <span class="ld-spinner"></span>
+        <div class="ld-progress" style="flex:1"><div class="ld-progress__bar" style="width:65%"></div></div>
+        <div class="ld-progress" style="flex:1"><div class="ld-progress__bar ld-progress__bar--accent" style="width:30%"></div></div>
       </div>
-      <button class="nb-btn nb-btn--primary" onclick="document.getElementById('demo-dialog').showModal()">Open dialog</button>
+      <button class="ld-btn ld-btn--primary" onclick="document.getElementById('demo-dialog').showModal()">Open dialog</button>
     </div>
-    <dialog id="demo-dialog" class="nb-dialog">
-      <h2 class="nb-dialog__title">Confirm deploy</h2>
+    <dialog id="demo-dialog" class="ld-dialog">
+      <h2 class="ld-dialog__title">Confirm deploy</h2>
       <p>Roll out backplane v0.4.2 to the lan environment?</p>
-      <div class="nb-dialog__actions">
-        <button class="nb-btn" onclick="this.closest('dialog').close()">Cancel</button>
-        <button class="nb-btn nb-btn--accent" onclick="this.closest('dialog').close()">Deploy</button>
+      <div class="ld-dialog__actions">
+        <button class="ld-btn" onclick="this.closest('dialog').close()">Cancel</button>
+        <button class="ld-btn ld-btn--accent" onclick="this.closest('dialog').close()">Deploy</button>
       </div>
     </dialog>
   </section>
@@ -175,7 +175,7 @@ ok 23 - keyframe names are nb-prefixed and unique across all themes</pre>
   // here (and in any consumer that reads it) with no site change.
   const select = document.getElementById("style-select");
   const apply = () => {
-    document.documentElement.dataset.nbStyle = select.value;
+    document.documentElement.dataset.ldStyle = select.value;
     history.replaceState(null, "", `?style=${select.value}`);
   };
   fetch("styles/manifest.json")
@@ -184,16 +184,16 @@ ok 23 - keyframe names are nb-prefixed and unique across all themes</pre>
       const names = Object.keys(themes);
       for (const s of names) select.add(new Option(s, s));
       const requested = new URLSearchParams(location.search).get("style");
-      select.value = names.includes(requested) ? requested : document.documentElement.dataset.nbStyle;
+      select.value = names.includes(requested) ? requested : document.documentElement.dataset.ldStyle;
       select.addEventListener("change", apply);
       apply();
     });
 
   // minimal tab behavior for the static demo
-  document.querySelectorAll("#tabs-demo .nb-tab").forEach((tab) => {
+  document.querySelectorAll("#tabs-demo .ld-tab").forEach((tab) => {
     tab.addEventListener("click", () => {
-      document.querySelectorAll("#tabs-demo .nb-tab").forEach((t) => {
-        t.classList.toggle("nb-tab--active", t === tab);
+      document.querySelectorAll("#tabs-demo .ld-tab").forEach((t) => {
+        t.classList.toggle("ld-tab--active", t === tab);
         t.setAttribute("aria-selected", String(t === tab));
       });
     });

@@ -1,33 +1,33 @@
 /* neon-butterfly — tabs */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tabs {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs {
   display: flex;
-  gap: var(--nb-space-2);
-  border-bottom: 1px solid var(--nb-border);
+  gap: var(--ld-space-2);
+  border-bottom: 1px solid var(--ld-border);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tab {
-  padding: var(--nb-space-2) var(--nb-space-3);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab {
+  padding: var(--ld-space-2) var(--ld-space-3);
   margin-bottom: -1px;
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  color: var(--nb-faint);
+  color: var(--ld-faint);
   text-transform: uppercase;
-  font-family: var(--nb-font-mono);
-  font-weight: var(--nb-font-weight-bold);
-  font-size: var(--nb-text-sm);
-  letter-spacing: var(--nb-tracking-wide);
+  font-family: var(--ld-font-mono);
+  font-weight: var(--ld-font-weight-bold);
+  font-size: var(--ld-text-sm);
+  letter-spacing: var(--ld-tracking-wide);
   cursor: pointer;
-  transition: color var(--nb-transition), border-color var(--nb-transition);
+  transition: color var(--ld-transition), border-color var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tab:hover {
-  color: var(--nb-on-surface);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab:hover {
+  color: var(--ld-on-surface);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tab--active,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tab[aria-selected="true"] {
-  color: var(--nb-primary);
-  border-bottom-color: var(--nb-primary);
-  text-shadow: 0 0 8px var(--nb-primary-glow);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab--active,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab[aria-selected="true"] {
+  color: var(--ld-primary);
+  border-bottom-color: var(--ld-primary);
+  text-shadow: 0 0 8px var(--ld-primary-glow);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-tabpanel {
-  padding: var(--nb-space-3) 0;
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabpanel {
+  padding: var(--ld-space-3) 0;
 }

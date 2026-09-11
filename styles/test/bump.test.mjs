@@ -21,7 +21,7 @@ test("plain commits bump the patch", () => {
 });
 
 test("a ! subject bumps the minor and resets the patch while major is 0", () => {
-  assert.equal(next("0.2.3", "feat!: scope every rule under data-nb-style"), "0.3.0");
+  assert.equal(next("0.2.3", "feat!: scope every rule under data-ld-style"), "0.3.0");
   assert.equal(next("0.2.3", "feat(styles)!: scoped tokens"), "0.3.0");
 });
 

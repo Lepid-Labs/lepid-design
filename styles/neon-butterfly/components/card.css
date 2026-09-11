@@ -1,11 +1,11 @@
 /* neon-butterfly — card */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-card {
-  padding: var(--nb-space-4);
-  background: var(--nb-surface-glass);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  backdrop-filter: blur(var(--nb-blur));
-  color: var(--nb-on-surface);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-card {
+  padding: var(--ld-space-4);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  color: var(--ld-on-surface);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-card > :first-child { margin-top: 0; }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-card > :last-child { margin-bottom: 0; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-card > :first-child { margin-top: 0; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-card > :last-child { margin-bottom: 0; }

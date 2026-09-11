@@ -2,7 +2,7 @@
  * Faint secondary text — captions, meta, "No jobs yet." style empty states.
  * Italic gives it a friendly, soft touch consistent with the theme's airy,
  * optimistic voice. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-muted {
-  color: var(--nb-faint);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-muted {
+  color: var(--ld-faint);
   font-style: italic;
 }

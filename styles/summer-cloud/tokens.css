@@ -3,7 +3,7 @@
  *   @import "@nazuraki/styles/summer-cloud/tokens";
  * or pull the whole theme with ./index.css.
  *
- * Nothing applies until an element carries data-nb-style="summer-cloud"
+ * Nothing applies until an element carries data-ld-style="summer-cloud"
  * — set it on <html> for a page, or on any container for an embedded island.
  * The :where() keeps specificity at zero, so any consumer rule overrides.
  *
@@ -11,83 +11,83 @@
  * parity); names marked (extra) are additions beyond it that only this
  * theme's own component CSS may rely on.
  */
-:where([data-nb-style="summer-cloud"]) {
+:where([data-ld-style="summer-cloud"]) {
   color-scheme: light;
 
   /* color */
-  --nb-bg: #f6fafe;
-  --nb-bg-blend: #eaeef2;
-  --nb-surface: #ffffff;
-  --nb-surface-sunken: #f0f4f8; /* inset fields */
-  --nb-surface-glass: rgba(255, 255, 255, 0.6);
-  --nb-surface-glass-high: rgba(255, 255, 255, 0.8); /* (extra) floating tier */
-  --nb-on-surface: #171c1f;
-  --nb-faint: #484457;
-  --nb-primary: #4500d9;
-  --nb-primary-bright: #5d2bff; /* (extra) shadow/glow tint */
-  --nb-primary-glow: rgba(93, 43, 255, 0.4);
-  --nb-primary-border: rgba(69, 0, 217, 0.2);
-  --nb-on-primary: #ffffff; /* text on solid violet fills */
-  --nb-accent: #0cb3ff;
-  --nb-accent-glow: rgba(12, 179, 255, 0.2);
-  --nb-accent-deep: #006492; /* (extra) readable accent text */
-  --nb-border: rgba(255, 255, 255, 0.4);
-  --nb-border-lit: rgba(255, 255, 255, 0.7); /* lit top edge of glass panes */
-  --nb-outline: #c9c3da; /* (extra) hairline on opaque surfaces */
+  --ld-bg: #f6fafe;
+  --ld-bg-blend: #eaeef2;
+  --ld-surface: #ffffff;
+  --ld-surface-sunken: #f0f4f8; /* inset fields */
+  --ld-surface-glass: rgba(255, 255, 255, 0.6);
+  --ld-surface-glass-high: rgba(255, 255, 255, 0.8); /* (extra) floating tier */
+  --ld-on-surface: #171c1f;
+  --ld-faint: #484457;
+  --ld-primary: #4500d9;
+  --ld-primary-bright: #5d2bff; /* (extra) shadow/glow tint */
+  --ld-primary-glow: rgba(93, 43, 255, 0.4);
+  --ld-primary-border: rgba(69, 0, 217, 0.2);
+  --ld-on-primary: #ffffff; /* text on solid violet fills */
+  --ld-accent: #0cb3ff;
+  --ld-accent-glow: rgba(12, 179, 255, 0.2);
+  --ld-accent-deep: #006492; /* (extra) readable accent text */
+  --ld-border: rgba(255, 255, 255, 0.4);
+  --ld-border-lit: rgba(255, 255, 255, 0.7); /* lit top edge of glass panes */
+  --ld-outline: #c9c3da; /* (extra) hairline on opaque surfaces */
 
   /* semantic color */
-  --nb-info: #0cb3ff;
-  --nb-success: #30e330;
-  --nb-warning: #f2c025;
-  --nb-danger: #ff4d4d;
-  --nb-danger-deep: #cc1f1f; /* (extra) danger where white text sits on it */
+  --ld-info: #0cb3ff;
+  --ld-success: #30e330;
+  --ld-warning: #f2c025;
+  --ld-danger: #ff4d4d;
+  --ld-danger-deep: #cc1f1f; /* (extra) danger where white text sits on it */
 
   /* sky gradient (extra) */
-  --nb-sky-start: #f0f4f8;
-  --nb-sky-end: #c9e6ff;
-  --nb-sky-tint: rgba(255, 255, 255, 0.7);
+  --ld-sky-start: #f0f4f8;
+  --ld-sky-end: #c9e6ff;
+  --ld-sky-tint: rgba(255, 255, 255, 0.7);
 
   /* code syntax — deepened palette hues for contrast on white */
-  --nb-code-keyword: #4500d9;
-  --nb-code-string: #157a2a;
-  --nb-code-number: #9a6b00;
-  --nb-code-comment: #6e6880;
-  --nb-code-function: #006492;
-  --nb-code-variable: #cc1f1f;
-  --nb-code-type: #00877a;
-  --nb-code-meta: #484457;
+  --ld-code-keyword: #4500d9;
+  --ld-code-string: #157a2a;
+  --ld-code-number: #9a6b00;
+  --ld-code-comment: #6e6880;
+  --ld-code-function: #006492;
+  --ld-code-variable: #cc1f1f;
+  --ld-code-type: #00877a;
+  --ld-code-meta: #484457;
 
   /* typography */
-  --nb-font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --nb-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --nb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --nb-font-weight: 400;
-  --nb-font-weight-medium: 600;
-  --nb-font-weight-bold: 700;
-  --nb-text-sm: 14px;
-  --nb-tracking-wide: 0.05em;
-  --nb-tracking-tight: -0.02em; /* (extra) display sizes */
+  --ld-font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --ld-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --ld-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ld-font-weight: 400;
+  --ld-font-weight-medium: 600;
+  --ld-font-weight-bold: 700;
+  --ld-text-sm: 14px;
+  --ld-tracking-wide: 0.05em;
+  --ld-tracking-tight: -0.02em; /* (extra) display sizes */
 
   /* shape & effects */
-  --nb-radius: 1rem;
-  --nb-radius-sm: 0.25rem; /* (extra) */
-  --nb-radius-lg: 1.5rem; /* cards and large containers */
-  --nb-radius-pill: 9999px; /* (extra) */
-  --nb-blur: 12px;
-  --nb-blur-high: 20px; /* (extra) */
-  --nb-transition: 0.3s;
-  --nb-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* (extra) */
+  --ld-radius: 1rem;
+  --ld-radius-sm: 0.25rem; /* (extra) */
+  --ld-radius-lg: 1.5rem; /* cards and large containers */
+  --ld-radius-pill: 9999px; /* (extra) */
+  --ld-blur: 12px;
+  --ld-blur-high: 20px; /* (extra) */
+  --ld-transition: 0.3s;
+  --ld-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* (extra) */
 
   /* elevation (extra) — tinted with the primary, never grey */
-  --nb-shadow: 0 20px 40px rgba(93, 43, 255, 0.08);
-  --nb-shadow-soft: 0 10px 30px rgba(0, 100, 146, 0.05);
-  --nb-shadow-raised: 0 4px 14px rgba(93, 43, 255, 0.39);
-  --nb-shadow-raised-hover: 0 6px 20px rgba(93, 43, 255, 0.5);
+  --ld-shadow: 0 20px 40px rgba(93, 43, 255, 0.08);
+  --ld-shadow-soft: 0 10px 30px rgba(0, 100, 146, 0.05);
+  --ld-shadow-raised: 0 4px 14px rgba(93, 43, 255, 0.39);
+  --ld-shadow-raised-hover: 0 6px 20px rgba(93, 43, 255, 0.5);
 
   /* spacing */
-  --nb-space-1: 0.25rem;
-  --nb-space-2: 0.5rem;
-  --nb-space-3: 1rem;
-  --nb-space-4: 1.5rem;
-  --nb-space-5: 2rem;
+  --ld-space-1: 0.25rem;
+  --ld-space-2: 0.5rem;
+  --ld-space-3: 1rem;
+  --ld-space-4: 1.5rem;
+  --ld-space-5: 2rem;
 }

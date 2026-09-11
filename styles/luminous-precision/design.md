@@ -12,7 +12,7 @@ InfraPulse Stitch mockups (Stitch project 18185577263375001507).
 
 | Role | Value | Usage |
 | --- | --- | --- |
-| Background | `#0a0c10` (deep obsidian) | Page background; `.nb-bg` adds soft orchid/teal radial underlays |
+| Background | `#0a0c10` (deep obsidian) | Page background; `.ld-bg` adds soft orchid/teal radial underlays |
 | Surface | `#1a1d29` (indigo) | Solid panels, dialogs |
 | Surface sunken | `#0c0e14` | Inset fields, log wells, progress troughs |
 | Surface glass | `rgba(26,29,41,0.4)` + 12px blur | Cards, nav links, alerts |
@@ -44,52 +44,52 @@ tonal layers and glow, not drop shadows. Never pure white or pure black.
 - Radius `0.5rem` for buttons and inputs; `1rem` for cards, dialogs, and large
   containers. Pills reserved strictly for chips/badges and switches.
 - Glass panes: 1px hairline borders with a lighter top edge
-  (`--nb-border-lit`) to simulate overhead lighting; `backdrop-filter` 12px.
+  (`--ld-border-lit`) to simulate overhead lighting; `backdrop-filter` 12px.
 - Focus is electric teal: inputs drop the resting border for a teal line plus
   soft teal outer glow.
-- Elevation = glow (`nb-pulse-glow` orchid, `nb-pulse-glow-accent` teal), not
+- Elevation = glow (`ld-pulse-glow` orchid, `ld-pulse-glow-accent` teal), not
   dark shadows. Transitions 0.3s. Respect `prefers-reduced-motion`.
 - 8px spacing rhythm; generous negative space so glows can breathe.
 
 ## Components
 
-Class prefix `nb-` (shared token/class contract with the other themes).
+Class prefix `ld-` (shared token/class contract with the other themes).
 
-- **Card** `.nb-card` — glass pane, 1rem radius, lit top edge.
-- **NavLink** `.nb-link` — glass list row; hover shifts to solid indigo and
+- **Card** `.ld-card` — glass pane, 1rem radius, lit top edge.
+- **NavLink** `.ld-link` — glass list row; hover shifts to solid indigo and
   lights a 2px teal bar on the left edge.
-- **Button** `.nb-btn` — ghost by default; `--primary` is the one solid fill
+- **Button** `.ld-btn` — ghost by default; `--primary` is the one solid fill
   (orchid, dark text), `--accent` teal ghost, `--danger` rose ghost. `--sm` is a
-  compact size scaled to `.nb-badge`, for inline and table-row actions.
-- **Form** `.nb-input`, `.nb-textarea`, `.nb-select`, `.nb-label`,
-  `.nb-field`, `.nb-checkbox`, `.nb-radio`, `.nb-switch`, `.nb-choice` —
+  compact size scaled to `.ld-badge`, for inline and table-row actions.
+- **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
+  `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
-- **Badge** `.nb-badge` — pill chip: 15% tint of its hue behind
+- **Badge** `.ld-badge` — pill chip: 15% tint of its hue behind
   full-saturation text (+ semantic modifiers).
-- **Alert** `.nb-alert` — glass, 3px left bar carries the semantic color.
-- **Dialog** `.nb-dialog` — native `<dialog>`, indigo pane with orchid glow,
+- **Alert** `.ld-alert` — glass, 3px left bar carries the semantic color.
+- **Dialog** `.ld-dialog` — native `<dialog>`, indigo pane with orchid glow,
   Sora title, blurred obsidian backdrop.
-- **Tabs** `.nb-tabs`/`.nb-tab`/`.nb-tabpanel` — active tab underlined in
+- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in
   teal with text glow.
-- **Table** `.nb-table` — lit header rule; row hover shifts glass and lights
+- **Table** `.ld-table` — lit header rule; row hover shifts glass and lights
   the teal left bar.
-- **Progress** `.nb-progress`, **Spinner** `.nb-spinner` — glowing orchid
+- **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid
   indicators (`--accent` bar variant in teal).
-- **Muted text** `.nb-muted` — faint secondary/empty-state text;
-  `color: var(--nb-faint)`, italic.
-- **Pre / log block** `.nb-pre` — command/log `<pre>`; the surface-sunken
+- **Muted text** `.ld-muted` — faint secondary/empty-state text;
+  `color: var(--ld-faint)`, italic.
+- **Pre / log block** `.ld-pre` — command/log `<pre>`; the surface-sunken
   well (already documented above as this theme's "log wells" token),
   hairline border, radius, small mono, horizontal scroll.
 
 ## Code syntax
 
-Tokens `--nb-code-*`, part of the baseline contract. Orchid keywords, teal
+Tokens `--ld-code-*`, part of the baseline contract. Orchid keywords, teal
 types, info-blue functions, amber numbers, success-green strings, soft-rose
 variables, dimmed-faint comments, faint meta — palette voices reused, never
 new hues for decoration.
 
 ## Scoping
 
-Every rule is guarded by `data-nb-style="luminous-precision"` (self or
+Every rule is guarded by `data-ld-style="luminous-precision"` (self or
 ancestor), wrapped in zero-specificity `:where()`. Set the attribute on
 `<html>` for a page or on a container for an embedded island.

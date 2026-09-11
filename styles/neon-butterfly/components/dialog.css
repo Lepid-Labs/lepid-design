@@ -1,29 +1,29 @@
 /* neon-butterfly — dialog (native <dialog>) */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-dialog {
-  padding: var(--nb-space-4);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog {
+  padding: var(--ld-space-4);
   max-width: 32rem;
   width: calc(100vw - 2rem);
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-primary-border);
-  border-radius: var(--nb-radius);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-mono);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-primary-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-mono);
   box-shadow: 0 0 30px rgba(210, 187, 255, 0.25);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-dialog::backdrop {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog::backdrop {
   background: rgba(11, 19, 38, 0.7);
   backdrop-filter: blur(4px);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-dialog__title {
-  margin: 0 0 var(--nb-space-3);
-  color: var(--nb-primary);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog__title {
+  margin: 0 0 var(--ld-space-3);
+  color: var(--ld-primary);
   text-transform: uppercase;
   font-size: 1rem;
-  letter-spacing: var(--nb-tracking-wide);
+  letter-spacing: var(--ld-tracking-wide);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-dialog__actions {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog__actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--nb-space-2);
-  margin-top: var(--nb-space-4);
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-4);
 }

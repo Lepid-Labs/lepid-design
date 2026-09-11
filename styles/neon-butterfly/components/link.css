@@ -1,55 +1,55 @@
 /* neon-butterfly — nav link: uppercase mono link with ">" chevron and glow hover */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link {
   display: flex;
   align-items: baseline;
-  gap: var(--nb-space-3);
-  padding: 1.25rem var(--nb-space-4);
-  background: var(--nb-surface-glass);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  backdrop-filter: blur(var(--nb-blur));
-  color: var(--nb-on-surface);
+  gap: var(--ld-space-3);
+  padding: 1.25rem var(--ld-space-4);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  color: var(--ld-on-surface);
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: var(--nb-font-weight-bold);
-  font-size: var(--nb-text-sm);
-  letter-spacing: var(--nb-tracking-wide);
+  font-weight: var(--ld-font-weight-bold);
+  font-size: var(--ld-text-sm);
+  letter-spacing: var(--ld-tracking-wide);
   transition:
-    border-color var(--nb-transition),
-    color var(--nb-transition),
-    transform var(--nb-transition);
+    border-color var(--ld-transition),
+    color var(--ld-transition),
+    transform var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link::before {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link::before {
   content: ">";
-  color: var(--nb-faint);
-  transition: color var(--nb-transition);
+  color: var(--ld-faint);
+  transition: color var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link:hover {
-  border-color: var(--nb-primary-border);
-  color: var(--nb-primary);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover {
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
   transform: translateX(4px);
-  animation: nb-nb-pulse-glow 2s infinite;
+  animation: ld-nb-pulse-glow 2s infinite;
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link:hover::before {
-  color: var(--nb-accent);
-  text-shadow: 0 0 5px var(--nb-accent-glow);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover::before {
+  color: var(--ld-accent);
+  text-shadow: 0 0 5px var(--ld-accent-glow);
 }
 
-@keyframes nb-nb-pulse-glow {
+@keyframes ld-nb-pulse-glow {
   0%,
   100% {
     box-shadow: 0 0 5px rgba(210, 187, 255, 0.2);
   }
   50% {
-    box-shadow: 0 0 20px var(--nb-primary-glow);
+    box-shadow: 0 0 20px var(--ld-primary-glow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link {
     transition: none;
   }
-  :where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-link:hover {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover {
     animation: none;
   }
 }

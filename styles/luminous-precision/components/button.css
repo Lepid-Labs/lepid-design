@@ -1,94 +1,94 @@
 /* luminous-precision — button */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--nb-space-2);
-  padding: var(--nb-space-2) var(--nb-space-3);
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
   background: transparent;
-  border: 1px solid var(--nb-border-lit);
-  border-radius: var(--nb-radius);
-  color: var(--nb-on-surface);
+  border: 1px solid var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
   text-transform: uppercase;
-  font-family: var(--nb-font-mono);
-  font-weight: var(--nb-font-weight-medium);
-  font-size: var(--nb-text-sm);
-  letter-spacing: var(--nb-tracking-wide);
+  font-family: var(--ld-font-mono);
+  font-weight: var(--ld-font-weight-medium);
+  font-size: var(--ld-text-sm);
+  letter-spacing: var(--ld-tracking-wide);
   cursor: pointer;
   transition:
-    border-color var(--nb-transition),
-    color var(--nb-transition),
-    box-shadow var(--nb-transition);
+    border-color var(--ld-transition),
+    color var(--ld-transition),
+    box-shadow var(--ld-transition);
 }
-/* --sm: compact size for inline/table-row actions, scaled to .nb-badge
+/* --sm: compact size for inline/table-row actions, scaled to .ld-badge
  * (composes with any variant — sets size only). */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--sm {
-  padding: 0.15rem var(--nb-space-2);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--sm {
+  padding: 0.15rem var(--ld-space-2);
   font-size: 12px;
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn:hover,
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn:focus-visible {
-  border-color: var(--nb-primary-border);
-  color: var(--nb-primary);
-  animation: nb-lp-pulse-glow 2s infinite;
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:focus-visible {
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  animation: ld-lp-pulse-glow 2s infinite;
   outline: none;
 }
 
 /* primary: solid orchid fill, dark text, glow pulse on hover */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--primary {
-  background: var(--nb-primary);
-  border-color: var(--nb-primary);
-  color: var(--nb-on-primary);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--primary {
+  background: var(--ld-primary);
+  border-color: var(--ld-primary);
+  color: var(--ld-on-primary);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--primary:hover,
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--primary:focus-visible {
-  border-color: var(--nb-primary);
-  color: var(--nb-on-primary);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--primary:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--primary:focus-visible {
+  border-color: var(--ld-primary);
+  color: var(--ld-on-primary);
 }
 
 /* accent: teal ghost — critical navigation paths */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--accent {
-  border-color: var(--nb-accent);
-  color: var(--nb-accent);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--accent {
+  border-color: var(--ld-accent);
+  color: var(--ld-accent);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--accent:hover,
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--accent:focus-visible {
-  border-color: var(--nb-accent);
-  color: var(--nb-accent);
-  animation-name: nb-lp-pulse-glow-accent;
-}
-
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--danger {
-  border-color: var(--nb-danger);
-  color: var(--nb-danger);
-}
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--danger:hover,
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn--danger:focus-visible {
-  border-color: var(--nb-danger);
-  color: var(--nb-danger);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--accent:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--accent:focus-visible {
+  border-color: var(--ld-accent);
+  color: var(--ld-accent);
+  animation-name: ld-lp-pulse-glow-accent;
 }
 
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn:disabled {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--danger {
+  border-color: var(--ld-danger);
+  color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--danger:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn--danger:focus-visible {
+  border-color: var(--ld-danger);
+  color: var(--ld-danger);
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   animation: none;
 }
 
-@keyframes nb-lp-pulse-glow-accent {
+@keyframes ld-lp-pulse-glow-accent {
   0%,
   100% {
     box-shadow: 0 0 5px rgba(0, 245, 255, 0.15);
   }
   50% {
-    box-shadow: 0 0 20px var(--nb-accent-glow);
+    box-shadow: 0 0 20px var(--ld-accent-glow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn {
     transition: none;
   }
-  :where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn:hover,
-  :where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-btn:focus-visible {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:hover,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:focus-visible {
     animation: none;
   }
 }

@@ -3,47 +3,47 @@
  * webfont should include the Google Fonts <link> (weights 450 + 700) or
  * self-host; the token stack falls back to ui-monospace.
  *
- * The element carrying data-nb-style is the theme's canvas: it gets the
+ * The element carrying data-ld-style is the theme's canvas: it gets the
  * background, text color, and body font — whether that is <html> for a page
  * or a mount container for an embedded island. Page-only rules (body margin,
  * viewport height) apply only when the attribute sits on <html>.
  */
-:where([data-nb-style="neon-butterfly"]) {
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+:where([data-ld-style="neon-butterfly"]) {
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
 }
 
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *),
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *)::before,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *)::after {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *),
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *)::before,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *)::after {
   box-sizing: border-box;
 }
 
-:where(html[data-nb-style="neon-butterfly"]) body {
+:where(html[data-ld-style="neon-butterfly"]) body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
 }
 
 /* Opt-in page background: the butterfly circuit artwork blended into the navy.
  * Matches the switchboard landing page. Apply to <body>, or to the attributed
  * container itself. */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-bg {
-  background: var(--nb-bg) url("./assets/butterfly-circuit.png") center / cover fixed;
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-bg {
+  background: var(--ld-bg) url("./assets/butterfly-circuit.png") center / cover fixed;
   background-blend-mode: luminosity;
-  background-color: var(--nb-bg-blend);
+  background-color: var(--ld-bg-blend);
 }
 
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *):where(a) {
-  color: var(--nb-primary);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *):where(a) {
+  color: var(--ld-primary);
 }
 
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *)::selection {
-  background: var(--nb-primary);
-  color: var(--nb-bg);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *)::selection {
+  background: var(--ld-primary);
+  color: var(--ld-bg);
 }

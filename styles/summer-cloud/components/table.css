@@ -1,34 +1,34 @@
 /* summer-cloud — table: mono header labels, sky-tint row hover */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--nb-text-sm);
-  color: var(--nb-on-surface);
+  font-size: var(--ld-text-sm);
+  color: var(--ld-on-surface);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table th {
-  padding: var(--nb-space-3);
-  border-bottom: 1px solid var(--nb-outline);
-  color: var(--nb-faint);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th {
+  padding: var(--ld-space-3);
+  border-bottom: 1px solid var(--ld-outline);
+  color: var(--ld-faint);
   text-align: left;
   text-transform: uppercase;
-  font-family: var(--nb-font-mono);
+  font-family: var(--ld-font-mono);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: var(--nb-tracking-wide);
+  letter-spacing: var(--ld-tracking-wide);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table td {
-  padding: var(--nb-space-3);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table td {
+  padding: var(--ld-space-3);
   border-bottom: 1px solid rgba(201, 195, 218, 0.4);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table tbody tr {
-  transition: background var(--nb-transition);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table tbody tr {
+  transition: background var(--ld-transition);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table tbody tr:hover {
-  background: var(--nb-sky-tint);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table tbody tr:hover {
+  background: var(--ld-sky-tint);
 }
 /* Numeric cells take the mono voice — prices and data read as utility-grade. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table td.nb-num,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-table th.nb-num {
-  font-family: var(--nb-font-mono);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table td.ld-num,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th.ld-num {
+  font-family: var(--ld-font-mono);
   text-align: right;
 }

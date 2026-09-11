@@ -26,21 +26,21 @@ export function Tabs({ items, active, defaultActive, onChange }: TabsProps) {
   const activeItem = items.find((t) => t.id === current);
   return (
     <div>
-      <div role="tablist" className="nb-tabs">
+      <div role="tablist" className="ld-tabs">
         {items.map((t) => (
           <button
             key={t.id}
             role="tab"
             type="button"
             aria-selected={t.id === current}
-            className={cx("nb-tab", t.id === current && "nb-tab--active")}
+            className={cx("ld-tab", t.id === current && "ld-tab--active")}
             onClick={() => select(t.id)}
           >
             {t.label}
           </button>
         ))}
       </div>
-      <div role="tabpanel" className="nb-tabpanel">
+      <div role="tabpanel" className="ld-tabpanel">
         {activeItem?.content}
       </div>
     </div>

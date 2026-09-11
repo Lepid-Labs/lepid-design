@@ -1,60 +1,60 @@
 /* neon-butterfly — button */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--nb-space-2);
-  padding: var(--nb-space-2) var(--nb-space-3);
-  background: var(--nb-surface-glass);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  color: var(--nb-on-surface);
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
   text-transform: uppercase;
-  font-family: var(--nb-font-mono);
-  font-weight: var(--nb-font-weight-bold);
-  font-size: var(--nb-text-sm);
-  letter-spacing: var(--nb-tracking-wide);
+  font-family: var(--ld-font-mono);
+  font-weight: var(--ld-font-weight-bold);
+  font-size: var(--ld-text-sm);
+  letter-spacing: var(--ld-tracking-wide);
   cursor: pointer;
   transition:
-    border-color var(--nb-transition),
-    color var(--nb-transition);
+    border-color var(--ld-transition),
+    color var(--ld-transition);
 }
-/* --sm: compact size for inline/table-row actions, scaled to .nb-badge
+/* --sm: compact size for inline/table-row actions, scaled to .ld-badge
  * (composes with any variant — sets size only). */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn--sm {
-  padding: 0.15rem var(--nb-space-2);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--sm {
+  padding: 0.15rem var(--ld-space-2);
   font-size: 12px;
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn:hover,
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn:focus-visible {
-  border-color: var(--nb-primary-border);
-  color: var(--nb-primary);
-  animation: nb-nb-pulse-glow 2s infinite;
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:hover,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:focus-visible {
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  animation: ld-nb-pulse-glow 2s infinite;
   outline: none;
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn--primary {
-  border-color: var(--nb-primary-border);
-  color: var(--nb-primary);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--primary {
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn--accent {
-  border-color: var(--nb-accent);
-  color: var(--nb-accent);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--accent {
+  border-color: var(--ld-accent);
+  color: var(--ld-accent);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn--danger {
-  border-color: var(--nb-danger);
-  color: var(--nb-danger);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--danger {
+  border-color: var(--ld-danger);
+  color: var(--ld-danger);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn:disabled {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn {
     transition: none;
   }
-  :where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn:hover,
-  :where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-btn:focus-visible {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:hover,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:focus-visible {
     animation: none;
   }
 }

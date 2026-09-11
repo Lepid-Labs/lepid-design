@@ -1,46 +1,46 @@
 /* luminous-precision — nav link: glass list row; hover shifts the indigo and
  * lights a 2px electric-teal bar on the left edge */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-link {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link {
   display: flex;
   align-items: baseline;
-  gap: var(--nb-space-3);
-  padding: 1rem var(--nb-space-4);
-  background: var(--nb-surface-glass);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  backdrop-filter: blur(var(--nb-blur));
-  color: var(--nb-on-surface);
+  gap: var(--ld-space-3);
+  padding: 1rem var(--ld-space-4);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  color: var(--ld-on-surface);
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: var(--nb-font-weight-medium);
-  font-size: var(--nb-text-sm);
-  letter-spacing: var(--nb-tracking-wide);
-  box-shadow: inset 0 0 0 0 var(--nb-accent);
+  font-weight: var(--ld-font-weight-medium);
+  font-size: var(--ld-text-sm);
+  letter-spacing: var(--ld-tracking-wide);
+  box-shadow: inset 0 0 0 0 var(--ld-accent);
   transition:
-    background var(--nb-transition),
-    color var(--nb-transition),
-    box-shadow var(--nb-transition);
+    background var(--ld-transition),
+    color var(--ld-transition),
+    box-shadow var(--ld-transition);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-link:hover {
-  background: var(--nb-surface);
-  color: var(--nb-accent);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link:hover {
+  background: var(--ld-surface);
+  color: var(--ld-accent);
   box-shadow:
-    inset 2px 0 0 0 var(--nb-accent),
-    0 0 12px var(--nb-accent-glow);
+    inset 2px 0 0 0 var(--ld-accent),
+    0 0 12px var(--ld-accent-glow);
 }
 
-@keyframes nb-lp-pulse-glow {
+@keyframes ld-lp-pulse-glow {
   0%,
   100% {
     box-shadow: 0 0 5px rgba(198, 165, 255, 0.15);
   }
   50% {
-    box-shadow: 0 0 20px var(--nb-primary-glow);
+    box-shadow: 0 0 20px var(--ld-primary-glow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-link {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link {
     transition: none;
   }
 }

@@ -3,7 +3,7 @@
  *   @import "@nazuraki/styles/luminous-precision/tokens";
  * or pull the whole theme with ./index.css.
  *
- * Nothing applies until an element carries data-nb-style="luminous-precision"
+ * Nothing applies until an element carries data-ld-style="luminous-precision"
  * — set it on <html> for a page, or on any container for an embedded island.
  * The :where() keeps specificity at zero, so any consumer rule overrides.
  *
@@ -11,62 +11,62 @@
  * parity); names marked (extra) are additions beyond it that only this
  * theme's own component CSS may rely on.
  */
-:where([data-nb-style="luminous-precision"]) {
+:where([data-ld-style="luminous-precision"]) {
   color-scheme: dark;
 
   /* color */
-  --nb-bg: #0a0c10;
-  --nb-bg-blend: #111319;
-  --nb-surface: #1a1d29;
-  --nb-surface-sunken: #0c0e14; /* inset fields, log wells */
-  --nb-surface-glass: rgba(26, 29, 41, 0.4);
-  --nb-on-surface: #e2e2eb;
-  --nb-faint: #958e9b;
-  --nb-primary: #c6a5ff;
-  --nb-primary-glow: rgba(198, 165, 255, 0.35);
-  --nb-primary-border: rgba(198, 165, 255, 0.6);
-  --nb-on-primary: #16101f; /* text on solid orchid fills */
-  --nb-accent: #00f5ff;
-  --nb-accent-glow: rgba(0, 245, 255, 0.3);
-  --nb-border: rgba(255, 255, 255, 0.08);
-  --nb-border-lit: rgba(255, 255, 255, 0.2); /* lit top edge of glass panes */
+  --ld-bg: #0a0c10;
+  --ld-bg-blend: #111319;
+  --ld-surface: #1a1d29;
+  --ld-surface-sunken: #0c0e14; /* inset fields, log wells */
+  --ld-surface-glass: rgba(26, 29, 41, 0.4);
+  --ld-on-surface: #e2e2eb;
+  --ld-faint: #958e9b;
+  --ld-primary: #c6a5ff;
+  --ld-primary-glow: rgba(198, 165, 255, 0.35);
+  --ld-primary-border: rgba(198, 165, 255, 0.6);
+  --ld-on-primary: #16101f; /* text on solid orchid fills */
+  --ld-accent: #00f5ff;
+  --ld-accent-glow: rgba(0, 245, 255, 0.3);
+  --ld-border: rgba(255, 255, 255, 0.08);
+  --ld-border-lit: rgba(255, 255, 255, 0.2); /* lit top edge of glass panes */
 
   /* semantic color */
-  --nb-info: #83b7ff;
-  --nb-success: #47e34e;
-  --nb-warning: #ffb86c;
-  --nb-danger: #ff4d6d;
+  --ld-info: #83b7ff;
+  --ld-success: #47e34e;
+  --ld-warning: #ffb86c;
+  --ld-danger: #ff4d6d;
 
   /* code syntax — orchid keywords, teal types, palette-derived accents */
-  --nb-code-keyword: #c6a5ff;
-  --nb-code-string: #47e34e;
-  --nb-code-number: #ffb86c;
-  --nb-code-comment: #837b8d;
-  --nb-code-function: #83b7ff;
-  --nb-code-variable: #ff7d95;
-  --nb-code-type: #00f5ff;
-  --nb-code-meta: #958e9b;
+  --ld-code-keyword: #c6a5ff;
+  --ld-code-string: #47e34e;
+  --ld-code-number: #ffb86c;
+  --ld-code-comment: #837b8d;
+  --ld-code-function: #83b7ff;
+  --ld-code-variable: #ff7d95;
+  --ld-code-type: #00f5ff;
+  --ld-code-meta: #958e9b;
 
   /* typography */
-  --nb-font-display: "Sora", ui-sans-serif, system-ui, sans-serif; /* headlines */
-  --nb-font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; /* mono body is the design */
-  --nb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --nb-font-weight: 400;
-  --nb-font-weight-medium: 600; /* labels, interactive text */
-  --nb-font-weight-bold: 700;
-  --nb-text-sm: 14px;
-  --nb-tracking-wide: 0.05em;
+  --ld-font-display: "Sora", ui-sans-serif, system-ui, sans-serif; /* headlines */
+  --ld-font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; /* mono body is the design */
+  --ld-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ld-font-weight: 400;
+  --ld-font-weight-medium: 600; /* labels, interactive text */
+  --ld-font-weight-bold: 700;
+  --ld-text-sm: 14px;
+  --ld-tracking-wide: 0.05em;
 
   /* shape & effects */
-  --nb-radius: 0.5rem;
-  --nb-radius-lg: 1rem; /* cards and large containers */
-  --nb-blur: 12px;
-  --nb-transition: 0.3s;
+  --ld-radius: 0.5rem;
+  --ld-radius-lg: 1rem; /* cards and large containers */
+  --ld-blur: 12px;
+  --ld-transition: 0.3s;
 
   /* spacing (8px rhythm) */
-  --nb-space-1: 0.25rem;
-  --nb-space-2: 0.5rem;
-  --nb-space-3: 1rem;
-  --nb-space-4: 1.5rem;
-  --nb-space-5: 2rem;
+  --ld-space-1: 0.25rem;
+  --ld-space-2: 0.5rem;
+  --ld-space-3: 1rem;
+  --ld-space-4: 1.5rem;
+  --ld-space-5: 2rem;
 }

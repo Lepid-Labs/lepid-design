@@ -11,12 +11,12 @@ component styles in an app — consume the system.
 
 ## Rules
 
-1. **Tokens, not literals.** Use `--nb-*` custom properties for every color,
+1. **Tokens, not literals.** Use `--ld-*` custom properties for every color,
    font, radius, and spacing value. If a needed token doesn't exist, propose
    adding it to `ui-std-lib` rather than hardcoding.
 2. **Existing components first.** Before building UI, check the component
    inventory below. App-local components are only for genuinely app-specific
-   composites — and should still be built from `nb-*` classes.
+   composites — and should still be built from `ld-*` classes.
 3. **Read the style's `design.md`** before designing new screens — it states
    the aesthetic rules that the CSS alone does not encode.
 4. **Gaps go upstream.** A missing component belongs in `ui-std-lib` as a PR,
@@ -25,7 +25,7 @@ component styles in an app — consume the system.
 ## Consuming
 
 Every rule is scoped: nothing applies until an element carries
-`data-nb-style="<theme>"`. Put it on `<html>` for a page the app owns, or on a
+`data-ld-style="<theme>"`. Put it on `<html>` for a page the app owns, or on a
 mount container to theme one subtree (embed-safe: the CSS is inert everywhere
 else, and the `:where()` guards are zero-specificity so any consumer rule
 overrides). Several themes can load together; swapping is an attribute flip.
@@ -39,12 +39,12 @@ import { Button, Card, Dialog, Tabs, Field, Input, Alert } from "@nazuraki/ui-re
 ```
 
 ```html
-<html data-nb-style="luminous-precision">
+<html data-ld-style="luminous-precision">
 ```
 
-Themes are drop-in swappable: all define the same `--nb-*` baseline tokens
-(enforced by the contract test — including `--nb-code-*` syntax colors and a
-`color-scheme`) and the same `nb-*` classes, so changing the attribute restyles
+Themes are drop-in swappable: all define the same `--ld-*` baseline tokens
+(enforced by the contract test — including `--ld-code-*` syntax colors and a
+`color-scheme`) and the same `ld-*` classes, so changing the attribute restyles
 the app without touching markup.
 
 `@nazuraki/styles/manifest` is the machine-readable roster — theme names,
@@ -57,35 +57,35 @@ Both packages are on the public npm registry — no `.npmrc` needed.
 Plain HTML / no-build apps (jsDelivr, pin a tag):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v0.3.0/styles/luminous-precision/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v1.0.0/styles/luminous-precision/index.css">
 ```
 
 Include the theme's webfont links (URLs in the manifest) — the system does not
-bundle fonts. `summer-cloud` also wants `.nb-bg` on `<body>` for its sky
+bundle fonts. `summer-cloud` also wants `.ld-bg` on `<body>` for its sky
 gradient.
 
 ## Component inventory
 
-React exports (each renders the matching `nb-*` CSS class, usable directly in
+React exports (each renders the matching `ld-*` CSS class, usable directly in
 non-React apps):
 
 | React | CSS class | Notes |
 | --- | --- | --- |
-| `Button` | `.nb-btn` | variants: `primary`, `accent`, `danger` |
-| `Card` | `.nb-card` | glass panel |
-| `NavLink` | `.nb-link` | chevron + glow hover |
-| `Input`/`Textarea`/`Select` | `.nb-input` etc. | pair with `Field`/`Label` |
-| `Checkbox`/`Radio`/`Switch` | `.nb-checkbox` etc. | `label` prop wraps in `.nb-choice` |
-| `Badge` | `.nb-badge` | semantic variants |
-| `Alert` | `.nb-alert` | `variant` + optional `title` |
-| `Dialog` | `.nb-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
-| `Tabs` | `.nb-tabs` | `items: {id, label, content}[]` |
-| `Progress`/`Spinner` | `.nb-progress`/`.nb-spinner` | |
-| — (CSS only) | `.nb-table` | style `<table>` directly |
+| `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
+| `Card` | `.ld-card` | glass panel |
+| `NavLink` | `.ld-link` | chevron + glow hover |
+| `Input`/`Textarea`/`Select` | `.ld-input` etc. | pair with `Field`/`Label` |
+| `Checkbox`/`Radio`/`Switch` | `.ld-checkbox` etc. | `label` prop wraps in `.ld-choice` |
+| `Badge` | `.ld-badge` | semantic variants |
+| `Alert` | `.ld-alert` | `variant` + optional `title` |
+| `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
+| `Tabs` | `.ld-tabs` | `items: {id, label, content}[]` |
+| `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
+| — (CSS only) | `.ld-table` | style `<table>` directly |
 
 Theme-specific additions (styled only under that theme — check before using):
-`summer-cloud` adds `.nb-chip` (filter chip, `--selected`), `.nb-card--floating`,
-`.nb-btn--ghost`, and `.nb-num` for numeric table cells.
+`summer-cloud` adds `.ld-chip` (filter chip, `--selected`), `.ld-card--floating`,
+`.ld-btn--ghost`, and `.ld-num` for numeric table cells.
 
 Visual reference: the GH Pages showcase for this repo renders every component
 per style.
@@ -93,7 +93,7 @@ per style.
 ## Adding a new style
 
 Copy the `styles/neon-butterfly/` layout: `tokens.css` (the full baseline
-`--nb-*` set, every rule guarded by `data-nb-style="<name>"`, plus a
+`--ld-*` set, every rule guarded by `data-ld-style="<name>"`, plus a
 `color-scheme`), `base.css`, `components/*.css` (guarded selectors,
 theme-unique `@keyframes` names), `index.css`, and a `design.md` capturing the
 aesthetic. Then register it:
