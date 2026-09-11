@@ -72,6 +72,7 @@ non-React apps):
 | React | CSS class | Notes |
 | --- | --- | --- |
 | `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
+| `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
 | `Card` | `.ld-card` | glass panel |
 | `NavLink` | `.ld-link` | chevron + glow hover |
 | `Input`/`Textarea`/`Select` | `.ld-input` etc. | pair with `Field`/`Label` |

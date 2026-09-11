@@ -1,4 +1,6 @@
 export { Button, type ButtonProps } from "./Button.js";
+export { HoldButton, type HoldButtonProps } from "./HoldButton.js";
+export { createHoldController, type HoldController, type HoldOptions, type HoldState } from "./hold.js";
 export { Card, type CardProps } from "./Card.js";
 export { NavLink, type NavLinkProps } from "./NavLink.js";
 export {

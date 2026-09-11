@@ -86,6 +86,14 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   per view), `--accent` (sky-edged glass), `--ghost`, `--danger`. `--sm` is a
   compact size scaled to `.ld-badge`, for inline/table-row actions; the pill
   shape is kept.
+- **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
+  `__meter`) — hold-to-confirm: a 3px conic **violet** ring around the icon
+  well fills as `--ld-hold` goes 0→1, on the glass pill. With `--danger` the
+  pill stays glass with deep-red text (the ring and hint carry the state; a
+  violet ring on the solid red CTA would fight it). Press does not shrink
+  the pill — the ring is the feedback. `data-ld-hold="fired"` bounces to
+  1.06 (dropped under reduced motion; the fill stays). Window:
+  `--ld-hold-duration` 350 ms — soft and unhurried.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — sunken fields, no
   resting border, sky-blue ring on focus. The switch is the oversized

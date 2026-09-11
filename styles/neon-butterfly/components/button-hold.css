@@ -1,0 +1,112 @@
+/* neon-butterfly — hold-to-confirm button: lime ring (the activity signal), glow on commit
+ *
+ * Contract: .ld-btn--hold composes with .ld-btn and any variant. The consumer
+ * writes one number, --ld-hold in [0, 1]; the ring fill is pure CSS.
+ * data-ld-hold="holding" | "fired" carries the behavioural state.
+ */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold {
+  --ld-hold: 0;
+  --ld-hold-color: var(--ld-on-surface); /* neutral on its own */
+  position: relative;
+  gap: var(--ld-space-3);
+  padding: var(--ld-space-2) var(--ld-space-3) var(--ld-space-2) var(--ld-space-2);
+  text-align: left;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none; /* a touch hold must not turn into a scroll */
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold.ld-btn--primary {
+  --ld-hold-color: var(--ld-primary);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold.ld-btn--accent {
+  --ld-hold-color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold.ld-btn--danger {
+  --ld-hold-color: var(--ld-accent);
+}
+
+/* ring: the icon well, wrapped by a conic fill masked to a 3px stroke */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__ring {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--ld-surface-sunken);
+  color: var(--ld-hold-color);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--ld-hold-color) calc(var(--ld-hold) * 360deg), var(--ld-border-lit) 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__ring > svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  line-height: 1.2;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__label {
+  font-weight: var(--ld-font-weight-bold);
+}
+/* the hint and meter restate the ring, so state is never color-only */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__hint {
+  font-size: 11px;
+  font-weight: var(--ld-font-weight);
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn__meter {
+  margin-left: auto;
+  min-width: 3.5ch;
+  text-align: right;
+  font-family: var(--ld-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold[data-ld-hold="holding"] .ld-btn__meter {
+  color: var(--ld-hold-color);
+}
+
+/* fired: the post-commit flash */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold[data-ld-hold="fired"] {
+  border-color: var(--ld-hold-color);
+  animation: ld-nb-hold-fired 0.6s ease-out;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold[data-ld-hold="fired"] .ld-btn__ring {
+  box-shadow: 0 0 16px color-mix(in srgb, var(--ld-hold-color) 55%, transparent);
+}
+@keyframes ld-nb-hold-fired {
+  from {
+    box-shadow: 0 0 28px color-mix(in srgb, var(--ld-hold-color) 70%, transparent);
+  }
+  to {
+    box-shadow: 0 0 12px color-mix(in srgb, var(--ld-hold-color) 35%, transparent);
+  }
+}
+
+/* reduced motion: the ring still fills (it is the state, not decoration);
+ * only the flash and glow go */
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold[data-ld-hold="fired"] {
+    animation: none;
+    box-shadow: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn--hold[data-ld-hold="fired"] .ld-btn__ring {
+    box-shadow: none;
+  }
+}

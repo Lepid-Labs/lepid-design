@@ -62,6 +62,7 @@
   --ld-radius-lg: 1rem; /* cards and large containers */
   --ld-blur: 12px;
   --ld-transition: 0.3s;
+  --ld-hold-duration: 300ms; /* (extra) hold-to-confirm commitment window */
 
   /* spacing (8px rhythm) */
   --ld-space-1: 0.25rem;

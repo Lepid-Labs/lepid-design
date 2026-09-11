@@ -108,12 +108,25 @@ import { Button, Card, NavLink } from "@lepid-labs/ui-react";
 Import a theme's CSS once at the app root; components carry only class names
 (`ld-btn`, `ld-card`, `ld-link`), so themes stay swappable.
 
+`HoldButton` is the hold-to-confirm variant: press and hold, a ring fills over
+the theme's `--ld-hold-duration` (or the `duration` prop), and `onConfirm`
+fires once when it completes — release early and nothing happens. Keyboard
+users hold Space/Enter; set `confirmOnKeyboardTap` to let a plain tap fire
+instead (pair it with a `Dialog` in `onConfirm`).
+
+```tsx
+<HoldButton variant="danger" hint="hold 300 ms" icon={<TrashIcon />} onConfirm={remove}>
+  Hold to delete
+</HoldButton>
+```
+
 ## Developing
 
 ```
 pnpm install
 pnpm build
 pnpm --filter @lepid-labs/styles test   # theme contract, TS consumer, and release-bump tests
+pnpm --filter @lepid-labs/ui-react test # hold-to-confirm controller behaviour
 ```
 
 The contract test enforces the theme rules: every selector guarded by its

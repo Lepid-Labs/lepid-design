@@ -61,6 +61,12 @@ Class prefix `ld-` (shared token/class contract with the other themes).
 - **Button** `.ld-btn` — ghost by default; `--primary` is the one solid fill
   (orchid, dark text), `--accent` teal ghost, `--danger` rose ghost. `--sm` is a
   compact size scaled to `.ld-badge`, for inline and table-row actions.
+- **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
+  `__meter`) — hold-to-confirm: a 3px conic ring around the icon well fills
+  as `--ld-hold` goes 0→1; `--danger` paints it rose, `--primary` orchid,
+  `--accent` teal, neutral alone. `data-ld-hold="fired"` blooms the button
+  and ring in the ring color (dropped under reduced motion; the fill stays).
+  Window: `--ld-hold-duration` 300 ms. The ring *is* the confirmation.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
   `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
