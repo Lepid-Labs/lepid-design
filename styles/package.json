@@ -1,11 +1,11 @@
 {
-  "name": "@nazuraki/styles",
+  "name": "@lepid-labs/styles",
   "version": "1.0.0",
   "description": "Shared design-system styles: tokens, base styles, and component classes per theme.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nazuraki/ui-std-lib.git",
+    "url": "git+https://github.com/lepid-labs/lepid-design.git",
     "directory": "styles"
   },
   "publishConfig": {

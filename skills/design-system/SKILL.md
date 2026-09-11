@@ -1,26 +1,26 @@
 ---
 name: design-system
-description: Use the nazuraki ui-std-lib design system when building or restyling UI in any nazuraki app. Trigger whenever creating pages, components, forms, dialogs, or styling in these repos — the app should consume @nazuraki/styles and @nazuraki/ui-react rather than ad-hoc CSS or one-off components.
+description: Use the Lepid Design system when building or restyling UI in any Lepid Labs app. Trigger whenever creating pages, components, forms, dialogs, or styling in these repos — the app should consume @lepid-labs/styles and @lepid-labs/ui-react rather than ad-hoc CSS or one-off components.
 ---
 
-# Using the nazuraki design system
+# Using the Lepid Design system
 
-All nazuraki apps standardize their UX on `ui-std-lib`
-(github.com/nazuraki/ui-std-lib). Never write ad-hoc colors, fonts, or
+All Lepid Labs apps standardize their UX on `lepid-design`
+(github.com/lepid-labs/lepid-design). Never write ad-hoc colors, fonts, or
 component styles in an app — consume the system.
 
 ## Rules
 
 1. **Tokens, not literals.** Use `--ld-*` custom properties for every color,
    font, radius, and spacing value. If a needed token doesn't exist, propose
-   adding it to `ui-std-lib` rather than hardcoding.
+   adding it to `lepid-design` rather than hardcoding.
 2. **Existing components first.** Before building UI, check the component
    inventory below. App-local components are only for genuinely app-specific
    composites — and should still be built from `ld-*` classes.
 3. **Read the style's `design.md`** before designing new screens — it states
    the aesthetic rules that the CSS alone does not encode.
-4. **Gaps go upstream.** A missing component belongs in `ui-std-lib` as a PR,
-   not in the app. File an issue on `nazuraki/ui-std-lib` if not building it now.
+4. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+   not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
 
@@ -33,9 +33,9 @@ overrides). Several themes can load together; swapping is an attribute flip.
 React apps:
 
 ```tsx
-import "@nazuraki/styles/luminous-precision"; // one theme…
-import "@nazuraki/styles/all";                // …or all of them, for runtime switching
-import { Button, Card, Dialog, Tabs, Field, Input, Alert } from "@nazuraki/ui-react";
+import "@lepid-labs/styles/luminous-precision"; // one theme…
+import "@lepid-labs/styles/all";                // …or all of them, for runtime switching
+import { Button, Card, Dialog, Tabs, Field, Input, Alert } from "@lepid-labs/ui-react";
 ```
 
 ```html
@@ -47,7 +47,7 @@ Themes are drop-in swappable: all define the same `--ld-*` baseline tokens
 `color-scheme`) and the same `ld-*` classes, so changing the attribute restyles
 the app without touching markup.
 
-`@nazuraki/styles/manifest` is the machine-readable roster — theme names,
+`@lepid-labs/styles/manifest` is the machine-readable roster — theme names,
 scheme (`dark`/`light`), and Google Fonts URLs. Validate configured theme names
 and inject font links from it rather than hardcoding lists, so new themes work
 by name alone.
@@ -57,7 +57,7 @@ Both packages are on the public npm registry — no `.npmrc` needed.
 Plain HTML / no-build apps (jsDelivr, pin a tag):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v1.0.0/styles/luminous-precision/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lepid-labs/lepid-design@v1.0.0/styles/luminous-precision/index.css">
 ```
 
 Include the theme's webfont links (URLs in the manifest) — the system does not
@@ -103,6 +103,6 @@ aesthetic. Then register it:
    entries (theme, `/tokens`, `/base`, `/components/*`).
 3. `README.md` — the themes table.
 
-Run `pnpm --filter @nazuraki/styles test` — the contract test enforces all of
+Run `pnpm --filter @lepid-labs/styles test` — the contract test enforces all of
 the above and is the definition of done. The showcase and the GH Pages
 workflow pick the theme up from the manifest automatically.

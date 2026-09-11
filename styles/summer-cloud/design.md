@@ -76,7 +76,7 @@ Every stack falls back to a system family.
 
 ## Components
 
-Class prefix `ld-` (shared across themes so `@nazuraki/ui-react` stays
+Class prefix `ld-` (shared across themes so `@lepid-labs/ui-react` stays
 theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 
 - **Card** `.ld-card` — glass panel; `--floating` adds the Level 2 hover lift.

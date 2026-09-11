@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# rename-nb-prefix.sh — codemod: nb- → ld- (ui-std-lib 0.3.x → 1.0.0)
+# rename-nb-prefix.sh — codemod: nb- → ld- (lepid-design 0.3.x → 1.0.0)
 #
 # Rewrites every design-system identifier in place:
 #   --nb-<token>          → --ld-<token>

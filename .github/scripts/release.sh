@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # .github/scripts/release.sh
 #
-# Cut a release when publishable code changed since the last v* tag:
+# Cut a release (run by the manually dispatched release workflow) when
+# publishable code changed since the last v* tag:
 #   1. Detect commits since the last release tag that touch styles/ or
 #      components/ (excluding docs) — site, skills, and CI changes don't
 #      warrant an npm release.

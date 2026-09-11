@@ -1,14 +1,14 @@
-# ui-std-lib
+# lepid-design
 
-Shared UX/design system for nazuraki apps. Two layers:
+Shared UX/design system for Lepid Labs apps. Two layers:
 
-- **`styles/`** (`@nazuraki/styles`) — framework-agnostic CSS: design tokens,
+- **`styles/`** (`@lepid-labs/styles`) — framework-agnostic CSS: design tokens,
   base styles, and component classes, organized per theme. Any app (React,
   Svelte, plain HTML) can adopt this layer immediately.
-- **`components/react/`** (`@nazuraki/ui-react`) — React components that render
+- **`components/react/`** (`@lepid-labs/ui-react`) — React components that render
   the style layer's classes. For behavior-heavy UI as apps standardize on React.
 
-**Showcase:** https://nazuraki.github.io/ui-std-lib/ — every component rendered
+**Showcase:** https://lepid-labs.github.io/lepid-design/ — every component rendered
 live, with a style selector. Deployed from `site/` on push to main.
 
 ## Themes
@@ -23,15 +23,15 @@ Each theme ships a `design.md` — a Stitch-compatible written spec of the
 aesthetic (palette, typography, shape rules, component inventory). Read it
 before designing new screens; feed it to Stitch to generate on-system mockups.
 
-`styles/manifest.json` (exported as `@nazuraki/styles/manifest`) is the
+`styles/manifest.json` (exported as `@lepid-labs/styles/manifest`) is the
 machine-readable roster: every theme's name, scheme, and webfont links.
 Consumers that validate a configured theme name or inject font links should
 read it instead of hardcoding a list — a new theme then works by name alone.
 
 ## Consuming
 
-Packages publish to the public npm registry (`@nazuraki/styles`,
-`@nazuraki/ui-react`) — no registry config or auth needed to install.
+Packages publish to the public npm registry (`@lepid-labs/styles`,
+`@lepid-labs/ui-react`) — no registry config or auth needed to install.
 
 **Since 0.3.0 every rule is scoped:** nothing applies until an element carries
 `data-ld-style="<theme>"`. Put it on `<html>` for a whole page, or on any
@@ -43,9 +43,9 @@ themes can load at once and swapping is one attribute flip.
 ### Styles (any app)
 
 ```css
-@import "@nazuraki/styles/luminous-precision";        /* full theme */
-@import "@nazuraki/styles/luminous-precision/tokens"; /* tokens only */
-@import "@nazuraki/styles/all";                       /* every theme, for runtime switching */
+@import "@lepid-labs/styles/luminous-precision";        /* full theme */
+@import "@lepid-labs/styles/luminous-precision/tokens"; /* tokens only */
+@import "@lepid-labs/styles/all";                       /* every theme, for runtime switching */
 ```
 
 ```html
@@ -56,7 +56,7 @@ No-build apps can pull from jsDelivr instead:
 
 ```html
 <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v1.0.0/styles/luminous-precision/index.css">
+  href="https://cdn.jsdelivr.net/gh/lepid-labs/lepid-design@v1.0.0/styles/luminous-precision/index.css">
 ```
 
 The same works at runtime for themes newer than an app's installed dep: fetch
@@ -83,7 +83,7 @@ tokens (`--ld-primary`), keyframes, and the scoping attribute
 you are done:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/nazuraki/ui-std-lib/main/scripts/rename-nb-prefix.sh \
+curl -fsSL https://raw.githubusercontent.com/lepid-labs/lepid-design/main/scripts/rename-nb-prefix.sh \
   | bash -s -- src index.html
 ```
 
@@ -97,7 +97,7 @@ Markdown, JSON). It is idempotent, and it skips `node_modules`, `dist`, and
 ### React components
 
 ```tsx
-import { Button, Card, NavLink } from "@nazuraki/ui-react";
+import { Button, Card, NavLink } from "@lepid-labs/ui-react";
 ```
 
 Import a theme's CSS once at the app root; components carry only class names
@@ -108,7 +108,7 @@ Import a theme's CSS once at the app root; components carry only class names
 ```
 pnpm install
 pnpm build
-pnpm --filter @nazuraki/styles test   # theme contract + release-bump tests
+pnpm --filter @lepid-labs/styles test   # theme contract + release-bump tests
 ```
 
 The contract test enforces the theme rules: every selector guarded by its
@@ -118,11 +118,13 @@ every manifest-reading consumer.
 
 ## Publishing
 
-Automatic. Merging package changes to main runs the `release` workflow:
-it bumps both package versions (patch by default; a `type!:` subject or
-`BREAKING CHANGE:` footer in an unreleased commit bumps the minor while the
-major is 0), tags, creates the GitHub release, and the tag triggers
-`publish.yml` — npm trusted publishing (OIDC, no stored token).
+Manual. When main is ready to ship, run the `release` workflow from the
+Actions tab (**Run workflow**). It bumps both package versions (patch by
+default; a `type!:` subject or `BREAKING CHANGE:` footer in an unreleased
+commit bumps the major), tags, creates the GitHub release, and the tag
+triggers `publish.yml` — npm trusted publishing (OIDC, no stored token). If
+nothing under `styles/` or `components/` changed since the last tag, the run
+exits without releasing.
 
 To pin a specific version (a milestone like 1.0.0), set it in both
 `package.json` files in the PR; the release workflow publishes an untagged
@@ -137,14 +139,14 @@ an app repo by symlinking or copying into `.claude/skills/design-system/`.
 ## Layout
 
 ```
-styles/                    @nazuraki/styles
+styles/                    @lepid-labs/styles
   manifest.json            theme roster: name, scheme, font links
   all.css                  every theme in one import
   neon-butterfly/          tokens.css, base.css, components/*.css, index.css, design.md
   summer-cloud/            same layout, same --ld-* token names, different values
   test/                    theme contract + release-bump tests (node:test)
 components/
-  react/                   @nazuraki/ui-react (tsc → dist/)
+  react/                   @lepid-labs/ui-react (tsc → dist/)
 site/                      GH Pages showcase (no build; styles copied in by CI)
 skills/design-system/      agent skill for consuming the system
 scripts/                   consumer codemods (rename-nb-prefix.sh)

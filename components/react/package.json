@@ -1,11 +1,11 @@
 {
-  "name": "@nazuraki/ui-react",
+  "name": "@lepid-labs/ui-react",
   "version": "1.0.0",
-  "description": "Shared React components styled by @nazuraki/styles themes.",
+  "description": "Shared React components styled by @lepid-labs/styles themes.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nazuraki/ui-std-lib.git",
+    "url": "git+https://github.com/lepid-labs/lepid-design.git",
     "directory": "components/react"
   },
   "publishConfig": {
