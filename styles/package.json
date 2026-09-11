@@ -19,22 +19,65 @@
     "summer-cloud",
     "luminous-precision",
     "all.css",
-    "manifest.json"
+    "manifest.json",
+    "css.d.ts"
   ],
   "exports": {
-    "./all": "./all.css",
+    "./all": {
+      "types": "./css.d.ts",
+      "default": "./all.css"
+    },
     "./manifest": "./manifest.json",
-    "./neon-butterfly": "./neon-butterfly/index.css",
-    "./neon-butterfly/tokens": "./neon-butterfly/tokens.css",
-    "./neon-butterfly/base": "./neon-butterfly/base.css",
-    "./neon-butterfly/components/*": "./neon-butterfly/components/*.css",
-    "./summer-cloud": "./summer-cloud/index.css",
-    "./summer-cloud/tokens": "./summer-cloud/tokens.css",
-    "./summer-cloud/base": "./summer-cloud/base.css",
-    "./summer-cloud/components/*": "./summer-cloud/components/*.css",
-    "./luminous-precision": "./luminous-precision/index.css",
-    "./luminous-precision/tokens": "./luminous-precision/tokens.css",
-    "./luminous-precision/base": "./luminous-precision/base.css",
-    "./luminous-precision/components/*": "./luminous-precision/components/*.css"
+    "./neon-butterfly": {
+      "types": "./css.d.ts",
+      "default": "./neon-butterfly/index.css"
+    },
+    "./neon-butterfly/tokens": {
+      "types": "./css.d.ts",
+      "default": "./neon-butterfly/tokens.css"
+    },
+    "./neon-butterfly/base": {
+      "types": "./css.d.ts",
+      "default": "./neon-butterfly/base.css"
+    },
+    "./neon-butterfly/components/*": {
+      "types": "./css.d.ts",
+      "default": "./neon-butterfly/components/*.css"
+    },
+    "./summer-cloud": {
+      "types": "./css.d.ts",
+      "default": "./summer-cloud/index.css"
+    },
+    "./summer-cloud/tokens": {
+      "types": "./css.d.ts",
+      "default": "./summer-cloud/tokens.css"
+    },
+    "./summer-cloud/base": {
+      "types": "./css.d.ts",
+      "default": "./summer-cloud/base.css"
+    },
+    "./summer-cloud/components/*": {
+      "types": "./css.d.ts",
+      "default": "./summer-cloud/components/*.css"
+    },
+    "./luminous-precision": {
+      "types": "./css.d.ts",
+      "default": "./luminous-precision/index.css"
+    },
+    "./luminous-precision/tokens": {
+      "types": "./css.d.ts",
+      "default": "./luminous-precision/tokens.css"
+    },
+    "./luminous-precision/base": {
+      "types": "./css.d.ts",
+      "default": "./luminous-precision/base.css"
+    },
+    "./luminous-precision/components/*": {
+      "types": "./css.d.ts",
+      "default": "./luminous-precision/components/*.css"
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
   }
 }
