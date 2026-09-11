@@ -120,6 +120,26 @@ instead (pair it with a `Dialog` in `onConfirm`).
 </HoldButton>
 ```
 
+`StatusCard` is the dense dashboard card (generalized from pulse's repo
+card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
+warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`
+(a link when `href` is set), `meta` badges, and a faint `note` fill the head;
+`StatusCardRows`/`StatusCardRow`, `StatusCardFooter`, and `StatusCardEmpty`
+make the body. `Badge` gained `size="sm"` and `pulse` for the meta row.
+
+```tsx
+<StatusCard prefix="lepid-labs" title="pulse" href={url} external tone="success"
+  attention={reviews > 0} changedAt={changedAt} note="2h ago"
+  meta={<Badge size="sm" pulse>{reviews} PRs · Review</Badge>}>
+  <StatusCardRows>
+    <StatusCardRow href={issue.url} leading="#42" trailing={<Badge size="sm">bug</Badge>}>
+      {issue.title}
+    </StatusCardRow>
+  </StatusCardRows>
+  <StatusCardFooter href={issuesUrl}>4 more…</StatusCardFooter>
+</StatusCard>
+```
+
 ## Developing
 
 ```

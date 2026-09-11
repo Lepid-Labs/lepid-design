@@ -50,6 +50,11 @@ appear only on interaction or state. Never use pure white or pure black.
 Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 
 - **Card** `.ld-card` — frosted glass panel.
+- **Status card** `.ld-status-card` — dense dashboard card (from pulse's repo
+  card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
+  adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.
+  Parts: `__watermark`, `__head`, `__prefix`, `__title`, `__meta`, `__note`,
+  `__rows`, `__row` (`-lead`/`-main`/`-trail`), `__footer`, `__empty`.
 - **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover.
 - **Button** `.ld-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
   compact size (badge-scaled) for inline/table-row actions.
@@ -62,7 +67,8 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   `--ld-hold-duration` 250 ms — terminal-quick.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
-- **Badge** `.ld-badge` + semantic modifiers.
+- **Badge** `.ld-badge` + semantic modifiers; `--sm` is the 9px dashboard
+  pill, `--pulse` the one solid amber call to action with a breathing glow.
 - **Alert** `.ld-alert` — left accent bar carries the semantic color.
 - **Dialog** `.ld-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow.

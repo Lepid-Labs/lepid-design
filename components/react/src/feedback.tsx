@@ -5,9 +5,18 @@ export type SemanticVariant = "info" | "success" | "warning" | "danger";
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: SemanticVariant | "primary";
+  /** `sm` is the 9px dashboard pill used in StatusCard meta rows. */
+  size?: "sm";
+  /** Solid warning fill with a breathing glow — the one call to action. */
+  pulse?: boolean;
 }
-export function Badge({ variant, className, ...rest }: BadgeProps) {
-  return <span className={cx("ld-badge", variant && `ld-badge--${variant}`, className)} {...rest} />;
+export function Badge({ variant, size, pulse, className, ...rest }: BadgeProps) {
+  return (
+    <span
+      className={cx("ld-badge", variant && `ld-badge--${variant}`, size && `ld-badge--${size}`, pulse && "ld-badge--pulse", className)}
+      {...rest}
+    />
+  );
 }
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {

@@ -74,10 +74,11 @@ non-React apps):
 | `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
 | `Card` | `.ld-card` | glass panel |
+| `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |
 | `NavLink` | `.ld-link` | chevron + glow hover |
 | `Input`/`Textarea`/`Select` | `.ld-input` etc. | pair with `Field`/`Label` |
 | `Checkbox`/`Radio`/`Switch` | `.ld-checkbox` etc. | `label` prop wraps in `.ld-choice` |
-| `Badge` | `.ld-badge` | semantic variants |
+| `Badge` | `.ld-badge` | semantic variants; `size="sm"` (`--sm`) for dashboard pills, `pulse` (`--pulse`) for the one glowing call to action |
 | `Alert` | `.ld-alert` | `variant` + optional `title` |
 | `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
 | `Tabs` | `.ld-tabs` | `items: {id, label, content}[]` |
