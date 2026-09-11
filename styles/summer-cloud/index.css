@@ -13,5 +13,6 @@
 @import "./components/tabs.css";
 @import "./components/table.css";
 @import "./components/progress.css";
+@import "./components/stepper.css";
 @import "./components/muted.css";
 @import "./components/pre.css";
