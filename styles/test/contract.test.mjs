@@ -7,7 +7,7 @@
 // A new theme that passes this suite works in every consumer that reads the
 // manifest — that is the whole point of the contract.
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
@@ -106,9 +106,29 @@ test("manifest, package.json, and theme directories agree", () => {
       assert.ok(pkg.exports[`./${theme}${sub}`], `package.json exports misses ./${theme}${sub}`);
     }
   }
-  assert.equal(pkg.exports["./all"], "./all.css");
+  assert.equal(pkg.exports["./all"].default, "./all.css");
   assert.equal(pkg.exports["./manifest"], "./manifest.json");
   assert.ok(pkg.files.includes("all.css") && pkg.files.includes("manifest.json"));
+});
+
+test("every CSS export carries a types condition so TS 6 side-effect imports resolve", () => {
+  // TS >= 6 rejects `import "@lepid-labs/styles/<theme>"` unless the subpath
+  // resolves to typed module (TS2882). Each CSS export therefore maps to
+  // { types: css.d.ts, default: <css> } — "types" first, because resolvers
+  // take the first matching condition.
+  for (const [subpath, target] of Object.entries(pkg.exports)) {
+    if (subpath === "./manifest") continue;
+    assert.equal(typeof target, "object", `${subpath}: not a conditions object`);
+    assert.deepEqual(Object.keys(target), ["types", "default"], `${subpath}: condition order`);
+    assert.equal(target.types, "./css.d.ts", `${subpath}: types target`);
+    assert.match(target.default, /\.css$/, `${subpath}: default must stay the CSS file`);
+    if (!subpath.includes("*")) {
+      assert.ok(existsSync(join(ROOT, target.default)), `${subpath}: ${target.default} missing`);
+    }
+  }
+  assert.ok(existsSync(join(ROOT, "css.d.ts")));
+  assert.ok(pkg.files.includes("css.d.ts"), "css.d.ts must ship in the tarball");
+  assert.match(readFileSync(join(ROOT, "css.d.ts"), "utf-8"), /^\s*export \{\};\s*$/m);
 });
 
 test("manifest entries are well-formed", () => {
