@@ -2,6 +2,6 @@
  * Faint secondary text — captions, meta, "No jobs yet." style empty states.
  * No italic: this theme's mono/uppercase terminal voice never reaches for a
  * literary flourish — "a command console, not a document". */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-muted {
-  color: var(--nb-faint);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-muted {
+  color: var(--ld-faint);
 }

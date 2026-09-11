@@ -1,5 +1,5 @@
 // The theme contract, enforced. Every theme must be:
-//  - scoped: no rule applies without a data-nb-style="<theme>" opt-in,
+//  - scoped: no rule applies without a data-ld-style="<theme>" opt-in,
 //  - collision-free: keyframe names unique across themes,
 //  - complete: the shared baseline token set fully declared,
 //  - registered: manifest.json, package.json files/exports, and the theme
@@ -33,7 +33,7 @@ const REQUIRED_TOKENS = [
   "text-sm", "tracking-wide",
   "radius", "radius-lg", "blur", "transition",
   "space-1", "space-2", "space-3", "space-4", "space-5",
-].map((n) => `--nb-${n}`);
+].map((n) => `--ld-${n}`);
 
 /** Split a selector list on top-level commas (commas inside () and [] don't count). */
 function splitSelectors(prelude) {
@@ -130,7 +130,7 @@ test("all.css imports every theme and nothing else", () => {
 });
 
 for (const theme of themeDirs) {
-  const guard = `[data-nb-style="${theme}"]`;
+  const guard = `[data-ld-style="${theme}"]`;
 
   test(`${theme}: every selector is guarded by its own opt-in attribute`, () => {
     for (const file of themeCssFiles(theme)) {
@@ -155,7 +155,7 @@ for (const theme of themeDirs) {
 
   test(`${theme}: declares the full baseline token set and a color-scheme`, () => {
     const tokens = readFileSync(join(ROOT, theme, "tokens.css"), "utf-8");
-    const declared = new Set(tokens.match(/--nb-[\w-]+(?=\s*:)/g));
+    const declared = new Set(tokens.match(/--ld-[\w-]+(?=\s*:)/g));
     const missing = REQUIRED_TOKENS.filter((t) => !declared.has(t));
     assert.deepEqual(missing, [], `${theme} misses baseline tokens`);
     assert.match(tokens, /color-scheme:\s*(dark|light)\s*;/);
@@ -168,30 +168,56 @@ for (const theme of themeDirs) {
   });
 }
 
-test("every theme's button.css declares a guarded .nb-btn--sm compact variant", () => {
+test("every theme's button.css declares a guarded .ld-btn--sm compact variant", () => {
   // The compact size is part of the button contract: every theme must carry it
-  // so a screen keeps its inline/table-row actions when it swaps data-nb-style.
+  // so a screen keeps its inline/table-row actions when it swaps data-ld-style.
   for (const theme of themeDirs) {
     const file = join(ROOT, theme, "components", "button.css");
     const { selectors } = parseCss(readFileSync(file, "utf-8"));
-    const guard = `[data-nb-style="${theme}"]`;
-    const sm = selectors.filter((s) => /\.nb-btn--sm(?![\w-])/.test(s));
-    assert.ok(sm.length > 0, `${theme}: button.css is missing a .nb-btn--sm rule`);
+    const guard = `[data-ld-style="${theme}"]`;
+    const sm = selectors.filter((s) => /\.ld-btn--sm(?![\w-])/.test(s));
+    assert.ok(sm.length > 0, `${theme}: button.css is missing a .ld-btn--sm rule`);
     for (const sel of sm) {
-      assert.ok(sel.includes(guard), `${theme}: unguarded .nb-btn--sm selector: ${sel}`);
+      assert.ok(sel.includes(guard), `${theme}: unguarded .ld-btn--sm selector: ${sel}`);
     }
   }
 });
 
-test("keyframe names are nb-prefixed and unique across all themes", () => {
+test("keyframe names are ld-prefixed and unique across all themes", () => {
   const seen = new Map();
   for (const theme of themeDirs) {
     for (const file of themeCssFiles(theme)) {
       for (const name of parseCss(readFileSync(file, "utf-8")).keyframes) {
-        assert.match(name, /^nb-/, `${file}: keyframe ${name}`);
+        assert.match(name, /^ld-/, `${file}: keyframe ${name}`);
         assert.ok(!seen.has(name), `keyframe ${name} in both ${seen.get(name)} and ${file}`);
         seen.set(name, file);
       }
     }
   }
+});
+
+test("no legacy nb- prefix survives anywhere the system is defined or documented", () => {
+  // The 0.3.x → 1.0.0 rename must be total: a stray --nb-* token, .nb-* class,
+  // or data-nb-style guard would silently do nothing under the ld- guard.
+  // Keyframe names legitimately keep an inner theme tag (ld-nb-spin), so the
+  // check requires nb- to start an identifier.
+  const LEGACY = /--nb-|data-nb-|(?<![\w-])nb-/;
+  const REPO = resolve(ROOT, "..");
+  const roots = [ROOT, join(REPO, "components/react/src"), join(REPO, "site"), join(REPO, "skills")];
+  const files = [join(REPO, "README.md")];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === "node_modules" || e.name === "test" || e.name === "styles" && dir === join(REPO, "site")) continue;
+      const p = join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(css|md|html|tsx?|json)$/.test(e.name)) files.push(p);
+    }
+  };
+  roots.forEach(walk);
+  // The README's migration section is the one place the old prefix belongs.
+  const MIGRATION = /### Migrating from 0\.3\.x[\s\S]*?(?=\n### )/;
+  const offenders = files.filter((f) =>
+    LEGACY.test(readFileSync(f, "utf-8").replace(MIGRATION, ""))
+  );
+  assert.deepEqual(offenders.map((f) => f.slice(REPO.length + 1)), []);
 });

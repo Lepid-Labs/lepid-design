@@ -24,7 +24,7 @@ should feel like a beautiful command console, not a document.
 
 The signature page background is the butterfly-circuit artwork
 (`assets/butterfly-circuit.png`) blended into the navy with `luminosity` —
-apply via `.nb-bg` on `<body>`. Optional; plain `--nb-bg` navy is also correct.
+apply via `.ld-bg` on `<body>`. Optional; plain `--ld-bg` navy is also correct.
 
 Rules: color is communication — resting UI stays in navy/faint; lilac and lime
 appear only on interaction or state. Never use pure white or pure black.
@@ -41,40 +41,40 @@ appear only on interaction or state. Never use pure white or pure black.
 - Radius `0.5rem` everywhere (pills for switches/progress).
 - Borders are 1px hairlines; emphasis comes from border *color*, not weight.
 - Glow, not shadow: elevation is expressed with colored `box-shadow` glows
-  (`nb-pulse-glow` on hover) rather than dark drop shadows.
+  (`ld-pulse-glow` on hover) rather than dark drop shadows.
 - Transitions 0.3s; hover motion is a 4px `translateX` slide on links.
 - Respect `prefers-reduced-motion`.
 
 ## Components
 
-Class prefix `nb-`. Variants use BEM-ish modifiers (`nb-btn--accent`).
+Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 
-- **Card** `.nb-card` — frosted glass panel.
-- **NavLink** `.nb-link` — the switchboard link: `>` chevron turns lime on hover.
-- **Button** `.nb-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
+- **Card** `.ld-card` — frosted glass panel.
+- **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover.
+- **Button** `.ld-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
   compact size (badge-scaled) for inline/table-row actions.
-- **Form** `.nb-input`, `.nb-textarea`, `.nb-select`, `.nb-label`, `.nb-field`,
-  `.nb-checkbox`, `.nb-radio`, `.nb-switch`, `.nb-choice` — checked states glow lime.
-- **Badge** `.nb-badge` + semantic modifiers.
-- **Alert** `.nb-alert` — left accent bar carries the semantic color.
-- **Dialog** `.nb-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
-- **Tabs** `.nb-tabs`/`.nb-tab`/`.nb-tabpanel` — active tab underlined in lilac with text glow.
-- **Table** `.nb-table` — lilac header rule, glass row hover.
-- **Progress** `.nb-progress`, **Spinner** `.nb-spinner` — glowing lilac indicators.
-- **Muted text** `.nb-muted` — faint secondary/empty-state text;
-  `color: var(--nb-faint)` only, no italic — this theme's mono/uppercase
+- **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
+  `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
+- **Badge** `.ld-badge` + semantic modifiers.
+- **Alert** `.ld-alert` — left accent bar carries the semantic color.
+- **Dialog** `.ld-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
+- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow.
+- **Table** `.ld-table` — lilac header rule, glass row hover.
+- **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
+- **Muted text** `.ld-muted` — faint secondary/empty-state text;
+  `color: var(--ld-faint)` only, no italic — this theme's mono/uppercase
   terminal voice never reaches for a literary flourish.
-- **Pre / log block** `.nb-pre` — command/log `<pre>`; sunken background,
+- **Pre / log block** `.ld-pre` — command/log `<pre>`; sunken background,
   hairline border, radius, small mono, horizontal scroll.
 
 ## Code syntax
 
-Tokens `--nb-code-*`, part of the baseline contract. Lilac keywords, neon-lime
+Tokens `--ld-code-*`, part of the baseline contract. Lilac keywords, neon-lime
 strings, gold numbers, info-cyan functions, light-cyan types, softened-pink
 variables, dimmed-faint comments, faint meta.
 
 ## Scoping
 
-Every rule is guarded by `data-nb-style="neon-butterfly"` (self or ancestor),
+Every rule is guarded by `data-ld-style="neon-butterfly"` (self or ancestor),
 wrapped in zero-specificity `:where()`. Set the attribute on `<html>` for a
 page or on a container for an embedded island.

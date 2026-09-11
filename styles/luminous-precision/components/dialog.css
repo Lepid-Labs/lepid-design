@@ -1,31 +1,31 @@
 /* luminous-precision — dialog (native <dialog>) */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-dialog {
-  padding: var(--nb-space-4);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-dialog {
+  padding: var(--ld-space-4);
   max-width: 32rem;
   width: calc(100vw - 2rem);
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-border);
-  border-top-color: var(--nb-border-lit);
-  border-radius: var(--nb-radius-lg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-mono);
-  box-shadow: 0 0 40px var(--nb-primary-glow);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
+  border-top-color: var(--ld-border-lit);
+  border-radius: var(--ld-radius-lg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-mono);
+  box-shadow: 0 0 40px var(--ld-primary-glow);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-dialog::backdrop {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-dialog::backdrop {
   background: rgba(10, 12, 16, 0.6);
-  backdrop-filter: blur(var(--nb-blur));
+  backdrop-filter: blur(var(--ld-blur));
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-dialog__title {
-  margin: 0 0 var(--nb-space-3);
-  color: var(--nb-primary);
-  font-family: var(--nb-font-display);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-dialog__title {
+  margin: 0 0 var(--ld-space-3);
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
   font-size: 1.25rem;
-  font-weight: var(--nb-font-weight-medium);
+  font-weight: var(--ld-font-weight-medium);
   letter-spacing: -0.01em;
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-dialog__actions {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-dialog__actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--nb-space-2);
-  margin-top: var(--nb-space-4);
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-4);
 }

@@ -1,102 +1,102 @@
 /* summer-cloud — button: pill-shaped, bouncy, tinted-shadow lift */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--nb-space-2);
-  padding: 0.75rem var(--nb-space-4);
+  gap: var(--ld-space-2);
+  padding: 0.75rem var(--ld-space-4);
   background: rgba(255, 255, 255, 0.4);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius-pill);
-  color: var(--nb-faint);
-  font-family: var(--nb-font-display);
-  font-weight: var(--nb-font-weight-medium);
-  font-size: var(--nb-text-sm);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  font-size: var(--ld-text-sm);
   cursor: pointer;
   transition:
-    background var(--nb-transition),
-    border-color var(--nb-transition),
-    color var(--nb-transition),
+    background var(--ld-transition),
+    border-color var(--ld-transition),
+    color var(--ld-transition),
     box-shadow 0.2s ease,
-    transform 0.2s var(--nb-ease-bounce);
+    transform 0.2s var(--ld-ease-bounce);
 }
-/* --sm: compact size for inline/table-row actions, scaled to .nb-badge
- * (composes with any variant; keeps the pill radius from .nb-btn). */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--sm {
+/* --sm: compact size for inline/table-row actions, scaled to .ld-badge
+ * (composes with any variant; keeps the pill radius from .ld-btn). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--sm {
   padding: 0.25rem 0.75rem;
   font-size: 12px;
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:hover,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:focus-visible {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:focus-visible {
   background: rgba(255, 255, 255, 0.6);
-  border-color: var(--nb-primary-border);
-  color: var(--nb-primary);
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
   transform: scale(1.03);
   outline: none;
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:focus-visible {
-  box-shadow: 0 0 0 4px var(--nb-accent-glow);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:focus-visible {
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:active {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:active {
   transform: scale(0.95);
 }
 
 /* Primary — the solid violet CTA. One per view. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--primary {
-  background: var(--nb-primary);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--primary {
+  background: var(--ld-primary);
   border-color: transparent;
   color: #fff;
-  font-weight: var(--nb-font-weight-bold);
-  box-shadow: var(--nb-shadow-raised);
+  font-weight: var(--ld-font-weight-bold);
+  box-shadow: var(--ld-shadow-raised);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--primary:hover {
-  background: var(--nb-primary-bright);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--primary:hover {
+  background: var(--ld-primary-bright);
   color: #fff;
-  box-shadow: var(--nb-shadow-raised-hover);
+  box-shadow: var(--ld-shadow-raised-hover);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--primary:focus-visible {
-  background: var(--nb-primary-bright);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--primary:focus-visible {
+  background: var(--ld-primary-bright);
   color: #fff;
-  box-shadow: var(--nb-shadow-raised-hover), 0 0 0 4px var(--nb-primary-glow);
+  box-shadow: var(--ld-shadow-raised-hover), 0 0 0 4px var(--ld-primary-glow);
 }
 
 /* Accent — glass with a sky-blue edge, for the secondary path. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--accent {
-  border-color: var(--nb-accent);
-  color: var(--nb-accent-deep);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--accent {
+  border-color: var(--ld-accent);
+  color: var(--ld-accent-deep);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--accent:hover,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--accent:focus-visible {
-  color: var(--nb-accent-deep);
-  box-shadow: 0 0 0 4px var(--nb-accent-glow);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--accent:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--accent:focus-visible {
+  color: var(--ld-accent-deep);
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
 }
 
 /* Ghost — no chrome until hovered. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--ghost {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--ghost {
   background: none;
   border-color: transparent;
   box-shadow: none;
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--ghost:hover,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--ghost:focus-visible {
-  background: var(--nb-sky-tint);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--ghost:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--ghost:focus-visible {
+  background: var(--ld-sky-tint);
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--danger {
-  background: var(--nb-danger-deep);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--danger {
+  background: var(--ld-danger-deep);
   border-color: transparent;
   color: #fff;
-  font-weight: var(--nb-font-weight-bold);
+  font-weight: var(--ld-font-weight-bold);
   box-shadow: 0 4px 14px rgba(204, 31, 31, 0.39);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--danger:hover,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn--danger:focus-visible {
-  background: var(--nb-danger);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--danger:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn--danger:focus-visible {
+  background: var(--ld-danger);
   color: #4a0000;
   box-shadow: 0 6px 20px rgba(255, 77, 77, 0.5);
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:disabled {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
@@ -104,12 +104,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn {
-    transition: background var(--nb-transition), color var(--nb-transition);
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn {
+    transition: background var(--ld-transition), color var(--ld-transition);
   }
-  :where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:hover,
-  :where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:focus-visible,
-  :where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-btn:active {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:hover,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:focus-visible,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:active {
     transform: none;
   }
 }

@@ -1,30 +1,30 @@
 /* summer-cloud — dialog (native <dialog>): the floating tier, fully opaque */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-dialog {
-  padding: var(--nb-space-5);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog {
+  padding: var(--ld-space-5);
   max-width: 32rem;
   width: calc(100vw - 2rem);
-  background: var(--nb-surface);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  box-shadow: var(--nb-shadow);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  box-shadow: var(--ld-shadow);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-dialog::backdrop {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog::backdrop {
   background: rgba(23, 28, 31, 0.3);
   backdrop-filter: blur(4px);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-dialog__title {
-  margin: 0 0 var(--nb-space-3);
-  color: var(--nb-primary);
-  font-family: var(--nb-font-display);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog__title {
+  margin: 0 0 var(--ld-space-3);
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
   font-size: 1.5rem;
-  font-weight: var(--nb-font-weight-bold);
-  letter-spacing: var(--nb-tracking-tight);
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-tight);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-dialog__actions {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog__actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--nb-space-2);
-  margin-top: var(--nb-space-5);
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-5);
 }

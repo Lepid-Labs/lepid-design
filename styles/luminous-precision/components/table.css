@@ -1,28 +1,28 @@
 /* luminous-precision — table */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-table {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--nb-text-sm);
-  color: var(--nb-on-surface);
+  font-size: var(--ld-text-sm);
+  color: var(--ld-on-surface);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-table th {
-  padding: var(--nb-space-2) var(--nb-space-3);
-  border-bottom: 1px solid var(--nb-border-lit);
-  color: var(--nb-faint);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table th {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  border-bottom: 1px solid var(--ld-border-lit);
+  color: var(--ld-faint);
   text-align: left;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: var(--nb-font-weight-medium);
-  letter-spacing: var(--nb-tracking-wide);
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-table td {
-  padding: var(--nb-space-2) var(--nb-space-3);
-  border-bottom: 1px solid var(--nb-border);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table td {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  border-bottom: 1px solid var(--ld-border);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-table tbody tr {
-  transition: background var(--nb-transition), box-shadow var(--nb-transition);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table tbody tr {
+  transition: background var(--ld-transition), box-shadow var(--ld-transition);
 }
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-table tbody tr:hover {
-  background: var(--nb-surface-glass);
-  box-shadow: inset 2px 0 0 0 var(--nb-accent);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table tbody tr:hover {
+  background: var(--ld-surface-glass);
+  box-shadow: inset 2px 0 0 0 var(--ld-accent);
 }

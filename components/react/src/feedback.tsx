@@ -7,7 +7,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: SemanticVariant | "primary";
 }
 export function Badge({ variant, className, ...rest }: BadgeProps) {
-  return <span className={cx("nb-badge", variant && `nb-badge--${variant}`, className)} {...rest} />;
+  return <span className={cx("ld-badge", variant && `ld-badge--${variant}`, className)} {...rest} />;
 }
 
 export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
@@ -16,8 +16,8 @@ export interface AlertProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"
 }
 export function Alert({ variant = "info", title, className, children, ...rest }: AlertProps) {
   return (
-    <div role="alert" className={cx("nb-alert", `nb-alert--${variant}`, className)} {...rest}>
-      {title !== undefined && <span className="nb-alert__title">{title}</span>}
+    <div role="alert" className={cx("ld-alert", `ld-alert--${variant}`, className)} {...rest}>
+      {title !== undefined && <span className="ld-alert__title">{title}</span>}
       {children}
     </div>
   );
@@ -36,14 +36,14 @@ export function Progress({ value, accent, className, ...rest }: ProgressProps) {
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={clamped}
-      className={cx("nb-progress", className)}
+      className={cx("ld-progress", className)}
       {...rest}
     >
-      <div className={cx("nb-progress__bar", accent && "nb-progress__bar--accent")} style={{ width: `${clamped}%` }} />
+      <div className={cx("ld-progress__bar", accent && "ld-progress__bar--accent")} style={{ width: `${clamped}%` }} />
     </div>
   );
 }
 
 export function Spinner({ className, ...rest }: HTMLAttributes<HTMLSpanElement>) {
-  return <span role="status" aria-label="loading" className={cx("nb-spinner", className)} {...rest} />;
+  return <span role="status" aria-label="loading" className={cx("ld-spinner", className)} {...rest} />;
 }

@@ -4,55 +4,55 @@
  * JetBrains Mono (400, 600, 700) or self-host; the token stacks fall back
  * to system families.
  *
- * The element carrying data-nb-style is the theme's canvas: it gets the
+ * The element carrying data-ld-style is the theme's canvas: it gets the
  * background, text color, and body font — whether that is <html> for a page
  * or a mount container for an embedded island. Page-only rules (body margin,
  * viewport height) apply only when the attribute sits on <html>.
  */
-:where([data-nb-style="luminous-precision"]) {
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+:where([data-ld-style="luminous-precision"]) {
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
 }
 
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *),
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *)::before,
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *)::after {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *),
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *)::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *)::after {
   box-sizing: border-box;
 }
 
-:where(html[data-nb-style="luminous-precision"]) body {
+:where(html[data-ld-style="luminous-precision"]) body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
 }
 
 /* Opt-in page background: soft out-of-focus orchid/teal underlays over the
  * obsidian base — the "luminous underlay" treatment. Apply to <body>, or to
  * the attributed container itself. */
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *).nb-bg {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-bg {
   background:
     radial-gradient(50rem 30rem at 12% -5%, rgba(198, 165, 255, 0.08), transparent 70%),
     radial-gradient(55rem 35rem at 90% 105%, rgba(0, 245, 255, 0.05), transparent 70%),
-    var(--nb-bg);
+    var(--ld-bg);
   background-attachment: fixed;
 }
 
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *):where(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--nb-font-display);
-  font-weight: var(--nb-font-weight-medium);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *):where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
   letter-spacing: -0.01em;
 }
 
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *):where(a) {
-  color: var(--nb-primary);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *):where(a) {
+  color: var(--ld-primary);
 }
 
-:where([data-nb-style="luminous-precision"], [data-nb-style="luminous-precision"] *)::selection {
-  background: var(--nb-primary);
-  color: var(--nb-bg);
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *)::selection {
+  background: var(--ld-primary);
+  color: var(--ld-bg);
 }

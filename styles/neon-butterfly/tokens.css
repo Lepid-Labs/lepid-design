@@ -3,7 +3,7 @@
  *   @import "@nazuraki/styles/neon-butterfly/tokens";
  * or pull the whole theme with ./index.css.
  *
- * Nothing applies until an element carries data-nb-style="neon-butterfly"
+ * Nothing applies until an element carries data-ld-style="neon-butterfly"
  * — set it on <html> for a page, or on any container for an embedded island.
  * The :where() keeps specificity at zero, so any consumer rule overrides.
  *
@@ -11,62 +11,62 @@
  * parity); names marked (extra) are additions beyond it that only this
  * theme's own component CSS may rely on.
  */
-:where([data-nb-style="neon-butterfly"]) {
+:where([data-ld-style="neon-butterfly"]) {
   color-scheme: dark;
 
   /* color */
-  --nb-bg: #0b1326;
-  --nb-bg-blend: #1a1f2e;
-  --nb-surface: #171f33;
-  --nb-surface-sunken: #0e1526; /* inset fields */
-  --nb-surface-glass: rgba(23, 31, 51, 0.55);
-  --nb-on-surface: #dae2fd;
-  --nb-faint: #958da1;
-  --nb-primary: #d2bbff;
-  --nb-primary-glow: rgba(210, 187, 255, 0.6);
-  --nb-primary-border: rgba(210, 187, 255, 0.8);
-  --nb-on-primary: #0b1326; /* text on solid lilac fills */
-  --nb-accent: #39ff14;
-  --nb-accent-glow: rgba(57, 255, 20, 0.5);
-  --nb-border: rgba(255, 255, 255, 0.1);
-  --nb-border-lit: rgba(255, 255, 255, 0.25); /* lit top edge of glass panes */
+  --ld-bg: #0b1326;
+  --ld-bg-blend: #1a1f2e;
+  --ld-surface: #171f33;
+  --ld-surface-sunken: #0e1526; /* inset fields */
+  --ld-surface-glass: rgba(23, 31, 51, 0.55);
+  --ld-on-surface: #dae2fd;
+  --ld-faint: #958da1;
+  --ld-primary: #d2bbff;
+  --ld-primary-glow: rgba(210, 187, 255, 0.6);
+  --ld-primary-border: rgba(210, 187, 255, 0.8);
+  --ld-on-primary: #0b1326; /* text on solid lilac fills */
+  --ld-accent: #39ff14;
+  --ld-accent-glow: rgba(57, 255, 20, 0.5);
+  --ld-border: rgba(255, 255, 255, 0.1);
+  --ld-border-lit: rgba(255, 255, 255, 0.25); /* lit top edge of glass panes */
 
   /* semantic color */
-  --nb-info: #4dc9ff;
-  --nb-success: #39ff14;
-  --nb-warning: #ffd23f;
-  --nb-danger: #ff2d78;
+  --ld-info: #4dc9ff;
+  --ld-success: #39ff14;
+  --ld-warning: #ffd23f;
+  --ld-danger: #ff2d78;
 
   /* code syntax — lilac keywords, neon strings, palette-derived accents */
-  --nb-code-keyword: #d2bbff;
-  --nb-code-string: #39ff14;
-  --nb-code-number: #ffd23f;
-  --nb-code-comment: #8a8199;
-  --nb-code-function: #4dc9ff;
-  --nb-code-variable: #ff6ba0;
-  --nb-code-type: #7fdcff;
-  --nb-code-meta: #958da1;
+  --ld-code-keyword: #d2bbff;
+  --ld-code-string: #39ff14;
+  --ld-code-number: #ffd23f;
+  --ld-code-comment: #8a8199;
+  --ld-code-function: #4dc9ff;
+  --ld-code-variable: #ff6ba0;
+  --ld-code-type: #7fdcff;
+  --ld-code-meta: #958da1;
 
   /* typography — all-mono aesthetic: display and body share the mono stack */
-  --nb-font-display: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --nb-font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --nb-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --nb-font-weight: 450;
-  --nb-font-weight-medium: 700; /* only 450 + 700 webfont weights load */
-  --nb-font-weight-bold: 700;
-  --nb-text-sm: 14px;
-  --nb-tracking-wide: 0.1em;
+  --ld-font-display: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ld-font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ld-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ld-font-weight: 450;
+  --ld-font-weight-medium: 700; /* only 450 + 700 webfont weights load */
+  --ld-font-weight-bold: 700;
+  --ld-text-sm: 14px;
+  --ld-tracking-wide: 0.1em;
 
   /* shape & effects */
-  --nb-radius: 0.5rem;
-  --nb-radius-lg: 0.5rem; /* one radius everywhere is the look */
-  --nb-blur: 12px;
-  --nb-transition: 0.3s;
+  --ld-radius: 0.5rem;
+  --ld-radius-lg: 0.5rem; /* one radius everywhere is the look */
+  --ld-blur: 12px;
+  --ld-transition: 0.3s;
 
   /* spacing */
-  --nb-space-1: 0.25rem;
-  --nb-space-2: 0.5rem;
-  --nb-space-3: 1rem;
-  --nb-space-4: 1.5rem;
-  --nb-space-5: 2rem;
+  --ld-space-1: 0.25rem;
+  --ld-space-2: 0.5rem;
+  --ld-space-3: 1rem;
+  --ld-space-4: 1.5rem;
+  --ld-space-5: 2rem;
 }

@@ -1,49 +1,49 @@
 /* summer-cloud — badge: solid pill, mono uppercase, for retail energy */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge {
   display: inline-flex;
   align-items: center;
-  gap: var(--nb-space-1);
+  gap: var(--ld-space-1);
   padding: 0.25rem 0.75rem;
-  background: var(--nb-surface-glass-high);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius-pill);
-  color: var(--nb-faint);
+  background: var(--ld-surface-glass-high);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
   text-transform: uppercase;
-  font-family: var(--nb-font-mono);
+  font-family: var(--ld-font-mono);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: var(--nb-tracking-wide);
+  letter-spacing: var(--ld-tracking-wide);
   box-shadow: 0 1px 2px rgba(93, 43, 255, 0.06);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge--primary { background: var(--nb-primary);  border-color: transparent; color: #fff; }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge--info    { background: var(--nb-info);     border-color: transparent; color: #004261; }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge--success { background: var(--nb-success);  border-color: transparent; color: #0a2e0a; }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge--warning { background: var(--nb-warning);  border-color: transparent; color: #241a00; }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-badge--danger  { background: var(--nb-danger);   border-color: transparent; color: #4a0000; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--primary { background: var(--ld-primary);  border-color: transparent; color: #fff; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--info    { background: var(--ld-info);     border-color: transparent; color: #004261; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--success { background: var(--ld-success);  border-color: transparent; color: #0a2e0a; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--warning { background: var(--ld-warning);  border-color: transparent; color: #241a00; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--danger  { background: var(--ld-danger);   border-color: transparent; color: #4a0000; }
 
 /* Chip — the filter variant: outlined until selected. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-chip {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--nb-space-1);
-  padding: var(--nb-space-2) var(--nb-space-3);
+  gap: var(--ld-space-1);
+  padding: var(--ld-space-2) var(--ld-space-3);
   background: none;
-  border: 1px solid var(--nb-outline);
-  border-radius: var(--nb-radius-pill);
-  color: var(--nb-faint);
-  font-family: var(--nb-font-display);
+  border: 1px solid var(--ld-outline);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
   font-size: 12px;
-  font-weight: var(--nb-font-weight-medium);
+  font-weight: var(--ld-font-weight-medium);
   cursor: pointer;
-  transition: background var(--nb-transition), color var(--nb-transition),
-    border-color var(--nb-transition);
+  transition: background var(--ld-transition), color var(--ld-transition),
+    border-color var(--ld-transition);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-chip:hover {
-  background: var(--nb-sky-tint);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip:hover {
+  background: var(--ld-sky-tint);
 }
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-chip--selected,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-chip[aria-pressed="true"] {
-  background: var(--nb-primary-bright);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip--selected,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip[aria-pressed="true"] {
+  background: var(--ld-primary-bright);
   border-color: transparent;
   color: #fff;
 }

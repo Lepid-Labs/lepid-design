@@ -13,7 +13,7 @@ Derived from the Stitch project *Summer Cloud UI System*
 
 | Role | Value | Usage |
 | --- | --- | --- |
-| Background | `#f6fafe` → `#c9e6ff` | Sky gradient at 135°, `fixed`. Apply via `.nb-bg` |
+| Background | `#f6fafe` → `#c9e6ff` | Sky gradient at 135°, `fixed`. Apply via `.ld-bg` |
 | Surface | `#ffffff` | Dialogs and fully opaque panels |
 | Surface sunken | `#f0f4f8` | Inset form fields |
 | Surface glass | `rgba(255,255,255,0.6)` + 12px blur | Cards, alerts (Level 1) |
@@ -60,7 +60,7 @@ Every stack falls back to a system family.
 ## Shape & effects
 
 - Radius `1rem` (16px) for cards, panels, and fields; **pills**
-  (`--nb-radius-pill`) for every button, badge, and chip; `0.25rem` minimum
+  (`--ld-radius-pill`) for every button, badge, and chip; `0.25rem` minimum
   anywhere else. Never 0.
 - Depth is **blur + tinted shadow**, never grey drop shadows. Shadows are tinted
   with `#5d2bff`: `0 20px 40px rgba(93,43,255,0.08)` at rest,
@@ -76,33 +76,33 @@ Every stack falls back to a system family.
 
 ## Components
 
-Class prefix `nb-` (shared across themes so `@nazuraki/ui-react` stays
-theme-agnostic). Variants use BEM-ish modifiers (`nb-btn--primary`).
+Class prefix `ld-` (shared across themes so `@nazuraki/ui-react` stays
+theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 
-- **Card** `.nb-card` — glass panel; `--floating` adds the Level 2 hover lift.
-- **NavLink** `.nb-link` — pill, sky-tint wash, `→` slides 4px on hover;
+- **Card** `.ld-card` — glass panel; `--floating` adds the Level 2 hover lift.
+- **NavLink** `.ld-link` — pill, sky-tint wash, `→` slides 4px on hover;
   `--active` / `[aria-current=page]` becomes the violet underline rule.
-- **Button** `.nb-btn` — glass by default; `--primary` (solid violet CTA, one
+- **Button** `.ld-btn` — glass by default; `--primary` (solid violet CTA, one
   per view), `--accent` (sky-edged glass), `--ghost`, `--danger`. `--sm` is a
-  compact size scaled to `.nb-badge`, for inline/table-row actions; the pill
+  compact size scaled to `.ld-badge`, for inline/table-row actions; the pill
   shape is kept.
-- **Form** `.nb-input`, `.nb-textarea`, `.nb-select`, `.nb-label`, `.nb-field`,
-  `.nb-checkbox`, `.nb-radio`, `.nb-switch`, `.nb-choice` — sunken fields, no
+- **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
+  `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — sunken fields, no
   resting border, sky-blue ring on focus. The switch is the oversized
   "cloud-toggle": squishy, and green when live.
-- **Badge** `.nb-badge` + semantic modifiers — solid pills, mono uppercase.
-  **Chip** `.nb-chip` — outlined filter chip; `--selected` fills violet.
-- **Alert** `.nb-alert` — glass card with a 4px semantic left rule.
-- **Dialog** `.nb-dialog` — native `<dialog>`, opaque white, blurred backdrop.
-- **Tabs** `.nb-tabs`/`.nb-tab`/`.nb-tabpanel` — violet underline when active.
-- **Table** `.nb-table` — mono uppercase headers, sky-tint row hover; add
-  `.nb-num` to numeric cells for the mono/right-aligned treatment.
-- **Progress** `.nb-progress`, **Spinner** `.nb-spinner` — glowing violet.
-- **Muted text** `.nb-muted` — faint secondary/empty-state text;
-  `color: var(--nb-faint)`, italic — a friendly, soft touch consistent with
+- **Badge** `.ld-badge` + semantic modifiers — solid pills, mono uppercase.
+  **Chip** `.ld-chip` — outlined filter chip; `--selected` fills violet.
+- **Alert** `.ld-alert` — glass card with a 4px semantic left rule.
+- **Dialog** `.ld-dialog` — native `<dialog>`, opaque white, blurred backdrop.
+- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — violet underline when active.
+- **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
+  `.ld-num` to numeric cells for the mono/right-aligned treatment.
+- **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
+- **Muted text** `.ld-muted` — faint secondary/empty-state text;
+  `color: var(--ld-faint)`, italic — a friendly, soft touch consistent with
   the theme's airy, optimistic voice.
-- **Pre / log block** `.nb-pre` — command/log `<pre>`; sunken background,
-  `--nb-outline` hairline (not `--nb-border`, which is the glass-only token
+- **Pre / log block** `.ld-pre` — command/log `<pre>`; sunken background,
+  `--ld-outline` hairline (not `--ld-border`, which is the glass-only token
   and would be invisible on this opaque surface), radius, small mono,
   horizontal scroll.
 
@@ -116,22 +116,22 @@ theme-agnostic). Variants use BEM-ish modifiers (`nb-btn--primary`).
   in agreement — use violet `#4500d9` and sky blue `#0cb3ff`. This theme
   matches the screens, since that is what Summer Cloud actually looks like.
 - Tabs, table, dialog, and spinner do not appear in the source screens; they are
-  extrapolated from the rules above to complete the `nb-*` inventory.
+  extrapolated from the rules above to complete the `ld-*` inventory.
 - The source screens set white text on retail red (`#ff4d4d`), which is 3.27:1 —
   below AA at badge and button sizes. This theme keeps the vivid red and puts
-  dark text on it (4.97:1), and uses `--nb-danger-deep` for the solid
+  dark text on it (4.97:1), and uses `--ld-danger-deep` for the solid
   destructive button (5.55:1 on white). Every other foreground/background pair
   in the palette clears AA.
 
 ## Code syntax
 
-Tokens `--nb-code-*`, part of the baseline contract. Palette hues deepened for
+Tokens `--ld-code-*`, part of the baseline contract. Palette hues deepened for
 contrast on white: violet keywords, deep-green strings, deep-amber numbers,
 accent-deep functions, deep-teal types, danger-deep variables, muted-faint
 comments, faint meta.
 
 ## Scoping
 
-Every rule is guarded by `data-nb-style="summer-cloud"` (self or ancestor),
+Every rule is guarded by `data-ld-style="summer-cloud"` (self or ancestor),
 wrapped in zero-specificity `:where()`. Set the attribute on `<html>` for a
 page or on a container for an embedded island.

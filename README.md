@@ -34,7 +34,7 @@ Packages publish to the public npm registry (`@nazuraki/styles`,
 `@nazuraki/ui-react`) — no registry config or auth needed to install.
 
 **Since 0.3.0 every rule is scoped:** nothing applies until an element carries
-`data-nb-style="<theme>"`. Put it on `<html>` for a whole page, or on any
+`data-ld-style="<theme>"`. Put it on `<html>` for a whole page, or on any
 container to theme just that subtree (safe for embedding into pages you don't
 own — the CSS is inert everywhere else, and the guards are zero-specificity
 `:where()`, so any of your own rules override). Because of the scoping, several
@@ -49,14 +49,14 @@ themes can load at once and swapping is one attribute flip.
 ```
 
 ```html
-<html data-nb-style="luminous-precision">
+<html data-ld-style="luminous-precision">
 ```
 
 No-build apps can pull from jsDelivr instead:
 
 ```html
 <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v0.3.0/styles/luminous-precision/index.css">
+  href="https://cdn.jsdelivr.net/gh/nazuraki/ui-std-lib@v1.0.0/styles/luminous-precision/index.css">
 ```
 
 The same works at runtime for themes newer than an app's installed dep: fetch
@@ -72,15 +72,26 @@ Webfonts are not bundled; include the Google Fonts links (exact URLs are in
 | `summer-cloud` | Plus Jakarta Sans (400, 600, 700, 800), Inter (400, 600), JetBrains Mono (500, 700) |
 | `luminous-precision` | Sora (500, 600, 700), JetBrains Mono (400, 600, 700) |
 
-`summer-cloud` also expects `.nb-bg` on `<body>` — the sky gradient is what its
+`summer-cloud` also expects `.ld-bg` on `<body>` — the sky gradient is what its
 frosted-glass surfaces read against.
 
-### Migrating from 0.2.x
+### Migrating from 0.3.x
 
-Add `data-nb-style="<theme>"` to your `<html>` element (or the container you
-mount into). That is the whole migration — class names, tokens, and import
-paths are unchanged. Apps that relied on the unscoped `body`/heading/anchor
-defaults get them back through the same attribute.
+1.0.0 renames the `nb-` prefix to `ld-` everywhere: classes (`.ld-card`),
+tokens (`--ld-primary`), keyframes, and the scoping attribute
+(`data-ld-style`). Nothing else changed. Run the codemod over your app and
+you are done:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/nazuraki/ui-std-lib/main/scripts/rename-nb-prefix.sh \
+  | bash -s -- src index.html
+```
+
+It rewrites `--nb-*` → `--ld-*`, `data-nb-style` → `data-ld-style`, and any
+`nb-` that starts an identifier → `ld-` (CSS, HTML, JS/TS/JSX, Svelte, Vue,
+Markdown, JSON). It is idempotent, and it skips `node_modules`, `dist`, and
+`.git`. Review the diff; identifiers of your own that happen to start with
+`nb-` are renamed too.
 
 ### React components
 
@@ -89,7 +100,7 @@ import { Button, Card, NavLink } from "@nazuraki/ui-react";
 ```
 
 Import a theme's CSS once at the app root; components carry only class names
-(`nb-btn`, `nb-card`, `nb-link`), so themes stay swappable.
+(`ld-btn`, `ld-card`, `ld-link`), so themes stay swappable.
 
 ## Developing
 
@@ -100,7 +111,7 @@ pnpm --filter @nazuraki/styles test   # theme contract + release-bump tests
 ```
 
 The contract test enforces the theme rules: every selector guarded by its
-`data-nb-style`, keyframe names unique, the baseline token set complete, and
+`data-ld-style`, keyframe names unique, the baseline token set complete, and
 manifest/exports/directories in sync. A new theme that passes it works in
 every manifest-reading consumer.
 
@@ -111,6 +122,10 @@ it bumps both package versions (patch by default; a `type!:` subject or
 `BREAKING CHANGE:` footer in an unreleased commit bumps the minor while the
 major is 0), tags, creates the GitHub release, and the tag triggers
 `publish.yml` — npm trusted publishing (OIDC, no stored token).
+
+To pin a specific version (a milestone like 1.0.0), set it in both
+`package.json` files in the PR; the release workflow publishes an untagged
+pinned version as-is instead of bumping past it.
 
 ## Agent skill
 
@@ -125,10 +140,11 @@ styles/                    @nazuraki/styles
   manifest.json            theme roster: name, scheme, font links
   all.css                  every theme in one import
   neon-butterfly/          tokens.css, base.css, components/*.css, index.css, design.md
-  summer-cloud/            same layout, same --nb-* token names, different values
+  summer-cloud/            same layout, same --ld-* token names, different values
   test/                    theme contract + release-bump tests (node:test)
 components/
   react/                   @nazuraki/ui-react (tsc → dist/)
 site/                      GH Pages showcase (no build; styles copied in by CI)
 skills/design-system/      agent skill for consuming the system
+scripts/                   consumer codemods (rename-nb-prefix.sh)
 ```

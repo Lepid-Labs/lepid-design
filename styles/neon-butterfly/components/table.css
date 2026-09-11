@@ -1,27 +1,27 @@
 /* neon-butterfly — table */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-table {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--nb-text-sm);
-  color: var(--nb-on-surface);
+  font-size: var(--ld-text-sm);
+  color: var(--ld-on-surface);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-table th {
-  padding: var(--nb-space-2) var(--nb-space-3);
-  border-bottom: 1px solid var(--nb-primary-border);
-  color: var(--nb-faint);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  border-bottom: 1px solid var(--ld-primary-border);
+  color: var(--ld-faint);
   text-align: left;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: var(--nb-font-weight-bold);
-  letter-spacing: var(--nb-tracking-wide);
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-table td {
-  padding: var(--nb-space-2) var(--nb-space-3);
-  border-bottom: 1px solid var(--nb-border);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table td {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  border-bottom: 1px solid var(--ld-border);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-table tbody tr {
-  transition: background var(--nb-transition);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr {
+  transition: background var(--ld-transition);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-table tbody tr:hover {
-  background: var(--nb-surface-glass);
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr:hover {
+  background: var(--ld-surface-glass);
 }

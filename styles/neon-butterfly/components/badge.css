@@ -1,17 +1,17 @@
 /* neon-butterfly — badge */
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge {
   display: inline-block;
-  padding: 0.15rem var(--nb-space-2);
-  border: 1px solid var(--nb-border);
-  border-radius: var(--nb-radius);
-  color: var(--nb-faint);
+  padding: 0.15rem var(--ld-space-2);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
   text-transform: uppercase;
   font-size: 11px;
-  font-weight: var(--nb-font-weight-bold);
-  letter-spacing: var(--nb-tracking-wide);
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
 }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge--primary { border-color: var(--nb-primary-border); color: var(--nb-primary); }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge--info    { border-color: var(--nb-info);    color: var(--nb-info); }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge--success { border-color: var(--nb-success); color: var(--nb-success); }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge--warning { border-color: var(--nb-warning); color: var(--nb-warning); }
-:where([data-nb-style="neon-butterfly"], [data-nb-style="neon-butterfly"] *).nb-badge--danger  { border-color: var(--nb-danger);  color: var(--nb-danger); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--primary { border-color: var(--ld-primary-border); color: var(--ld-primary); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--info    { border-color: var(--ld-info);    color: var(--ld-info); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--success { border-color: var(--ld-success); color: var(--ld-success); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--warning { border-color: var(--ld-warning); color: var(--ld-warning); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-badge--danger  { border-color: var(--ld-danger);  color: var(--ld-danger); }

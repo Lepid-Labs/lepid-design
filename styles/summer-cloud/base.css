@@ -4,55 +4,55 @@
  * Inter (400;600) and JetBrains Mono (500;700), or self-host; every token
  * stack falls back to a system family.
  *
- * The element carrying data-nb-style is the theme's canvas: it gets the
+ * The element carrying data-ld-style is the theme's canvas: it gets the
  * background, text color, and body font — whether that is <html> for a page
  * or a mount container for an embedded island. Page-only rules (body margin,
  * viewport height) apply only when the attribute sits on <html>.
  */
-:where([data-nb-style="summer-cloud"]) {
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+:where([data-ld-style="summer-cloud"]) {
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
   -webkit-font-smoothing: antialiased;
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *),
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *)::before,
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *)::after {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *)::before,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *)::after {
   box-sizing: border-box;
 }
 
-:where(html[data-nb-style="summer-cloud"]) body {
+:where(html[data-ld-style="summer-cloud"]) body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--nb-bg);
-  color: var(--nb-on-surface);
-  font-family: var(--nb-font-body);
-  font-weight: var(--nb-font-weight);
+  background-color: var(--ld-bg);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-body);
+  font-weight: var(--ld-font-weight);
   -webkit-font-smoothing: antialiased;
 }
 
-/* Opt-in page background: the sky gradient. Flat --nb-bg is also correct, but
+/* Opt-in page background: the sky gradient. Flat --ld-bg is also correct, but
  * the gradient is the signature — the theme reads as "airy" only against it.
  * Apply to <body>, or to the attributed container itself. */
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *).nb-bg {
-  background: linear-gradient(135deg, var(--nb-sky-start) 0%, var(--nb-sky-end) 100%);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bg {
+  background: linear-gradient(135deg, var(--ld-sky-start) 0%, var(--ld-sky-end) 100%);
   background-attachment: fixed;
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *):where(h1, h2, h3, h4) {
-  font-family: var(--nb-font-display);
-  font-weight: var(--nb-font-weight-bold);
-  letter-spacing: var(--nb-tracking-tight);
-  color: var(--nb-on-surface);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *):where(h1, h2, h3, h4) {
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-tight);
+  color: var(--ld-on-surface);
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *):where(a) {
-  color: var(--nb-primary);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *):where(a) {
+  color: var(--ld-primary);
 }
 
-:where([data-nb-style="summer-cloud"], [data-nb-style="summer-cloud"] *)::selection {
-  background: var(--nb-primary);
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *)::selection {
+  background: var(--ld-primary);
   color: #fff;
 }

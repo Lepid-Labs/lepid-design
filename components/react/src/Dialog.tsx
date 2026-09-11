@@ -22,10 +22,10 @@ export function Dialog({ open, onClose, title, actions, className, children, ...
   }, [open]);
 
   return (
-    <dialog ref={ref} className={cx("nb-dialog", className)} onClose={onClose} {...rest}>
-      {title !== undefined && <h2 className="nb-dialog__title">{title}</h2>}
+    <dialog ref={ref} className={cx("ld-dialog", className)} onClose={onClose} {...rest}>
+      {title !== undefined && <h2 className="ld-dialog__title">{title}</h2>}
       {children}
-      {actions !== undefined && <div className="nb-dialog__actions">{actions}</div>}
+      {actions !== undefined && <div className="ld-dialog__actions">{actions}</div>}
     </dialog>
   );
 }
