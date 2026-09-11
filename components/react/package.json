@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lepid-labs/lepid-design.git",
+    "url": "git+https://github.com/Lepid-Labs/lepid-design.git",
     "directory": "components/react"
   },
   "publishConfig": {
