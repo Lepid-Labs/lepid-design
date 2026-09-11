@@ -25,6 +25,7 @@
   .row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   @media (max-width: 40rem) { .grid2 { grid-template-columns: 1fr; } }
+  .status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; align-items: start; }
 </style>
 </head>
 <body class="ld-bg">
@@ -102,6 +103,57 @@
         <span class="ld-badge ld-badge--danger">danger</span>
         <span class="ld-badge ld-badge--info">info</span>
         <span class="ld-badge">neutral</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Status card</h2>
+    <div class="status-grid">
+      <!-- healthy: success edge, flashing as if its data just changed -->
+      <div class="ld-status-card ld-status-card--success" data-ld-changed>
+        <div class="ld-status-card__head">
+          <a class="ld-status-card__title" href="#"><span class="ld-status-card__prefix">lepid-labs</span>switchboard</a>
+          <div class="ld-status-card__meta">
+            <span class="ld-badge ld-badge--sm ld-badge--success" title="All standards met">5/5</span>
+            <span class="ld-badge ld-badge--sm ld-badge--primary">1 PR</span>
+            <span class="ld-status-card__note">2h ago</span>
+          </div>
+        </div>
+        <ul class="ld-status-card__rows">
+          <li><a class="ld-status-card__row" href="#"><span class="ld-status-card__row-lead">#41</span><span class="ld-status-card__row-main">Add dark-mode toggle to the header</span><span class="ld-status-card__row-trail">3 <span class="ld-badge ld-badge--sm ld-badge--info">enh</span></span></a></li>
+          <li><a class="ld-status-card__row" href="#"><span class="ld-status-card__row-lead">#38</span><span class="ld-status-card__row-main">Landing hero overflows at 320px</span><span class="ld-status-card__row-trail"><span class="ld-badge ld-badge--sm ld-badge--danger">bug</span></span></a></li>
+          <li><a class="ld-status-card__row" href="#"><span class="ld-status-card__row-lead">#7</span><span class="ld-status-card__row-main">Document the deploy pipeline</span><span class="ld-status-card__row-trail"><span class="ld-badge ld-badge--sm">docs</span></span></a></li>
+        </ul>
+        <a class="ld-status-card__footer" href="#">2 more…</a>
+      </div>
+      <!-- needs you: danger edge (CI failing), attention ring, private watermark, pulsing review pill -->
+      <div class="ld-status-card ld-status-card--danger" data-ld-attention="warning">
+        <span class="ld-status-card__watermark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M11.5 6H11V4.5a3 3 0 0 0-6 0V6H4.5A1.5 1.5 0 0 0 3 7.5v5A1.5 1.5 0 0 0 4.5 14h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 6ZM6 4.5a2 2 0 1 1 4 0V6H6ZM8 11a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg></span>
+        <div class="ld-status-card__head">
+          <a class="ld-status-card__title" href="#"><span class="ld-status-card__prefix">lepid-labs</span>pulse</a>
+          <div class="ld-status-card__meta">
+            <span class="ld-badge ld-badge--sm ld-badge--warning" title="Missing: Justfile, ci.yml">3/5</span>
+            <a class="ld-badge ld-badge--sm ld-badge--danger" href="#" title="high: hono — path traversal">2 alerts</a>
+            <a class="ld-badge ld-badge--sm ld-badge--pulse" href="#">2 PRs · Review</a>
+            <span class="ld-status-card__note">just now</span>
+          </div>
+        </div>
+        <ul class="ld-status-card__rows">
+          <li><a class="ld-status-card__row" href="#"><span class="ld-status-card__row-lead">#27</span><span class="ld-status-card__row-main">react component for status card, generalized from pulse</span><span class="ld-status-card__row-trail"><span class="ld-badge ld-badge--sm ld-badge--primary">pr</span></span></a></li>
+          <li><a class="ld-status-card__row" href="#"><span class="ld-status-card__row-lead">#12</span><span class="ld-status-card__row-main">CI fails on Node 26</span><span class="ld-status-card__row-trail">8</span></a></li>
+        </ul>
+      </div>
+      <!-- quiet: no edge, nothing open -->
+      <div class="ld-status-card">
+        <div class="ld-status-card__head">
+          <span class="ld-status-card__title"><span class="ld-status-card__prefix">lepid-labs</span>lorepath</span>
+          <div class="ld-status-card__meta">
+            <span class="ld-badge ld-badge--sm ld-badge--success">5/5</span>
+            <span class="ld-status-card__note">3d ago</span>
+          </div>
+        </div>
+        <p class="ld-status-card__empty">No open issues</p>
       </div>
     </div>
   </section>

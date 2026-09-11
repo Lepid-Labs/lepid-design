@@ -80,6 +80,11 @@ Class prefix `ld-` (shared across themes so `@lepid-labs/ui-react` stays
 theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 
 - **Card** `.ld-card` — glass panel; `--floating` adds the Level 2 hover lift.
+- **Status card** `.ld-status-card` — dense dashboard card on high glass, raised shadow on hover (from pulse's repo
+  card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
+  adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.
+  Parts: `__watermark`, `__head`, `__prefix`, `__title`, `__meta`, `__note`,
+  `__rows`, `__row` (`-lead`/`-main`/`-trail`), `__footer`, `__empty`.
 - **NavLink** `.ld-link` — pill, sky-tint wash, `→` slides 4px on hover;
   `--active` / `[aria-current=page]` becomes the violet underline rule.
 - **Button** `.ld-btn` — glass by default; `--primary` (solid violet CTA, one
@@ -99,6 +104,8 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   resting border, sky-blue ring on focus. The switch is the oversized
   "cloud-toggle": squishy, and green when live.
 - **Badge** `.ld-badge` + semantic modifiers — solid pills, mono uppercase.
+  `--sm` is the 9px dashboard pill; `--pulse` the amber call to action with a
+  breathing glow.
   **Chip** `.ld-chip` — outlined filter chip; `--selected` fills violet.
 - **Alert** `.ld-alert` — glass card with a 4px semantic left rule.
 - **Dialog** `.ld-dialog` — native `<dialog>`, opaque white, blurred backdrop.

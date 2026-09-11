@@ -56,6 +56,11 @@ tonal layers and glow, not drop shadows. Never pure white or pure black.
 Class prefix `ld-` (shared token/class contract with the other themes).
 
 - **Card** `.ld-card` — glass pane, 1rem radius, lit top edge.
+- **Status card** `.ld-status-card` — dense dashboard card, 1rem radius, Sora title (from pulse's repo
+  card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
+  adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.
+  Parts: `__watermark`, `__head`, `__prefix`, `__title`, `__meta`, `__note`,
+  `__rows`, `__row` (`-lead`/`-main`/`-trail`), `__footer`, `__empty`.
 - **NavLink** `.ld-link` — glass list row; hover shifts to solid indigo and
   lights a 2px teal bar on the left edge.
 - **Button** `.ld-btn` — ghost by default; `--primary` is the one solid fill
@@ -71,7 +76,8 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
 - **Badge** `.ld-badge` — pill chip: 15% tint of its hue behind
-  full-saturation text (+ semantic modifiers).
+  full-saturation text (+ semantic modifiers). `--sm` is the 9px dashboard
+  pill; `--pulse` the one solid amber call to action with a breathing glow.
 - **Alert** `.ld-alert` — glass, 3px left bar carries the semantic color.
 - **Dialog** `.ld-dialog` — native `<dialog>`, indigo pane with orchid glow,
   Sora title, blurred obsidian backdrop.
