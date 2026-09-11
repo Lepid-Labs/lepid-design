@@ -1,6 +1,6 @@
 {
   "name": "@nazuraki/ui-react",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "description": "Shared React components styled by @nazuraki/styles themes.",
   "license": "MIT",
   "repository": {

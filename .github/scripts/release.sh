@@ -5,7 +5,8 @@
 #   1. Detect commits since the last release tag that touch styles/ or
 #      components/ (excluding docs) — site, skills, and CI changes don't
 #      warrant an npm release.
-#   2. Bump the patch version in both package.json files (kept in lockstep).
+#   2. Bump the version in both package.json files (kept in lockstep), or
+#      release a version a PR pinned there that has no tag yet.
 #   3. Generate a changelog grouped by conventional-commit type.
 #   4. Commit the bump, tag vX.Y.Z, and create the GitHub release.
 #      The tag push triggers publish.yml, which publishes both packages to npm.
@@ -71,12 +72,19 @@ for f in "${VERSION_FILES[@]}"; do
   fi
 done
 
-new_version=$(.github/scripts/next-version.sh "$current_version" <<< "$commit_bodies")
-
-for f in "${VERSION_FILES[@]}"; do
-  sed -i "s|\"version\": \"${current_version}\"|\"version\": \"${new_version}\"|" "$f"
-done
-echo "Version: ${current_version} → ${new_version}"
+# A PR may pin the next version by editing the package.json files directly
+# (e.g. 0.3.4 → 1.0.0 for a milestone release). If the current version has no
+# tag yet it is such a pin: release it as-is instead of bumping past it.
+if git rev-parse -q --verify "refs/tags/v${current_version}" >/dev/null; then
+  new_version=$(.github/scripts/next-version.sh "$current_version" <<< "$commit_bodies")
+  for f in "${VERSION_FILES[@]}"; do
+    sed -i "s|\"version\": \"${current_version}\"|\"version\": \"${new_version}\"|" "$f"
+  done
+  echo "Version: ${current_version} → ${new_version}"
+else
+  new_version="$current_version"
+  echo "Version: ${new_version} (pinned in ${VERSION_FILES[0]}, not yet tagged)"
+fi
 
 # ── Build changelog ───────────────────────────────────────────────────────────
 
@@ -89,7 +97,7 @@ while IFS= read -r msg; do
   matched=false
   for t in "${COMMIT_TYPES_ORDER[@]}"; do
     # Matches: type(optional-scope): description
-    pattern="^${t}(\([^)]*\))?:[[:space:]]+(.+)$"
+    pattern="^${t}(\([^)]*\))?!?:[[:space:]]+(.+)$"
     if [[ "$msg" =~ $pattern ]]; then
       type_entries[$t]+="- ${BASH_REMATCH[2]}"$'\n'
       matched=true
@@ -120,9 +128,12 @@ printf '%s' "$notes" > "$notes_file"
 
 tag="v${new_version}"
 
+# A pinned version leaves nothing to commit; the tag goes on the merge commit.
 git add "${VERSION_FILES[@]}"
-git commit -m "chore(release): ${tag}"
-git push
+if ! git diff --cached --quiet; then
+  git commit -m "chore(release): ${tag}"
+  git push
+fi
 
 git tag "$tag"
 git push origin "$tag"
