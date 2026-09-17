@@ -126,6 +126,16 @@ action toolbar, or as a segmented toggle by setting `aria-pressed` on each
 `Button`: the theme lights the pressed segment, the state stays yours.
 `block` fills the row with equal-width segments.
 
+With a single pressed segment (and in `Tabs`) the highlight is one sliding
+indicator rather than per-item chrome: it is pinned to the active item with
+CSS anchor positioning and its two edges move on different timing, so it
+stretches toward the new item and snaps back to shape. The components stamp
+`data-ld-dir="forward" | "back"` on the track to say which edge leads; in
+plain HTML set it yourself when the selection changes (the site demo does),
+or skip it for a plain slide. Browsers without anchor positioning, and groups
+with several pressed segments, keep the static highlight; reduced motion drops
+the travel. Timing is per theme: `--ld-slide-lead` / `--ld-slide-trail`.
+
 ```tsx
 <ButtonGroup aria-label="View">
   {["list", "board", "timeline"].map((v) => (

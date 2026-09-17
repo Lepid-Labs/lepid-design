@@ -252,6 +252,33 @@ test("every theme carries the button-group contract", () => {
   }
 });
 
+test("every theme carries the sliding-indicator contract", () => {
+  // Tabs and ButtonGroup stamp data-ld-dir="forward" | "back" on the track and
+  // the theme slides one indicator (tabs ::after, button-group ::before) whose
+  // leading edge is picked from it. Every theme must answer both directions on
+  // both tracks, declare the two timing tokens, and drop the motion when asked.
+  for (const theme of themeDirs) {
+    const tokens = readFileSync(join(ROOT, theme, "tokens.css"), "utf-8");
+    for (const token of ["--ld-slide-lead", "--ld-slide-trail"]) {
+      assert.match(tokens, new RegExp(`${token}\\s*:`), `${theme}: tokens.css misses ${token}`);
+    }
+    for (const [name, track] of [["tabs", ".ld-tabs"], ["button-group", ".ld-btn-group"]]) {
+      const pseudo = name === "tabs" ? "::after" : "::before";
+      const css = readFileSync(join(ROOT, theme, "components", `${name}.css`), "utf-8");
+      const { selectors } = parseCss(css);
+      for (const dir of ["forward", "back"]) {
+        const part = `${track}[data-ld-dir="${dir}"]${pseudo}`;
+        assert.ok(selectors.some((s) => s.endsWith(part)), `${theme}: ${name}.css never styles ${part}`);
+      }
+      assert.ok(
+        selectors.some((s) => s.endsWith(`${track}[data-ld-dir]${pseudo}`)),
+        `${theme}: ${name}.css never stills the indicator under prefers-reduced-motion`,
+      );
+      assert.match(css, /@supports \(anchor-name: --ld-a\) and \(anchor-scope: --ld-a\)/, `${theme}: ${name}.css indicator is not gated on anchor positioning`);
+    }
+  }
+});
+
 test("every theme carries the status-card contract", () => {
   // .ld-status-card and its parts (issue #27): the React StatusCard writes
   // the tone modifier, data-ld-attention, and data-ld-changed, so every theme

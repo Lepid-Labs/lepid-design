@@ -31,3 +31,45 @@
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabpanel {
   padding: var(--ld-space-3) 0;
 }
+
+/* Sliding indicator: one lit bar on the tablist, pinned to the active tab by
+ * anchor positioning, takes over the underline. Its inline edges transition
+ * separately — with data-ld-dir ("forward" | "back", set by the Tabs
+ * component) the edge nearer the target leads and the far edge trails, so the
+ * light reaches for the tab; without it the bar just slides. Browsers without
+ * anchor positioning keep the static underline above. */
+@supports (anchor-name: --ld-a) and (anchor-scope: --ld-a) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs {
+    position: relative;
+    anchor-scope: --ld-tab-active;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs :is(.ld-tab--active, .ld-tab[aria-selected="true"]) {
+    anchor-name: --ld-tab-active;
+    border-bottom-color: transparent;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs:where(:has(.ld-tab--active, .ld-tab[aria-selected="true"]))::after {
+    content: "";
+    position: absolute;
+    position-anchor: --ld-tab-active;
+    inset-block-end: anchor(bottom);
+    inset-inline: anchor(start) anchor(end);
+    block-size: 2px;
+    background: var(--ld-primary);
+    box-shadow: 0 0 10px var(--ld-primary-glow), 0 0 2px var(--ld-primary);
+    pointer-events: none;
+    transition: inset-inline-start var(--ld-slide-lead), inset-inline-end var(--ld-slide-lead);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs[data-ld-dir="forward"]::after {
+    transition: inset-inline-start var(--ld-slide-trail), inset-inline-end var(--ld-slide-lead);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs[data-ld-dir="back"]::after {
+    transition: inset-inline-start var(--ld-slide-lead), inset-inline-end var(--ld-slide-trail);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs::after,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tabs[data-ld-dir]::after {
+    transition: none;
+  }
+}

@@ -72,7 +72,7 @@ non-React apps):
 | React | CSS class | Notes |
 | --- | --- | --- |
 | `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
-| `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state |
+| `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state; one pressed segment gets a sliding pill (plain HTML: set `data-ld-dir="forward"\|"back"` on the track when selection moves) |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
 | `Card` | `.ld-card` | glass panel |
 | `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |
@@ -82,7 +82,7 @@ non-React apps):
 | `Badge` | `.ld-badge` | semantic variants; `size="sm"` (`--sm`) for dashboard pills, `pulse` (`--pulse`) for the one glowing call to action |
 | `Alert` | `.ld-alert` | `variant` + optional `title` |
 | `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
-| `Tabs` | `.ld-tabs` | `items: {id, label, content}[]` |
+| `Tabs` | `.ld-tabs` | `items: {id, label, content}[]`; the underline slides between tabs (plain HTML: set `data-ld-dir="forward"\|"back"` on `.ld-tabs` when selection moves) |
 | `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
 | `Stepper` | `.ld-stepper` | milestone rail; `steps: {id, label, icon?}[]`, `current` index derives complete/current/upcoming and the rail fill; `aria-current="step"` on the active node |
 | — (CSS only) | `.ld-table` | style `<table>` directly |

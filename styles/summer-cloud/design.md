@@ -105,6 +105,9 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) floats up as
   a white chip with bold violet text and a violet-tinted shadow. No hover
   scale inside the pill (neighbours would overlap); the 0.97 press stays.
+  With one pressed segment the chrome is a single sliding chip: the edge
+  nearer the new segment leads, the far edge trails on the bounciest spring of the three themes
+  (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
@@ -117,7 +120,7 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   **Chip** `.ld-chip` — outlined filter chip; `--selected` fills violet.
 - **Alert** `.ld-alert` — glass card with a 4px semantic left rule.
 - **Dialog** `.ld-dialog` — native `<dialog>`, opaque white, blurred backdrop.
-- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — violet underline when active.
+- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — violet underline when active; it stretches to the new tab and bounces back to width (same slide tokens).
 - **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
   `.ld-num` to numeric cells for the mono/right-aligned treatment.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.

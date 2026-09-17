@@ -81,7 +81,12 @@
         group.addEventListener("click", (e) => {
           const btn = e.target.closest(".ld-btn");
           if (!btn) return;
-          for (const b of group.querySelectorAll(".ld-btn")) b.setAttribute("aria-pressed", String(b === btn));
+          // data-ld-dir tells the theme which edge of the sliding pill leads (ButtonGroup sets it too)
+          const btns = [...group.querySelectorAll(".ld-btn")];
+          const from = btns.findIndex((x) => x.getAttribute("aria-pressed") === "true");
+          const to = btns.indexOf(btn);
+          if (from >= 0 && from !== to) group.dataset.ldDir = to > from ? "forward" : "back";
+          for (const x of btns) x.setAttribute("aria-pressed", String(x === btn));
         });
       }
     </script>
@@ -333,7 +338,12 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
   // minimal tab behavior for the static demo
   document.querySelectorAll("#tabs-demo .ld-tab").forEach((tab) => {
     tab.addEventListener("click", () => {
-      document.querySelectorAll("#tabs-demo .ld-tab").forEach((t) => {
+      // data-ld-dir tells the theme which edge of the sliding underline leads (Tabs sets it too)
+      const tabs = [...document.querySelectorAll("#tabs-demo .ld-tab")];
+      const from = tabs.findIndex((t) => t.getAttribute("aria-selected") === "true");
+      const to = tabs.indexOf(tab);
+      if (from >= 0 && from !== to) tab.parentElement.dataset.ldDir = to > from ? "forward" : "back";
+      tabs.forEach((t) => {
         t.classList.toggle("ld-tab--active", t === tab);
         t.setAttribute("aria-selected", String(t === tab));
       });
