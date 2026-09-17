@@ -1,0 +1,81 @@
+/* summer-cloud — button group: a long glass pill; segments are pills inside
+ * it and the pressed one floats up as a white chip with violet text. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: var(--ld-space-1);
+  max-width: 100%;
+  padding: var(--ld-space-1);
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius-pill);
+}
+/* --block: fill the row, equal-width segments */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group--block {
+  display: flex;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group--block > .ld-btn {
+  flex: 1 1 0;
+}
+
+/* segments: the pill is the chrome, so the button drops its own */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn {
+  padding-block: var(--ld-space-2);
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--ld-faint);
+  font-weight: var(--ld-font-weight-medium);
+  white-space: nowrap;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--sm {
+  padding-block: 0.25rem;
+}
+/* variants tint the label only — a solid fill would break the pill */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--primary {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--accent {
+  color: var(--ld-accent-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--danger {
+  color: var(--ld-danger-deep);
+}
+/* no hover scale inside the pill — neighbours would overlap; the press stays */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn:focus-visible {
+  background: var(--ld-sky-tint);
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--ld-primary);
+  transform: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--accent:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--accent:focus-visible {
+  color: var(--ld-accent-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--danger:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--danger:focus-visible {
+  color: var(--ld-danger-deep);
+}
+
+/* pressed segment (toggle / segmented use): the floating white chip */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn--active,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn[aria-pressed="true"] {
+  background: var(--ld-surface);
+  color: var(--ld-primary);
+  font-weight: var(--ld-font-weight-bold);
+  box-shadow: 0 2px 8px var(--ld-primary-border);
+}
+/* after the pressed rule so the focus ring survives on the pressed segment */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn:focus-visible {
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn:active {
+  transform: scale(0.97);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn-group > .ld-btn:disabled {
+  background: transparent;
+  color: var(--ld-faint);
+  transform: none;
+}

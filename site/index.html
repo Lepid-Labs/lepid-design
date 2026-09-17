@@ -55,6 +55,36 @@
       <button class="ld-btn ld-btn--sm ld-btn--danger">Danger</button>
       <button class="ld-btn ld-btn--sm" disabled>Disabled</button>
     </div>
+    <!-- Button group: one long track, the buttons lined up inside it. Same markup ButtonGroup renders.
+         First: a segmented toggle (aria-pressed lights the segment; site script below flips it).
+         Second: an action toolbar — variants tint the label only. Third: --block, equal-width segments. -->
+    <div class="row" style="margin-top: 1.25rem">
+      <div class="ld-btn-group" role="group" aria-label="View" data-toggle-demo>
+        <button class="ld-btn" aria-pressed="true">List</button>
+        <button class="ld-btn" aria-pressed="false">Board</button>
+        <button class="ld-btn" aria-pressed="false">Timeline</button>
+        <button class="ld-btn" aria-pressed="false" disabled>Map</button>
+      </div>
+      <div class="ld-btn-group" role="group" aria-label="Item actions">
+        <button class="ld-btn ld-btn--sm">Edit</button>
+        <button class="ld-btn ld-btn--sm ld-btn--accent">Duplicate</button>
+        <button class="ld-btn ld-btn--sm ld-btn--danger">Delete</button>
+      </div>
+    </div>
+    <div class="ld-btn-group ld-btn-group--block" role="group" aria-label="Range" data-toggle-demo style="margin-top: 0.75rem">
+      <button class="ld-btn" aria-pressed="false">Day</button>
+      <button class="ld-btn" aria-pressed="true">Week</button>
+      <button class="ld-btn" aria-pressed="false">Month</button>
+    </div>
+    <script>
+      for (const group of document.querySelectorAll("[data-toggle-demo]")) {
+        group.addEventListener("click", (e) => {
+          const btn = e.target.closest(".ld-btn");
+          if (!btn) return;
+          for (const b of group.querySelectorAll(".ld-btn")) b.setAttribute("aria-pressed", String(b === btn));
+        });
+      }
+    </script>
     <!-- Hold-to-confirm: the ring is the confirmation. Press and hold; release early to cancel.
          Same markup HoldButton renders; site/hold-demo.js supplies the behaviour here. -->
     <div class="row" style="margin-top: 1.25rem">

@@ -223,6 +223,35 @@ test("every theme carries the hold-to-confirm button contract", () => {
   }
 });
 
+test("every theme carries the button-group contract", () => {
+  // .ld-btn-group: the track owns the chrome and its direct-child .ld-btn
+  // segments drop theirs. The React ButtonGroup writes only the track class
+  // (+ --block); the pressed segment is lit from aria-pressed on the child
+  // (.ld-btn--active for non-buttons), so every theme must style those hooks.
+  const PARTS = [
+    ".ld-btn-group", ".ld-btn-group--block", ".ld-btn-group--block > .ld-btn",
+    ".ld-btn-group > .ld-btn", ".ld-btn-group > .ld-btn:hover", ".ld-btn-group > .ld-btn:focus-visible",
+    ".ld-btn-group > .ld-btn--active", '.ld-btn-group > .ld-btn[aria-pressed="true"]',
+    ".ld-btn-group > .ld-btn:disabled",
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "button-group.css");
+    assert.ok(existsSync(file), `${theme}: components/button-group.css missing`);
+    const { selectors } = parseCss(readFileSync(file, "utf-8"));
+    for (const part of PARTS) {
+      assert.ok(selectors.some((s) => s.endsWith(part)), `${theme}: button-group.css never styles ${part}`);
+    }
+    // variants must be re-tinted inside the track, or a solid --primary/--danger
+    // fill (and its on-fill text colour) would leak into a chromeless segment
+    for (const variant of ["primary", "accent", "danger"]) {
+      assert.ok(
+        selectors.some((s) => s.endsWith(`.ld-btn-group > .ld-btn--${variant}`)),
+        `${theme}: button-group.css never re-tints .ld-btn--${variant} inside the group`,
+      );
+    }
+  }
+});
+
 test("every theme carries the status-card contract", () => {
   // .ld-status-card and its parts (issue #27): the React StatusCard writes
   // the tone modifier, data-ld-attention, and data-ld-changed, so every theme

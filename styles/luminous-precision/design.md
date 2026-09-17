@@ -72,6 +72,14 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   `--accent` teal, neutral alone. `data-ld-hold="fired"` blooms the button
   and ring in the ring color (dropped under reduced motion; the fill stays).
   Window: `--ld-hold-duration` 300 ms. The ring *is* the confirmation.
+- **Button group** `.ld-btn-group` (+ `--block`) — one long track with
+  `.ld-btn` segments lined up inside; the track owns the chrome and the
+  segments drop theirs. Lit-border track on the sunken well; faint mono
+  labels. The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) is a
+  raised pane with an orchid border, orchid label and soft glow; no hover
+  pulse inside the track.
+  Variants tint the label only; `--block` fills the row with equal-width
+  segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
   `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
