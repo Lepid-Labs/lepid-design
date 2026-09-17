@@ -6,6 +6,7 @@
 @import "./components/link.css";
 @import "./components/button.css";
 @import "./components/button-hold.css";
+@import "./components/button-group.css";
 @import "./components/form.css";
 @import "./components/badge.css";
 @import "./components/alert.css";

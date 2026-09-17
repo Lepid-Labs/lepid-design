@@ -120,6 +120,20 @@ instead (pair it with a `Dialog` in `onConfirm`).
 </HoldButton>
 ```
 
+`ButtonGroup` is one long track (a pill, under summer-cloud) with `Button`s
+lined up inside it — the theme strips the segments' own chrome. Use it as an
+action toolbar, or as a segmented toggle by setting `aria-pressed` on each
+`Button`: the theme lights the pressed segment, the state stays yours.
+`block` fills the row with equal-width segments.
+
+```tsx
+<ButtonGroup aria-label="View">
+  {["list", "board", "timeline"].map((v) => (
+    <Button key={v} aria-pressed={view === v} onClick={() => setView(v)}>{v}</Button>
+  ))}
+</ButtonGroup>
+```
+
 `StatusCard` is the dense dashboard card (generalized from pulse's repo
 card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
 warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`

@@ -65,6 +65,13 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   `--accent` lime. `data-ld-hold="fired"` lights the border and glows
   (dropped under reduced motion; the fill stays). Window:
   `--ld-hold-duration` 250 ms — terminal-quick.
+- **Button group** `.ld-btn-group` (+ `--block`) — one long track with
+  `.ld-btn` segments lined up inside; the track owns the chrome and the
+  segments drop theirs. Glass track, hairline border, faint mono labels.
+  The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) takes the
+  lilac edge and a lilac text glow; no hover pulse inside the track.
+  Variants tint the label only; `--block` fills the row with equal-width
+  segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
 - **Badge** `.ld-badge` + semantic modifiers; `--sm` is the 9px dashboard

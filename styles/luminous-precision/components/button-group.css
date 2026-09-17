@@ -1,0 +1,87 @@
+/* luminous-precision — button group: one lit-border track on a sunken well;
+ * the segments inside go chromeless and the pressed one lights up in orchid. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 2px;
+  max-width: 100%;
+  padding: 3px;
+  background: var(--ld-surface-sunken);
+  border: 1px solid var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+}
+/* --block: fill the row, equal-width segments */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group--block {
+  display: flex;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group--block > .ld-btn {
+  flex: 1 1 0;
+}
+
+/* segments: the track is the chrome, so the button drops its own */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn {
+  justify-content: center;
+  background: transparent;
+  border-color: transparent;
+  border-radius: calc(var(--ld-radius) - 3px);
+  color: var(--ld-faint);
+  white-space: nowrap;
+  transition:
+    background var(--ld-transition),
+    border-color var(--ld-transition),
+    color var(--ld-transition),
+    box-shadow var(--ld-transition);
+}
+/* variants tint the label only — a solid fill would break the track */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--primary {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--accent {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--danger {
+  color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn:focus-visible {
+  background: var(--ld-surface);
+  border-color: transparent;
+  color: var(--ld-on-surface);
+  animation: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn:focus-visible {
+  /* an outline, not the border: it must stay visible on the pressed segment */
+  outline: 1px solid var(--ld-primary);
+  outline-offset: 1px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--primary:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--primary:focus-visible {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--accent:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--accent:focus-visible {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--danger:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--danger:focus-visible {
+  color: var(--ld-danger);
+}
+
+/* pressed segment (toggle / segmented use): raised orchid pane with a soft glow */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn--active,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn[aria-pressed="true"] {
+  background: var(--ld-surface);
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  box-shadow: 0 0 12px var(--ld-primary-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn:disabled {
+  background: transparent;
+  color: var(--ld-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn-group > .ld-btn {
+    transition: none;
+  }
+}

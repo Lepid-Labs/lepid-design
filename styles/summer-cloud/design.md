@@ -99,6 +99,14 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   the pill — the ring is the feedback. `data-ld-hold="fired"` bounces to
   1.06 (dropped under reduced motion; the fill stays). Window:
   `--ld-hold-duration` 350 ms — soft and unhurried.
+- **Button group** `.ld-btn-group` (+ `--block`) — one long track with
+  `.ld-btn` segments lined up inside; the track owns the chrome and the
+  segments drop theirs. A long glass pill; segments are pills inside it.
+  The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) floats up as
+  a white chip with bold violet text and a violet-tinted shadow. No hover
+  scale inside the pill (neighbours would overlap); the 0.97 press stays.
+  Variants tint the label only; `--block` fills the row with equal-width
+  segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — sunken fields, no
   resting border, sky-blue ring on focus. The switch is the oversized
