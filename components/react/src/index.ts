@@ -44,4 +44,6 @@ export {
 } from "./feedback.js";
 export { Dialog, type DialogProps } from "./Dialog.js";
 export { Tabs, type TabsProps, type TabItem } from "./Tabs.js";
+export { slideDir, type SlideDir } from "./slide-dir.js";
+export { useSlideDir } from "./useSlideDir.js";
 export { cx } from "./cx.js";

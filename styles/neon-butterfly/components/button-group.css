@@ -79,8 +79,50 @@
   color: var(--ld-faint);
 }
 
+/* Sliding pill: with exactly one pressed segment, its chrome moves to one pill
+ * on the track, pinned to the segment by anchor positioning, so a change of
+ * selection travels instead of blinking. Its inline edges transition
+ * separately — with data-ld-dir ("forward" | "back", set by ButtonGroup) the
+ * edge nearer the target leads and the far edge trails, stretching the pill
+ * across the gap; without it the pill just slides. Several pressed segments
+ * (multi-toggle), or no anchor positioning, keep the per-segment chrome above. */
+@supports (anchor-name: --ld-a) and (anchor-scope: --ld-a) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group {
+    position: relative;
+    isolation: isolate;
+    anchor-scope: --ld-btn-group-active;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group:not(:has(> :is(.ld-btn--active, .ld-btn[aria-pressed="true"]) ~ :is(.ld-btn--active, .ld-btn[aria-pressed="true"]))) > :is(.ld-btn--active, .ld-btn[aria-pressed="true"]) {
+    anchor-name: --ld-btn-group-active;
+    background: transparent;
+    border-color: transparent;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group:where(:has(> :is(.ld-btn--active, .ld-btn[aria-pressed="true"])):not(:has(> :is(.ld-btn--active, .ld-btn[aria-pressed="true"]) ~ :is(.ld-btn--active, .ld-btn[aria-pressed="true"]))))::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    position-anchor: --ld-btn-group-active;
+    inset-block: anchor(top) anchor(bottom);
+    inset-inline: anchor(start) anchor(end);
+    background: var(--ld-surface-sunken);
+    border: 1px solid var(--ld-primary-border);
+    border-radius: calc(var(--ld-radius) - 3px);
+    box-shadow: 0 0 10px -2px var(--ld-primary-glow);
+    pointer-events: none;
+    transition: inset-inline-start var(--ld-slide-lead), inset-inline-end var(--ld-slide-lead);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group[data-ld-dir="forward"]::before {
+    transition: inset-inline-start var(--ld-slide-trail), inset-inline-end var(--ld-slide-lead);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group[data-ld-dir="back"]::before {
+    transition: inset-inline-start var(--ld-slide-lead), inset-inline-end var(--ld-slide-trail);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group > .ld-btn {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group > .ld-btn,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group::before,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-group[data-ld-dir]::before {
     transition: none;
   }
 }

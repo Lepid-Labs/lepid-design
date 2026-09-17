@@ -78,6 +78,9 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   labels. The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) is a
   raised pane with an orchid border, orchid label and soft glow; no hover
   pulse inside the track.
+  With one pressed segment the chrome is a single sliding pane: the edge
+  nearer the new segment leads, the far edge trails on a tight spring with barely any overshoot
+  (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
@@ -90,7 +93,8 @@ Class prefix `ld-` (shared token/class contract with the other themes).
 - **Dialog** `.ld-dialog` — native `<dialog>`, indigo pane with orchid glow,
   Sora title, blurred obsidian backdrop.
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in
-  teal with text glow.
+  teal with text glow; the underline is one lit bar that reaches for the new
+  tab and settles with barely any overshoot (same slide tokens).
 - **Table** `.ld-table` — lit header rule; row hover shifts glass and lights
   the teal left bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid

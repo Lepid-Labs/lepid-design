@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
 import { cx } from "./cx.js";
+import { useSlideDir } from "./useSlideDir.js";
 
 export interface TabItem {
   id: string;
@@ -24,9 +25,11 @@ export function Tabs({ items, active, defaultActive, onChange }: TabsProps) {
     onChange?.(id);
   };
   const activeItem = items.find((t) => t.id === current);
+  // data-ld-dir for the theme's sliding underline: which edge leads
+  const tablist = useSlideDir<HTMLDivElement>('[aria-selected="true"]');
   return (
     <div>
-      <div role="tablist" className="ld-tabs">
+      <div ref={tablist} role="tablist" className="ld-tabs">
         {items.map((t) => (
           <button
             key={t.id}

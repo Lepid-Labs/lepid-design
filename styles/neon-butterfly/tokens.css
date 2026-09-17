@@ -63,6 +63,11 @@
   --ld-blur: 12px;
   --ld-transition: 0.3s;
   --ld-hold-duration: 250ms; /* (extra) hold-to-confirm commitment window */
+  /* (extra) sliding indicator — tabs underline, button-group pill. The edge
+   * nearer the target leads; the far edge trails on a spring that overshoots
+   * inward, so the light stretches across the gap and snaps back to shape. */
+  --ld-slide-lead: 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+  --ld-slide-trail: 0.55s linear(0, 0.066, 0.22, 0.407, 0.591, 0.75, 0.876, 0.966, 1.024, 1.055, 1.067, 1.066, 1.057, 1.045, 1.032, 1.021, 1.011, 1.004, 1, 0.997, 0.996, 0.995, 0.996, 0.997, 1);
 
   /* spacing */
   --ld-space-1: 0.25rem;

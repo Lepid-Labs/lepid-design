@@ -70,6 +70,9 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   segments drop theirs. Glass track, hairline border, faint mono labels.
   The pressed segment (`aria-pressed="true"` / `.ld-btn--active`) takes the
   lilac edge and a lilac text glow; no hover pulse inside the track.
+  With one pressed segment the chrome is a single sliding pill: the edge
+  nearer the new segment leads, the far edge trails on a spring that squashes ~7% and settles
+  (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
@@ -78,7 +81,7 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   pill, `--pulse` the one solid amber call to action with a breathing glow.
 - **Alert** `.ld-alert` — left accent bar carries the semantic color.
 - **Dialog** `.ld-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
-- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow.
+- **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow; the underline is one lit bar that stretches to the new tab and snaps back (same slide tokens).
 - **Table** `.ld-table` — lilac header rule, glass row hover.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
 - **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
