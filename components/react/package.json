@@ -1,6 +1,6 @@
 {
   "name": "@lepid-labs/ui-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared React components styled by @lepid-labs/styles themes.",
   "license": "MIT",
   "repository": {
