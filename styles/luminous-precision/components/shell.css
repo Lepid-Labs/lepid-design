@@ -1,5 +1,5 @@
-/* luminous-precision — shell chrome: obsidian glass header and nav, mono
- * uppercase nav labels, the current page lit by the electric-teal path (the
+/* luminous-precision — shell chrome: unfilled header and nav (hairlines over
+ * the page background), mono uppercase nav labels, the current page lit by the electric-teal path (the
  * same 2px left bar + glow as .ld-link hover). Structure is in layout.css. */
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-shell__skip {
   padding: var(--ld-space-2) var(--ld-space-3);
@@ -11,7 +11,9 @@
 }
 
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-shell__header {
-  background: color-mix(in srgb, var(--ld-bg) 72%, transparent);
+  /* no fill: the shell background runs under the bar; the blur keeps
+   * content scrolling beneath it legible */
+  background: transparent;
   border-bottom: 1px solid var(--ld-border);
   backdrop-filter: blur(var(--ld-blur));
 }
@@ -65,9 +67,8 @@
 }
 
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-shell__nav {
-  background: var(--ld-surface-glass);
+  background: transparent; /* the shell background shows through; a hairline divides */
   border-right: 1px solid var(--ld-border);
-  backdrop-filter: blur(var(--ld-blur));
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-shell__scrim {
   background: rgba(0, 0, 0, 0.55);

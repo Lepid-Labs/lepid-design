@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="styles/all.css">
 </head>
 <body>
-<!-- Dashboard layout: .ld-page + .ld-page__header, then .ld-grid of cards (column minimum via --ld-grid-min). -->
-<div class="ld-shell">
+<!-- Dashboard layout: .ld-page + .ld-page__header, then .ld-grid of cards (column minimum via --ld-grid-min). The shell uses --nav-full (backplane's arrangement): the nav runs the full height with the brand on top, the header sits beside it. -->
+<div class="ld-shell ld-shell--nav-full">
   <a class="ld-shell__skip" href="#main">Skip to content</a>
   <header class="ld-shell__header">
     <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
@@ -28,6 +28,7 @@
   </header>
   <aside class="ld-shell__nav" id="app-nav">
     <nav class="ld-sidenav" aria-label="Main">
+      <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
       <div class="ld-sidenav__section" role="group" aria-labelledby="nav-previews">
         <div class="ld-sidenav__heading" id="nav-previews">Previews</div>
         <a class="ld-sidenav__item" href="shell.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">App shell</span></a>

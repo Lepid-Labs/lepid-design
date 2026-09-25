@@ -87,10 +87,12 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
-  `__badge`, `__footer`) — navy glass header and nav; brand uppercase lilac with a glow text-shadow; section headings prefixed with a lime `//`. Items are uppercase mono; hover nudges right with a lilac border and lights the icon lime; the current page is a lilac-bordered pane with a slow pulsing glow and a lime icon. The shell paints the page background
-  (`.ld-bg`). Structure (`components/layout.css`) is shared by every theme:
+  `__badge`, `__footer`) — brand uppercase lilac with a glow text-shadow; section headings prefixed with a lime `//`. Items are uppercase mono; hover nudges right with a lilac border and lights the icon lime; the current page is a lilac-bordered pane with a slow pulsing glow and a lime icon. The header and nav are unfilled — hairline
+  borders over the page background (`.ld-bg`), which the shell paints; the
+  header blurs what scrolls under it. The drawer and tab bar take a fill. Structure (`components/layout.css`) is shared by every theme:
   collapsed rail on `data-ld-nav-collapsed`, drawer on `data-ld-nav-open`
-  below 48rem, `--tabbar` docks the nav at the bottom.
+  below 48rem, `--tabbar` docks the nav at the bottom, `--nav-full` runs
+  it the full height beside the header.
 - **Page layouts** `.ld-page` (`--narrow`/`--wide`/`--full`, `__header`,
   `__eyebrow`, `__title`, `__subtitle`, `__actions`), `.ld-grid`,
   `.ld-split`, `.ld-aside-layout`, `.ld-center` — structure only

@@ -1,4 +1,4 @@
-/* summer-cloud — shell chrome: frosted white bars over the sky gradient,
+/* summer-cloud — shell chrome: unfilled bars with lit hairlines on the sky,
  * Plus Jakarta labels, the current page a solid violet pill with the raised
  * violet shadow; hover fills with sky tint. Structure is in layout.css. */
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__skip {
@@ -12,10 +12,11 @@
 }
 
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__header {
-  background: var(--ld-surface-glass-high);
+  /* no fill: the shell background runs under the bar; the blur keeps
+   * content scrolling beneath it legible */
+  background: transparent;
   border-bottom: 1px solid var(--ld-border-lit);
   backdrop-filter: blur(var(--ld-blur-high));
-  box-shadow: var(--ld-shadow-soft);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle {
   background: none;
@@ -67,9 +68,8 @@
 }
 
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__nav {
-  background: var(--ld-surface-glass);
-  border-right: 1px solid var(--ld-border);
-  backdrop-filter: blur(var(--ld-blur));
+  background: transparent; /* the shell background shows through; a hairline divides */
+  border-right: 1px solid var(--ld-border-lit);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__scrim {
   background: rgba(23, 28, 31, 0.25);

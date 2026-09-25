@@ -127,10 +127,12 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
-  `__badge`, `__footer`) — frosted white header (high glass, soft shadow) and glass nav over the sky gradient; brand in Plus Jakarta 800 violet. Items are pills that fill with sky tint on hover and press in on click; the current page is the solid violet pill with the raised violet shadow (sky-tinted in the tab bar); top-nav current page takes the violet underline. The shell paints the page background
-  (`.ld-bg`). Structure (`components/layout.css`) is shared by every theme:
+  `__badge`, `__footer`) — brand in Plus Jakarta 800 violet. Items are pills that fill with sky tint on hover and press in on click; the current page is the solid violet pill with the raised violet shadow (sky-tinted in the tab bar); top-nav current page takes the violet underline. The header and nav are unfilled — hairline
+  borders over the page background (`.ld-bg`), which the shell paints; the
+  header blurs what scrolls under it. The drawer and tab bar take a fill. Structure (`components/layout.css`) is shared by every theme:
   collapsed rail on `data-ld-nav-collapsed`, drawer on `data-ld-nav-open`
-  below 48rem, `--tabbar` docks the nav at the bottom.
+  below 48rem, `--tabbar` docks the nav at the bottom, `--nav-full` runs
+  it the full height beside the header.
 - **Page layouts** `.ld-page` (`--narrow`/`--wide`/`--full`, `__header`,
   `__eyebrow`, `__title`, `__subtitle`, `__actions`), `.ld-grid`,
   `.ld-split`, `.ld-aside-layout`, `.ld-center` — structure only

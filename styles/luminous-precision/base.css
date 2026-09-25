@@ -34,8 +34,10 @@
 /* Opt-in page background: soft out-of-focus orchid/teal underlays over the
  * obsidian base — the "luminous underlay" treatment. Apply to <body>, or to
  * the attributed container itself. An app shell
- * (.ld-shell) always paints it, so it needs no extra class. */
+ * (.ld-shell) always paints it, and so does the <body> around one, so the
+ * page stays covered past the shell (overscroll, short pages). */
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-bg,
+:where(html[data-ld-style="luminous-precision"]) body:has(.ld-shell),
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-shell {
   background:
     radial-gradient(50rem 30rem at 12% -5%, rgba(198, 165, 255, 0.08), transparent 70%),

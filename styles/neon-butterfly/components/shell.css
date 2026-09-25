@@ -1,5 +1,5 @@
-/* neon-butterfly — shell chrome: navy glass bars, uppercase mono labels with
- * the ">" chevron, the current page in lilac with a pulsing glow border and a
+/* neon-butterfly — shell chrome: unfilled bars (hairlines over the circuit
+ * background), uppercase mono labels under lime "//" headings, the current page in lilac with a pulsing glow border and a
  * neon-lime chevron. Structure is in layout.css. */
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__skip {
   padding: var(--ld-space-2) var(--ld-space-3);
@@ -11,7 +11,9 @@
 }
 
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__header {
-  background: var(--ld-surface-glass);
+  /* no fill: the shell background runs under the bar; the blur keeps
+   * content scrolling beneath it legible */
+  background: transparent;
   border-bottom: 1px solid var(--ld-border);
   backdrop-filter: blur(var(--ld-blur));
 }
@@ -65,9 +67,8 @@
 }
 
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__nav {
-  background: var(--ld-surface-glass);
+  background: transparent; /* the shell background shows through; a hairline divides */
   border-right: 1px solid var(--ld-border);
-  backdrop-filter: blur(var(--ld-blur));
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__scrim {
   background: rgba(11, 19, 38, 0.6);

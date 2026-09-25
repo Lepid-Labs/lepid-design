@@ -7,8 +7,9 @@
  * modifiers. The shell paints the theme's page background (base.css lists it
  * beside .ld-bg). Nav state is two presence attributes on the root:
  * data-ld-nav-collapsed (wide: icon rail) and data-ld-nav-open (narrow:
- * drawer shown). Below 48rem the nav leaves the grid and becomes a drawer —
- * or, with .ld-shell--tabbar, a bottom tab bar. 48rem is SHELL_NARROW_QUERY
+ * drawer shown). .ld-shell--nav-full runs the nav the full height beside the
+ * header. Below 48rem the nav leaves the grid and becomes a drawer — or,
+ * with .ld-shell--tabbar, a bottom tab bar. 48rem is SHELL_NARROW_QUERY
  * in the React package; keep the two in step.
  */
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell {
@@ -197,6 +198,26 @@
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__footer > .ld-shell__toggle {
   margin-inline-start: var(--ld-space-2);
+}
+
+/* Wide, --nav-full: the nav runs the full height beside the header instead
+ * of under it. Put the brand at the top of the SideNav as well as in the
+ * header: the header's copy is hidden here and returns on narrow screens,
+ * where the nav is a drawer or tab bar. */
+@media (width > 48rem) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--nav-full {
+    grid-template-areas:
+      "nav header"
+      "nav main"
+      "nav footer";
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--nav-full > .ld-shell__nav {
+    inset-block-start: 0;
+    block-size: 100dvh;
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--nav-full > .ld-shell__header > .ld-shell__brand {
+    display: none;
+  }
 }
 
 /* Wide: the collapsed nav is an icon rail. Labels, headings and badges stay

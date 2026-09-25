@@ -184,8 +184,12 @@ number otherwise); pass `steps.length` as `current` when everything is done.
 `AppShell` is the application frame: an optional sticky header, an optional
 left-hand nav, main, and an optional footer. Leave a part out and its grid
 track collapses — there are no "has header" modifiers. The shell paints the
-theme's page background itself (the same treatment as `.ld-bg`), so no class
-on `<body>` is needed.
+theme's page background itself (the same treatment as `.ld-bg`, also applied
+to the `<body>` around it), and the header and nav are unfilled — hairline
+borders over that background, the header blurring what scrolls beneath it —
+so no class on `<body>` is needed. `navFullHeight` runs the nav the full
+height beside the header (backplane's arrangement); put the brand at the top
+of the `SideNav` as well as in the header.
 
 On wide screens the header's toggle collapses the nav to an icon rail. Below
 48rem the nav becomes a drawer opened from that toggle, or — with
