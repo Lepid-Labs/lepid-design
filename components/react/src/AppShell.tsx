@@ -60,10 +60,6 @@ export interface AppShellProps extends Omit<HTMLAttributes<HTMLDivElement>, "chi
    *  drawer opens from the header's toggle, so the default is "drawer" with a
    *  header and "tabbar" without one. */
   mobileNav?: "drawer" | "tabbar";
-  /** Wide viewports: run the nav the full height beside the header instead of
-   *  under it. Put the brand at the top of the `SideNav` too — the header's
-   *  brand hides while the nav is full height and returns on narrow screens. */
-  navFullHeight?: boolean;
   /** Controlled icon-rail state for wide viewports. */
   navCollapsed?: boolean;
   defaultNavCollapsed?: boolean;
@@ -81,7 +77,6 @@ export function AppShell({
   footer,
   children,
   mobileNav = header == null ? "tabbar" : "drawer",
-  navFullHeight = false,
   navCollapsed,
   defaultNavCollapsed = false,
   onNavCollapsedChange,
@@ -128,7 +123,7 @@ export function AppShell({
     toggleNav: toggle,
     closeNav: close,
   };
-  const modifiers = [mobileNav === "tabbar" && "ld-shell--tabbar", navFullHeight && "ld-shell--nav-full", className];
+  const modifiers = [mobileNav === "tabbar" && "ld-shell--tabbar", className];
   const attrs = shellAttrs(state, modifiers.filter(Boolean).join(" "));
 
   return (

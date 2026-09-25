@@ -106,8 +106,8 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   borders over the page background (`.ld-bg`), which the shell paints; the
   header blurs what scrolls under it. The drawer and tab bar take a fill. Structure (`components/layout.css`) is shared by every theme:
   collapsed rail on `data-ld-nav-collapsed`, drawer on `data-ld-nav-open`
-  below 48rem, `--tabbar` docks the nav at the bottom, `--nav-full` runs
-  it the full height beside the header.
+  below 48rem, `--tabbar` docks the nav at the bottom. The header
+  always spans the full width above the nav.
 - **Page layouts** `.ld-page` (`--narrow`/`--wide`/`--full`, `__header`,
   `__eyebrow`, `__title`, `__subtitle`, `__actions`), `.ld-grid`,
   `.ld-split`, `.ld-aside-layout`, `.ld-center` — structure only

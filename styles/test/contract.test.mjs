@@ -351,7 +351,7 @@ test("every theme carries the app-shell and page-layout contract", () => {
   const STRUCTURE = [
     ".ld-shell", ".ld-shell__skip", ".ld-shell__header", ".ld-shell__toggle", ".ld-shell__brand",
     ".ld-shell__actions", ".ld-shell__nav", ".ld-shell__scrim", ".ld-shell__main", ".ld-shell__footer",
-    ".ld-shell[data-ld-nav-collapsed]", ".ld-shell[data-ld-nav-open]", ".ld-shell--tabbar", ".ld-shell--nav-full",
+    ".ld-shell[data-ld-nav-collapsed]", ".ld-shell[data-ld-nav-open]", ".ld-shell--tabbar",
     ".ld-topnav", ".ld-topnav__item", ".ld-sidenav", ".ld-sidenav__section", ".ld-sidenav__heading",
     ".ld-sidenav__item", ".ld-sidenav__icon", ".ld-sidenav__label", ".ld-sidenav__badge", ".ld-sidenav__footer",
   ];
