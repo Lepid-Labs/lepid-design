@@ -1,0 +1,85 @@
+/* neon-butterfly — page layouts: what goes inside .ld-shell__main (or any
+ * container). Structure only, identical in every theme; shell.css dresses the
+ * page header's type. */
+/* A page column: width-capped, centered, with a header row. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page {
+  display: grid;
+  align-content: start;
+  gap: var(--ld-space-4);
+  inline-size: 100%;
+  max-inline-size: var(--ld-page-max, 72rem);
+  margin-inline: auto;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page--narrow { --ld-page-max: 48rem; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page--wide { --ld-page-max: 96rem; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page--full { --ld-page-max: none; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--ld-space-3);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__heading {
+  display: grid;
+  gap: var(--ld-space-1);
+  min-inline-size: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__title,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__subtitle,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__eyebrow {
+  margin: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-2);
+}
+
+/* Dashboard grid: as many columns of at least --ld-grid-min as fit. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--ld-grid-min, 18rem), 100%), 1fr));
+  gap: var(--ld-space-3);
+  align-items: start;
+}
+
+/* List + detail, and content + aside: two panes that stack by themselves once
+ * the wide pane would drop below 60% of the row — no breakpoint, so they work
+ * at any shell width. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-split,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-aside-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--ld-space-4);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-split__list {
+  flex: 1 1 var(--ld-split-list, 20rem);
+  display: grid;
+  gap: var(--ld-space-2);
+  min-inline-size: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-split__detail,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-aside-layout__main {
+  flex: 999 1 0;
+  min-inline-size: 60%;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-aside-layout__aside {
+  flex: 1 1 var(--ld-aside-w, 16rem);
+  position: sticky;
+  inset-block-start: calc(var(--ld-shell-top, 0px) + var(--ld-space-3));
+  min-inline-size: 0;
+}
+
+/* Centered: one narrow column in the middle of the remaining height — sign
+ * in, empty states, a single form. Fills .ld-shell__main (a flex column). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-center {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-block-size: 100%;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-center > * {
+  inline-size: min(100%, var(--ld-center-max, 26rem));
+}

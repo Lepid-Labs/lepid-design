@@ -39,6 +39,19 @@
   </header>
 
   <section>
+    <h2>Shells &amp; layouts</h2>
+    <!-- Full-page previews: .ld-shell (optional header, side nav, footer) around the common page layouts. -->
+    <nav class="grid2" aria-label="Shell and layout previews">
+      <a class="ld-link" href="shell.html">App shell playground</a>
+      <a class="ld-link" href="layout-dashboard.html">Dashboard grid</a>
+      <a class="ld-link" href="layout-list-detail.html">List + detail</a>
+      <a class="ld-link" href="layout-docs.html">Docs with table of contents</a>
+      <a class="ld-link" href="layout-centered.html">Centered (sign in)</a>
+      <a class="ld-link" href="layout-feed.html">Feed, nav only + tab bar</a>
+    </nav>
+  </section>
+
+  <section>
     <h2>Buttons</h2>
     <div class="row">
       <button class="ld-btn">Default</button>
@@ -317,24 +330,6 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
 </main>
 
 <script>
-  // The theme roster comes from the manifest — a new styles/<name>/ shows up
-  // here (and in any consumer that reads it) with no site change.
-  const select = document.getElementById("style-select");
-  const apply = () => {
-    document.documentElement.dataset.ldStyle = select.value;
-    history.replaceState(null, "", `?style=${select.value}`);
-  };
-  fetch("styles/manifest.json")
-    .then((r) => r.json())
-    .then(({ themes }) => {
-      const names = Object.keys(themes);
-      for (const s of names) select.add(new Option(s, s));
-      const requested = new URLSearchParams(location.search).get("style");
-      select.value = names.includes(requested) ? requested : document.documentElement.dataset.ldStyle;
-      select.addEventListener("change", apply);
-      apply();
-    });
-
   // minimal tab behavior for the static demo
   document.querySelectorAll("#tabs-demo .ld-tab").forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -350,6 +345,7 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
     });
   });
 </script>
+<script src="picker.js"></script>
 <script src="hold-demo.js"></script>
 </body>
 </html>

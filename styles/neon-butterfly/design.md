@@ -84,6 +84,18 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow; the underline is one lit bar that stretches to the new tab and snaps back (same slide tokens).
 - **Table** `.ld-table` — lilac header rule, glass row hover.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
+- **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
+  `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
+  `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
+  `__badge`, `__footer`) — navy glass header and nav; brand uppercase lilac with a glow text-shadow; section headings prefixed with a lime `//`. Items are uppercase mono; hover nudges right with a lilac border and lights the icon lime; the current page is a lilac-bordered pane with a slow pulsing glow and a lime icon. The shell paints the page background
+  (`.ld-bg`). Structure (`components/layout.css`) is shared by every theme:
+  collapsed rail on `data-ld-nav-collapsed`, drawer on `data-ld-nav-open`
+  below 48rem, `--tabbar` docks the nav at the bottom.
+- **Page layouts** `.ld-page` (`--narrow`/`--wide`/`--full`, `__header`,
+  `__eyebrow`, `__title`, `__subtitle`, `__actions`), `.ld-grid`,
+  `.ld-split`, `.ld-aside-layout`, `.ld-center` — structure only
+  (`components/page.css`, shared by every theme); the page
+  title uses the display face.
 - **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
   rail: glowing lilac fill on a surface track, 2rem nodes, uppercase mono
   labels. `__step--complete` is a solid lilac node; `--current` is the

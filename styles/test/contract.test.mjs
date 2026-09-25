@@ -343,6 +343,51 @@ test("every theme carries the stepper contract", () => {
   }
 });
 
+test("every theme carries the app-shell and page-layout contract", () => {
+  // layout.css (grid areas, sticky offsets, rail, drawer, tab bar) and
+  // page.css (the page layouts) are structure, identical in every theme but
+  // for the guard, so a shell never changes shape when data-ld-style swaps.
+  // shell.css is the themed chrome and must dress every part AppShell renders.
+  const STRUCTURE = [
+    ".ld-shell", ".ld-shell__skip", ".ld-shell__header", ".ld-shell__toggle", ".ld-shell__brand",
+    ".ld-shell__actions", ".ld-shell__nav", ".ld-shell__scrim", ".ld-shell__main", ".ld-shell__footer",
+    ".ld-shell[data-ld-nav-collapsed]", ".ld-shell[data-ld-nav-open]", ".ld-shell--tabbar",
+    ".ld-topnav", ".ld-topnav__item", ".ld-sidenav", ".ld-sidenav__section", ".ld-sidenav__heading",
+    ".ld-sidenav__item", ".ld-sidenav__icon", ".ld-sidenav__label", ".ld-sidenav__badge", ".ld-sidenav__footer",
+  ];
+  const PAGE = [
+    ".ld-page", ".ld-page--narrow", ".ld-page--wide", ".ld-page--full", ".ld-page__header",
+    ".ld-page__heading", ".ld-page__title", ".ld-page__actions",
+    ".ld-grid", ".ld-split", ".ld-split__list", ".ld-split__detail",
+    ".ld-aside-layout", ".ld-aside-layout__main", ".ld-aside-layout__aside", ".ld-center",
+  ];
+  const CHROME = [
+    ".ld-shell__skip", ".ld-shell__header", ".ld-shell__toggle", ".ld-shell__brand", ".ld-shell__nav",
+    ".ld-shell__scrim", ".ld-shell__footer", ".ld-topnav__item", '.ld-topnav__item[aria-current="page"]',
+    ".ld-sidenav__heading", ".ld-sidenav__item", ".ld-sidenav__item:hover", ".ld-sidenav__item:focus-visible",
+    ".ld-sidenav__item--active", '.ld-sidenav__item[aria-current="page"]', ".ld-shell--tabbar",
+    ".ld-page__eyebrow", ".ld-page__title", ".ld-page__subtitle",
+  ];
+  const normalized = (theme, name) =>
+    readFileSync(join(ROOT, theme, "components", `${name}.css`), "utf-8").replaceAll(theme, "<theme>");
+  for (const theme of themeDirs) {
+    for (const [name, parts] of [["layout", STRUCTURE], ["page", PAGE], ["shell", CHROME]]) {
+      const file = join(ROOT, theme, "components", `${name}.css`);
+      assert.ok(existsSync(file), `${theme}: components/${name}.css missing`);
+      const { selectors } = parseCss(readFileSync(file, "utf-8"));
+      for (const part of parts) {
+        assert.ok(selectors.some((s) => s.includes(part)), `${theme}: ${name}.css never styles ${part}`);
+      }
+    }
+    for (const name of ["layout", "page"]) {
+      assert.equal(normalized(theme, name), normalized(themeDirs[0], name), `${theme}: ${name}.css drifted from ${themeDirs[0]}`);
+    }
+    // the shell paints the theme's page background without an extra class
+    const base = parseCss(readFileSync(join(ROOT, theme, "base.css"), "utf-8"));
+    assert.ok(base.selectors.some((s) => s.endsWith(".ld-shell")), `${theme}: base.css never gives .ld-shell the page background`);
+  }
+});
+
 test("keyframe names are ld-prefixed and unique across all themes", () => {
   const seen = new Map();
   for (const theme of themeDirs) {

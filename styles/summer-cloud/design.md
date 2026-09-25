@@ -124,6 +124,18 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
   `.ld-num` to numeric cells for the mono/right-aligned treatment.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
+- **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
+  `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
+  `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
+  `__badge`, `__footer`) — frosted white header (high glass, soft shadow) and glass nav over the sky gradient; brand in Plus Jakarta 800 violet. Items are pills that fill with sky tint on hover and press in on click; the current page is the solid violet pill with the raised violet shadow (sky-tinted in the tab bar); top-nav current page takes the violet underline. The shell paints the page background
+  (`.ld-bg`). Structure (`components/layout.css`) is shared by every theme:
+  collapsed rail on `data-ld-nav-collapsed`, drawer on `data-ld-nav-open`
+  below 48rem, `--tabbar` docks the nav at the bottom.
+- **Page layouts** `.ld-page` (`--narrow`/`--wide`/`--full`, `__header`,
+  `__eyebrow`, `__title`, `__subtitle`, `__actions`), `.ld-grid`,
+  `.ld-split`, `.ld-aside-layout`, `.ld-center` — structure only
+  (`components/page.css`, shared by every theme); the page
+  title uses the display face.
 - **Stepper** `.ld-stepper` (+ `__step`, `__node`, `__label`) — milestone
   rail from the Retail Dashboard "Active Delivery" box: glowing violet fill on
   a blend track, 2rem nodes. `__step--complete` is a solid violet node with a

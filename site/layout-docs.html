@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* the TOC marks its section with aria-current="true"; the theme lights "page" */
+  .ld-aside-layout__aside .ld-sidenav__item[aria-current="true"] { color: var(--ld-primary); }
+  .ld-aside-layout__main h2 { scroll-margin-top: calc(var(--ld-shell-top) + 1rem); }
+</style>
+</head>
+<body>
+<!-- Docs layout: header with top nav, side nav, and .ld-aside-layout — the article plus a sticky table of contents (a second .ld-sidenav) that stacks under it when narrow. -->
+<div class="ld-shell">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <header class="ld-shell__header">
+    <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+    <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+    <nav class="ld-topnav" aria-label="Sections">
+      <a class="ld-topnav__item" href="layout-docs.html" aria-current="page">Guides</a>
+      <a class="ld-topnav__item" href="#">API</a>
+      <a class="ld-topnav__item" href="#">Changelog</a>
+    </nav>
+    <div class="ld-shell__actions">
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+    </div>
+  </header>
+  <aside class="ld-shell__nav" id="app-nav">
+    <nav class="ld-sidenav" aria-label="Main">
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-previews">
+        <div class="ld-sidenav__heading" id="nav-previews">Previews</div>
+        <a class="ld-sidenav__item" href="shell.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">App shell</span></a>
+        <a class="ld-sidenav__item" href="layout-dashboard.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#chart"/></svg></span><span class="ld-sidenav__label">Dashboard</span></a>
+        <a class="ld-sidenav__item" href="layout-list-detail.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#inbox"/></svg></span><span class="ld-sidenav__label">List + detail</span></a>
+        <a class="ld-sidenav__item" href="layout-docs.html" aria-current="page"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#doc"/></svg></span><span class="ld-sidenav__label">Docs</span></a>
+        <a class="ld-sidenav__item" href="layout-centered.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#star"/></svg></span><span class="ld-sidenav__label">Centered</span></a>
+        <a class="ld-sidenav__item" href="layout-feed.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#home"/></svg></span><span class="ld-sidenav__label">Feed (nav only)</span></a>
+      </div>
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-workspace">
+        <div class="ld-sidenav__heading" id="nav-workspace">Workspace</div>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#folder"/></svg></span><span class="ld-sidenav__label">Projects</span><span class="ld-sidenav__badge ld-badge ld-badge--sm ld-badge--primary">12</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#users"/></svg></span><span class="ld-sidenav__label">Team</span></a>
+      </div>
+      <div class="ld-sidenav__footer">
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#settings"/></svg></span><span class="ld-sidenav__label">Settings</span></a>
+      </div>
+    </nav>
+  </aside>
+  <div class="ld-shell__scrim" aria-hidden="true"></div>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-page ld-page--wide">
+      <div class="ld-aside-layout">
+        <article class="ld-aside-layout__main" style="max-width:46rem">
+          <header class="ld-page__header" style="margin-bottom:1.5rem">
+            <div class="ld-page__heading">
+              <p class="ld-page__eyebrow">Guides / Theming</p>
+              <h1 class="ld-page__title">Swapping themes at runtime</h1>
+              <p class="ld-page__subtitle">One attribute flip restyles the whole app.</p>
+            </div>
+          </header>
+          <h2 id="load">Load every theme</h2>
+          <p>Import <code>@lepid-labs/styles/all</code> once. Every rule is scoped by <code>data-ld-style</code>, so the themes coexist without leaking into each other.</p>
+          <pre class="ld-pre">import "@lepid-labs/styles/all";</pre>
+          <h2 id="flip">Flip the attribute</h2>
+          <p>Set <code>data-ld-style</code> on <code>&lt;html&gt;</code>, or on any container to theme just that subtree. The shell repaints its background from the new theme's <code>.ld-bg</code> treatment.</p>
+          <pre class="ld-pre">document.documentElement.dataset.ldStyle = "summer-cloud";</pre>
+          <div class="ld-alert ld-alert--info" style="margin:1rem 0">Fonts are not bundled — read the URLs from <code>@lepid-labs/styles/manifest</code>.</div>
+          <h2 id="persist">Persist the choice</h2>
+          <p>Store the name and re-apply it before first paint to avoid a flash. Validate it against the manifest so a removed theme falls back cleanly.</p>
+          <p>Lorem ipsum filler follows so the table of contents has room to stay sticky while the article scrolls. Consumers read long pages; the aside keeps its place under the header.</p>
+          <p>Consumers read long pages; the aside keeps its place under the header. Lorem ipsum filler follows so the table of contents has room to stay sticky while the article scrolls.</p>
+          <h2 id="embed">Embedding</h2>
+          <p>Because every selector is a zero-specificity <code>:where()</code>, a themed island inside a page you don't own never outranks the host's own rules.</p>
+          <p>Lorem ipsum filler follows so the table of contents has room to stay sticky while the article scrolls.</p>
+        </article>
+        <aside class="ld-aside-layout__aside" aria-label="On this page">
+          <nav class="ld-sidenav" style="padding:0">
+            <div class="ld-sidenav__section" role="group" aria-labelledby="toc-h">
+              <div class="ld-sidenav__heading" id="toc-h">On this page</div>
+              <a class="ld-sidenav__item" href="#load" aria-current="true"><span class="ld-sidenav__label">Load every theme</span></a>
+              <a class="ld-sidenav__item" href="#flip"><span class="ld-sidenav__label">Flip the attribute</span></a>
+              <a class="ld-sidenav__item" href="#persist"><span class="ld-sidenav__label">Persist the choice</span></a>
+              <a class="ld-sidenav__item" href="#embed"><span class="ld-sidenav__label">Embedding</span></a>
+            </div>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="ld-shell__footer">
+    <span>© Lepid Labs</span>
+    <span>lepid-design · <a href="index.html">components</a></span>
+  </footer>
+</div>
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+</body>
+</html>

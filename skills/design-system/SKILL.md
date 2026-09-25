@@ -62,7 +62,7 @@ Plain HTML / no-build apps (jsDelivr, pin a tag):
 
 Include the theme's webfont links (URLs in the manifest) — the system does not
 bundle fonts. `summer-cloud` also wants `.ld-bg` on `<body>` for its sky
-gradient.
+gradient (an `.ld-shell` paints it for you).
 
 ## Component inventory
 
@@ -85,6 +85,11 @@ non-React apps):
 | `Tabs` | `.ld-tabs` | `items: {id, label, content}[]`; the underline slides between tabs (plain HTML: set `data-ld-dir="forward"\|"back"` on `.ld-tabs` when selection moves) |
 | `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
 | `Stepper` | `.ld-stepper` | milestone rail; `steps: {id, label, icon?}[]`, `current` index derives complete/current/upcoming and the rail fill; `aria-current="step"` on the active node |
+| `AppShell` | `.ld-shell` | app frame; `header`/`nav`/`footer` all optional (missing tracks collapse); paints the theme background; nav collapses to an icon rail (wide), drawer or `mobileNav="tabbar"` below 48rem; plain HTML sets `data-ld-nav-collapsed`/`data-ld-nav-open` on the root |
+| `AppHeader`/`ShellToggle`/`TopNav`/`TopNavItem` | `.ld-shell__header` etc. | sticky top bar: toggle, `brand`, `nav`, right-aligned `actions` |
+| `SideNav`/`SideNavSection`/`SideNavItem` | `.ld-sidenav` | left-hand nav; items take `icon`, `badge`, `active` (→ `aria-current="page"`), `as` for router links |
+| `Page`/`PageHeader` | `.ld-page` | centered column (`width`: narrow/default/wide/full) with title, eyebrow, subtitle, actions |
+| `Grid`/`Split`/`AsideLayout`/`Center` | `.ld-grid`/`.ld-split`/`.ld-aside-layout`/`.ld-center` | dashboard grid, list + detail, content + sticky aside, centered column |
 | — (CSS only) | `.ld-table` | style `<table>` directly |
 
 Theme-specific additions (styled only under that theme — check before using):

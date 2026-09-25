@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed (nav only) · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+</head>
+<body>
+<!-- Nav-only shell with a narrow page: no header, so the brand sits atop the side nav and the toggle in its footer; below 48rem the nav docks as a bottom tab bar (.ld-shell--tabbar). -->
+<div class="ld-shell ld-shell--tabbar">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <aside class="ld-shell__nav" id="app-nav">
+    <nav class="ld-sidenav" aria-label="Main">
+      <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+      <div class="ld-sidenav__section" role="group">
+        <a class="ld-sidenav__item" href="#" aria-current="page"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#home"/></svg></span><span class="ld-sidenav__label">For you</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#search"/></svg></span><span class="ld-sidenav__label">Search</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#star"/></svg></span><span class="ld-sidenav__label">Watchlist</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#bell"/></svg></span><span class="ld-sidenav__label">Alerts</span><span class="ld-sidenav__badge ld-badge ld-badge--sm ld-badge--primary">3</span></a>
+      </div>
+      <div class="ld-sidenav__footer">
+        <a class="ld-sidenav__item" href="shell.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">Previews</span></a>
+        <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+      </div>
+    </nav>
+  </aside>
+  <div class="ld-shell__scrim" aria-hidden="true"></div>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-page ld-page--narrow">
+      <header class="ld-page__header">
+        <div class="ld-page__heading">
+          <h1 class="ld-page__title">For you</h1>
+          <p class="ld-page__subtitle">A narrow single column for feeds, chat and prose.</p>
+        </div>
+        <div class="ld-page__actions">
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+        </div>
+      </header>
+        <article class="ld-card">
+          <div style="display:flex;justify-content:space-between;gap:1rem"><strong>Dune: Part Two</strong><span class="ld-muted" style="font-style:normal">2h ago</span></div>
+          <p style="margin:0.5rem 0 0">Added to your watchlist from the Friday picks.</p>
+        </article>
+        <article class="ld-card">
+          <div style="display:flex;justify-content:space-between;gap:1rem"><strong>The Bear, S3</strong><span class="ld-muted" style="font-style:normal">yesterday</span></div>
+          <p style="margin:0.5rem 0 0">New episodes are out — pick up at episode 4.</p>
+        </article>
+        <article class="ld-card">
+          <div style="display:flex;justify-content:space-between;gap:1rem"><strong>Severance</strong><span class="ld-muted" style="font-style:normal">Mon</span></div>
+          <p style="margin:0.5rem 0 0">Your friends rated it 4.8 on average.</p>
+        </article>
+        <article class="ld-card">
+          <div style="display:flex;justify-content:space-between;gap:1rem"><strong>Past Lives</strong><span class="ld-muted" style="font-style:normal">Sun</span></div>
+          <p style="margin:0.5rem 0 0">Available to rent from tonight.</p>
+        </article>
+        <article class="ld-card">
+          <div style="display:flex;justify-content:space-between;gap:1rem"><strong>Shōgun</strong><span class="ld-muted" style="font-style:normal">last week</span></div>
+          <p style="margin:0.5rem 0 0">You finished it. Rate it?</p>
+        </article>
+    </div>
+  </main>
+</div>
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+</body>
+</html>

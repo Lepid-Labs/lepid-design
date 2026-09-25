@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centered · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+</head>
+<body>
+<!-- Centered layout: header + footer, no side nav. .ld-center puts one narrow column in the middle of the remaining height — sign in, empty states. -->
+<div class="ld-shell">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <header class="ld-shell__header">
+    <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+    <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+    <nav class="ld-topnav" aria-label="Sections">
+      <a class="ld-topnav__item" href="#">Product</a>
+      <a class="ld-topnav__item" href="#">Pricing</a>
+      <a class="ld-topnav__item" href="layout-docs.html">Docs</a>
+    </nav>
+    <div class="ld-shell__actions">
+      <a class="ld-btn ld-btn--sm" href="#" style="text-decoration:none">Sign up</a>
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+    </div>
+  </header>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-center">
+      <form class="ld-card" style="display:grid;gap:1rem" onsubmit="event.preventDefault()">
+        <div>
+          <h1 style="margin:0;font-size:1.5rem">Sign in</h1>
+          <p class="ld-muted" style="margin:0.25rem 0 0">Welcome back to lepid.</p>
+        </div>
+        <div class="ld-field"><label class="ld-label" for="em">Email</label><input class="ld-input" id="em" type="email" autocomplete="off" placeholder="you@example.com"></div>
+        <div class="ld-field"><label class="ld-label" for="pw">Password</label><input class="ld-input" id="pw" type="password" autocomplete="off"></div>
+        <label class="ld-choice"><input type="checkbox" class="ld-checkbox"> Keep me signed in</label>
+        <button class="ld-btn ld-btn--primary" type="submit">Continue</button>
+      </form>
+    </div>
+  </main>
+  <footer class="ld-shell__footer">
+    <span>© Lepid Labs</span>
+    <span>lepid-design · <a href="index.html">components</a></span>
+  </footer>
+</div>
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+</body>
+</html>
