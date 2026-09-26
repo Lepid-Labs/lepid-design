@@ -1,6 +1,6 @@
 {
   "name": "@lepid-labs/styles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shared design-system styles: tokens, base styles, and component classes per theme.",
   "license": "MIT",
   "repository": {
