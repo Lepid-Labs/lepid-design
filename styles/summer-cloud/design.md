@@ -129,6 +129,8 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — violet underline when active; it stretches to the new tab and bounces back to width (same slide tokens).
 - **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
   `.ld-num` to numeric cells for the mono/right-aligned treatment.
+  `.ld-table--interactive` adds the pointer, a sky focus outline, and a
+  selected row (`aria-selected`) with a violet wash and left bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;

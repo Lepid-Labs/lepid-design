@@ -91,7 +91,7 @@ non-React apps):
 | `SideNav`/`SideNavSection`/`SideNavItem` | `.ld-sidenav` | left-hand nav; items take `icon`, `badge`, `active` (→ `aria-current="page"`), `as` for router links |
 | `Page`/`PageHeader` | `.ld-page` | centered column (`width`: narrow/default/wide/full) with title, eyebrow, subtitle, actions |
 | `Grid`/`Split`/`AsideLayout`/`Center` | `.ld-grid`/`.ld-split`/`.ld-aside-layout`/`.ld-center` | dashboard grid, list + detail, content + sticky aside, centered column |
-| — (CSS only) | `.ld-table` | style `<table>` directly |
+| `Table`/`TableRow` | `.ld-table`, `.ld-table--interactive` | compose native `thead`/`tbody`/`th`/`td`; `<Table interactive>` + `<TableRow onActivate selected>` for clickable rows (click or Enter/Space; nested controls don't trigger it; `selected` → `aria-selected`). Plain HTML: add `--interactive`, give rows `tabindex="0"` and a key handler |
 
 Theme-specific additions (styled only under that theme — check before using):
 `summer-cloud` adds `.ld-chip` (filter chip, `--selected`), `.ld-card--floating`,

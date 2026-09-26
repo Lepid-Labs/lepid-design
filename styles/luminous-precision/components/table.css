@@ -26,3 +26,23 @@
   background: var(--ld-surface-glass);
   box-shadow: inset 2px 0 0 0 var(--ld-accent);
 }
+
+/* Interactive rows (.ld-table--interactive): the cursor is the affordance —
+ * plain tables hover too. Focus is an outline so it
+ * composes with the selected state (aria-selected="true"), which sits last
+ * so it outranks hover. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table--interactive tbody tr {
+  cursor: pointer;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table--interactive tbody tr:focus-visible {
+  outline: 1px solid var(--ld-primary-border);
+  outline-offset: -1px;
+  background: var(--ld-surface-glass);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table--interactive tbody tr:active {
+  background: rgba(198, 165, 255, 0.06);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-table--interactive tbody tr[aria-selected="true"] {
+  background: rgba(198, 165, 255, 0.1);
+  box-shadow: inset 2px 0 0 0 var(--ld-accent), inset 0 0 12px var(--ld-primary-glow);
+}

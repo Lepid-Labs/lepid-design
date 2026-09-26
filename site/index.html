@@ -291,6 +291,15 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
         <tr><td>switchboard</td><td>static</td><td><span class="ld-badge ld-badge--success">live</span></td></tr>
       </tbody>
     </table>
+    <p>Interactive — the pointer marks rows as clickable; click or Tab + Enter to select.</p>
+    <table class="ld-table ld-table--interactive" data-table-demo>
+      <thead><tr><th>Container</th><th>State</th><th>Image</th></tr></thead>
+      <tbody>
+        <tr tabindex="0" aria-selected="true"><td>backplane</td><td><span class="ld-badge ld-badge--success">running</span></td><td>backplane:latest</td></tr>
+        <tr tabindex="0" aria-selected="false"><td>grafana</td><td><span class="ld-badge ld-badge--success">running</span></td><td>grafana/grafana:11</td></tr>
+        <tr tabindex="0" aria-selected="false"><td>migrate</td><td><span class="ld-badge ld-badge--danger">exited</span></td><td>backplane:latest</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
@@ -364,5 +373,6 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
 </script>
 <script src="picker.js"></script>
 <script src="hold-demo.js"></script>
+<script src="table-demo.js"></script>
 </body>
 </html>

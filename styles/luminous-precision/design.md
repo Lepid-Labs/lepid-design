@@ -102,7 +102,9 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   teal with text glow; the underline is one lit bar that reaches for the new
   tab and settles with barely any overshoot (same slide tokens).
 - **Table** `.ld-table` — lit header rule; row hover shifts glass and lights
-  the teal left bar.
+  the teal left bar. `.ld-table--interactive` adds the pointer, an orchid
+  focus outline, and a selected row (`aria-selected`) held in orchid glow
+  with the teal bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid
   indicators (`--accent` bar variant in teal).
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,

@@ -277,6 +277,26 @@ test("every theme carries the icon-button contract", () => {
   }
 });
 
+test("every theme carries the interactive-table contract", () => {
+  // .ld-table--interactive (issue #7): the React Table writes the modifier and
+  // TableRow makes rows focusable and marks the chosen one aria-selected, so
+  // every theme must style the pointer, focus, press, and selected hooks.
+  const PARTS = [
+    ".ld-table--interactive tbody tr", ".ld-table--interactive tbody tr:focus-visible",
+    ".ld-table--interactive tbody tr:active", '.ld-table--interactive tbody tr[aria-selected="true"]',
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "table.css");
+    const { selectors } = parseCss(readFileSync(file, "utf-8"));
+    const guard = `[data-ld-style="${theme}"]`;
+    for (const part of PARTS) {
+      const hits = selectors.filter((s) => s.endsWith(part));
+      assert.ok(hits.length > 0, `${theme}: table.css never styles ${part}`);
+      for (const sel of hits) assert.ok(sel.includes(guard), `${theme}: unguarded selector: ${sel}`);
+    }
+  }
+});
+
 test("every theme carries the sliding-indicator contract", () => {
   // Tabs and ButtonGroup stamp data-ld-dir="forward" | "back" on the track and
   // the theme slides one indicator (tabs ::after, button-group ::before) whose
