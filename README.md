@@ -192,6 +192,53 @@ chatty streams. Fetching/streaming stays in the app.
 </LogBlock>
 ```
 
+`CodeBlock` is an `.ld-pre` with a copy-to-clipboard control
+(`.ld-pre-wrap` + `.ld-pre-copy`, an `.ld-icon-btn`) in its top-right corner:
+hidden until hover or focus, always shown on touch. It copies the block's
+text; for 1.5s the button shows a check (danger tint if the clipboard write
+fails) and a polite live region announces the result. `className` goes on the
+`<pre>`, so `className="ld-pre--log"` gives a copyable log.
+
+```tsx
+<CodeBlock>{`pnpm add @lepid-labs/styles`}</CodeBlock>
+```
+
+No build step? The styles package ships only CSS, so plain-HTML hosts use
+this markup (icons from your own set — any two inline `<svg>`s) plus the
+script below once per page. The theme reads `data-ld-copy="copied"|"failed"`.
+
+```html
+<div class="ld-pre-wrap">
+  <pre class="ld-pre">pnpm add @lepid-labs/styles</pre>
+  <button type="button" class="ld-icon-btn ld-pre-copy" aria-label="Copy code" title="Copy code">
+    <svg class="ld-pre-copy__icon" aria-hidden="true">…copy glyph…</svg>
+    <svg class="ld-pre-copy__check" aria-hidden="true">…check glyph…</svg>
+  </button>
+  <span class="ld-pre-copy-status" aria-live="polite"></span>
+</div>
+<script>
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".ld-pre-copy");
+  const wrap = btn?.closest(".ld-pre-wrap");
+  if (!wrap) return;
+  let state = "copied";
+  try { await navigator.clipboard.writeText(wrap.querySelector("pre").textContent); }
+  catch { state = "failed"; }
+  const status = wrap.querySelector(".ld-pre-copy-status");
+  if (status) status.textContent = state === "copied" ? "Copied to clipboard" : "Copy failed";
+  btn.dataset.ldCopy = state;
+  clearTimeout(btn._ldCopyTimer);
+  btn._ldCopyTimer = setTimeout(() => {
+    delete btn.dataset.ldCopy;
+    if (status) status.textContent = "";
+  }, 1500);
+});
+</script>
+```
+
+The clipboard API needs a secure context (HTTPS or localhost); elsewhere the
+control reports "Copy failed". `site/copy-demo.js` is the same script.
+
 `StatusCard` is the dense dashboard card (generalized from pulse's repo
 card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
 warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`
