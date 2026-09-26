@@ -87,7 +87,7 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **Alert** `.ld-alert` — left accent bar carries the semantic color.
 - **Dialog** `.ld-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow; the underline is one lit bar that stretches to the new tab and snaps back (same slide tokens).
-- **Table** `.ld-table` — lilac header rule, glass row hover.
+- **Table** `.ld-table` — lilac header rule, glass row hover. `.ld-table--interactive` adds the pointer, a lilac focus outline, and a selected row (`aria-selected`) with a lilac left bar and inner glow.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;

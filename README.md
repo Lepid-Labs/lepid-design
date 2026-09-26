@@ -157,6 +157,28 @@ where `active` also sets `aria-current="page"`. For a toggle, pass
 <IconButton label="Delete" variant="danger" onClick={remove}><TrashIcon /></IconButton>
 ```
 
+`Table` styles a native `<table>`; compose `thead`/`tbody`/`th`/`td` inside it.
+Every table hovers its rows; the pointer cursor is what marks rows as
+clickable. For that, pass `interactive` and give body rows `TableRow` with
+`onActivate`: the row joins the tab order, activates on click or
+Enter/Space, and ignores clicks on nested links/buttons/inputs and text
+selections. `selected` sets `aria-selected` and lights the row. Plain HTML
+gets the same look from `.ld-table--interactive`, but must add
+`tabindex="0"` and the key handling itself.
+
+```tsx
+<Table interactive>
+  <thead><tr><th>Name</th><th>State</th></tr></thead>
+  <tbody>
+    {rows.map((r) => (
+      <TableRow key={r.id} selected={r.id === selectedId} onActivate={() => select(r.id)}>
+        <td>{r.name}</td><td>{r.state}</td>
+      </TableRow>
+    ))}
+  </tbody>
+</Table>
+```
+
 `StatusCard` is the dense dashboard card (generalized from pulse's repo
 card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
 warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`
