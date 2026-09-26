@@ -297,6 +297,20 @@ test("every theme carries the interactive-table contract", () => {
   }
 });
 
+test("every theme carries the log-block contract", () => {
+  // .ld-pre--log (issue #9): the React LogBlock writes the modifier and sets
+  // --ld-log-max-height inline, so every theme must style it and honour the var.
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "pre.css");
+    const css = readFileSync(file, "utf-8");
+    const { selectors } = parseCss(css);
+    const hits = selectors.filter((s) => s.endsWith(".ld-pre--log"));
+    assert.ok(hits.length > 0, `${theme}: pre.css never styles .ld-pre--log`);
+    for (const sel of hits) assert.ok(sel.includes(`[data-ld-style="${theme}"]`), `${theme}: unguarded selector: ${sel}`);
+    assert.match(css, /max-height:\s*var\(--ld-log-max-height\b/, `${theme}: .ld-pre--log ignores --ld-log-max-height`);
+  }
+});
+
 test("every theme carries the sliding-indicator contract", () => {
   // Tabs and ButtonGroup stamp data-ld-dir="forward" | "back" on the track and
   // the theme slides one indicator (tabs ::after, button-group ::before) whose

@@ -16,6 +16,8 @@ export {
   type TableOptions,
   type TableRowOptions,
 } from "./table-state.js";
+export { LogBlock, type LogBlockProps } from "./LogBlock.js";
+export { logAttrs, isPinnedToBottom, LOG_PIN_TOLERANCE, type LogOptions } from "./log-state.js";
 export {
   StatusCard,
   StatusCardRows,

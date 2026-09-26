@@ -132,7 +132,9 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   `color: var(--ld-faint)`, italic.
 - **Pre / log block** `.ld-pre` — command/log `<pre>`; the surface-sunken
   well (already documented above as this theme's "log wells" token),
-  hairline border, radius, small mono, horizontal scroll.
+  hairline border, radius, small mono, horizontal scroll. `.ld-pre--log`
+  bounds it (`--ld-log-max-height`, 420px), scrolls both ways, wraps long
+  lines, and lays faint teal scanlines over the well.
 
 ## Code syntax
 

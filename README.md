@@ -179,6 +179,19 @@ gets the same look from `.ld-table--interactive`, but must add
 </Table>
 ```
 
+`LogBlock` is the terminal/log well (`.ld-pre.ld-pre--log`): capped at
+420px (`maxHeight` overrides via `--ld-log-max-height`), scrolls, and wraps
+long lines. With `follow` it keeps the newest line in view — but only while
+the reader is already at the bottom, so scrolling up to read history isn't
+yanked back. It is a `role="log"` live region; pass `live={false}` for very
+chatty streams. Fetching/streaming stays in the app.
+
+```tsx
+<LogBlock follow maxHeight={320}>
+  {lines.length ? lines.join("\n") : "(waiting for logs…)"}
+</LogBlock>
+```
+
 `StatusCard` is the dense dashboard card (generalized from pulse's repo
 card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
 warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`

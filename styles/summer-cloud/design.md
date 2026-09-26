@@ -160,7 +160,8 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Pre / log block** `.ld-pre` — command/log `<pre>`; sunken background,
   `--ld-outline` hairline (not `--ld-border`, which is the glass-only token
   and would be invisible on this opaque surface), radius, small mono,
-  horizontal scroll.
+  horizontal scroll. `.ld-pre--log` bounds it (`--ld-log-max-height`,
+  420px), scrolls both ways, and wraps long lines — flat, no scanlines.
 
 ## Deviations from the Stitch source
 
