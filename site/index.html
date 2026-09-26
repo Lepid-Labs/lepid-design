@@ -266,6 +266,16 @@
       <pre class="ld-pre">$ pnpm --filter @lepid-labs/styles test
 ok 1 - manifest, package.json, and theme directories agree
 ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
+      <p>Log block — capped height, scrolls, wraps long lines (<code>.ld-pre--log</code>).</p>
+      <pre class="ld-pre ld-pre--log" role="log" style="--ld-log-max-height:180px">2026-09-25T14:02:11Z backplane  info  listening on :8080
+2026-09-25T14:02:12Z backplane  info  docker socket connected (api 1.47)
+2026-09-25T14:02:14Z backplane  info  GET /api/containers 200 4ms
+2026-09-25T14:02:19Z backplane  warn  grafana health check slow (1.8s)
+2026-09-25T14:03:01Z backplane  info  deploy queued: project=switchboard ref=main sha=9f3c2a1e7b0d4c5e8a6f1b2c3d4e5f6a7b8c9d0e
+2026-09-25T14:03:04Z backplane  info  pulling image registry.example.test/switchboard:9f3c2a1e7b0d4c5e8a6f1b2c3d4e5f6a7b8c9d0e
+2026-09-25T14:03:09Z backplane  info  container switchboard-1 started
+2026-09-25T14:03:10Z backplane  error migrate exited with code 1: relation "jobs" already exists
+2026-09-25T14:03:12Z backplane  info  GET /api/containers/switchboard-1/logs?tail=200&amp;follow=1 200 stream</pre>
     </div>
   </section>
 

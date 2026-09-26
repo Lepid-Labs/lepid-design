@@ -114,7 +114,9 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   `color: var(--ld-faint)` only, no italic — this theme's mono/uppercase
   terminal voice never reaches for a literary flourish.
 - **Pre / log block** `.ld-pre` — command/log `<pre>`; sunken background,
-  hairline border, radius, small mono, horizontal scroll.
+  hairline border, radius, small mono, horizontal scroll. `.ld-pre--log`
+  bounds it (`--ld-log-max-height`, 420px), scrolls both ways, wraps long
+  lines, and adds faint 4px scanlines.
 
 ## Code syntax
 
