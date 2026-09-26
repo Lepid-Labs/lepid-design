@@ -117,6 +117,11 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   hairline border, radius, small mono, horizontal scroll. `.ld-pre--log`
   bounds it (`--ld-log-max-height`, 420px), scrolls both ways, wraps long
   lines, and adds faint 4px scanlines.
+- **Copy control** `.ld-pre-copy` — an `.ld-icon-btn` pinned top-right in
+  a `.ld-pre-wrap`; fades in on hover/focus-within, always shown on touch
+  (`hover: none`). `data-ld-copy="copied"` swaps the copy glyph for a
+  success-tinted check; `"failed"` tints it danger. Status goes to a
+  visually hidden `aria-live` `.ld-pre-copy-status`.
 
 ## Code syntax
 

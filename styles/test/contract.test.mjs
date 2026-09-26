@@ -311,6 +311,31 @@ test("every theme carries the log-block contract", () => {
   }
 });
 
+test("every theme carries the code-copy contract", () => {
+  // .ld-pre-copy (issue #23): an .ld-icon-btn pinned inside .ld-pre-wrap. The
+  // React CodeBlock and the documented plain-HTML snippet both flip
+  // data-ld-copy="copied" | "failed" and write status into the hidden live
+  // span, so every theme must style the reveal, both states, the glyph swap,
+  // the status span, and keep the control visible where there's no hover.
+  const PARTS = [
+    ".ld-pre-wrap", ".ld-pre-wrap > .ld-pre", ".ld-pre-copy",
+    ".ld-pre-wrap:hover .ld-pre-copy", ".ld-pre-wrap:focus-within .ld-pre-copy",
+    '.ld-pre-copy[data-ld-copy="copied"]', '.ld-pre-copy[data-ld-copy="failed"]',
+    ".ld-pre-copy__check", '.ld-pre-copy[data-ld-copy="copied"] .ld-pre-copy__icon',
+    '.ld-pre-copy[data-ld-copy="copied"] .ld-pre-copy__check', ".ld-pre-copy-status",
+  ];
+  for (const theme of themeDirs) {
+    const css = readFileSync(join(ROOT, theme, "components", "pre.css"), "utf-8");
+    const { selectors } = parseCss(css);
+    for (const part of PARTS) {
+      const hits = selectors.filter((s) => s.endsWith(part));
+      assert.ok(hits.length > 0, `${theme}: pre.css never styles ${part}`);
+      for (const sel of hits) assert.ok(sel.includes(`[data-ld-style="${theme}"]`), `${theme}: unguarded selector: ${sel}`);
+    }
+    assert.match(css, /@media\s*\(hover:\s*none\)\s*\{[^}]*\.ld-pre-copy\s*\{[^}]*opacity:\s*1/, `${theme}: copy control hidden on touch`);
+  }
+});
+
 test("every theme carries the sliding-indicator contract", () => {
   // Tabs and ButtonGroup stamp data-ld-dir="forward" | "back" on the track and
   // the theme slides one indicator (tabs ::after, button-group ::before) whose
