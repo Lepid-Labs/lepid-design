@@ -103,6 +103,23 @@
         });
       }
     </script>
+    <!-- Icon buttons: chromeless icon-only controls, same markup IconButton renders.
+         Plain, active (--active), a pressed toggle (aria-pressed; site script flips it),
+         a current-page link (aria-current), danger, and disabled. -->
+    <div class="row" style="margin-top: 1.25rem">
+      <button type="button" class="ld-icon-btn" aria-label="Search" title="Search"><svg aria-hidden="true"><use href="icons.svg#search"/></svg></button>
+      <button type="button" class="ld-icon-btn" aria-label="Notifications" title="Notifications"><svg aria-hidden="true"><use href="icons.svg#bell"/></svg></button>
+      <button type="button" class="ld-icon-btn ld-icon-btn--active" aria-label="Grid view" title="Grid view"><svg aria-hidden="true"><use href="icons.svg#grid"/></svg></button>
+      <button type="button" class="ld-icon-btn" aria-label="Favorite" title="Favorite" aria-pressed="false" data-icon-toggle-demo><svg aria-hidden="true"><use href="icons.svg#star"/></svg></button>
+      <a class="ld-icon-btn" href="#" aria-label="Settings" title="Settings" aria-current="page"><svg aria-hidden="true"><use href="icons.svg#settings"/></svg></a>
+      <button type="button" class="ld-icon-btn ld-icon-btn--danger" aria-label="Delete" title="Delete"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4M6.5 7v4M9.5 7v4"/></svg></button>
+      <button type="button" class="ld-icon-btn" aria-label="Menu" title="Menu" disabled><svg aria-hidden="true"><use href="icons.svg#menu"/></svg></button>
+    </div>
+    <script>
+      for (const btn of document.querySelectorAll("[data-icon-toggle-demo]")) {
+        btn.addEventListener("click", () => btn.setAttribute("aria-pressed", String(btn.getAttribute("aria-pressed") !== "true")));
+      }
+    </script>
     <!-- Hold-to-confirm: the ring is the confirmation. Press and hold; release early to cancel.
          Same markup HoldButton renders; site/hold-demo.js supplies the behaviour here. -->
     <div class="row" style="margin-top: 1.25rem">
