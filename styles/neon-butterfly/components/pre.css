@@ -11,3 +11,16 @@
   font-size: var(--ld-text-sm);
   overflow-x: auto;
 }
+
+/* Log / terminal variant (.ld-pre--log): bounded, scrolls both ways, wraps
+ * long lines, and carries faint 4px scanlines. Height comes from
+ * --ld-log-max-height (the React LogBlock's maxHeight sets it inline). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre--log {
+  max-height: var(--ld-log-max-height, 420px);
+  overflow: auto;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 4px;
+}

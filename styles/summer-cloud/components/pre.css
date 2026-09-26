@@ -14,3 +14,15 @@
   font-size: var(--ld-text-sm);
   overflow-x: auto;
 }
+
+/* Log / terminal variant (.ld-pre--log): bounded, scrolls both ways, wraps
+ * long lines. No scanlines — they'd muddy this theme's flat, airy wells.
+ * Height comes from --ld-log-max-height (the React LogBlock's maxHeight
+ * sets it inline). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pre--log {
+  max-height: var(--ld-log-max-height, 420px);
+  overflow: auto;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
