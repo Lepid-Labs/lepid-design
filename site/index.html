@@ -266,6 +266,12 @@
       <pre class="ld-pre">$ pnpm --filter @lepid-labs/styles test
 ok 1 - manifest, package.json, and theme directories agree
 ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
+      <p>Copyable block — hover or focus to reveal the copy control (<code>.ld-pre-wrap</code> + <code>.ld-pre-copy</code>).</p>
+      <div class="ld-pre-wrap">
+        <pre class="ld-pre">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lepid-labs/lepid-design@v1.0.1/styles/all.css"&gt;</pre>
+        <button type="button" class="ld-icon-btn ld-pre-copy" aria-label="Copy code" title="Copy code"><svg class="ld-pre-copy__icon" aria-hidden="true"><use href="icons.svg#copy"/></svg><svg class="ld-pre-copy__check" aria-hidden="true"><use href="icons.svg#check"/></svg></button>
+        <span class="ld-pre-copy-status" aria-live="polite"></span>
+      </div>
       <p>Log block — capped height, scrolls, wraps long lines (<code>.ld-pre--log</code>).</p>
       <pre class="ld-pre ld-pre--log" role="log" style="--ld-log-max-height:180px">2026-09-25T14:02:11Z backplane  info  listening on :8080
 2026-09-25T14:02:12Z backplane  info  docker socket connected (api 1.47)
@@ -384,5 +390,6 @@ ok 23 - keyframe names are ld-prefixed and unique across all themes</pre>
 <script src="picker.js"></script>
 <script src="hold-demo.js"></script>
 <script src="table-demo.js"></script>
+<script src="copy-demo.js"></script>
 </body>
 </html>
