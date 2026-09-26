@@ -75,6 +75,11 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
+- **Icon button** `.ld-icon-btn` (+ `--active`, `--danger`) — chromeless
+  2rem square for icon-only actions (`<button>` or `<a>`; always
+  `aria-label`). Faint glyph that turns lilac on hover; active
+  (`--active`, `aria-pressed="true"`, `aria-current="page"`) is lilac with a
+  soft glow. `--danger` turns the glyph red on hover. Child `svg` 1.25em.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
 - **Badge** `.ld-badge` + semantic modifiers; `--sm` is the 9px dashboard

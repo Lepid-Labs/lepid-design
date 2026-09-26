@@ -110,6 +110,12 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
+- **Icon button** `.ld-icon-btn` (+ `--active`, `--danger`) — chromeless
+  round 2rem pill for icon-only actions (`<button>` or `<a>`; always
+  `aria-label`). Faint glyph; hover fills sky-white, turns violet and
+  bounces up; press squishes. Active (`--active`, `aria-pressed="true"`,
+  `aria-current="page"`) keeps the sky-white fill and violet glyph.
+  `--danger` turns the glyph deep red on hover. Child `svg` 1.25em.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — sunken fields, no
   resting border, sky-blue ring on focus. The switch is the oversized

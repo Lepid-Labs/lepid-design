@@ -252,6 +252,31 @@ test("every theme carries the button-group contract", () => {
   }
 });
 
+test("every theme carries the icon-button contract", () => {
+  // .ld-icon-btn (issue #8): the React IconButton writes the class plus the
+  // --active / --danger modifiers, and callers light it from aria-pressed
+  // (toggle) or aria-current="page" (nav link), so every theme must style
+  // each hook — and the theme's index.css must pull the file in.
+  const PARTS = [
+    ".ld-icon-btn", ".ld-icon-btn > svg", ".ld-icon-btn:hover", ".ld-icon-btn:focus-visible",
+    ".ld-icon-btn--active", '.ld-icon-btn[aria-pressed="true"]', '.ld-icon-btn[aria-current="page"]',
+    ".ld-icon-btn--danger:hover", ".ld-icon-btn:disabled", '.ld-icon-btn[aria-disabled="true"]',
+  ];
+  for (const theme of themeDirs) {
+    const file = join(ROOT, theme, "components", "icon-button.css");
+    assert.ok(existsSync(file), `${theme}: components/icon-button.css missing`);
+    const { selectors } = parseCss(readFileSync(file, "utf-8"));
+    for (const part of PARTS) {
+      assert.ok(selectors.some((s) => s.endsWith(part)), `${theme}: icon-button.css never styles ${part}`);
+    }
+    const { imports } = parseCss(readFileSync(join(ROOT, theme, "index.css"), "utf-8"));
+    assert.ok(
+      imports.some((i) => i.includes("components/icon-button.css")),
+      `${theme}: index.css never imports components/icon-button.css`,
+    );
+  }
+});
+
 test("every theme carries the sliding-indicator contract", () => {
   // Tabs and ButtonGroup stamp data-ld-dir="forward" | "back" on the track and
   // the theme slides one indicator (tabs ::after, button-group ::before) whose

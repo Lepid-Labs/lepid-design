@@ -1,6 +1,8 @@
 export { Button, type ButtonProps } from "./Button.js";
 export { ButtonGroup, type ButtonGroupProps } from "./ButtonGroup.js";
 export { buttonGroupAttrs } from "./button-group.js";
+export { IconButton, type IconButtonProps } from "./IconButton.js";
+export { iconButtonAttrs, type IconButtonOptions } from "./icon-button.js";
 export { HoldButton, type HoldButtonProps } from "./HoldButton.js";
 export { createHoldController, type HoldController, type HoldOptions, type HoldState } from "./hold.js";
 export { Card, type CardProps } from "./Card.js";
