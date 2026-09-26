@@ -32,8 +32,12 @@
 
 /* Opt-in page background: the butterfly circuit artwork blended into the navy.
  * Matches the switchboard landing page. Apply to <body>, or to the attributed
- * container itself. */
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-bg {
+ * container itself. An app shell
+ * (.ld-shell) always paints it, and so does the <body> around one, so the
+ * page stays covered past the shell (overscroll, short pages). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-bg,
+:where(html[data-ld-style="neon-butterfly"]) body:has(.ld-shell),
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell {
   background: var(--ld-bg) url("./assets/butterfly-circuit.png") center / cover fixed;
   background-blend-mode: luminosity;
   background-color: var(--ld-bg-blend);

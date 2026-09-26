@@ -47,3 +47,29 @@ export { Tabs, type TabsProps, type TabItem } from "./Tabs.js";
 export { slideDir, type SlideDir } from "./slide-dir.js";
 export { useSlideDir } from "./useSlideDir.js";
 export { cx } from "./cx.js";
+export { AppShell, useShell, useShellNarrow, type AppShellProps, type ShellContextValue } from "./AppShell.js";
+export { AppHeader, ShellToggle, TopNav, TopNavItem, type AppHeaderProps, type ShellToggleProps, type TopNavProps, type TopNavItemProps } from "./AppHeader.js";
+export {
+  SideNav,
+  SideNavSection,
+  SideNavItem,
+  type SideNavProps,
+  type SideNavSectionProps,
+  type SideNavItemProps,
+} from "./SideNav.js";
+export {
+  Page,
+  PageHeader,
+  Grid,
+  Split,
+  AsideLayout,
+  Center,
+  type PageProps,
+  type PageHeaderProps,
+  type GridProps,
+  type SplitProps,
+  type AsideLayoutProps,
+  type CenterProps,
+} from "./Page.js";
+export { navExpanded, shellAttrs, toggleNav, SHELL_NARROW_QUERY, type ShellNavState } from "./shell-state.js";
+export type { PolyProps } from "./poly.js";

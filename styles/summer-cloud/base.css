@@ -35,8 +35,12 @@
 
 /* Opt-in page background: the sky gradient. Flat --ld-bg is also correct, but
  * the gradient is the signature — the theme reads as "airy" only against it.
- * Apply to <body>, or to the attributed container itself. */
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bg {
+ * Apply to <body>, or to the attributed container itself. An app shell
+ * (.ld-shell) always paints it, and so does the <body> around one, so the
+ * page stays covered past the shell (overscroll, short pages). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bg,
+:where(html[data-ld-style="summer-cloud"]) body:has(.ld-shell),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell {
   background: linear-gradient(135deg, var(--ld-sky-start) 0%, var(--ld-sky-end) 100%);
   background-attachment: fixed;
 }

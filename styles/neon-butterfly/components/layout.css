@@ -1,0 +1,348 @@
+/* neon-butterfly — layout: the app shell's grid, sticky parts, rail, drawer and tab
+ * bar. Structure only, identical in every theme (the chrome lives in
+ * shell.css; the page layouts that go inside main live in page.css).
+ *
+ * .ld-shell is a grid of named areas; any of __header, __nav, __footer may be
+ * left out and its track collapses to nothing, so there are no "has header"
+ * modifiers. The shell paints the theme's page background (base.css lists it
+ * beside .ld-bg). Nav state is two presence attributes on the root:
+ * data-ld-nav-collapsed (wide: icon rail) and data-ld-nav-open (narrow:
+ * drawer shown). The header always spans the full width above the nav, so
+ * its toggle and brand never move as the nav collapses or hides. Below 48rem
+ * the nav leaves the grid and becomes a drawer — or, with .ld-shell--tabbar,
+ * a bottom tab bar. 48rem is SHELL_NARROW_QUERY
+ * in the React package; keep the two in step.
+ */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell {
+  --ld-shell-header-h: 3.5rem;
+  --ld-shell-nav-w: 15rem;
+  --ld-shell-rail-w: 4.25rem;
+  --ld-shell-top: 0px; /* sticky offset below the header, when there is one */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "nav footer";
+  min-block-size: 100dvh;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell:has(> .ld-shell__header) {
+  --ld-shell-top: var(--ld-shell-header-h);
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__skip {
+  position: absolute;
+  inset-inline-start: var(--ld-space-2);
+  inset-block-start: -10rem;
+  z-index: 50;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__skip:focus {
+  inset-block-start: var(--ld-space-2);
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__header {
+  grid-area: header;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-3);
+  block-size: var(--ld-shell-header-h);
+  padding-inline: var(--ld-space-3);
+  min-inline-size: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__toggle {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  padding: 0;
+  cursor: pointer;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__toggle svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell:not(:has(> .ld-shell__nav)) .ld-shell__toggle {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__brand {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__brand svg,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__brand img {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-topnav {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  min-inline-size: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-topnav__item {
+  flex: none;
+  white-space: nowrap;
+  text-decoration: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  margin-inline-start: auto;
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__nav {
+  grid-area: nav;
+  position: sticky;
+  inset-block-start: var(--ld-shell-top);
+  align-self: start;
+  z-index: 10;
+  inline-size: var(--ld-shell-nav-w);
+  block-size: calc(100dvh - var(--ld-shell-top));
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  transition: inline-size var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__scrim {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: var(--ld-space-4) var(--ld-space-5);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__main:focus {
+  outline: none; /* focus target of the skip link, not an interactive control */
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__footer {
+  grid-area: footer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2) var(--ld-space-4);
+  padding: var(--ld-space-3) var(--ld-space-5);
+}
+
+/* Side nav: sections of icon + label items, an optional footer pinned low. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-space-3);
+  min-block-size: 100%;
+  padding: var(--ld-space-3) var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__heading {
+  margin: 0;
+  padding: var(--ld-space-1) var(--ld-space-3);
+  white-space: nowrap;
+  overflow: hidden;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-3);
+  min-block-size: 2.5rem;
+  padding: var(--ld-space-2) var(--ld-space-3);
+  text-decoration: none;
+  white-space: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__icon svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__label {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__badge {
+  flex: none;
+  margin-inline-start: auto;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-block-start: auto;
+}
+/* A brand inside the nav (for shells without a header). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav > .ld-shell__brand {
+  padding: var(--ld-space-1) var(--ld-space-3) var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__footer > .ld-shell__toggle {
+  margin-inline-start: var(--ld-space-2);
+}
+
+/* Wide: the collapsed nav is an icon rail. Labels, headings and badges stay
+ * in the accessibility tree, only visually clipped; headings become rules. */
+@media (width > 48rem) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-shell__nav {
+    inline-size: var(--ld-shell-rail-w);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav__item {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] :is(.ld-sidenav__label, .ld-sidenav__badge),
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav__heading {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav > .ld-shell__brand {
+    justify-content: center;
+    padding-inline: 0;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav > .ld-shell__brand > :not(svg, img) {
+    display: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav__footer > .ld-shell__toggle {
+    margin-inline: auto;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-collapsed] .ld-sidenav__section + .ld-sidenav__section {
+    border-block-start: 1px solid var(--ld-border);
+    padding-block-start: var(--ld-space-3);
+  }
+}
+
+/* Narrow: the nav leaves the grid. Default is an off-canvas drawer under the
+ * header (visibility keeps a closed drawer out of the tab order). */
+@media (width <= 48rem) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__header {
+    padding-inline: var(--ld-space-2);
+    gap: var(--ld-space-2);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__main {
+    padding: var(--ld-space-3);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__footer {
+    padding: var(--ld-space-3);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__nav {
+    position: fixed;
+    inset-block: var(--ld-shell-top) 0;
+    inset-inline-start: 0;
+    align-self: stretch; /* fixed boxes honour align-self; "start" would shrink-wrap the drawer */
+    z-index: 40;
+    inline-size: min(var(--ld-shell-nav-w) + 3rem, 85vw);
+    block-size: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition: transform var(--ld-transition), visibility 0s linear var(--ld-transition);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-open] .ld-shell__nav {
+    transform: none;
+    visibility: visible;
+    transition: transform var(--ld-transition);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-open] .ld-shell__scrim {
+    display: block;
+    position: fixed;
+    inset: var(--ld-shell-top) 0 0;
+    z-index: 30;
+  }
+
+  /* Tab bar: the nav docks at the bottom; sections flatten into one row. */
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-shell__toggle {
+    display: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-shell__nav {
+    inset-block: auto 0;
+    inset-inline: 0;
+    inline-size: auto;
+    transform: none;
+    visibility: visible;
+    overflow: visible;
+    padding-block-end: env(safe-area-inset-bottom, 0px);
+    transition: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-shell__scrim {
+    display: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav {
+    flex-direction: row;
+    gap: 0;
+    min-block-size: 0;
+    padding: var(--ld-space-1);
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar :is(.ld-sidenav__section, .ld-sidenav__footer) {
+    display: contents;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav > .ld-shell__brand {
+    display: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav__heading {
+    display: none;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav__item {
+    position: relative;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    min-inline-size: 0;
+    padding: var(--ld-space-1);
+    font-size: 0.6875rem;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav__label {
+    flex: none;
+    max-inline-size: 100%;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-sidenav__badge {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: calc(50% + 0.5rem);
+    margin: 0;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar .ld-shell__footer {
+    padding-block-end: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell--tabbar:not(:has(> .ld-shell__footer)) .ld-shell__main {
+    padding-block-end: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__nav,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell[data-ld-nav-open] .ld-shell__nav {
+    transition: none;
+  }
+}

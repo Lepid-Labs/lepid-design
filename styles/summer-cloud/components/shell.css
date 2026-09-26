@@ -1,0 +1,197 @@
+/* summer-cloud — shell chrome: unfilled bars with lit hairlines on the sky,
+ * Plus Jakarta labels, the current page a solid violet pill with the raised
+ * violet shadow; hover fills with sky tint. Structure is in layout.css. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__skip {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-primary);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-on-primary);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  font-size: var(--ld-text-sm);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__header {
+  /* no fill: the shell background runs under the bar; the blur keeps
+   * content scrolling beneath it legible */
+  background: transparent;
+  border-bottom: 1px solid var(--ld-border-lit);
+  backdrop-filter: blur(var(--ld-blur-high));
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle {
+  background: none;
+  border: none;
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
+  transition: background var(--ld-transition), color var(--ld-transition), transform var(--ld-transition) var(--ld-ease-bounce);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle:focus-visible {
+  background: var(--ld-sky-tint);
+  color: var(--ld-primary);
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle:focus-visible {
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle:active {
+  transform: scale(0.92);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__brand {
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: var(--ld-tracking-tight);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item {
+  padding: var(--ld-space-2) var(--ld-space-3);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  font-size: var(--ld-text-sm);
+  transition: background var(--ld-transition), color var(--ld-transition);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item:focus-visible {
+  background: var(--ld-sky-tint);
+  color: var(--ld-primary);
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item--active,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item[aria-current="page"] {
+  color: var(--ld-primary);
+  font-weight: var(--ld-font-weight-bold);
+  box-shadow: inset 0 -2px 0 var(--ld-primary);
+  border-radius: 0;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__nav {
+  background: transparent; /* the shell background shows through; a hairline divides */
+  border-right: 1px solid var(--ld-border-lit);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__scrim {
+  background: rgba(23, 28, 31, 0.25);
+  backdrop-filter: blur(3px);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav {
+  padding-inline: var(--ld-space-3);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__heading {
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
+  font-size: 11px;
+  font-weight: var(--ld-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item {
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-display);
+  font-size: var(--ld-text-sm);
+  font-weight: var(--ld-font-weight-medium);
+  transition: background var(--ld-transition), color var(--ld-transition), transform var(--ld-transition) var(--ld-ease-bounce), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__icon {
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:focus-visible {
+  background: var(--ld-sky-tint);
+  color: var(--ld-primary);
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:hover .ld-sidenav__icon,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:focus-visible .ld-sidenav__icon {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:focus-visible {
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:active {
+  transform: scale(0.97);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item--active,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item[aria-current="page"] {
+  background: var(--ld-primary);
+  color: var(--ld-on-primary);
+  box-shadow: var(--ld-shadow-raised);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item--active .ld-sidenav__icon,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item[aria-current="page"] .ld-sidenav__icon,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item--active:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item[aria-current="page"]:hover {
+  color: var(--ld-on-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item--active:hover,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item[aria-current="page"]:hover {
+  background: var(--ld-primary-bright);
+  box-shadow: var(--ld-shadow-raised-hover);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__footer {
+  border-top: 1px solid var(--ld-border);
+  color: var(--ld-faint);
+  font-size: 13px;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-page__eyebrow {
+  color: var(--ld-accent-deep);
+  font-family: var(--ld-font-display);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-page__title {
+  font-family: var(--ld-font-display);
+  font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: var(--ld-tracking-tight);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-page__subtitle {
+  color: var(--ld-faint);
+}
+
+@media (width <= 48rem) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__nav {
+    background: var(--ld-surface-glass-high);
+    backdrop-filter: blur(var(--ld-blur-high));
+    box-shadow: var(--ld-shadow);
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-shell__nav {
+    border-right: none;
+    border-top: 1px solid var(--ld-border-lit);
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav {
+    padding-inline: var(--ld-space-2);
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav__item {
+    border-radius: var(--ld-radius);
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav__item--active,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav__item[aria-current="page"] {
+    background: var(--ld-sky-tint);
+    color: var(--ld-primary);
+    box-shadow: none;
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav__item--active .ld-sidenav__icon,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell--tabbar .ld-sidenav__item[aria-current="page"] .ld-sidenav__icon {
+    color: var(--ld-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-topnav__item,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item {
+    transition: none;
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-shell__toggle:active,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sidenav__item:active {
+    transform: none;
+  }
+}

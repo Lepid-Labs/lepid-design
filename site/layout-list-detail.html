@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List + detail · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+</head>
+<body>
+<!-- List + detail layout: .ld-split with __list and __detail. The panes stack by themselves once the detail would drop below 60% of the row. -->
+<div class="ld-shell">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <header class="ld-shell__header">
+    <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+    <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+    <div class="ld-shell__actions">
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+    </div>
+  </header>
+  <aside class="ld-shell__nav" id="app-nav">
+    <nav class="ld-sidenav" aria-label="Main">
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-previews">
+        <div class="ld-sidenav__heading" id="nav-previews">Previews</div>
+        <a class="ld-sidenav__item" href="shell.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">App shell</span></a>
+        <a class="ld-sidenav__item" href="layout-dashboard.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#chart"/></svg></span><span class="ld-sidenav__label">Dashboard</span></a>
+        <a class="ld-sidenav__item" href="layout-list-detail.html" aria-current="page"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#inbox"/></svg></span><span class="ld-sidenav__label">List + detail</span></a>
+        <a class="ld-sidenav__item" href="layout-docs.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#doc"/></svg></span><span class="ld-sidenav__label">Docs</span></a>
+        <a class="ld-sidenav__item" href="layout-centered.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#star"/></svg></span><span class="ld-sidenav__label">Centered</span></a>
+        <a class="ld-sidenav__item" href="layout-feed.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#home"/></svg></span><span class="ld-sidenav__label">Feed (nav only)</span></a>
+      </div>
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-workspace">
+        <div class="ld-sidenav__heading" id="nav-workspace">Workspace</div>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#folder"/></svg></span><span class="ld-sidenav__label">Projects</span><span class="ld-sidenav__badge ld-badge ld-badge--sm ld-badge--primary">12</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#users"/></svg></span><span class="ld-sidenav__label">Team</span></a>
+      </div>
+      <div class="ld-sidenav__footer">
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#settings"/></svg></span><span class="ld-sidenav__label">Settings</span></a>
+      </div>
+    </nav>
+  </aside>
+  <div class="ld-shell__scrim" aria-hidden="true"></div>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-page ld-page--wide">
+      <header class="ld-page__header">
+        <div class="ld-page__heading">
+          <h1 class="ld-page__title">Orders</h1>
+          <p class="ld-page__subtitle">Pick an order to see its progress.</p>
+        </div>
+        <div class="ld-page__actions"><input class="ld-input" type="search" placeholder="Search orders" aria-label="Search orders" style="width:14rem"></div>
+      </header>
+      <div class="ld-split">
+        <div class="ld-split__list">
+          <div class="ld-card" style="padding:0.5rem">
+            <table class="ld-table">
+              <tbody>
+                <tr><td><strong>Order #4821</strong><br><span class="ld-muted" style="font-style:normal">Out for delivery</span></td><td style="text-align:right"><span class="ld-badge ld-badge--sm ld-badge--info">transit</span></td></tr>
+                <tr><td><strong>Order #4820</strong><br><span class="ld-muted" style="font-style:normal">Delivered Tuesday</span></td><td style="text-align:right"><span class="ld-badge ld-badge--sm ld-badge--success">done</span></td></tr>
+                <tr><td><strong>Order #4817</strong><br><span class="ld-muted" style="font-style:normal">Payment declined</span></td><td style="text-align:right"><span class="ld-badge ld-badge--sm ld-badge--danger">action</span></td></tr>
+                <tr><td><strong>Order #4816</strong><br><span class="ld-muted" style="font-style:normal">Packed, awaiting pickup</span></td><td style="text-align:right"><span class="ld-badge ld-badge--sm">packed</span></td></tr>
+                <tr><td><strong>Order #4815</strong><br><span class="ld-muted" style="font-style:normal">Delivered Monday</span></td><td style="text-align:right"><span class="ld-badge ld-badge--sm ld-badge--success">done</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ld-split__detail">
+          <div class="ld-card" style="display:grid;gap:1.25rem">
+            <div style="display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap">
+              <div>
+                <h2 style="margin:0">Order #4821</h2>
+                <p class="ld-muted" style="margin:0.25rem 0 0">Placed Sept 22 · 3 items · $184.00</p>
+              </div>
+              <div class="row" style="display:flex;gap:0.5rem">
+                <button class="ld-btn ld-btn--sm">Contact carrier</button>
+                <button class="ld-btn ld-btn--sm ld-btn--danger">Cancel</button>
+              </div>
+            </div>
+            <ol class="ld-stepper">
+              <li class="ld-stepper__step ld-stepper__step--complete"><span class="ld-stepper__node" aria-hidden="true">1</span><span class="ld-stepper__label">Placed</span></li>
+              <li class="ld-stepper__step ld-stepper__step--complete"><span class="ld-stepper__node" aria-hidden="true">2</span><span class="ld-stepper__label">Packed</span></li>
+              <li class="ld-stepper__step ld-stepper__step--current" aria-current="step"><span class="ld-stepper__node" aria-hidden="true">3</span><span class="ld-stepper__label">Out for delivery</span></li>
+              <li class="ld-stepper__step ld-stepper__step--upcoming"><span class="ld-stepper__node" aria-hidden="true">4</span><span class="ld-stepper__label">Delivered</span></li>
+            </ol>
+            <div class="ld-alert ld-alert--info">Arriving today between 2 and 5 pm.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ld-shell__footer">
+    <span>© Lepid Labs</span>
+    <span>lepid-design · <a href="index.html">components</a></span>
+  </footer>
+</div>
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+</body>
+</html>

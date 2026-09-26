@@ -1,6 +1,9 @@
 /* neon-butterfly — full theme entry point */
 @import "./tokens.css";
 @import "./base.css";
+@import "./components/layout.css";
+@import "./components/shell.css";
+@import "./components/page.css";
 @import "./components/card.css";
 @import "./components/status-card.css";
 @import "./components/link.css";

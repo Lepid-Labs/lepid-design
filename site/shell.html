@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App shell · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+</head>
+<body>
+<!-- App shell playground: switch the optional header, side nav and footer on and off. Markup is exactly what AppShell renders. -->
+<div class="ld-shell">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <header class="ld-shell__header">
+    <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+    <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+    <div class="ld-shell__actions">
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+    </div>
+  </header>
+  <aside class="ld-shell__nav" id="app-nav">
+    <nav class="ld-sidenav" aria-label="Main">
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-previews">
+        <div class="ld-sidenav__heading" id="nav-previews">Previews</div>
+        <a class="ld-sidenav__item" href="shell.html" aria-current="page"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">App shell</span></a>
+        <a class="ld-sidenav__item" href="layout-dashboard.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#chart"/></svg></span><span class="ld-sidenav__label">Dashboard</span></a>
+        <a class="ld-sidenav__item" href="layout-list-detail.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#inbox"/></svg></span><span class="ld-sidenav__label">List + detail</span></a>
+        <a class="ld-sidenav__item" href="layout-docs.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#doc"/></svg></span><span class="ld-sidenav__label">Docs</span></a>
+        <a class="ld-sidenav__item" href="layout-centered.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#star"/></svg></span><span class="ld-sidenav__label">Centered</span></a>
+        <a class="ld-sidenav__item" href="layout-feed.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#home"/></svg></span><span class="ld-sidenav__label">Feed (nav only)</span></a>
+      </div>
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-workspace">
+        <div class="ld-sidenav__heading" id="nav-workspace">Workspace</div>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#folder"/></svg></span><span class="ld-sidenav__label">Projects</span><span class="ld-sidenav__badge ld-badge ld-badge--sm ld-badge--primary">12</span></a>
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#users"/></svg></span><span class="ld-sidenav__label">Team</span></a>
+      </div>
+      <div class="ld-sidenav__footer">
+        <a class="ld-sidenav__item" href="#"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#settings"/></svg></span><span class="ld-sidenav__label">Settings</span></a>
+      </div>
+    </nav>
+  </aside>
+  <div class="ld-shell__scrim" aria-hidden="true"></div>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-page">
+      <header class="ld-page__header">
+        <div class="ld-page__heading">
+          <p class="ld-page__eyebrow">Previews</p>
+          <h1 class="ld-page__title">App shell</h1>
+          <p class="ld-page__subtitle">Optional header, optional left-hand nav, optional footer — leave a part out and its track collapses.</p>
+        </div>
+      </header>
+      <div class="ld-card">
+        <h2 style="margin-top:0;font-size:1rem">Parts</h2>
+        <div id="shell-parts" style="display:flex;flex-wrap:wrap;gap:1rem 1.5rem">
+          <label class="ld-choice"><input type="checkbox" class="ld-switch" data-part="header" checked> Header</label>
+          <label class="ld-choice"><input type="checkbox" class="ld-switch" data-part="nav" checked> Side nav</label>
+          <label class="ld-choice"><input type="checkbox" class="ld-switch" data-part="footer" checked> Footer</label>
+          <label class="ld-choice"><input type="checkbox" class="ld-switch" data-attr="data-ld-nav-collapsed"> Collapsed rail</label>
+          <label class="ld-choice"><input type="checkbox" class="ld-switch" data-class="ld-shell--tabbar"> Tab bar on mobile</label>
+        </div>
+        <p class="ld-muted" style="margin-bottom:0">Narrow the window below 48rem: the nav becomes a drawer opened from the header toggle, or a bottom tab bar. Without a header, use the tab bar (AppShell picks it by default) — the drawer would have no toggle.</p>
+      </div>
+      <div class="ld-grid">
+        <div class="ld-card"><h3 style="margin-top:0">Header</h3><p class="ld-muted">Sticky, <code>--ld-shell-header-h</code> tall. Toggle, brand, <code>.ld-topnav</code>, then <code>.ld-shell__actions</code> pushed right.</p></div>
+        <div class="ld-card"><h3 style="margin-top:0">Side nav</h3><p class="ld-muted">Sticky under the header; sections of icon + label items, a footer pinned low. Current page is <code>aria-current="page"</code>.</p></div>
+        <div class="ld-card"><h3 style="margin-top:0">Background</h3><p class="ld-muted">The shell paints the theme's <code>.ld-bg</code> treatment itself — no class on <code>&lt;body&gt;</code> needed.</p></div>
+      </div>
+    </div>
+    <script>
+      // playground: detach and re-attach shell parts (display:none would still count for :has())
+      addEventListener("DOMContentLoaded", () => {
+        const shell = document.querySelector(".ld-shell");
+        const parts = {
+          header: [shell.querySelector(".ld-shell__header")],
+          nav: [shell.querySelector(".ld-shell__nav"), shell.querySelector(".ld-shell__scrim")],
+          footer: [shell.querySelector(".ld-shell__footer")],
+        };
+        const anchors = Object.fromEntries(Object.entries(parts).map(([k, els]) => {
+          const mark = document.createComment(k);
+          els[0].before(mark);
+          return [k, mark];
+        }));
+        document.getElementById("shell-parts").addEventListener("change", (e) => {
+          const box = e.target;
+          if (box.dataset.part) {
+            const els = parts[box.dataset.part];
+            if (box.checked) anchors[box.dataset.part].after(...els);
+            else for (const el of els) el.remove();
+          }
+          if (box.dataset.attr) shell.toggleAttribute(box.dataset.attr, box.checked);
+          if (box.dataset.class) shell.classList.toggle(box.dataset.class, box.checked);
+        });
+      });
+    </script>
+  </main>
+  <footer class="ld-shell__footer">
+    <span>© Lepid Labs</span>
+    <span>lepid-design · <a href="index.html">components</a></span>
+  </footer>
+</div>
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+</body>
+</html>

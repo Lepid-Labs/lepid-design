@@ -9,7 +9,7 @@ Shared UX/design system for Lepid Labs apps. Two layers:
   the style layer's classes. For behavior-heavy UI as apps standardize on React.
 
 **Showcase:** https://lepid-labs.github.io/lepid-design/ — every component rendered
-live, with a style selector. Deployed from `site/` on push to main.
+live, with a style selector, plus full-page app shell and layout previews. Deployed from `site/` on push to main.
 
 ## Themes
 
@@ -78,7 +78,7 @@ Webfonts are not bundled; include the Google Fonts links (exact URLs are in
 | `luminous-precision` | Sora (500, 600, 700), JetBrains Mono (400, 600, 700) |
 
 `summer-cloud` also expects `.ld-bg` on `<body>` — the sky gradient is what its
-frosted-glass surfaces read against.
+frosted-glass surfaces read against (an `.ld-shell` paints it for you).
 
 ### Migrating from 0.3.x
 
@@ -178,6 +178,53 @@ number otherwise); pass `steps.length` as `current` when everything is done.
   { id: "delivered", label: "Delivered" },
 ]} />
 ```
+
+### App shell and page layouts
+
+`AppShell` is the application frame: an optional sticky header, an optional
+left-hand nav, main, and an optional footer. Leave a part out and its grid
+track collapses — there are no "has header" modifiers. The shell paints the
+theme's page background itself (the same treatment as `.ld-bg`, also applied
+to the `<body>` around it), and the header and nav are unfilled — hairline
+borders over that background, the header blurring what scrolls beneath it —
+so no class on `<body>` is needed. The header always spans the full width
+above the nav, toggle and brand at its left, so they never move as the nav
+collapses or hides.
+
+On wide screens the header's toggle collapses the nav to an icon rail. Below
+48rem the nav becomes a drawer opened from that toggle, or — with
+`mobileNav="tabbar"`, the default when there is no header — a bottom tab bar.
+Items render `<a>`; pass `as={Link}` for a router. `active` sets
+`aria-current="page"`, which is what the theme lights (router links that set
+it themselves work as-is).
+
+```tsx
+<AppShell
+  header={<AppHeader brand={<><Logo /> pulse</>} brandHref="/"
+    nav={<TopNav aria-label="Sections"><TopNavItem href="/" active>Repos</TopNavItem></TopNav>}
+    actions={<Button size="sm">Sign out</Button>} />}
+  nav={<SideNav aria-label="Main" footer={<SideNavItem href="/settings" icon={<GearIcon />}>Settings</SideNavItem>}>
+    <SideNavSection title="Workspace">
+      <SideNavItem as={Link} to="/" icon={<HomeIcon />} active>Overview</SideNavItem>
+      <SideNavItem as={Link} to="/prs" icon={<InboxIcon />} badge={<Badge size="sm">3</Badge>}>Reviews</SideNavItem>
+    </SideNavSection>
+  </SideNav>}
+  footer={<span>© Lepid Labs</span>}
+>
+  <Page title="Overview" eyebrow="Workspace" actions={<Button variant="primary">New</Button>}>
+    <Grid min="18rem">{cards}</Grid>
+  </Page>
+</AppShell>
+```
+
+Page layouts go inside main: `Page` (a centered column — `width` narrow
+48rem, default 72rem, wide 96rem, full — with an optional `PageHeader`),
+`Grid` (dashboard cards, `min` column width), `Split` (list + detail),
+`AsideLayout` (content + sticky right aside, e.g. a table of contents), and
+`Center` (sign in, empty states). `Split` and `AsideLayout` stack by
+themselves when the wide pane would drop below 60% — no breakpoint. In plain
+HTML, the showcase pages are the reference markup, and `site/shell-demo.js`
+is the toggle/drawer behaviour to copy.
 
 ## Developing
 
