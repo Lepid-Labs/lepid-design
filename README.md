@@ -144,6 +144,19 @@ the travel. Timing is per theme: `--ld-slide-lead` / `--ld-slide-trail`.
 </ButtonGroup>
 ```
 
+`IconButton` is the chromeless square for icon-only actions. `label` is
+required — it becomes the `aria-label` and the hover tooltip. It renders a
+`<button type="button">`; pass `as="a"` (or a router Link) for navigation,
+where `active` also sets `aria-current="page"`. For a toggle, pass
+`aria-pressed`. `variant="danger"` reddens the glyph on hover.
+
+```tsx
+<IconButton label="Settings" as="a" href="#/settings" active={route === "/settings"}>
+  <SettingsIcon />
+</IconButton>
+<IconButton label="Delete" variant="danger" onClick={remove}><TrashIcon /></IconButton>
+```
+
 `StatusCard` is the dense dashboard card (generalized from pulse's repo
 card): `tone` colors the left edge, `attention` adds a glow ring (`true` is
 warning), and bumping `changedAt` replays a fade-out flash. `prefix`/`title`

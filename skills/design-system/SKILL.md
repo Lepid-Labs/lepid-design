@@ -73,6 +73,7 @@ non-React apps):
 | --- | --- | --- |
 | `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
 | `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state; one pressed segment gets a sliding pill (plain HTML: set `data-ld-dir="forward"\|"back"` on the track when selection moves) |
+| `IconButton` | `.ld-icon-btn` | icon-only control; `label` required (→ `aria-label` + `title`); `active` (on a link also `aria-current="page"`), `variant="danger"`; `as="a"` or a router Link for nav; toggle: pass `aria-pressed` |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
 | `Card` | `.ld-card` | glass panel |
 | `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |

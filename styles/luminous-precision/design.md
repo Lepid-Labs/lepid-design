@@ -83,6 +83,12 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   (`--ld-slide-lead` / `--ld-slide-trail`, direction from `data-ld-dir`).
   Variants tint the label only; `--block` fills the row with equal-width
   segments. Use `role="group"` + `aria-label`.
+- **Icon button** `.ld-icon-btn` (+ `--active`, `--danger`) — chromeless
+  2rem square for icon-only actions (`<button>` or `<a>`; always
+  `aria-label`). Faint glyph at rest; hover lights it orchid on a faint tint
+  with a soft glow. Active (`--active`, `aria-pressed="true"`,
+  `aria-current="page"`) is an orchid glyph in a hairline orchid inset.
+  `--danger` turns the glyph red on hover. Child `svg` sized to 1.25em.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
   `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
