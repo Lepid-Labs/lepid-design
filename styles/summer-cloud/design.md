@@ -162,6 +162,11 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   and would be invisible on this opaque surface), radius, small mono,
   horizontal scroll. `.ld-pre--log` bounds it (`--ld-log-max-height`,
   420px), scrolls both ways, and wraps long lines — flat, no scanlines.
+- **Copy control** `.ld-pre-copy` — an `.ld-icon-btn` pinned top-right in
+  a `.ld-pre-wrap`; fades in on hover/focus-within, always shown on touch
+  (`hover: none`). `data-ld-copy="copied"` swaps the copy glyph for a
+  success-tinted check; `"failed"` tints it danger. Status goes to a
+  visually hidden `aria-live` `.ld-pre-copy-status`.
 
 ## Deviations from the Stitch source
 

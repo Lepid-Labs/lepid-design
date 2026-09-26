@@ -92,6 +92,7 @@ non-React apps):
 | `Page`/`PageHeader` | `.ld-page` | centered column (`width`: narrow/default/wide/full) with title, eyebrow, subtitle, actions |
 | `Grid`/`Split`/`AsideLayout`/`Center` | `.ld-grid`/`.ld-split`/`.ld-aside-layout`/`.ld-center` | dashboard grid, list + detail, content + sticky aside, centered column |
 | `LogBlock` | `.ld-pre`, `.ld-pre--log` | terminal/log output: bounded height (`maxHeight`, default 420px), scrolls, wraps long lines; `follow` keeps the newest line in view while the reader is at the bottom; `role="log"` unless `live={false}`. Plain command snippets: bare `.ld-pre` |
+| `CodeBlock` | `.ld-pre-wrap`, `.ld-pre-copy` | `.ld-pre` with a copy-to-clipboard `.ld-icon-btn` top-right (hover/focus reveal, always on touch); check for 1.5s + polite announcement; `copyLabel`, `wrapClassName`. Plain HTML: wrap markup + the README's vanilla snippet (sets `data-ld-copy="copied"\|"failed"`) |
 | `Table`/`TableRow` | `.ld-table`, `.ld-table--interactive` | compose native `thead`/`tbody`/`th`/`td`; `<Table interactive>` + `<TableRow onActivate selected>` for clickable rows (click or Enter/Space; nested controls don't trigger it; `selected` → `aria-selected`). Plain HTML: add `--interactive`, give rows `tabindex="0"` and a key handler |
 
 Theme-specific additions (styled only under that theme — check before using):

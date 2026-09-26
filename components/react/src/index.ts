@@ -18,6 +18,15 @@ export {
 } from "./table-state.js";
 export { LogBlock, type LogBlockProps } from "./LogBlock.js";
 export { logAttrs, isPinnedToBottom, LOG_PIN_TOLERANCE, type LogOptions } from "./log-state.js";
+export { CodeBlock, type CodeBlockProps } from "./CodeBlock.js";
+export {
+  copyText,
+  copyDataAttr,
+  copyAnnouncement,
+  COPIED_MS,
+  type CopyStatus,
+  type ClipboardLike,
+} from "./copy-state.js";
 export {
   StatusCard,
   StatusCardRows,

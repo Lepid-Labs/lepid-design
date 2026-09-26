@@ -24,3 +24,65 @@
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100% 4px;
 }
+
+/* Copy control (.ld-pre-wrap + .ld-pre-copy): an .ld-icon-btn pinned to the
+ * block's top-right corner. Hidden until the wrap is hovered or holds focus
+ * (so it stays keyboard-reachable), always shown where there's no hover
+ * (touch). The host script sets data-ld-copy="copied" | "failed" on the
+ * button for ~1.5s: copied swaps the copy glyph for the check. Status text for
+ * screen readers goes in the visually hidden aria-live .ld-pre-copy-status. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap {
+  position: relative;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap > .ld-pre {
+  padding-right: calc(2rem + var(--ld-space-3));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy {
+  position: absolute;
+  top: var(--ld-space-1);
+  right: var(--ld-space-1);
+  background: var(--ld-surface-sunken);
+  opacity: 0;
+  transition: opacity var(--ld-transition), color var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap:hover .ld-pre-copy,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap:focus-within .ld-pre-copy,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap .ld-pre-copy[data-ld-copy] {
+  opacity: 1;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap .ld-pre-copy[data-ld-copy="copied"] {
+  color: var(--ld-success);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-wrap .ld-pre-copy[data-ld-copy="failed"] {
+  color: var(--ld-danger);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy__check,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy[data-ld-copy="copied"] .ld-pre-copy__icon {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy[data-ld-copy="copied"] .ld-pre-copy__check {
+  display: block;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (hover: none) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pre-copy {
+    transition: none;
+  }
+}
