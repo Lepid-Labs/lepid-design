@@ -6,6 +6,16 @@ export { iconButtonAttrs, type IconButtonOptions } from "./icon-button.js";
 export { HoldButton, type HoldButtonProps } from "./HoldButton.js";
 export { createHoldController, type HoldController, type HoldOptions, type HoldState } from "./hold.js";
 export { Card, type CardProps } from "./Card.js";
+export { Table, TableRow, type TableProps, type TableRowProps } from "./Table.js";
+export {
+  tableAttrs,
+  tableRowAttrs,
+  isRowActivationKey,
+  isRowActivationClick,
+  ROW_NESTED_CONTROLS,
+  type TableOptions,
+  type TableRowOptions,
+} from "./table-state.js";
 export {
   StatusCard,
   StatusCardRows,
