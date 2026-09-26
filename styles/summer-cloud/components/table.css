@@ -32,3 +32,23 @@
   font-family: var(--ld-font-mono);
   text-align: right;
 }
+
+/* Interactive rows (.ld-table--interactive): the cursor is the affordance —
+ * plain tables hover too. Focus is an outline so it
+ * composes with the selected state (aria-selected="true"), which sits last
+ * so it outranks hover. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr {
+  cursor: pointer;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr:focus-visible {
+  outline: 2px solid var(--ld-accent);
+  outline-offset: -2px;
+  background: var(--ld-sky-tint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr:active {
+  background: rgba(12, 179, 255, 0.08);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr[aria-selected="true"] {
+  background: rgba(93, 43, 255, 0.07);
+  box-shadow: inset 3px 0 0 0 var(--ld-primary);
+}

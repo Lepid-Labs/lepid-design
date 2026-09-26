@@ -25,3 +25,23 @@
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr:hover {
   background: var(--ld-surface-glass);
 }
+
+/* Interactive rows (.ld-table--interactive): the cursor is the affordance —
+ * plain tables hover too. Focus is an outline so it
+ * composes with the selected state (aria-selected="true"), which sits last
+ * so it outranks hover. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr {
+  cursor: pointer;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr:focus-visible {
+  outline: 1px solid var(--ld-primary-border);
+  outline-offset: -1px;
+  background: var(--ld-surface-glass);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr:active {
+  background: rgba(210, 187, 255, 0.08);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr[aria-selected="true"] {
+  background: rgba(210, 187, 255, 0.12);
+  box-shadow: inset 2px 0 0 0 var(--ld-primary), inset 0 0 10px rgba(210, 187, 255, 0.25);
+}
