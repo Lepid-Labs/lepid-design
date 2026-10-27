@@ -6,21 +6,28 @@
   border-radius: var(--ld-radius);
   backdrop-filter: blur(var(--ld-blur));
   -webkit-backdrop-filter: blur(var(--ld-blur));
-  box-shadow: var(--ld-shadow);
+  box-shadow: var(--ld-elevation-1);
   color: var(--ld-on-surface);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card > :first-child { margin-top: 0; }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card > :last-child { margin-bottom: 0; }
 
 /* Level 2 — floating: higher-opacity white, lifts on hover. Use for
- * interactive cards (products, tiles), not for static content panels. */
+ * floating tiles, not for static content panels; a card that is one
+ * clickable target wants .ld-card--interactive below. */
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating {
   background: var(--ld-surface-glass-high);
   backdrop-filter: blur(var(--ld-blur-high));
   -webkit-backdrop-filter: blur(var(--ld-blur-high));
   transition: transform var(--ld-transition), box-shadow var(--ld-transition);
 }
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:hover {
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ld-shadow-raised-hover);
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:focus-within {
   transform: translateY(-4px);
   box-shadow: var(--ld-shadow-raised-hover);
 }
@@ -29,7 +36,80 @@
   :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating {
     transition: none;
   }
-  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:hover {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:hover,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--floating:focus-within {
+    transform: none;
+  }
+}
+
+/* Interactive card (.ld-card--interactive): the whole card is one target.
+ * Its primary link or button carries .ld-card__link, whose ::after stretches
+ * over the card, so a click anywhere follows it; nested links, buttons and
+ * fields sit above that overlay and keep their own clicks. Keep the link's
+ * ancestors up to the card unpositioned, or the overlay shrinks to them.
+ * Hover floats it up 4px on the spring into the brighter glass tier with a
+ * deeper violet shadow; keyboard focus draws the sky-blue ring, and a press
+ * pushes it most of the way back down. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive {
+  position: relative;
+  isolation: isolate;
+  cursor: pointer;
+  transition:
+    transform var(--ld-duration-base) var(--ld-ease-spring),
+    box-shadow var(--ld-duration-base) var(--ld-ease-standard),
+    background var(--ld-duration-base) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive .ld-card__link {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer; /* the primary control may be a <button> */
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive .ld-card__link::after {
+  content: "";
+  position: absolute;
+  inset: -1px; /* over the 1px border, so the ring hugs the card's edge */
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive :is(a[href], button, input, select, textarea, summary, label, [role="button"], [role="link"], [contenteditable="true"]):not(.ld-card__link) {
+  position: relative;
+  z-index: 1;
+}
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:hover {
+    transform: translateY(-4px);
+    background: var(--ld-surface-glass-high);
+    box-shadow: var(--ld-elevation-2);
+  }
+}
+/* keyboard focus lands on the link: its ring is drawn around the whole card */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive .ld-card__link:focus-visible {
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive .ld-card__link:focus-visible::after {
+  outline: 2px solid var(--ld-accent);
+  outline-offset: 2px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:has(.ld-card__link:focus-visible) {
+  transform: translateY(-4px);
+  background: var(--ld-surface-glass-high);
+  box-shadow: var(--ld-elevation-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:has(.ld-card__link:active) {
+  transform: translateY(-1px);
+  box-shadow: var(--ld-elevation-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:hover {
+    transform: none;
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:has(.ld-card__link:focus-visible),
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-card--interactive:has(.ld-card__link:active) {
     transform: none;
   }
 }

@@ -24,13 +24,25 @@
   color: var(--ld-faint);
   transition: color var(--ld-transition);
 }
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:focus-visible {
   border-color: var(--ld-primary-border);
   color: var(--ld-primary);
+  outline: none;
+}
+/* slide + pulse are motion: keyboard focus always, a pointer only where hover is real */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:focus-visible {
   transform: translateX(4px);
   animation: ld-nb-pulse-glow 2s infinite;
 }
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover::before {
+@media (hover: hover) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover {
+    transform: translateX(4px);
+    animation: ld-nb-pulse-glow 2s infinite;
+  }
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover::before,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:focus-visible::before {
   color: var(--ld-accent);
   text-shadow: 0 0 5px var(--ld-accent-glow);
 }
@@ -49,7 +61,8 @@
   :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link {
     transition: none;
   }
-  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:hover,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-link:focus-visible {
     animation: none;
   }
 }

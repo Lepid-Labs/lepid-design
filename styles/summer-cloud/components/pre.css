@@ -45,7 +45,7 @@
   right: var(--ld-space-1);
   background: var(--ld-surface-sunken);
   opacity: 0;
-  transition: opacity var(--ld-transition), background var(--ld-transition), color var(--ld-transition), box-shadow 0.2s ease, transform 0.2s var(--ld-ease-bounce);
+  transition: opacity var(--ld-transition), background var(--ld-transition), color var(--ld-transition), box-shadow var(--ld-duration-fast) ease, transform var(--ld-duration-fast) var(--ld-ease-bounce);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pre-wrap:hover .ld-pre-copy,
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pre-wrap:focus-within .ld-pre-copy,

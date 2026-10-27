@@ -48,7 +48,17 @@ tonal layers and glow, not drop shadows. Never pure white or pure black.
 - Focus is electric teal: inputs drop the resting border for a teal line plus
   soft teal outer glow.
 - Elevation = glow (`ld-pulse-glow` orchid, `ld-pulse-glow-accent` teal), not
-  dark shadows. Transitions 0.3s. Respect `prefers-reduced-motion`.
+  dark shadows. `--ld-elevation-1..4` (raised, lifted, floating, modal) widen
+  the orchid glow; the floating level adds a lit hairline and a dark drop so a
+  menu parts from the content beneath it.
+- Motion is quick and exact: `--ld-duration-fast/base/slow` 0.15/0.3/0.45s,
+  a crisp `--ld-ease-standard` (`cubic-bezier(0.2,0,0,1)`), and a spring that
+  barely overshoots. Exits run faster than entrances. Respect
+  `prefers-reduced-motion`.
+- Hover motion runs only where hover is real (`@media (hover: hover)`); every
+  hover state has a `:focus-visible` or `:focus-within` twin for the keyboard.
+- Layers take the shared `--ld-z-*` scale, never a literal z-index (see
+  `docs/components/foundation.md`).
 - 8px spacing rhythm; generous negative space so glows can breathe.
 
 ## Components
@@ -56,13 +66,16 @@ tonal layers and glow, not drop shadows. Never pure white or pure black.
 Class prefix `ld-` (shared token/class contract with the other themes).
 
 - **Card** `.ld-card` — glass pane, 1rem radius, lit top edge.
+  `--interactive` makes it one clickable target (its primary link carries
+  `.ld-card__link`): hover lifts it 2px onto the level-2 glow, keyboard focus
+  draws a teal ring around the whole pane, a press settles it to level 1.
 - **Status card** `.ld-status-card` — dense dashboard card, 1rem radius, Sora title (from pulse's repo
   card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
   adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.
   Parts: `__watermark`, `__head`, `__prefix`, `__title`, `__meta`, `__note`,
   `__rows`, `__row` (`-lead`/`-main`/`-trail`), `__footer`, `__empty`.
-- **NavLink** `.ld-link` — glass list row; hover shifts to solid indigo and
-  lights a 2px teal bar on the left edge.
+- **NavLink** `.ld-link` — glass list row; hover or keyboard focus shifts to
+  solid indigo and lights a 2px teal bar on the left edge.
 - **Button** `.ld-btn` — ghost by default; `--primary` is the one solid fill
   (orchid, dark text), `--accent` teal ghost, `--danger` rose ghost. `--sm` is a
   compact size scaled to `.ld-badge`, for inline and table-row actions.

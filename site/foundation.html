@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — every value on show comes from the theme's tokens */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .levels, .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: 1.5rem; }
+  .cards { grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+  .levels .ld-card { min-height: 6.5rem; }
+  .levels code, .curves code { font-size: 12px; }
+  .curves { display: grid; gap: 0.75rem; }
+  .curve { display: grid; grid-template-columns: 11rem 1fr; align-items: center; gap: 1rem; }
+  .track { position: relative; height: 1.5rem; border-bottom: 1px dashed currentColor; opacity: 0.85; }
+  .dot { position: absolute; left: 0; top: 0.25rem; width: 1rem; height: 1rem; border-radius: 50%;
+    background: var(--ld-primary); box-shadow: 0 0 8px var(--ld-primary-glow);
+    transition: left var(--d) var(--e); }
+  [data-at="end"] .dot { left: calc(100% - 1rem); }
+  .card-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: 1rem; }
+  .ld-card h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  #card-log { min-height: 1.5em; }
+  @media (max-width: 40rem) { .curve { grid-template-columns: 1fr; gap: 0.25rem; } }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · foundations</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section>
+    <h2>Elevation</h2>
+    <p>Four levels, <code>--ld-elevation-1</code> to <code>-4</code>. The dark themes express depth as light
+      (glow and a lit hairline); summer-cloud as violet-tinted shadow.</p>
+    <div class="levels">
+      <div class="ld-card" style="box-shadow: none"><strong>flat</strong><p><code>none</code><br>in-flow content</p></div>
+      <div class="ld-card" style="box-shadow: var(--ld-elevation-1)"><strong>1 · raised</strong><p><code>--ld-elevation-1</code><br>resting panels, a pressed card</p></div>
+      <div class="ld-card" style="box-shadow: var(--ld-elevation-2)"><strong>2 · lifted</strong><p><code>--ld-elevation-2</code><br>hovered cards, stuck headers</p></div>
+      <div class="ld-card" style="box-shadow: var(--ld-elevation-3)"><strong>3 · floating</strong><p><code>--ld-elevation-3</code><br>menus, popovers, toasts</p></div>
+      <div class="ld-card" style="box-shadow: var(--ld-elevation-4)"><strong>4 · modal</strong><p><code>--ld-elevation-4</code><br>dialogs, sheets, drawers</p></div>
+    </div>
+  </section>
+
+  <section id="motion" data-at="start">
+    <h2>Motion</h2>
+    <p>Each dot runs one token pair, exactly as a component transition would.</p>
+    <div class="curves">
+      <div class="curve" style="--d: var(--ld-duration-fast); --e: var(--ld-ease-standard)"><code>duration-fast</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-base); --e: var(--ld-ease-standard)"><code>duration-base</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-slow); --e: var(--ld-ease-standard)"><code>duration-slow</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-slow); --e: var(--ld-ease-standard)"><code>ease-standard</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-slow); --e: var(--ld-ease-enter)"><code>ease-enter</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-slow); --e: var(--ld-ease-exit)"><code>ease-exit</code><div class="track"><span class="dot"></span></div></div>
+      <div class="curve" style="--d: var(--ld-duration-slow); --e: var(--ld-ease-spring)"><code>ease-spring</code><div class="track"><span class="dot"></span></div></div>
+    </div>
+    <p style="margin-top: 1rem"><button type="button" class="ld-btn ld-btn--sm" id="motion-play">Play</button></p>
+  </section>
+
+  <section>
+    <h2>Layers</h2>
+    <p>One z-index scale, the same in every theme. Overlays in the browser's top layer
+      (<code>&lt;dialog&gt;</code>, popover) need none of these.</p>
+    <table class="ld-table">
+      <thead><tr><th>Token</th><th>Value</th><th>For</th></tr></thead>
+      <tbody>
+        <tr><td><code>--ld-z-tooltip</code></td><td>50</td><td>tooltips, the skip link</td></tr>
+        <tr><td><code>--ld-z-toast</code></td><td>45</td><td>notifications</td></tr>
+        <tr><td><code>--ld-z-modal</code></td><td>40</td><td>drawers, sheets, fallback dialogs</td></tr>
+        <tr><td><code>--ld-z-overlay</code></td><td>30</td><td>scrims</td></tr>
+        <tr><td><code>--ld-z-dropdown</code></td><td>25</td><td>menus, popovers, listboxes</td></tr>
+        <tr><td><code>--ld-z-header</code></td><td>20</td><td>the app header</td></tr>
+        <tr><td><code>--ld-z-sticky</code></td><td>10</td><td>sticky nav, sticky table headers</td></tr>
+        <tr><td><code>--ld-z-base</code></td><td>0</td><td>in-flow content</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Interactive card</h2>
+    <p>Hover, Tab to, or press a card: the whole card follows its title link. The star and the
+      inline link are nested controls and keep their own clicks.</p>
+    <div class="cards" data-card-demo>
+      <div class="ld-card ld-card--interactive">
+        <h3><a class="ld-card__link" href="#pipeline">Deploy pipeline</a></h3>
+        <p>Builds on every push to main and promotes to staging.</p>
+        <div class="card-row">
+          <span class="ld-badge ld-badge--success">passing</span>
+          <button type="button" class="ld-icon-btn" aria-label="Star pipeline" title="Star pipeline" aria-pressed="false"><svg aria-hidden="true"><use href="icons.svg#star"/></svg></button>
+        </div>
+      </div>
+      <div class="ld-card ld-card--interactive">
+        <h3><a class="ld-card__link" href="#incidents">Incidents</a></h3>
+        <p>Two open, both owned. See the <a href="#runbook">runbook</a> first.</p>
+        <div class="card-row"><span class="ld-badge ld-badge--warning">2 open</span></div>
+      </div>
+      <div class="ld-card ld-card--interactive">
+        <h3><button type="button" class="ld-card__link">Team plan</button></h3>
+        <p>The primary control can be a button: the whole card selects the plan.</p>
+        <div class="card-row"><span class="ld-badge">monthly</span></div>
+      </div>
+    </div>
+    <p id="card-log" role="status"></p>
+  </section>
+</main>
+
+<script>
+  // Motion: flip every dot to the other end; replays on a loop unless reduced motion is asked for.
+  const motion = document.getElementById("motion");
+  const flip = () => { motion.dataset.at = motion.dataset.at === "end" ? "start" : "end"; };
+  document.getElementById("motion-play").addEventListener("click", flip);
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(flip, 1600);
+
+  // Cards: report what a click reached, so the nested controls can be seen keeping their own clicks.
+  const log = document.getElementById("card-log");
+  document.querySelector("[data-card-demo]").addEventListener("click", (e) => {
+    const hit = e.target.closest("a, button");
+    if (!hit) return;
+    e.preventDefault();
+    if (hit.hasAttribute("aria-pressed")) hit.setAttribute("aria-pressed", String(hit.getAttribute("aria-pressed") !== "true"));
+    log.textContent = `${hit.classList.contains("ld-card__link") ? "Card" : "Nested control"}: ${hit.getAttribute("aria-label") ?? hit.textContent.trim()}`;
+  });
+</script>
+<script src="picker.js"></script>
+</body>
+</html>

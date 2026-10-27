@@ -9,7 +9,7 @@
   border-radius: var(--ld-radius-lg);
   color: var(--ld-on-surface);
   font-family: var(--ld-font-mono);
-  box-shadow: 0 0 40px var(--ld-primary-glow);
+  box-shadow: var(--ld-elevation-4);
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-dialog::backdrop {
   background: rgba(10, 12, 16, 0.6);

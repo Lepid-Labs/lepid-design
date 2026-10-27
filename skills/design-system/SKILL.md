@@ -12,14 +12,20 @@ component styles in an app — consume the system.
 ## Rules
 
 1. **Tokens, not literals.** Use `--ld-*` custom properties for every color,
-   font, radius, and spacing value. If a needed token doesn't exist, propose
-   adding it to `lepid-design` rather than hardcoding.
+   font, radius, spacing, duration and easing (`--ld-duration-*`,
+   `--ld-ease-*`), shadow (`--ld-elevation-1..4`), and z-index (`--ld-z-*`
+   layers) value. If a needed token doesn't exist, propose adding it to
+   `lepid-design` rather than hardcoding. When to use each level:
+   `docs/components/foundation.md`.
 2. **Existing components first.** Before building UI, check the component
    inventory below. App-local components are only for genuinely app-specific
    composites — and should still be built from `ld-*` classes.
 3. **Read the style's `design.md`** before designing new screens — it states
    the aesthetic rules that the CSS alone does not encode.
-4. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+4. **Hover is never the only path.** Hover motion goes inside
+   `@media (hover: hover)`; every hover state gets a `:focus-visible` (or
+   `:focus-within`) twin; anything revealed on hover is always visible on touch.
+5. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
    not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
@@ -75,7 +81,7 @@ non-React apps):
 | `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state; one pressed segment gets a sliding pill (plain HTML: set `data-ld-dir="forward"\|"back"` on the track when selection moves) |
 | `IconButton` | `.ld-icon-btn` | icon-only control; `label` required (→ `aria-label` + `title`); `active` (on a link also `aria-current="page"`), `variant="danger"`; `as="a"` or a router Link for nav; toggle: pass `aria-pressed` |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
-| `Card` | `.ld-card` | glass panel |
+| `Card` | `.ld-card` | glass panel; `interactive` (`--interactive`) makes it one clickable target: mark its primary link or button `className="ld-card__link"` (its hit area covers the card, nested controls keep their clicks); hover lift, focus ring, press |
 | `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |
 | `NavLink` | `.ld-link` | chevron + glow hover |
 | `Input`/`Textarea`/`Select` | `.ld-input` etc. | pair with `Field`/`Label` |

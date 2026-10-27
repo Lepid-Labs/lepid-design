@@ -29,8 +29,17 @@
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:focus-visible {
   border-color: var(--ld-primary-border);
   color: var(--ld-primary);
-  animation: ld-lp-pulse-glow 2s infinite;
   outline: none;
+}
+/* the glow pulse is motion: keyboard focus always gets it, a pointer only
+ * where hover is real — on touch a tapped button would pulse until the next tap */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:focus-visible {
+  animation: ld-lp-pulse-glow 2s infinite;
+}
+@media (hover: hover) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-btn:hover {
+    animation: ld-lp-pulse-glow 2s infinite;
+  }
 }
 
 /* primary: solid orchid fill, dark text, glow pulse on hover */

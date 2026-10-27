@@ -19,7 +19,8 @@
   cursor: pointer;
   transition: color var(--ld-transition), border-color var(--ld-transition);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-tab:hover {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-tab:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-tab:focus-visible {
   color: var(--ld-on-surface);
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-tab--active,

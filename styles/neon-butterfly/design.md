@@ -41,21 +41,33 @@ appear only on interaction or state. Never use pure white or pure black.
 - Radius `0.5rem` everywhere (pills for switches/progress).
 - Borders are 1px hairlines; emphasis comes from border *color*, not weight.
 - Glow, not shadow: elevation is expressed with colored `box-shadow` glows
-  (`ld-pulse-glow` on hover) rather than dark drop shadows.
-- Transitions 0.3s; hover motion is a 4px `translateX` slide on links.
+  (`ld-pulse-glow` on hover) rather than dark drop shadows. `--ld-elevation-1..4`
+  (raised, lifted, floating, modal) widen the lilac light; the floating level
+  adds a lilac hairline and a dark drop to part from the content beneath.
+- Motion is snappy: `--ld-duration-fast/base/slow` 0.15/0.3/0.55s; exits cut
+  off sharply (`--ld-ease-exit`), like a console clearing. Hover motion is a 4px
+  `translateX` slide on links.
 - Respect `prefers-reduced-motion`.
+- Hover motion runs only where hover is real (`@media (hover: hover)`); every
+  hover state has a `:focus-visible` or `:focus-within` twin for the keyboard.
+- Layers take the shared `--ld-z-*` scale, never a literal z-index (see
+  `docs/components/foundation.md`).
 
 ## Components
 
 Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 
-- **Card** `.ld-card` — frosted glass panel.
+- **Card** `.ld-card` — frosted glass panel. `--interactive` makes it one
+  clickable target (its primary link carries `.ld-card__link`): hover lifts it
+  2px, lights the border lilac and widens the glow; keyboard focus draws a lilac
+  ring around the whole panel; a press settles it to level 1.
 - **Status card** `.ld-status-card` — dense dashboard card (from pulse's repo
   card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
   adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.
   Parts: `__watermark`, `__head`, `__prefix`, `__title`, `__meta`, `__note`,
   `__rows`, `__row` (`-lead`/`-main`/`-trail`), `__footer`, `__empty`.
-- **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover.
+- **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover
+  or keyboard focus.
 - **Button** `.ld-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
   compact size (badge-scaled) for inline/table-row actions.
 - **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,

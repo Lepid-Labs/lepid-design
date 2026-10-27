@@ -17,7 +17,7 @@
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
-  transition: background var(--ld-transition), color var(--ld-transition), box-shadow 0.2s ease, transform 0.2s var(--ld-ease-bounce);
+  transition: background var(--ld-transition), color var(--ld-transition), box-shadow var(--ld-duration-fast) ease, transform var(--ld-duration-fast) var(--ld-ease-bounce);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-icon-btn > svg {
   width: 1.25em;
@@ -28,10 +28,15 @@
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-icon-btn:focus-visible {
   background: var(--ld-sky-tint);
   color: var(--ld-primary);
-  transform: scale(1.06);
   outline: none;
 }
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-icon-btn:hover {
+    transform: scale(1.06);
+  }
+}
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-icon-btn:focus-visible {
+  transform: scale(1.06);
   box-shadow: 0 0 0 4px var(--ld-accent-glow);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-icon-btn:active:not(:disabled) {

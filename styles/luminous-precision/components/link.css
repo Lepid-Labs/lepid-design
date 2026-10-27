@@ -21,7 +21,9 @@
     color var(--ld-transition),
     box-shadow var(--ld-transition);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link:hover {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-link:focus-visible {
+  outline: none;
   background: var(--ld-surface);
   color: var(--ld-accent);
   box-shadow:
