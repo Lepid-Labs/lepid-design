@@ -224,6 +224,61 @@ export {
   PRESENCE_IDLE_MS,
   type Point,
 } from "./presence-state.js";
+export { Slider, RangeSlider, type SliderProps, type RangeSliderProps } from "./Slider.js";
+export { clampRange, rangeFraction, rangeTopThumb, snapToStep, type RangeBounds } from "./range.js";
+export { DateField, type DateFieldProps } from "./DateField.js";
+export {
+  addDays,
+  dateInRange,
+  isISODate,
+  isoToTyped,
+  localISODate,
+  nextWeekday,
+  presetValue,
+  typedToISO,
+  weekday,
+  DATE_PRESETS,
+  type DateOrder,
+  type DatePreset,
+} from "./date-presets.js";
+export { ColorField, type ColorFieldProps, type Swatch } from "./ColorField.js";
+export { contrastGrade, contrastRatio, formatContrast, normalizeHex, type ContrastGrade } from "./color.js";
+export { FileUpload, type FileUploadProps, type UploadContext } from "./FileUpload.js";
+export { dragMayAccept, fileProblem, formatBytes, matchesAccept, timeLeft, type FileLike } from "./upload-files.js";
+export {
+  SortableList,
+  SortableBoard,
+  type SortableListProps,
+  type SortableBoardProps,
+  type SortableColumn,
+  type SortMove,
+} from "./Sortable.js";
+export { createSortable, type SortableOptions } from "./sortable-dom.js";
+export {
+  edgeScroll,
+  insertionIndex,
+  keyboardMove,
+  moveCard,
+  moveItem,
+  sortMessage,
+  type SortEvent,
+  type SortPosition,
+} from "./reorder.js";
+export { SwipeRow, type SwipeRowProps, type SwipeAction } from "./SwipeRow.js";
+export { createSwipe, type SwipeOptions, type SwipeSide } from "./swipe-dom.js";
+export {
+  rubberBand,
+  swipeAxis,
+  swipeOffset,
+  swipeSettle,
+  SWIPE_FLING,
+  SWIPE_FULL_FRACTION,
+  SWIPE_OPEN_FRACTION,
+  SWIPE_SLOP,
+  type SwipeLimits,
+  type SwipeRelease,
+  type SwipeSettle,
+} from "./swipe.js";
 export { Dialog, type DialogProps } from "./Dialog.js";
 export { Sheet, type SheetProps } from "./Sheet.js";
 export { sheetOffset, shouldDismissSheet, SHEET_DISMISS_FRACTION, SHEET_FLING_SPEED } from "./sheet-drag.js";

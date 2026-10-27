@@ -1,0 +1,148 @@
+/* summer-cloud — drag and drop (SortableList, SortableBoard). Items are white cards
+ * on a lavender hairline with a soft dotted grip (.ld-drag-handle). Picked up, a
+ * card floats on the floating elevation, swells with a bounce and, under a
+ * pointer, tilts a degree and a half; a violet pill line marks the slot, and the
+ * target column fills sky. Under reduced motion the lift neither swells nor tilts
+ * nor animates, and the line still shows. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable {
+  position: relative;
+  display: grid;
+  gap: var(--ld-space-2);
+  min-block-size: 3.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  padding: var(--ld-space-1) var(--ld-space-3) var(--ld-space-1) var(--ld-space-1);
+  background: var(--ld-surface);
+  border-radius: var(--ld-radius);
+  box-shadow: 0 0 0 1px var(--ld-outline), var(--ld-shadow-soft);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  transition: box-shadow var(--ld-duration-fast) var(--ld-ease-standard), scale var(--ld-duration-base) var(--ld-ease-bounce),
+    rotate var(--ld-duration-base) var(--ld-ease-bounce);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__body {
+  flex: 1;
+  min-inline-size: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-drag-handle {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-outline);
+  cursor: grab;
+  touch-action: none; /* the handle drags; the rest of the row still scrolls the page */
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard), background-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-drag-handle svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-drag-handle:hover {
+    background-color: var(--ld-sky-tint);
+    color: var(--ld-primary);
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-drag-handle:focus-visible {
+  outline: none;
+  color: var(--ld-primary);
+  box-shadow: 0 0 0 2px var(--ld-accent), 0 0 0 5px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-dragging] {
+  z-index: 1;
+  box-shadow: 0 0 0 1px var(--ld-primary-border), var(--ld-elevation-4);
+  scale: 1.03;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-dragging="pointer"] {
+  rotate: 1.5deg;
+  cursor: grabbing;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-dragging="keyboard"] .ld-drag-handle {
+  background-color: var(--ld-primary);
+  color: var(--ld-on-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-drop="before"]::before,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable[data-ld-drop="end"]::after {
+  content: "";
+  block-size: 4px;
+  background: linear-gradient(90deg, var(--ld-primary), var(--ld-primary-bright));
+  border-radius: var(--ld-radius-pill);
+  box-shadow: 0 2px 8px rgba(93, 43, 255, 0.35);
+  pointer-events: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-drop="before"]::before {
+  position: absolute;
+  inset-inline: var(--ld-space-2);
+  top: calc(var(--ld-space-2) / -2 - 2px);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable-root[data-ld-sorting="pointer"],
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board[data-ld-sorting="pointer"] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: start;
+  gap: var(--ld-space-3);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__column {
+  position: relative;
+  display: grid;
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-3);
+  background: var(--ld-surface-glass);
+  border-radius: var(--ld-radius-lg);
+  box-shadow: inset 0 0 0 1px var(--ld-border-lit);
+  transition: background-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__column:has([data-ld-dragging]) {
+  z-index: 1;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__column:has([data-ld-drop-target]) {
+  background-color: rgba(201, 230, 255, 0.7);
+  box-shadow: inset 0 0 0 2px var(--ld-accent), var(--ld-elevation-1);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-display);
+  font-size: var(--ld-text-sm);
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__count {
+  min-inline-size: 1.5rem;
+  padding: 0 var(--ld-space-2);
+  background: var(--ld-surface);
+  border-radius: var(--ld-radius-pill);
+  box-shadow: inset 0 0 0 1px var(--ld-outline);
+  color: var(--ld-faint);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board .ld-sortable:empty {
+  border: 2px dashed var(--ld-outline);
+  border-radius: var(--ld-radius);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-board__column { transition: none; }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sortable__item[data-ld-dragging] { scale: none; rotate: none; }
+}

@@ -1,0 +1,106 @@
+/* neon-butterfly — swipe actions (SwipeRow). The row's content is a navy pane over
+ * a sunken well that holds the actions; a horizontal swipe slides the pane (the
+ * page still scrolls vertically: touch-action pan-y) and it snaps open or shut on
+ * the spring. Actions are coloured by consequence: neutral ones are hairline
+ * console keys, the destructive one burns pink. Pulled past the full-swipe point,
+ * the outermost action takes the whole well and glows, so a release will run it. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe {
+  --ld-swipe-x: 0px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--ld-surface-sunken);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  touch-action: pan-y;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-2) var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  color: var(--ld-on-surface);
+  translate: var(--ld-swipe-x) 0;
+  transition: translate var(--ld-duration-base) var(--ld-ease-spring);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe="dragging"] .ld-swipe__content {
+  transition: none;
+  user-select: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe="full"] .ld-swipe__content {
+  transition: translate var(--ld-duration-fast) var(--ld-ease-exit);
+}
+/* an open pane's moved edge is a lilac hairline */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe="leading"] .ld-swipe__content {
+  box-shadow: -1px 0 0 var(--ld-primary-border), -6px 0 12px rgba(210, 187, 255, 0.2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe="trailing"] .ld-swipe__content {
+  box-shadow: 1px 0 0 var(--ld-primary-border), 6px 0 12px rgba(210, 187, 255, 0.2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__main {
+  flex: 1;
+  min-inline-size: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__actions {
+  position: absolute;
+  inset-block: 0;
+  display: flex;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__actions--leading {
+  inset-inline-start: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__actions--trailing {
+  inset-inline-end: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-side="leading"] .ld-swipe__actions--leading,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-side="trailing"] .ld-swipe__actions--trailing {
+  min-inline-size: var(--ld-swipe-reveal, 0px);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__actions--leading > :first-child,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__actions--trailing > :last-child {
+  flex-grow: 1;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe-full] .ld-swipe__actions--leading > :not(:first-child),
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe-full] .ld-swipe__actions--trailing > :not(:last-child) {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__action {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  min-inline-size: 4.5rem;
+  padding: 0 var(--ld-space-3);
+  background: var(--ld-surface-sunken);
+  border: 0;
+  border-inline-start: 1px solid var(--ld-border);
+  color: var(--ld-primary);
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__action svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__action--danger {
+  background: var(--ld-danger);
+  color: var(--ld-bg);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe-full] .ld-swipe__action--danger {
+  box-shadow: inset 0 0 20px rgba(11, 19, 38, 0.35), 0 0 16px rgba(255, 45, 120, 0.6);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe-full] .ld-swipe__action:not(.ld-swipe__action--danger) {
+  background: rgba(57, 255, 20, 0.12);
+  color: var(--ld-accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe__content { transition: none; }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swipe[data-ld-swipe="full"] .ld-swipe__content { transition: none; }
+}

@@ -228,6 +228,26 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   a square tag in bold tracked capitals. Eight neon slots (`--ld-presence-1..8`)
   carry navy ink. The layer sits on `--ld-z-sticky` and never takes a click; idle
   cursors fade out. Avatars take the one 0.5rem radius.
+- **Range slider** `.ld-range` (native `input[type=range]`; fill from `--ld-range-fill`), `.ld-slider` (+ `__header`,
+  `__input`, `__pair`, `__track`, `__bubble`, `__ticks`, `__tick`, `__marks`, `__mark`; `--range`) — a console
+  meter: a navy hairline channel that burns lilac up to the thumb, a lilac block cursor in a 44px-tall target that
+  turns lime on keyboard focus, hairline ticks, and the value in a hairline tag that goes lime while dragged or focused.
+- **Date and colour pickers** `.ld-date` (+ `__presets`, `__input`), `.ld-color` (+ `__row`, `__swatch`, `__picker`,
+  `__hex`, `__preview`, `__sample`, `__contrast`), `.ld-swatches`, `.ld-swatch` (+ `__input`, `__chip`) — the native
+  date field with a lilac calendar glyph under console-tag presets. Swatches are square tiles on the one radius; the
+  chosen tile takes a lime edge, glow and a lime check on navy. The contrast tag is tracked uppercase.
+- **File upload** `.ld-dropzone` (+ `__input`, `__icon`, `__title`, `__prompt`, `__hint`; `data-ld-drag`),
+  `.ld-upload-list`, `.ld-upload` (+ `__thumb`, `__name`, `__size`, `__status`, `__progress`, `__actions`;
+  `data-ld-upload`) — a dashed hairline frame with a tracked title and a `>` prompt; a file dragged over goes solid
+  lime with a glow, an unacceptable one pink. Files are console rows in one frame, split by hairlines; errors carry a
+  pink rule at the edge.
+- **Drag and drop** `.ld-sortable` (+ `__item`, `__body`; `data-ld-dragging`, `data-ld-drop`), `.ld-drag-handle`,
+  `.ld-board` (+ `__column`, `__title`, `__count`) — console rows with a dotted grip that dashes on hover. A lifted
+  row takes the lilac hairline of `--ld-elevation-3`, grows 2% and tilts a degree under a pointer; a lime scanline
+  with a square cap marks the slot; columns frame in lilac when targeted and count in lime brackets.
+- **Swipe actions** `.ld-swipe` (+ `__content`, `__main`, `__actions--leading`, `__actions--trailing`, `__action`,
+  `__action--danger`) — a navy pane over a sunken well that snaps open on the spring with a lilac edge; neutral
+  actions are uppercase console keys, the destructive one burns pink; a full swipe glows.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

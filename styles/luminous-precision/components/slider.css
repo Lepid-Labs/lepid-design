@@ -1,0 +1,244 @@
+/* luminous-precision — range slider: the native input[type=range] (.ld-range) and
+ * the Slider / RangeSlider wrapper (.ld-slider). The track is a sunken hairline
+ * channel that fills orchid up to the thumb, to --ld-range-fill (0..1, written by
+ * the component or one line of script). The thumb is an orchid disc 24px across
+ * in a 44px-tall target that glows; keyboard focus rings it teal. The value rides
+ * above the thumb in a glass bubble that lights while it is dragged or focused. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider {
+  --ld-thumb: 1.5rem; /* visible disc and hit width */
+  --ld-thumb-hit: 2.75rem; /* hit height: the whole row takes a press */
+  --ld-track: 0.375rem;
+  --ld-range-dir: to right;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:dir(rtl),
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider:dir(rtl) {
+  --ld-range-dir: to left;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range {
+  appearance: none;
+  display: block;
+  inline-size: 100%;
+  block-size: var(--ld-thumb-hit);
+  margin: 0;
+  background: none;
+  cursor: pointer;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:focus-visible {
+  outline: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-webkit-slider-runnable-track {
+  block-size: var(--ld-track);
+  background: linear-gradient(var(--ld-range-dir), var(--ld-primary) calc(var(--ld-thumb) / 2 + var(--ld-range-fill, 0) * (100% - var(--ld-thumb))), var(--ld-surface-sunken) 0);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--ld-border), 0 0 6px var(--ld-primary-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-moz-range-track {
+  block-size: var(--ld-track);
+  background: var(--ld-surface-sunken);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--ld-border);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-moz-range-progress {
+  block-size: var(--ld-track);
+  background: var(--ld-primary);
+  border-radius: 999px;
+  box-shadow: 0 0 6px var(--ld-primary-glow);
+}
+/* a 24px disc painted in the middle of a 24x44 box: the transparent block border is
+ * the extra target, and the padding box (all the background paints) is a circle */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: content-box;
+  width: var(--ld-thumb);
+  height: var(--ld-thumb);
+  margin-top: calc((var(--ld-track) - var(--ld-thumb-hit)) / 2);
+  border: solid transparent;
+  border-width: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2) 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--ld-on-primary) 0 22%, var(--ld-primary) 26%) padding-box;
+  filter: drop-shadow(0 0 6px var(--ld-primary-glow));
+  transition: filter var(--ld-duration-fast) var(--ld-ease-standard), scale var(--ld-duration-fast) var(--ld-ease-spring);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-moz-range-thumb {
+  box-sizing: content-box;
+  width: var(--ld-thumb);
+  height: var(--ld-thumb);
+  border: solid transparent;
+  border-width: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2) 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--ld-on-primary) 0 22%, var(--ld-primary) 26%) padding-box;
+  filter: drop-shadow(0 0 6px var(--ld-primary-glow));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:focus-visible::-webkit-slider-thumb {
+  background: radial-gradient(closest-side, var(--ld-primary) 0 58%, var(--ld-bg) 62% 72%, var(--ld-accent) 76%) padding-box;
+  filter: drop-shadow(0 0 8px var(--ld-accent-glow));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:focus-visible::-moz-range-thumb {
+  background: radial-gradient(closest-side, var(--ld-primary) 0 58%, var(--ld-bg) 62% 72%, var(--ld-accent) 76%) padding-box;
+  filter: drop-shadow(0 0 8px var(--ld-accent-glow));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:active::-webkit-slider-thumb {
+  scale: 1.15;
+  filter: drop-shadow(0 0 12px var(--ld-primary-glow));
+}
+@media (hover: hover) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:hover:not(:disabled)::-webkit-slider-thumb {
+    filter: drop-shadow(0 0 10px var(--ld-primary-glow));
+  }
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* the component: label row, track with bubble, ticks and labels */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider {
+  display: grid;
+  gap: var(--ld-space-1);
+  min-inline-size: 0;
+  margin: 0 0 var(--ld-space-3);
+  padding: 0;
+  border: 0;
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__header .ld-label {
+  margin: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__input {
+  width: 6rem;
+  padding-block: var(--ld-space-1);
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__pair {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  color: var(--ld-faint);
+  font-size: 12px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__track {
+  position: relative;
+  isolation: isolate;
+  margin-top: 1.75rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__bubble {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-thumb) / 2 + var(--ld-at) * (100% - var(--ld-thumb)));
+  top: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2 - var(--ld-space-1));
+  translate: -50% -100%;
+  padding: 0.125rem var(--ld-space-2);
+  background: var(--ld-surface-glass);
+  backdrop-filter: blur(var(--ld-blur));
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard), border-color var(--ld-duration-fast) var(--ld-ease-standard),
+    box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__bubble:dir(rtl) {
+  translate: 50% -100%;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__track:has(> .ld-range:nth-of-type(1):is(:active, :focus-visible)) > .ld-slider__bubble:nth-of-type(1),
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__track:has(> .ld-range:nth-of-type(2):is(:active, :focus-visible)) > .ld-slider__bubble:nth-of-type(2) {
+  color: var(--ld-on-surface);
+  border-color: var(--ld-primary-border);
+  box-shadow: 0 0 10px var(--ld-primary-glow);
+}
+/* ticks sit under the track, behind the thumb */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__ticks {
+  position: absolute;
+  z-index: -1;
+  inset-inline: 0;
+  top: calc(var(--ld-thumb-hit) / 2 + var(--ld-track) / 2 + 3px);
+  block-size: 5px;
+  pointer-events: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__tick {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-thumb) / 2 + var(--ld-at) * (100% - var(--ld-thumb)));
+  inline-size: 1px;
+  block-size: 100%;
+  background: var(--ld-faint);
+  opacity: 0.6;
+}
+/* labels slide from start-aligned to end-aligned along the track, so the ends never overflow */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__marks {
+  position: relative;
+  display: block;
+  block-size: 1.25rem;
+  color: var(--ld-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__mark {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-at) * 100%);
+  translate: calc(var(--ld-at) * -100%) 0;
+  white-space: nowrap;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__mark:dir(rtl) {
+  translate: calc(var(--ld-at) * 100%) 0;
+}
+
+/* two thumbs: both inputs span the track; only the thumbs take presses, and the
+ * band between them is the track's own fill */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-slider__track {
+  padding-block-start: var(--ld-thumb-hit);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-slider__track::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: calc(var(--ld-thumb) / 2);
+  top: calc((var(--ld-thumb-hit) - var(--ld-track)) / 2);
+  block-size: var(--ld-track);
+  background: linear-gradient(var(--ld-range-dir), var(--ld-surface-sunken) calc(var(--ld-range-lo) * 100%), var(--ld-primary) 0 calc(var(--ld-range-hi) * 100%), var(--ld-surface-sunken) 0);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--ld-border), 0 0 6px var(--ld-primary-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range {
+  position: absolute;
+  z-index: 0;
+  inset-inline: 0;
+  top: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range[data-ld-top] {
+  z-index: 1;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range::-webkit-slider-runnable-track {
+  background: none;
+  box-shadow: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range::-moz-range-track {
+  background: none;
+  box-shadow: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range::-moz-range-progress {
+  background: none;
+  box-shadow: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider--range .ld-range::-moz-range-thumb {
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range::-webkit-slider-thumb { transition: none; }
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-range:active::-webkit-slider-thumb { scale: none; }
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-slider__bubble { transition: none; }
+}

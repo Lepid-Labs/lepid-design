@@ -281,6 +281,26 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   (`--ld-presence-1..8`, 3:1 on the sky and on white) carry white ink; the vivid
   palette hues would not. The layer sits on `--ld-z-sticky` and never takes a
   click; idle cursors fade out. Avatars are discs with a white ring.
+- **Range slider** `.ld-range` (native `input[type=range]`; fill from `--ld-range-fill`), `.ld-slider` (+ `__header`,
+  `__input`, `__pair`, `__track`, `__bubble`, `__ticks`, `__tick`, `__marks`, `__mark`; `--range`) — a soft sunken
+  pill that fills with a violet gradient; the thumb is a white knob with a violet ring and a tinted shadow (24px, in a
+  44px-tall target) that swells with a bounce while dragged, and blooms a sky ring on keyboard focus. The value floats
+  above in a violet pill; ticks are lavender dots.
+- **Date and colour pickers** `.ld-date` (+ `__presets`, `__input`), `.ld-color` (+ `__row`, `__swatch`, `__picker`,
+  `__hex`, `__preview`, `__sample`, `__contrast`), `.ld-swatches`, `.ld-swatch` (+ `__input`, `__chip`) — the sunken
+  date field with a violet calendar glyph under pill presets. Swatches are round; the chosen one shrinks onto a white
+  ring with a violet halo and a check. The preview is a white card; the contrast pill is deep green, amber or deep red.
+- **File upload** `.ld-dropzone` (+ `__input`, `__icon`, `__title`, `__prompt`, `__hint`; `data-ld-drag`),
+  `.ld-upload-list`, `.ld-upload` (+ `__thumb`, `__name`, `__size`, `__status`, `__progress`, `__actions`;
+  `data-ld-upload`) — a frosted card with a dashed lavender edge and a violet cloud glyph; a file dragged over turns
+  the edge solid sky with a halo and tint, an unacceptable one deep red. Files are white cards with sky type tiles.
+- **Drag and drop** `.ld-sortable` (+ `__item`, `__body`; `data-ld-dragging`, `data-ld-drop`), `.ld-drag-handle`,
+  `.ld-board` (+ `__column`, `__title`, `__count`) — white cards with a lavender grip. A lifted card floats on
+  `--ld-elevation-4`, swells 3% with a bounce and tilts a degree and a half under a pointer; a violet pill line marks
+  the slot, and the target column fills sky with a sky edge.
+- **Swipe actions** `.ld-swipe` (+ `__content`, `__main`, `__actions--leading`, `__actions--trailing`, `__action`,
+  `__action--danger`) — a white card over a soft well that settles on the bouncy spring and lifts when open; neutral
+  actions are sky with deep-sky text, the destructive one deep red with white text.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

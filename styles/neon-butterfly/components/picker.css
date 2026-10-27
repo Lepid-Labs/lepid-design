@@ -1,0 +1,207 @@
+/* neon-butterfly — date and colour pickers (DateField, ColorField). Dates are the
+ * native input with tabular mono digits, a lilac calendar glyph that lights on
+ * focus, and console-tag preset chips (.ld-chip) above. Colours: preset swatches
+ * are square tiles on the one radius, a radio group; the chosen tile takes a lime
+ * edge, a glow and a check, so it never differs by colour alone. The native picker
+ * is a tile with a spectrum corner; the preview prints the colour on the real
+ * surface beside a tracked contrast tag. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-date__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-1);
+  margin-bottom: var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input[type="date"],
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input[type="datetime-local"] {
+  min-block-size: 2.5rem;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input[type="date"]::-webkit-calendar-picker-indicator,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  inline-size: 1rem;
+  block-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23d2bbff' stroke-width='1.4'%3E%3Cpath d='M2 3h12v11H2zM2 6.5h12M5 1.5v3M11 1.5v3'/%3E%3C/svg%3E") center / 1rem no-repeat;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input:focus::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
+@media (hover: hover) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    background-color: rgba(210, 187, 255, 0.1);
+  }
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color {
+  display: grid;
+  gap: var(--ld-space-2);
+  min-inline-size: 0;
+  margin: 0 0 var(--ld-space-3);
+  padding: 0;
+  border: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color > .ld-label {
+  padding: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-1);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--ld-radius);
+  cursor: pointer;
+  transition: border-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch__chip {
+  display: grid;
+  place-items: center;
+  inline-size: 1.625rem;
+  block-size: 1.625rem;
+  border-radius: 0.25rem;
+  background: var(--ld-swatch);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch:has(:checked) {
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 10px var(--ld-accent-glow);
+}
+/* a navy tile holding a lime check reads on any swatch */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch:has(:checked) .ld-swatch__chip::after {
+  content: "";
+  inline-size: 0.9rem;
+  block-size: 0.9rem;
+  border-radius: 2px;
+  background: var(--ld-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2l2 2L9 4' fill='none' stroke='%2339ff14' stroke-width='1.8' stroke-linecap='square'/%3E%3C/svg%3E") center / 0.7rem no-repeat;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch:has(:focus-visible) {
+  outline: 1px dashed var(--ld-primary);
+  outline-offset: 2px;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__swatch {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__swatch::after {
+  content: "";
+  position: absolute;
+  inset-block-end: -3px;
+  inset-inline-end: -3px;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 2px;
+  background: conic-gradient(#ff2d78, #ffd23f, #39ff14, #4dc9ff, #d2bbff, #ff2d78);
+  box-shadow: 0 0 0 2px var(--ld-bg);
+  pointer-events: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__picker {
+  appearance: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  cursor: pointer;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__picker::-webkit-color-swatch-wrapper {
+  padding: 3px;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__picker::-webkit-color-swatch {
+  border: 0;
+  border-radius: 0.25rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__picker::-moz-color-swatch {
+  border: 0;
+  border-radius: 0.25rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__picker:focus-visible {
+  outline: none;
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__hex {
+  width: 8rem;
+  font-family: var(--ld-font-mono);
+  text-transform: lowercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__sample {
+  color: var(--ld-swatch);
+  font-size: 1.125rem;
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__contrast {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  padding: 0.125rem var(--ld-space-2);
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__contrast::before {
+  content: "";
+  inline-size: 0.85em;
+  block-size: 0.85em;
+  background: currentColor;
+  mask: var(--ld-contrast-icon) center / contain no-repeat;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__contrast[data-ld-contrast="pass"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E");
+  color: var(--ld-success);
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__contrast[data-ld-contrast="large"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 2v5M6 9v1.5' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  color: var(--ld-warning);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-color__contrast[data-ld-contrast="fail"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' fill='none' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E");
+  color: var(--ld-danger);
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-swatch,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-input::-webkit-calendar-picker-indicator { transition: none; }
+}

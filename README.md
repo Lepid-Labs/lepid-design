@@ -28,6 +28,7 @@ Loading timing, skeletons, empty states, toasts with undo, autosave status, and 
 Tooltips, menus, context menus, sheets and drawers, the command palette, search, and choosing an overlay: [docs/guides/overlays.md](docs/guides/overlays.md).
 Sortable, selectable tables, bulk actions, pagination and filter chips: [docs/guides/data.md](docs/guides/data.md); honest SVG charts: [docs/guides/charts.md](docs/guides/charts.md).
 Accordions, inline editing, star ratings and live cursors: [docs/guides/surfaces.md](docs/guides/surfaces.md); a settings page: [docs/guides/settings.md](docs/guides/settings.md).
+Sliders, file upload, drag and drop and swipe actions: [docs/guides/manipulation.md](docs/guides/manipulation.md); date and colour pickers: [docs/guides/pickers.md](docs/guides/pickers.md).
 
 `styles/manifest.json` (exported as `@lepid-labs/styles/manifest`) is the
 machine-readable roster: every theme's name, scheme, and webfont links, plus

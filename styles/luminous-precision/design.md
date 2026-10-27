@@ -244,6 +244,28 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   with a glow of the same hue. Eight bright slots (`--ld-presence-1..8`) carry
   obsidian ink. The layer sits on `--ld-z-sticky` and never takes a click; idle
   cursors fade out. Avatars are discs on their colour, ringed in obsidian.
+- **Range slider** `.ld-range` (native `input[type=range]`; fill from `--ld-range-fill`), `.ld-slider` (+ `__header`,
+  `__input`, `__pair`, `__track`, `__bubble`, `__ticks`, `__tick`, `__marks`, `__mark`; `--range`) — a sunken
+  hairline channel that fills orchid with a glow up to the thumb; the thumb is a glowing orchid disc (24px) in a
+  44px-tall target, ringed teal on keyboard focus. The value rides above in a glass bubble that lights while dragged
+  or focused. Two thumbs share one track and fill the band between them.
+- **Date and colour pickers** `.ld-date` (+ `__presets`, `__input`), `.ld-color` (+ `__row`, `__swatch`, `__picker`,
+  `__hex`, `__preview`, `__sample`, `__contrast`), `.ld-swatches`, `.ld-swatch` (+ `__input`, `__chip`) — the native
+  date field with a faint teal calendar glyph and glass preset chips above it. Swatches are discs; the chosen one is
+  ringed in on-surface over an obsidian gap with a check. The contrast tag is outlined green, amber or rose with an
+  icon and words.
+- **File upload** `.ld-dropzone` (+ `__input`, `__icon`, `__title`, `__prompt`, `__hint`; `data-ld-drag`),
+  `.ld-upload-list`, `.ld-upload` (+ `__thumb`, `__name`, `__size`, `__status`, `__progress`, `__actions`;
+  `data-ld-upload`) — a dashed glass pane with an orchid upload glyph; a file dragged over turns the edge solid teal
+  with a glow and changes the words, an unacceptable one edges it rose. Files are glass rows: teal "Uploaded", rose
+  errors with Retry.
+- **Drag and drop** `.ld-sortable` (+ `__item`, `__body`; `data-ld-dragging`, `data-ld-drop`), `.ld-drag-handle`,
+  `.ld-board` (+ `__column`, `__title`, `__count`) — glass rows with a faint dotted grip. A lifted item turns solid,
+  rises on `--ld-elevation-3`, grows 2% and tilts a degree under a pointer; a teal line with a glow marks the slot and
+  the target column lights orchid. Reduced motion keeps the line and drops the grow and tilt.
+- **Swipe actions** `.ld-swipe` (+ `__content`, `__main`, `__actions--leading`, `__actions--trailing`, `__action`,
+  `__action--danger`) — the content pane slides over a sunken well on the spring; neutral actions are raised glass,
+  the destructive one solid rose; past the full-swipe point the outermost action fills the well and glows.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

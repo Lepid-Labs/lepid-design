@@ -1,0 +1,239 @@
+/* summer-cloud — range slider: the native input[type=range] (.ld-range) and the
+ * Slider / RangeSlider wrapper (.ld-slider). The track is a soft sunken pill that
+ * fills with a violet gradient up to the thumb, to --ld-range-fill (0..1, written
+ * by the component or one line of script). The thumb is a white knob 24px across
+ * with a violet ring and a tinted shadow, in a 44px-tall target; it swells with a
+ * bounce while dragged, and keyboard focus blooms a sky ring. The value floats
+ * above it in a violet pill. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider {
+  --ld-thumb: 1.5rem;
+  --ld-thumb-hit: 2.75rem;
+  --ld-track: 0.5rem;
+  --ld-range-dir: to right;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:dir(rtl),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider:dir(rtl) {
+  --ld-range-dir: to left;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range {
+  appearance: none;
+  display: block;
+  inline-size: 100%;
+  block-size: var(--ld-thumb-hit);
+  margin: 0;
+  background: none;
+  cursor: pointer;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:focus-visible {
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-webkit-slider-runnable-track {
+  block-size: var(--ld-track);
+  background: linear-gradient(var(--ld-range-dir), var(--ld-primary), var(--ld-primary-bright) calc(var(--ld-thumb) / 2 + var(--ld-range-fill, 0) * (100% - var(--ld-thumb))), var(--ld-surface-sunken) 0);
+  border-radius: var(--ld-radius-pill);
+  box-shadow: inset 0 1px 2px rgba(93, 43, 255, 0.12);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-moz-range-track {
+  block-size: var(--ld-track);
+  background: var(--ld-surface-sunken);
+  border-radius: var(--ld-radius-pill);
+  box-shadow: inset 0 1px 2px rgba(93, 43, 255, 0.12);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-moz-range-progress {
+  block-size: var(--ld-track);
+  background: linear-gradient(var(--ld-range-dir), var(--ld-primary), var(--ld-primary-bright));
+  border-radius: var(--ld-radius-pill);
+}
+/* a 24px knob painted in the middle of a 24x44 box: the transparent block border is
+ * the extra target, and only the padding box (a circle) paints */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: content-box;
+  width: var(--ld-thumb);
+  height: var(--ld-thumb);
+  margin-top: calc((var(--ld-track) - var(--ld-thumb-hit)) / 2);
+  border: solid transparent;
+  border-width: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2) 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fff 0 70%, var(--ld-primary) 74%) padding-box;
+  filter: drop-shadow(0 3px 6px rgba(93, 43, 255, 0.3));
+  transition: scale var(--ld-duration-fast) var(--ld-ease-bounce), filter var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-moz-range-thumb {
+  box-sizing: content-box;
+  width: var(--ld-thumb);
+  height: var(--ld-thumb);
+  border: solid transparent;
+  border-width: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2) 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #fff 0 70%, var(--ld-primary) 74%) padding-box;
+  filter: drop-shadow(0 3px 6px rgba(93, 43, 255, 0.3));
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:focus-visible::-webkit-slider-thumb {
+  background: radial-gradient(closest-side, #fff 0 52%, var(--ld-primary) 56% 72%, var(--ld-accent) 76%) padding-box;
+  filter: drop-shadow(0 0 6px var(--ld-accent));
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:focus-visible::-moz-range-thumb {
+  background: radial-gradient(closest-side, #fff 0 52%, var(--ld-primary) 56% 72%, var(--ld-accent) 76%) padding-box;
+  filter: drop-shadow(0 0 6px var(--ld-accent));
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:active::-webkit-slider-thumb {
+  scale: 1.2;
+  filter: drop-shadow(0 6px 10px rgba(93, 43, 255, 0.35));
+}
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:hover:not(:disabled)::-webkit-slider-thumb {
+    filter: drop-shadow(0 4px 10px rgba(93, 43, 255, 0.4));
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider {
+  display: grid;
+  gap: var(--ld-space-1);
+  min-inline-size: 0;
+  margin: 0 0 var(--ld-space-3);
+  padding: 0;
+  border: 0;
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__header .ld-label {
+  margin: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__input {
+  width: 6rem;
+  padding-block: var(--ld-space-1);
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__pair {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  color: var(--ld-faint);
+  font-size: 12px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__track {
+  position: relative;
+  isolation: isolate;
+  margin-top: 2rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__bubble {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-thumb) / 2 + var(--ld-at) * (100% - var(--ld-thumb)));
+  top: calc((var(--ld-thumb-hit) - var(--ld-thumb)) / 2 - var(--ld-space-2));
+  translate: -50% -100%;
+  padding: 0.125rem var(--ld-space-2);
+  background: var(--ld-primary);
+  border-radius: var(--ld-radius-pill);
+  box-shadow: var(--ld-shadow-raised);
+  color: var(--ld-on-primary);
+  font-family: var(--ld-font-display);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: scale var(--ld-duration-fast) var(--ld-ease-bounce), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__bubble:dir(rtl) {
+  translate: 50% -100%;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__track:has(> .ld-range:nth-of-type(1):is(:active, :focus-visible)) > .ld-slider__bubble:nth-of-type(1),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__track:has(> .ld-range:nth-of-type(2):is(:active, :focus-visible)) > .ld-slider__bubble:nth-of-type(2) {
+  scale: 1.08;
+  box-shadow: var(--ld-shadow-raised-hover);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__ticks {
+  position: absolute;
+  z-index: -1;
+  inset-inline: 0;
+  top: calc(var(--ld-thumb-hit) / 2 + var(--ld-track) / 2 + 3px);
+  block-size: 4px;
+  pointer-events: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__tick {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-thumb) / 2 + var(--ld-at) * (100% - var(--ld-thumb)));
+  inline-size: 4px;
+  block-size: 4px;
+  translate: -50% 0;
+  background: var(--ld-outline);
+  border-radius: 50%;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__marks {
+  position: relative;
+  display: block;
+  block-size: 1.25rem;
+  color: var(--ld-faint);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__mark {
+  position: absolute;
+  inset-inline-start: calc(var(--ld-at) * 100%);
+  translate: calc(var(--ld-at) * -100%) 0;
+  white-space: nowrap;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__mark:dir(rtl) {
+  translate: calc(var(--ld-at) * 100%) 0;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-slider__track {
+  padding-block-start: var(--ld-thumb-hit);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-slider__track::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-inline: calc(var(--ld-thumb) / 2);
+  top: calc((var(--ld-thumb-hit) - var(--ld-track)) / 2);
+  block-size: var(--ld-track);
+  background: linear-gradient(var(--ld-range-dir), var(--ld-surface-sunken) calc(var(--ld-range-lo) * 100%), var(--ld-primary-bright) 0 calc(var(--ld-range-hi) * 100%), var(--ld-surface-sunken) 0);
+  border-radius: var(--ld-radius-pill);
+  box-shadow: inset 0 1px 2px rgba(93, 43, 255, 0.12);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range {
+  position: absolute;
+  z-index: 0;
+  inset-inline: 0;
+  top: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range[data-ld-top] {
+  z-index: 1;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range::-webkit-slider-runnable-track {
+  background: none;
+  box-shadow: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range::-moz-range-track {
+  background: none;
+  box-shadow: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range::-moz-range-progress {
+  background: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range::-webkit-slider-thumb {
+  pointer-events: auto;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider--range .ld-range::-moz-range-thumb {
+  pointer-events: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range::-webkit-slider-thumb { transition: none; }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-range:active::-webkit-slider-thumb { scale: none; }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__bubble { transition: none; }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-slider__track:has(> .ld-range:is(:active, :focus-visible)) > .ld-slider__bubble { scale: none; }
+}
