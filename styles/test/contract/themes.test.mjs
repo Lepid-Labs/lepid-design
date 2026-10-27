@@ -1,0 +1,144 @@
+// The theme contract, enforced. Every theme must be:
+//  - scoped: no rule applies without a data-ld-style="<theme>" opt-in,
+//  - collision-free: keyframe names unique across themes,
+//  - complete: the shared baseline token set fully declared,
+//  - registered: manifest.json, package.json files/exports, and the theme
+//    directories all agree.
+// A new theme that passes this suite works in every consumer that reads the
+// manifest — that is the whole point of the contract.
+// Each slice's component contract lives beside this file (contract/<slice>.test.mjs).
+import assert from "node:assert/strict";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { test } from "node:test";
+import { ROOT, manifest, pkg, themeDirs, REQUIRED_TOKENS, parseCss, themeCssFiles } from "./helpers.mjs";
+
+test("manifest, package.json, and theme directories agree", () => {
+  const manifestThemes = Object.keys(manifest.themes).sort();
+  assert.deepEqual([...themeDirs].sort(), manifestThemes);
+  for (const theme of manifestThemes) {
+    assert.ok(pkg.files.includes(theme), `package.json files misses ${theme}`);
+    for (const sub of ["", "/tokens", "/base", "/components/*"]) {
+      assert.ok(pkg.exports[`./${theme}${sub}`], `package.json exports misses ./${theme}${sub}`);
+    }
+  }
+  assert.equal(pkg.exports["./all"].default, "./all.css");
+  assert.equal(pkg.exports["./manifest"], "./manifest.json");
+  assert.ok(pkg.files.includes("all.css") && pkg.files.includes("manifest.json"));
+});
+
+test("every CSS export carries a types condition so TS 6 side-effect imports resolve", () => {
+  // TS >= 6 rejects `import "@lepid-labs/styles/<theme>"` unless the subpath
+  // resolves to typed module (TS2882). Each CSS export therefore maps to
+  // { types: css.d.ts, default: <css> } — "types" first, because resolvers
+  // take the first matching condition.
+  for (const [subpath, target] of Object.entries(pkg.exports)) {
+    if (subpath === "./manifest") continue;
+    assert.equal(typeof target, "object", `${subpath}: not a conditions object`);
+    assert.deepEqual(Object.keys(target), ["types", "default"], `${subpath}: condition order`);
+    assert.equal(target.types, "./css.d.ts", `${subpath}: types target`);
+    assert.match(target.default, /\.css$/, `${subpath}: default must stay the CSS file`);
+    if (!subpath.includes("*")) {
+      assert.ok(existsSync(join(ROOT, target.default)), `${subpath}: ${target.default} missing`);
+    }
+  }
+  assert.ok(existsSync(join(ROOT, "css.d.ts")));
+  assert.ok(pkg.files.includes("css.d.ts"), "css.d.ts must ship in the tarball");
+  assert.match(readFileSync(join(ROOT, "css.d.ts"), "utf-8"), /^\s*export \{\};\s*$/m);
+});
+
+test("manifest entries are well-formed", () => {
+  assert.equal(typeof manifest.contract, "number");
+  for (const [theme, entry] of Object.entries(manifest.themes)) {
+    assert.ok(["dark", "light"].includes(entry.scheme), `${theme}: bad scheme`);
+    assert.ok(Array.isArray(entry.fonts) && entry.fonts.length > 0, `${theme}: no fonts`);
+    for (const url of entry.fonts) {
+      assert.match(url, /^https:\/\/fonts\.googleapis\.com\/css2\?/, `${theme}: ${url}`);
+    }
+  }
+});
+
+test("all.css imports every theme and nothing else", () => {
+  const { imports, selectors } = parseCss(readFileSync(join(ROOT, "all.css"), "utf-8"));
+  assert.deepEqual(selectors, []);
+  const imported = imports.map((i) => i.match(/"\.\/([^/]+)\/index\.css"/)?.[1]).sort();
+  assert.deepEqual(imported, [...themeDirs].sort());
+});
+
+for (const theme of themeDirs) {
+  const guard = `[data-ld-style="${theme}"]`;
+
+  test(`${theme}: every selector is guarded by its own opt-in attribute`, () => {
+    for (const file of themeCssFiles(theme)) {
+      const { selectors } = parseCss(readFileSync(file, "utf-8"));
+      for (const sel of selectors) {
+        assert.ok(sel.includes(guard), `${file}: unguarded selector: ${sel}`);
+      }
+    }
+  });
+
+  test(`${theme}: index.css pulls tokens, base, and every component file`, () => {
+    const { imports, selectors } = parseCss(
+      readFileSync(join(ROOT, theme, "index.css"), "utf-8")
+    );
+    assert.deepEqual(selectors, []);
+    const names = imports.map((i) => i.match(/"\.\/(.+)\.css"/)?.[1]);
+    const expected = themeCssFiles(theme).map((f) =>
+      f.slice(join(ROOT, theme).length + 1).replace(/\.css$/, "").split("\\").join("/")
+    );
+    assert.deepEqual([...names].sort(), [...expected].sort());
+  });
+
+  test(`${theme}: declares the full baseline token set and a color-scheme`, () => {
+    const tokens = readFileSync(join(ROOT, theme, "tokens.css"), "utf-8");
+    const declared = new Set(tokens.match(/--ld-[\w-]+(?=\s*:)/g));
+    const missing = REQUIRED_TOKENS.filter((t) => !declared.has(t));
+    assert.deepEqual(missing, [], `${theme} misses baseline tokens`);
+    assert.match(tokens, /color-scheme:\s*(dark|light)\s*;/);
+  });
+
+  test(`${theme}: color-scheme matches the manifest`, () => {
+    const tokens = readFileSync(join(ROOT, theme, "tokens.css"), "utf-8");
+    const scheme = tokens.match(/color-scheme:\s*(dark|light)/)?.[1];
+    assert.equal(scheme, manifest.themes[theme].scheme);
+  });
+}
+
+test("keyframe names are ld-prefixed and unique across all themes", () => {
+  const seen = new Map();
+  for (const theme of themeDirs) {
+    for (const file of themeCssFiles(theme)) {
+      for (const name of parseCss(readFileSync(file, "utf-8")).keyframes) {
+        assert.match(name, /^ld-/, `${file}: keyframe ${name}`);
+        assert.ok(!seen.has(name), `keyframe ${name} in both ${seen.get(name)} and ${file}`);
+        seen.set(name, file);
+      }
+    }
+  }
+});
+
+test("no legacy nb- prefix survives anywhere the system is defined or documented", () => {
+  // The 0.3.x → 1.0.0 rename must be total: a stray --nb-* token, .nb-* class,
+  // or data-nb-style guard would silently do nothing under the ld- guard.
+  // Keyframe names legitimately keep an inner theme tag (ld-nb-spin), so the
+  // check requires nb- to start an identifier.
+  const LEGACY = /--nb-|data-nb-|\bnbStyle\b|(?<![\w-])nb-/;
+  const REPO = resolve(ROOT, "..");
+  const roots = [ROOT, join(REPO, "components/react/src"), join(REPO, "site"), join(REPO, "skills")];
+  const files = [join(REPO, "README.md")];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      if (e.name === "node_modules" || e.name === "test" || e.name === "styles" && dir === join(REPO, "site")) continue;
+      const p = join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(css|md|html|tsx?|json)$/.test(e.name)) files.push(p);
+    }
+  };
+  roots.forEach(walk);
+  // The README's migration section is the one place the old prefix belongs.
+  const MIGRATION = /### Migrating from 0\.3\.x[\s\S]*?(?=\n### )/;
+  const offenders = files.filter((f) =>
+    LEGACY.test(readFileSync(f, "utf-8").replace(MIGRATION, ""))
+  );
+  assert.deepEqual(offenders.map((f) => f.slice(REPO.length + 1)), []);
+});

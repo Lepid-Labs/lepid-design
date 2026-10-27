@@ -24,14 +24,16 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node --test"
+    "test": "tsc -p tsconfig.json && node --test \"test/*.test.mjs\""
   },
   "peerDependencies": {
     "react": ">=18"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
+    "happy-dom": "^21.0.4",
     "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "^5.7.0"
   }
 }
