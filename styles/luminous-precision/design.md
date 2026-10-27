@@ -137,6 +137,24 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   with the teal bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid
   indicators (`--accent` bar variant in teal).
+- **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — sunken
+  hairline wells a dim orchid light passes across; a still orchid tint under
+  reduced motion. Always `aria-hidden`; the loading region takes `aria-busy`.
+- **Empty state** `.ld-empty` (+ `__icon`, `__title`, `__body`, `__actions`) —
+  centred glass icon well, Sora title, faint body. `--first-use` enlarges the
+  well and lights it orchid on the level-2 glow; `--no-results` dashes it;
+  `--cleared` takes the success light.
+- **Toast** `.ld-toaster` / `.ld-toast` (+ `--success`, `--warning`,
+  `--danger`, `__body`, `__title`, `__message`, `__action`, `__close`,
+  `__countdown`) — indigo glass on `--ld-elevation-3` with a lit top edge; a 3px
+  left bar and a masked icon carry the variant, the title is Sora in the same
+  hue. Rises 0.5rem into place on the enter curve (a fade under reduced
+  motion). The action is a teal ghost `--sm` button; its countdown is a glowing
+  2px teal bar that stops under `[data-ld-paused]`. Stack bottom-right on
+  `--ld-z-toast`, top edge below 48rem, safe-area aware.
+- **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) —
+  faint 12px mono text: glowing orchid spinner while saving, teal check once
+  saved, amber cloud offline, rose bang and danger text on error.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

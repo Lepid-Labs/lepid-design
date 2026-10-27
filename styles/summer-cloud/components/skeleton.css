@@ -1,0 +1,39 @@
+/* summer-cloud — skeleton: the shape of content still loading. Soft violet-
+ * tinted glass with a wide white glare drifting across it; text lines are pills.
+ * Under reduced motion the glass holds a still tint instead.
+ *   .ld-skeleton--text    a line of body copy
+ *   .ld-skeleton--circle  an avatar (width is the diameter)
+ *   .ld-skeleton--block   an image, chart or card body
+ * Always aria-hidden; the region being loaded carries aria-busy="true". */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-skeleton {
+  display: block;
+  background-color: color-mix(in srgb, var(--ld-primary-bright) 7%, var(--ld-surface-sunken));
+  background-image: linear-gradient(100deg, transparent 35%, rgba(255, 255, 255, 0.85) 50%, transparent 65%);
+  background-size: 300% 100%;
+  border-radius: var(--ld-radius);
+  animation: ld-sc-skeleton-glare 2s var(--ld-ease-standard) infinite;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-skeleton--text {
+  height: 0.75em;
+  margin: 0.45em 0;
+  border-radius: var(--ld-radius-pill);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-skeleton--circle {
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-skeleton--block {
+  height: 6rem;
+  border-radius: var(--ld-radius-lg);
+}
+@keyframes ld-sc-skeleton-glare {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-skeleton {
+    animation: none;
+    background-image: none;
+  }
+}

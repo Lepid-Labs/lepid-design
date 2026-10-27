@@ -119,6 +119,25 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow; the underline is one lit bar that stretches to the new tab and snaps back (same slide tokens).
 - **Table** `.ld-table` — lilac header rule, glass row hover. `.ld-table--interactive` adds the pointer, a lilac focus outline, and a selected row (`aria-selected`) with a lilac left bar and inner glow.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
+- **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — navy
+  hairline wells a thin, sharp lilac scanline sweeps, like a console
+  redrawing; a still lilac tint under reduced motion. Always `aria-hidden`; the
+  loading region takes `aria-busy`.
+- **Empty state** `.ld-empty` (+ `__icon`, `__title`, `__body`, `__actions`) —
+  centred hairline icon well, uppercase tracked 12px title, faint body.
+  `--first-use` lights the well and title lilac; `--no-results` dashes the
+  well; `--cleared` gives it the neon lime signal.
+- **Toast** `.ld-toaster` / `.ld-toast` (+ `--success`, `--warning`,
+  `--danger`, `__body`, `__title`, `__message`, `__action`, `__close`,
+  `__countdown`) — frosted navy pane whose hairline and glow take the variant's
+  hue, a masked icon, an uppercase tracked title. Snaps in from the side on
+  `--ld-duration-fast` like a console line (a fade under reduced motion). The
+  action is a lime ghost `--sm` button; its countdown is a segmented lime bar
+  that shortens by clipping and stops under `[data-ld-paused]`. Stack
+  bottom-right on `--ld-z-toast`, top edge below 48rem, safe-area aware.
+- **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) —
+  uppercase tracked 11px: a blinking lime block cursor while saving, lime
+  check once saved, amber cloud offline, pink bang and danger text on error.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

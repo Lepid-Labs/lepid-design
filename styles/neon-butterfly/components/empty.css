@@ -1,0 +1,77 @@
+/* neon-butterfly — empty state: what a list, table or panel shows when it holds
+ * nothing. A hairline icon well, an uppercase tracked title, faint body, then
+ * the next step.
+ *   --first-use   nothing made yet: the well lights lilac
+ *   --no-results  a search or filter matched nothing: compact, dashed well
+ *   --cleared     all done: the well takes the neon signal */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: var(--ld-space-5) var(--ld-space-4);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  text-align: center;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--ld-space-1);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__icon > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__title {
+  margin: 0;
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__body {
+  max-width: 38ch;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__body > p { margin: 0; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-2);
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--first-use .ld-empty__icon {
+  width: 4rem;
+  height: 4rem;
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  box-shadow: var(--ld-elevation-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--first-use .ld-empty__icon > svg {
+  width: 2rem;
+  height: 2rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--first-use .ld-empty__title { color: var(--ld-primary); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--no-results {
+  padding-block: var(--ld-space-4);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--no-results .ld-empty__icon {
+  background: transparent;
+  border-style: dashed;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-empty--cleared .ld-empty__icon {
+  border-color: var(--ld-accent);
+  color: var(--ld-accent);
+  box-shadow: 0 0 12px var(--ld-accent-glow);
+}

@@ -166,6 +166,26 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   `.ld-table--interactive` adds the pointer, a sky focus outline, and a
   selected row (`aria-selected`) with a violet wash and left bar.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
+- **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — soft
+  violet-tinted glass with a wide white glare drifting across; text lines are
+  pills. A still tint under reduced motion. Always `aria-hidden`; the loading
+  region takes `aria-busy`.
+- **Empty state** `.ld-empty` (+ `__icon`, `__title`, `__body`, `__actions`) —
+  the icon floats in a round white glass bubble, Plus Jakarta 700 title, faint
+  Inter body. `--first-use` makes the bubble a larger solid violet disc on the
+  raised shadow; `--no-results` an outlined, dashed bubble; `--cleared` a pale
+  green bubble with a deep green glyph.
+- **Toast** `.ld-toaster` / `.ld-toast` (+ `--success`, `--warning`,
+  `--danger`, `__body`, `__title`, `__message`, `__action`, `__close`,
+  `__countdown`) — Level 2 white glass on `--ld-elevation-3`; the variant rides
+  on a filled icon disc and the title in its deep, readable hue (accent deep,
+  success deep, amber, danger deep); errors add the alert's 4px red rule. Pops
+  in on the spring (a fade under reduced motion). The countdown is a floating
+  violet pill bar that stops under `[data-ld-paused]`. Stack bottom-right on
+  `--ld-z-toast`, top edge below 48rem, safe-area aware.
+- **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) — a
+  white pill of mono 12px text: violet spinner while saving, deep green check
+  once saved, a pale amber pill offline, a pale red pill with Retry on error.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
