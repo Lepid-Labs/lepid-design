@@ -1,0 +1,154 @@
+/* luminous-precision — drag and drop (SortableList, SortableBoard). Items are glass
+ * rows with a faint dotted grip (.ld-drag-handle). Picked up, an item lifts on
+ * the floating elevation (light, not shadow), grows a little and, under a pointer,
+ * tilts a degree; a teal line with a glow marks the slot it would land in, and the
+ * target column lights orchid. Under reduced motion the lift neither grows nor
+ * tilts nor animates, and the line still shows. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable {
+  position: relative;
+  display: grid;
+  gap: var(--ld-space-2);
+  min-block-size: 3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  padding: var(--ld-space-1) var(--ld-space-3) var(--ld-space-1) var(--ld-space-1);
+  background: var(--ld-surface-glass);
+  backdrop-filter: blur(var(--ld-blur));
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  transition: box-shadow var(--ld-duration-fast) var(--ld-ease-standard), scale var(--ld-duration-base) var(--ld-ease-spring),
+    rotate var(--ld-duration-base) var(--ld-ease-spring), border-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__body {
+  flex: 1;
+  min-inline-size: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-drag-handle {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: 2rem;
+  block-size: 2.75rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0.25rem;
+  color: var(--ld-faint);
+  cursor: grab;
+  touch-action: none; /* the handle drags; the rest of the row still scrolls the page */
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard), background-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-drag-handle svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+@media (hover: hover) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-drag-handle:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--ld-on-surface);
+  }
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-drag-handle:focus-visible {
+  outline: none;
+  color: var(--ld-accent);
+  box-shadow: inset 0 0 0 1px var(--ld-accent), 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-dragging] {
+  z-index: 1;
+  background: var(--ld-surface); /* lifted, it is solid: nothing shows through it */
+  border-color: var(--ld-primary-border);
+  box-shadow: var(--ld-elevation-3);
+  scale: 1.02;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-dragging="pointer"] {
+  rotate: 1deg;
+  cursor: grabbing;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-dragging="keyboard"] .ld-drag-handle {
+  color: var(--ld-accent);
+}
+/* the slot it would land in: a line in the gap above an item, or after the last */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-drop="before"]::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable[data-ld-drop="end"]::after {
+  content: "";
+  block-size: 2px;
+  background: var(--ld-accent);
+  border-radius: 1px;
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+  pointer-events: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-drop="before"]::before {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--ld-space-2) / -2 - 2px);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable-root[data-ld-sorting="pointer"],
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board[data-ld-sorting="pointer"] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* board: columns that wrap into rows on narrow screens */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: start;
+  gap: var(--ld-space-3);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__column {
+  position: relative;
+  display: grid;
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-3);
+  background: rgba(12, 14, 20, 0.5);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius-lg);
+  transition: border-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+/* glass makes each column its own layer: lift the one the card is leaving */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__column:has([data-ld-dragging]) {
+  z-index: 1;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__column:has([data-ld-drop-target]) {
+  background: rgba(198, 165, 255, 0.06);
+  border-color: var(--ld-primary-border);
+  box-shadow: var(--ld-elevation-1);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__count {
+  min-inline-size: 1.5rem;
+  padding: 0 var(--ld-space-1);
+  background: var(--ld-surface-sunken);
+  border-radius: 999px;
+  font-family: var(--ld-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board .ld-sortable:empty {
+  border: 1px dashed var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-board__column { transition: none; }
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sortable__item[data-ld-dragging] { scale: none; rotate: none; }
+}

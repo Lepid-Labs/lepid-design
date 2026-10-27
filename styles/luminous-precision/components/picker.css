@@ -1,0 +1,207 @@
+/* luminous-precision — date and colour pickers (DateField, ColorField). Dates are the
+ * native input: mono digits on the theme's field, the calendar glyph faint until
+ * hovered or focused, preset chips (.ld-chip) in a row above it. Colours: preset
+ * swatches are a radio group of discs; the chosen one is ringed in on-surface over
+ * an obsidian gap and carries a check, so it is not told by colour alone. The
+ * native picker is a swatch button with a spectrum corner; the preview prints the
+ * colour on the real surface beside its contrast ratio. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-date__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-1);
+  margin-bottom: var(--ld-space-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[type="date"],
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[type="datetime-local"] {
+  min-block-size: 2.5rem;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[type="date"]::-webkit-calendar-picker-indicator,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  inline-size: 1rem;
+  block-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2300f5ff' stroke-width='1.4' stroke-linecap='round'%3E%3Crect x='2' y='3' width='12' height='11' rx='2'/%3E%3Cpath d='M2 6.5h12M5 1.5v3M11 1.5v3'/%3E%3C/svg%3E") center / 1rem no-repeat;
+  opacity: 0.55;
+  cursor: pointer;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input:focus::-webkit-calendar-picker-indicator {
+  opacity: 1;
+}
+@media (hover: hover) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    background-color: rgba(0, 245, 255, 0.08);
+  }
+}
+
+/* colour */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color {
+  display: grid;
+  gap: var(--ld-space-2);
+  min-inline-size: 0;
+  margin: 0 0 var(--ld-space-3);
+  padding: 0;
+  border: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color > .ld-label {
+  padding: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-1);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch__chip {
+  position: relative;
+  display: grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: 50%;
+  background: var(--ld-swatch);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  transition: box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch:has(:checked) .ld-swatch__chip {
+  box-shadow: 0 0 0 2px var(--ld-bg), 0 0 0 3px var(--ld-on-surface), 0 0 10px var(--ld-swatch);
+}
+/* a light disc holding a dark check reads on any swatch */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch:has(:checked) .ld-swatch__chip::after {
+  content: "";
+  inline-size: 0.9rem;
+  block-size: 0.9rem;
+  border-radius: 50%;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2l2 2L9 4' fill='none' stroke='%230a0c10' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 0.7rem no-repeat;
+  box-shadow: 0 0 0 1px rgba(10, 12, 16, 0.5);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch:has(:focus-visible) {
+  box-shadow: 0 0 0 1px var(--ld-accent), 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__row {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__swatch {
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  border-radius: var(--ld-radius);
+}
+/* the spectrum corner says "any colour", apart from the presets */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__swatch::after {
+  content: "";
+  position: absolute;
+  inset-block-end: -3px;
+  inset-inline-end: -3px;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 50%;
+  background: conic-gradient(#ff4d6d, #ffb86c, #47e34e, #00f5ff, #83b7ff, #c6a5ff, #ff4d6d);
+  box-shadow: 0 0 0 2px var(--ld-bg);
+  pointer-events: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__picker {
+  appearance: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  cursor: pointer;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__picker::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--ld-radius) - 1px);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__picker::-moz-color-swatch {
+  border: 0;
+  border-radius: calc(var(--ld-radius) - 1px);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__picker:focus-visible {
+  outline: none;
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__hex {
+  width: 8rem;
+  font-family: var(--ld-font-mono);
+  text-transform: lowercase;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__sample {
+  color: var(--ld-swatch);
+  font-family: var(--ld-font-display);
+  font-size: 1.25rem;
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__contrast {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  padding: 0.125rem var(--ld-space-2);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__contrast::before {
+  content: "";
+  inline-size: 0.85em;
+  block-size: 0.85em;
+  background: currentColor;
+  mask: var(--ld-contrast-icon) center / contain no-repeat;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__contrast[data-ld-contrast="pass"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  color: var(--ld-success);
+  box-shadow: 0 0 8px rgba(71, 227, 78, 0.25);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__contrast[data-ld-contrast="large"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 2v5M6 9.5v.5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  color: var(--ld-warning);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-color__contrast[data-ld-contrast="fail"] {
+  --ld-contrast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 3l6 6M9 3l-6 6' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  color: var(--ld-danger);
+  box-shadow: 0 0 8px rgba(255, 77, 109, 0.25);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-swatch__chip,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input::-webkit-calendar-picker-indicator { transition: none; }
+}

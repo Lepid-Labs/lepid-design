@@ -1,0 +1,174 @@
+/* summer-cloud — file upload (FileUpload): the dropzone is the file input's own
+ * label, a frosted card with a dashed lavender edge and a violet cloud-upload
+ * glyph. A file dragged over changes three things at once before the drop: the
+ * edge goes solid sky, the card blooms a sky halo and tint, the words change. A
+ * type it cannot take turns the edge and words deep red. Keyboard focus on the
+ * hidden input blooms the same sky ring as a field. Files are white cards:
+ * thumbnail or type, name, size, a violet progress bar, then a green "Uploaded"
+ * or a red error with Retry. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload-field {
+  display: grid;
+  gap: var(--ld-space-2);
+  margin-bottom: var(--ld-space-3);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--ld-space-1);
+  padding: var(--ld-space-5) var(--ld-space-3);
+  background: var(--ld-surface-glass-high);
+  backdrop-filter: blur(var(--ld-blur));
+  border: 2px dashed var(--ld-outline);
+  border-radius: var(--ld-radius-lg);
+  color: var(--ld-faint);
+  font-size: var(--ld-text-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard),
+    background-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone:has(.ld-dropzone__input:focus-visible) {
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone:hover {
+    border-color: var(--ld-primary-bright);
+    background-color: var(--ld-surface);
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone[data-ld-drag="over"] {
+  border-style: solid;
+  border-color: var(--ld-accent);
+  background-color: #eef9ff;
+  box-shadow: 0 0 0 6px var(--ld-accent-glow), var(--ld-elevation-2);
+  color: var(--ld-accent-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone[data-ld-drag="invalid"] {
+  border-style: solid;
+  border-color: var(--ld-danger);
+  background-color: #fff3f3;
+  box-shadow: 0 0 0 6px rgba(255, 77, 77, 0.15);
+  color: var(--ld-danger-deep);
+  cursor: no-drop;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone:has(.ld-dropzone__input:disabled) {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone__icon {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  background: linear-gradient(135deg, var(--ld-primary), var(--ld-primary-bright));
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 18a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.4 1.4A3.8 3.8 0 0 1 17.5 18M12 12v8M9 15l3-3 3 3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone[data-ld-drag] .ld-dropzone__icon {
+  background: currentColor;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone__title {
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-display);
+  font-size: 1rem;
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone__hint {
+  font-size: 12px;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload-list {
+  display: grid;
+  gap: var(--ld-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload-list:empty {
+  display: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "thumb name name actions" "thumb size status actions" "bar bar bar bar";
+  align-items: center;
+  column-gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  border-radius: var(--ld-radius);
+  box-shadow: 0 0 0 1px var(--ld-outline), var(--ld-shadow-soft);
+  font-size: 12px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__thumb {
+  grid-area: thumb;
+  display: grid;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  overflow: hidden;
+  background: var(--ld-sky-tint);
+  border-radius: calc(var(--ld-radius) - 0.25rem);
+  box-shadow: inset 0 0 0 1px var(--ld-outline);
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
+  font-size: 10px;
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__thumb img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__name {
+  grid-area: name;
+  overflow: hidden;
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  font-weight: var(--ld-font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__size {
+  grid-area: size;
+  color: var(--ld-faint);
+  white-space: nowrap;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__status {
+  grid-area: status;
+  color: var(--ld-faint);
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__status:not(:empty)::before {
+  content: "·";
+  margin-inline-end: var(--ld-space-1);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__progress {
+  grid-area: bar;
+  margin-top: var(--ld-space-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload[data-ld-upload="done"] .ld-upload__status {
+  color: var(--ld-success-deep);
+  font-weight: var(--ld-font-weight-medium);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload[data-ld-upload="error"] {
+  box-shadow: 0 0 0 1px rgba(255, 77, 77, 0.5), var(--ld-shadow-soft);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-upload[data-ld-upload="error"] .ld-upload__status {
+  color: var(--ld-danger-deep);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dropzone { transition: none; }
+}

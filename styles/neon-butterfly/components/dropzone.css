@@ -1,0 +1,188 @@
+/* neon-butterfly — file upload (FileUpload): the dropzone is the file input's own
+ * label, a dashed hairline frame with a tracked uppercase title. A file dragged
+ * over turns three things at once before the drop: the edge goes solid lime, the
+ * frame glows, the prompt changes. A type it cannot take edges it pink. Keyboard
+ * focus on the hidden input lights the whole frame. Files are console rows:
+ * type tag or thumbnail, name, size, a lilac progress bar, then a lime
+ * "Uploaded" or a pink error with Retry. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload-field {
+  display: grid;
+  gap: var(--ld-space-2);
+  margin-bottom: var(--ld-space-3);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--ld-space-1);
+  padding: var(--ld-space-4) var(--ld-space-3);
+  background: var(--ld-surface-sunken);
+  border: 1px dashed var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard),
+    background-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone:has(.ld-dropzone__input:focus-visible) {
+  border-color: var(--ld-primary-border);
+  box-shadow: 0 0 12px var(--ld-primary-glow);
+}
+@media (hover: hover) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone:hover {
+    border-color: var(--ld-primary-border);
+    color: var(--ld-on-surface);
+  }
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone[data-ld-drag="over"] {
+  border-style: solid;
+  border-color: var(--ld-accent);
+  background-color: rgba(57, 255, 20, 0.05);
+  box-shadow: 0 0 20px var(--ld-accent-glow), inset 0 0 12px rgba(57, 255, 20, 0.15);
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone[data-ld-drag="invalid"] {
+  border-style: solid;
+  border-color: var(--ld-danger);
+  background-color: rgba(255, 45, 120, 0.06);
+  box-shadow: 0 0 16px rgba(255, 45, 120, 0.35);
+  color: var(--ld-danger);
+  cursor: no-drop;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone:has(.ld-dropzone__input:disabled) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone__icon {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  background: var(--ld-primary);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6'%3E%3Cpath d='M12 15V4M7.5 8.5L12 4l4.5 4.5M4 15v5h16v-5'/%3E%3C/svg%3E") center / contain no-repeat;
+  filter: drop-shadow(0 0 6px var(--ld-primary-glow));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone[data-ld-drag] .ld-dropzone__icon {
+  background: currentColor;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone__title {
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone__prompt::before {
+  content: "> ";
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone__hint {
+  font-size: 11px;
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload-list:empty {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  grid-template-areas: "thumb name name actions" "thumb size status actions" "bar bar bar bar";
+  align-items: center;
+  column-gap: var(--ld-space-2);
+  padding: var(--ld-space-2) var(--ld-space-3);
+  background: var(--ld-surface);
+  font-size: 12px;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload + .ld-upload {
+  border-top: 1px solid var(--ld-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload:first-child {
+  border-start-start-radius: var(--ld-radius);
+  border-start-end-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload:last-child {
+  border-end-start-radius: var(--ld-radius);
+  border-end-end-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__thumb {
+  grid-area: thumb;
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  overflow: hidden;
+  background: var(--ld-surface-sunken);
+  border: 1px solid var(--ld-border);
+  border-radius: 0.25rem;
+  color: var(--ld-primary);
+  font-size: 10px;
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__thumb img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__name {
+  grid-area: name;
+  overflow: hidden;
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__size {
+  grid-area: size;
+  color: var(--ld-faint);
+  white-space: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__status {
+  grid-area: status;
+  color: var(--ld-faint);
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__status:not(:empty)::before {
+  content: "//";
+  margin-inline-end: var(--ld-space-1);
+  color: var(--ld-border-lit);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__progress {
+  grid-area: bar;
+  margin-top: var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload[data-ld-upload="done"] .ld-upload__status {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload[data-ld-upload="error"] {
+  box-shadow: inset 2px 0 0 var(--ld-danger);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-upload[data-ld-upload="error"] .ld-upload__status {
+  color: var(--ld-danger);
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dropzone { transition: none; }
+}

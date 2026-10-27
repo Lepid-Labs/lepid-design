@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direct manipulation · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .gallery { display: grid; gap: 1.5rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); align-items: start; }
+  .note { font-size: 0.8rem; opacity: 0.7; margin: 0.5rem 0 0; }
+  .swipe-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; max-width: 28rem; }
+  .swipe-list p { margin: 0; font-size: 0.8rem; opacity: 0.7; }
+  .swipe-list strong[data-unread]::before { content: "● "; color: var(--ld-accent); }
+  .card-done { display: flex; gap: 0.4rem; align-items: center; font-size: 0.75rem; opacity: 0.8; margin-top: 0.15rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · direct manipulation</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section aria-labelledby="slider-h">
+    <h2 id="slider-h">Range sliders</h2>
+    <p>Native range inputs: the whole row takes a press, arrows step, Page Up/Down jump, Home and End go to the ends.
+      A finger can't tell 47 from 48, so the box beside it takes an exact value and snaps it to a step.</p>
+    <div class="gallery">
+      <div>
+        <div class="ld-slider" data-slider data-unit="%" data-ticks="10" data-marks="0:0%|50:50%|100:100%">
+          <div class="ld-slider__header">
+            <label class="ld-label" id="vol-label" for="vol">Volume</label>
+            <input type="number" class="ld-input ld-slider__input" aria-labelledby="vol-label" min="0" max="100" step="1" value="47">
+          </div>
+          <div class="ld-slider__track">
+            <output class="ld-slider__bubble" for="vol" aria-hidden="true"></output>
+            <input type="range" class="ld-range" id="vol" min="0" max="100" step="1" value="47">
+          </div>
+        </div>
+        <label class="ld-label" for="plain-range">Plain HTML, one line of script</label>
+        <input type="range" class="ld-range" id="plain-range" min="0" max="10" value="3"
+          oninput="this.style.setProperty('--ld-range-fill', (this.value - this.min) / (this.max - this.min))" style="--ld-range-fill: 0.3">
+        <label class="ld-label" for="off-range">Disabled</label>
+        <input type="range" class="ld-range" id="off-range" value="60" disabled style="--ld-range-fill: 0.6">
+      </div>
+      <fieldset class="ld-slider ld-slider--range" data-range data-gap="50" data-unit="$" data-marks="0:$0|500:$500|1000:$1,000">
+        <legend class="ld-label">Price</legend>
+        <div class="ld-slider__header">
+          <label class="ld-slider__pair"><span id="p-min">Minimum</span><input type="number" class="ld-input ld-slider__input" aria-labelledby="p-min" min="0" max="1000" step="10" value="200"></label>
+          <label class="ld-slider__pair"><span id="p-max">Maximum</span><input type="number" class="ld-input ld-slider__input" aria-labelledby="p-max" min="0" max="1000" step="10" value="750"></label>
+        </div>
+        <div class="ld-slider__track">
+          <output class="ld-slider__bubble" aria-hidden="true"></output>
+          <output class="ld-slider__bubble" aria-hidden="true"></output>
+          <input type="range" class="ld-range" aria-label="Minimum" min="0" max="1000" step="10" value="200">
+          <input type="range" class="ld-range" aria-label="Maximum" min="0" max="1000" step="10" value="750">
+        </div>
+        <p class="ld-field__hint">The thumbs stay $50 apart and never cross.</p>
+      </fieldset>
+    </div>
+  </section>
+
+  <section aria-labelledby="date-h">
+    <h2 id="date-h">Date pickers</h2>
+    <p>The native input brings the calendar, the keyboard, the locale and the phone's own wheel. Presets come first:
+      most dates people pick are one of a few. A birthday is faster typed than paged to.</p>
+    <div class="gallery">
+      <div class="ld-field ld-date" data-date data-presets="today tomorrow nextWeek" data-max-days="90">
+        <label class="ld-label" id="due-label" for="due">Due date</label>
+        <div class="ld-date__presets" role="group" aria-labelledby="due-label"></div>
+        <input type="date" class="ld-input ld-date__input" id="due" aria-describedby="due-hint">
+        <p class="ld-field__hint" id="due-hint">Today or within the next 90 days.</p>
+        <p class="ld-field__message" id="due-message" aria-live="polite"></p>
+      </div>
+      <div class="ld-field ld-date" data-date data-presets="today tomorrow nextWeek">
+        <label class="ld-label" id="remind-label" for="remind">Remind me</label>
+        <div class="ld-date__presets" role="group" aria-labelledby="remind-label"></div>
+        <input type="datetime-local" class="ld-input ld-date__input" id="remind" value="">
+        <p class="ld-field__message" id="remind-message" aria-live="polite"></p>
+      </div>
+      <div class="ld-field ld-date" id="dob-field">
+        <label class="ld-label" for="dob">Date of birth</label>
+        <input class="ld-input ld-date__input" id="dob" inputmode="numeric" placeholder="MM/DD/YYYY" autocomplete="bday" aria-describedby="dob-hint">
+        <p class="ld-field__hint" id="dob-hint">Typed: the digits fill in around the slashes.</p>
+        <p class="ld-field__message" id="dob-message" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="color-h">
+    <h2 id="color-h">Colour picker</h2>
+    <p>Presets as a radio group (arrow keys move between them), the system picker for anything else, a hex field that
+      takes <code>#abc</code> or <code>3366FF</code>, and the colour on the real surface with its contrast ratio.</p>
+    <fieldset class="ld-color" id="color">
+      <legend class="ld-label" id="color-legend">Label colour</legend>
+      <div class="ld-swatches" role="radiogroup" aria-labelledby="color-legend"></div>
+      <div class="ld-color__row">
+        <label class="ld-color__swatch" title="Pick any colour"><input type="color" class="ld-color__picker" aria-label="Custom colour"></label>
+        <input class="ld-input ld-color__hex" aria-label="Hex code" aria-describedby="color-message" spellcheck="false" autocomplete="off" maxlength="7">
+      </div>
+      <p class="ld-field__message" id="color-message" aria-live="polite"></p>
+      <div class="ld-color__preview"><span class="ld-color__sample">Aa Sample text</span><span class="ld-color__contrast"></span></div>
+    </fieldset>
+  </section>
+
+  <section aria-labelledby="upload-h">
+    <h2 id="upload-h">File upload</h2>
+    <p>The dropzone is the file input's label: click, Enter or Space opens the picker. Dragging a file over changes the
+      edge, the glow and the words before you let go. Each file has its own progress; a failure keeps the file for Retry.</p>
+    <div class="ld-upload-field" id="upload">
+      <label class="ld-dropzone">
+        <input type="file" class="ld-dropzone__input" accept="image/*,.pdf" multiple aria-describedby="upload-hint">
+        <span class="ld-dropzone__icon" aria-hidden="true"></span>
+        <span class="ld-dropzone__title">Attach files</span>
+        <span class="ld-dropzone__prompt" aria-hidden="true">Drop files here or browse</span>
+        <span class="ld-dropzone__hint" id="upload-hint">Images or PDFs, up to 5 MB</span>
+      </label>
+      <ul class="ld-upload-list" aria-label="Files"></ul>
+      <p role="status" class="sr-only"></p>
+    </div>
+    <label class="ld-choice"><input type="checkbox" class="ld-checkbox" id="upload-fail"> Make the next upload fail at 90%</label>
+  </section>
+
+  <section aria-labelledby="sort-h">
+    <h2 id="sort-h">Drag and drop</h2>
+    <p>Drag a grip, or focus it and press Space: arrows move the item (Left and Right change column), Space drops,
+      Escape puts it back. Each card's checkbox travels with it.</p>
+    <div class="gallery">
+      <div class="ld-sortable-root" id="priorities"></div>
+      <p class="note">Every step is announced: “Moved Task A to position 3 of 5 in Done.”</p>
+    </div>
+    <div class="ld-board" id="board" style="margin-top: 1.5rem"></div>
+  </section>
+
+  <section aria-labelledby="swipe-h">
+    <h2 id="swipe-h">Swipe actions</h2>
+    <p>On a touch screen (or with a mouse), swipe a row right to mark it read, left for Archive and Delete; pull all the
+      way left to delete at once, with Undo. Vertical scrolling still works. The ⋯ menu has the same actions for
+      everyone else.</p>
+    <ul class="swipe-list" id="inbox"></ul>
+  </section>
+</main>
+
+<section class="ld-toaster" aria-label="Notifications" id="toaster"></section>
+<div role="status" class="sr-only" id="toast-said"></div>
+<script type="module" src="manipulation-demo.js"></script>
+<script type="module" src="sortable-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

@@ -40,6 +40,11 @@
 @import "./components/rating.css";
 @import "./components/settings.css";
 @import "./components/presence.css";
+@import "./components/slider.css";
+@import "./components/picker.css";
+@import "./components/dropzone.css";
+@import "./components/sortable.css";
+@import "./components/swipe.css";
 @import "./components/stepper.css";
 @import "./components/muted.css";
 @import "./components/pre.css";
