@@ -1,0 +1,114 @@
+/* neon-butterfly — sheet and drawer (the React Sheet): .ld-dialog modals pinned to
+ * an edge. --sheet rises from the bottom with a grab handle; --drawer slides in
+ * from the end edge (--drawer-start: the start edge). Only the inner edge keeps
+ * the dialog's lilac hairline, lit with a lilac glow; the corners stay at the
+ * theme's one 0.5rem radius. It runs in on the enter curve and is cut away on the
+ * sharp exit, like a console clearing; the handle is a lilac bar that turns lime
+ * while held. Both clear notches and home indicators. Reduced motion: a fade. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer {
+  --ld-sheet-from: 0 100%;
+  z-index: var(--ld-z-modal);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  transition: translate var(--ld-duration-base) var(--ld-ease-enter), opacity var(--ld-duration-base) var(--ld-ease-enter),
+    display var(--ld-duration-base) allow-discrete, overlay var(--ld-duration-base) allow-discrete;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet {
+  inset: auto 0 0;
+  width: min(40rem, 100%);
+  max-height: calc(100dvh - max(3rem, env(safe-area-inset-top) + 1.5rem));
+  margin-inline: auto;
+  padding: 0.5rem max(var(--ld-space-4), env(safe-area-inset-right)) max(var(--ld-space-4), env(safe-area-inset-bottom))
+    max(var(--ld-space-4), env(safe-area-inset-left));
+  border-top: 1px solid var(--ld-primary-border);
+  border-radius: var(--ld-radius) var(--ld-radius) 0 0;
+  box-shadow: 0 -8px 30px rgba(210, 187, 255, 0.2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer {
+  --ld-sheet-from: 100% 0;
+  inset-block: 0;
+  inset-inline: auto 0;
+  width: min(24rem, calc(100vw - 3rem));
+  height: 100dvh;
+  padding: max(var(--ld-space-4), env(safe-area-inset-top)) var(--ld-space-4) max(var(--ld-space-4), env(safe-area-inset-bottom));
+  padding-inline-end: max(var(--ld-space-4), env(safe-area-inset-right));
+  border-inline-start: 1px solid var(--ld-primary-border);
+  border-radius: 0;
+  box-shadow: 0 0 30px rgba(210, 187, 255, 0.2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer-start {
+  --ld-sheet-from: -100% 0;
+  inset-inline: 0 auto;
+  padding-inline: max(var(--ld-space-4), env(safe-area-inset-left)) var(--ld-space-4);
+  border-inline-start: 0;
+  border-inline-end: 1px solid var(--ld-primary-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer:dir(rtl) {
+  --ld-sheet-from: -100% 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer-start:dir(rtl) {
+  --ld-sheet-from: 100% 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet:not([open]),
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer:not([open]) {
+  translate: var(--ld-sheet-from);
+  transition-duration: var(--ld-duration-fast);
+  transition-timing-function: var(--ld-ease-exit);
+}
+@starting-style {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet[open],
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer[open] {
+    translate: var(--ld-sheet-from);
+  }
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet::backdrop,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer::backdrop {
+  transition: opacity var(--ld-duration-fast) linear, display var(--ld-duration-fast) allow-discrete,
+    overlay var(--ld-duration-fast) allow-discrete;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet:not([open])::backdrop,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer:not([open])::backdrop {
+  opacity: 0;
+}
+@starting-style {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet[open]::backdrop,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer[open]::backdrop {
+    opacity: 0;
+  }
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog__handle {
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin: 0 auto var(--ld-space-2);
+  padding-block: 0.5rem;
+  box-sizing: content-box;
+  background: var(--ld-primary-border) content-box;
+  border-radius: 2px;
+  cursor: grab;
+  touch-action: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog__handle:active {
+  background-color: var(--ld-accent);
+  filter: drop-shadow(0 0 4px var(--ld-accent-glow));
+  cursor: grabbing;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet:not([open]),
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer:not([open]) {
+    translate: none;
+    opacity: 0;
+  }
+  @starting-style {
+    :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--sheet[open],
+    :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-dialog--drawer[open] {
+      translate: none;
+      opacity: 0;
+    }
+  }
+}

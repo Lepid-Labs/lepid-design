@@ -1,0 +1,21 @@
+/* summer-cloud — keyboard hint (.ld-kbd): a little white key on the outline
+ * hairline with a heavier foot, mono 11px in the faint voice. Used for shortcut
+ * hints in menus, the command palette and the search field; on its own around
+ * any <kbd>. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4375rem;
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-outline);
+  border-bottom-width: 2px;
+  border-radius: 0.5rem;
+  color: var(--ld-faint);
+  font: 500 11px/1 var(--ld-font-mono);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}

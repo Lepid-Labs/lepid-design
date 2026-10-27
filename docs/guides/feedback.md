@@ -134,8 +134,9 @@ What the `Toaster` does:
 Write toasts as one short sentence about what happened. Do not put anything in a toast that the user must see: it can
 be missed, so the same information must be reachable elsewhere.
 
-A toast renders below a modal `<dialog>`, which sits in the browser's top layer. Show the result inside the dialog, or
-raise the toast after it closes.
+A modal `<dialog>` (or `Sheet`) sits in the browser's top layer and makes the rest of the page inert. The stack is a
+manual popover that moves into the open modal while there is one, so a toast raised from a dialog shows above it and
+its buttons still work.
 
 Without React, the pure queue in `toast-queue` (`toastQueue`, `addToast`, `dismissToast`, `pauseToasts`,
 `visibleToasts`, `nextToastExpiry`, `expiredToasts`, `toastDuration`) runs the same rules; `site/feedback-demo.js` is a

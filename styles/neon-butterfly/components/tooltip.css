@@ -1,0 +1,37 @@
+/* neon-butterfly — tooltip (the React Tooltip): a navy readout boxed in a lilac
+ * hairline with a soft lilac glow, uppercase tracked mono like every label in the
+ * theme, in the top layer (Popover API). Anchor positioning sets it above its
+ * trigger and flips it below at the viewport edge; without it the component
+ * measures and writes top/left. It snaps on and cuts off, like a console line. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tooltip {
+  position: fixed;
+  z-index: var(--ld-z-tooltip);
+  inset: auto;
+  margin: 0 0 6px;
+  position-area: block-start;
+  position-try-fallbacks: flip-block;
+  max-width: min(18rem, calc(100vw - 1rem));
+  padding: 0.3125rem 0.5rem;
+  overflow: visible;
+  background: var(--ld-surface);
+  border: 1px solid var(--ld-primary-border);
+  border-radius: var(--ld-radius);
+  box-shadow: 0 0 10px rgba(210, 187, 255, 0.3);
+  color: var(--ld-primary);
+  font: var(--ld-font-weight-bold) 11px/1.45 var(--ld-font-mono);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-exit), display var(--ld-duration-fast) allow-discrete,
+    overlay var(--ld-duration-fast) allow-discrete;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tooltip[data-ld-side="bottom"] {
+  margin: 6px 0 0;
+  position-area: block-end;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tooltip:not(:popover-open) {
+  opacity: 0;
+}
+/* opening is a hard cut; only the exit fades */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tooltip:popover-open {
+  transition-duration: 0s;
+}

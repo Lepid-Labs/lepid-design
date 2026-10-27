@@ -1,0 +1,57 @@
+/* neon-butterfly — search field (the React SearchInput): an .ld-input with the
+ * search glyph inset at the start (a lilac-and-lime spinner while loading), the
+ * shortcut key cap at the end while it is empty and unfocused, and a clear
+ * button once it has text. Both follow :placeholder-shown, so keep a placeholder.
+ * The glyph turns lime, the activity signal, while the field has focus. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__input {
+  padding-inline: 2.25rem 2.5rem;
+  caret-color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__icon {
+  position: absolute;
+  inset-inline-start: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--ld-faint);
+  pointer-events: none;
+  transition: color var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__icon.ld-spinner {
+  border-width: 2px;
+  border-right-color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search:focus-within .ld-search__icon {
+  color: var(--ld-accent);
+  filter: drop-shadow(0 0 4px var(--ld-accent-glow));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__hint {
+  position: absolute;
+  inset-inline-end: 0.625rem;
+  pointer-events: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search__clear {
+  position: absolute;
+  inset-inline-end: 0.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search:has(.ld-search__input:placeholder-shown) .ld-search__clear,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search:has(.ld-search__input:focus) .ld-search__hint,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-search:has(.ld-search__input:not(:placeholder-shown)) .ld-search__hint {
+  display: none;
+}
+/* the matched letters of a result, here and in the command palette */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-match {
+  background: none;
+  color: var(--ld-accent);
+  font-weight: var(--ld-font-weight-bold);
+}

@@ -152,9 +152,39 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   motion). The action is a teal ghost `--sm` button; its countdown is a glowing
   2px teal bar that stops under `[data-ld-paused]`. Stack bottom-right on
   `--ld-z-toast`, top edge below 48rem, safe-area aware.
+  A manual popover: it shows above an open modal and follows it, so its
+  buttons work there.
 - **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) —
   faint 12px mono text: glowing orchid spinner while saving, teal check once
   saved, amber cloud offline, rose bang and danger text on error.
+- **Tooltip** `.ld-tooltip` (`data-ld-side`) — a small solid indigo label
+  with a lit top edge and a faint orchid glow, mono 12px, in the top layer on
+  `--ld-z-tooltip`. Anchored above its trigger, flipping below; rises 2px on the
+  enter curve, fades out faster.
+- **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
+  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  context-menu region) — indigo glass on `--ld-elevation-3` with a lit top
+  edge, anchored below its trigger and flipping at the edges. The focused item
+  takes the teal path: orchid tint, orchid text, 2px teal bar. Checkbox and
+  radio items draw a glowing teal check or dot in a leading slot; danger items
+  are rose; disabled items dim to 0.45 but stay focusable.
+- **Sheet / drawer** `.ld-dialog--sheet`, `.ld-dialog--drawer`
+  (`--drawer-start`), `.ld-dialog__handle` — the dialog's indigo pane pinned to
+  an edge, lit along its inner edge with an orchid glow. Slides in on the enter
+  curve at base duration (`@starting-style`), out on the exit curve, faster;
+  a fade under reduced motion. The handle is a lit hairline pill that turns
+  orchid while held. Safe-area aware.
+- **Command palette** `.ld-command` (+ `__search`, `__icon`, `__input`,
+  `__list`, `__group`, `__group-label`, `__option`, `__option-icon`, `__label`,
+  `__shortcut`, `__loading`) — a dialog set high on the screen; a borderless
+  mono input over a hairline that turns teal with focus. The active option is
+  the teal path; matched letters (`.ld-match`) glow teal.
+- **Search** `.ld-search` (+ `__input`, `__icon`, `__hint`, `__clear`) — an
+  `.ld-input` with the glyph inset (a glowing spinner while loading), lit teal
+  with focus; key hint while empty, clear button once filled. `.ld-match` marks
+  matched letters in teal.
+- **Key hint** `.ld-kbd` — a sunken well with a lit top edge and a heavier
+  foot, faint mono 11px.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

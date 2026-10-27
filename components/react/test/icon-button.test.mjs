@@ -22,6 +22,13 @@ test("iconButtonAttrs: active and danger add modifiers, consumer className is ap
   assert.equal(iconButtonAttrs({ label: "x", variant: "default" }).className, "ld-icon-btn");
 });
 
+test("iconButtonAttrs: a tooltip names the control instead of aria-label and title", () => {
+  const a = iconButtonAttrs({ label: "Settings", tooltipId: "tip1" });
+  assert.equal(a["aria-labelledby"], "tip1");
+  assert.equal(a["aria-label"], undefined);
+  assert.equal(a.title, undefined);
+});
+
 test("iconButtonAttrs: an explicit title overrides the label-derived tooltip", () => {
   const a = iconButtonAttrs({ label: "Edit project", title: "Edit (E)" });
   assert.equal(a["aria-label"], "Edit project");

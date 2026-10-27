@@ -1,0 +1,124 @@
+/* neon-butterfly — command palette (the React CommandPalette): an .ld-dialog set
+ * high on the screen that reads like a prompt: a lime ">" leads the input line,
+ * which underlines in lilac while it has focus, then the grouped listbox. The active
+ * option (aria-activedescendant, so focus stays in the input) is the switchboard
+ * row: lilac text on a lilac wash with a lilac hairline; matched letters (.ld-match,
+ * in search.css) are lime. Empty and no-results states are .ld-empty. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  max-height: min(32rem, 76dvh);
+  margin-block: max(1rem, 12dvh) auto;
+  padding: 0;
+  overflow: hidden;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command:not([open]) {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__search {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--ld-border);
+  transition: border-color var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__search::before {
+  content: ">";
+  color: var(--ld-accent);
+  font-weight: var(--ld-font-weight-bold);
+  text-shadow: 0 0 6px var(--ld-accent-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__search:focus-within {
+  border-bottom-color: var(--ld-primary-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__icon {
+  flex: none;
+  order: 2;
+  width: 1rem;
+  height: 1rem;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--ld-on-surface);
+  caret-color: var(--ld-accent);
+  font: var(--ld-font-weight) 15px var(--ld-font-mono);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__input::placeholder {
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__search .ld-kbd {
+  order: 3;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__list {
+  flex: 1;
+  min-height: 0;
+  padding: 0.375rem;
+  overflow-y: auto;
+  scroll-padding-block: 0.375rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__group + .ld-command__group {
+  margin-top: 0.375rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__group-label {
+  padding: 0.5rem 0.625rem 0.25rem;
+  color: var(--ld-faint);
+  font-size: 10px;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: var(--ld-on-surface);
+  font-size: 13px;
+  cursor: pointer;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option[aria-selected="true"] {
+  background: rgba(210, 187, 255, 0.08);
+  border-color: rgba(210, 187, 255, 0.35);
+  color: var(--ld-primary);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option-icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option-icon > svg {
+  width: 1rem;
+  height: 1rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__option[aria-selected="true"] .ld-command__option-icon {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command__loading {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-command .ld-empty {
+  padding: var(--ld-space-5) var(--ld-space-4);
+}
