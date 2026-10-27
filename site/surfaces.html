@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Surfaces · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .gallery { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); align-items: start; }
+  .stack { display: grid; gap: 1rem; }
+  .title-edit { font-size: 1.5rem; font-weight: 700; }
+  .canvas { position: relative; height: 20rem; border-radius: 1rem; overflow: hidden;
+    border: 1px dashed color-mix(in srgb, currentColor 25%, transparent); }
+  .canvas p { margin: 1rem; opacity: 0.6; font-size: 0.875rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · surfaces</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section aria-labelledby="acc-h">
+    <h2 id="acc-h">Accordion and disclosure</h2>
+    <p>Native <code>&lt;details&gt;</code>: the whole row is the button, Enter or Space toggles it, and the chevron
+      turns on the panel's own curve. The FAQ lets several answers stay open; the steps share a
+      <code>name</code>, so opening one closes the other.</p>
+    <div class="gallery">
+      <div class="ld-accordion">
+        <details class="ld-accordion__item" open>
+          <summary class="ld-accordion__summary">Can I change my plan later?</summary>
+          <div class="ld-accordion__panel"><p>Yes. Upgrades apply at once; downgrades at the end of the billing period.</p></div>
+        </details>
+        <details class="ld-accordion__item">
+          <summary class="ld-accordion__summary">Do you keep my data after I cancel?</summary>
+          <div class="ld-accordion__panel"><p>For 30 days, so you can export it. After that it is deleted from every backup.</p></div>
+        </details>
+        <details class="ld-accordion__item">
+          <summary class="ld-accordion__summary">Is there an API?</summary>
+          <div class="ld-accordion__panel"><p>Every action in the app has an endpoint. Tokens are scoped per workspace.</p></div>
+        </details>
+      </div>
+      <div class="ld-accordion">
+        <details class="ld-accordion__item" name="setup" open>
+          <summary class="ld-accordion__summary">1. Connect a repository</summary>
+          <div class="ld-accordion__panel"><p>Pick the repository and the branch that deploys.</p></div>
+        </details>
+        <details class="ld-accordion__item" name="setup">
+          <summary class="ld-accordion__summary">2. Choose a build command</summary>
+          <div class="ld-accordion__panel"><p>We guess from your lock file; change it if we guessed wrong.</p></div>
+        </details>
+        <details class="ld-accordion__item" name="setup">
+          <summary class="ld-accordion__summary">3. Invite your team</summary>
+          <div class="ld-accordion__panel"><p>They get an email with a link that expires in a week.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="edit-h">
+    <h2 id="edit-h">Inline editing</h2>
+    <p>Click, press Enter or F2 to edit. Enter or clicking away saves, Escape puts the old text back, and focus returns
+      to the text. The new value shows at once; if the save fails, the old value comes back and the input reopens with
+      your draft. Touch screens always show the pencil.</p>
+    <div class="stack">
+      <div class="ld-inline-edit title-edit" id="edit-title"></div>
+      <div class="ld-inline-edit" id="edit-notes"></div>
+      <label class="ld-choice"><input type="checkbox" class="ld-checkbox" id="edit-fail"> Fail the next save</label>
+    </div>
+  </section>
+
+  <section aria-labelledby="rating-h">
+    <h2 id="rating-h">Star rating</h2>
+    <p>As an input it is a radio group: Tab reaches it once, the arrow keys choose, and hovering previews without
+      committing. Read-only ratings fill to the exact average and print it with the count.</p>
+    <div class="gallery">
+      <div class="stack">
+        <fieldset class="ld-rating" id="rate">
+          <legend class="ld-label ld-rating__legend">Rate this guide</legend>
+          <span class="ld-rating__options"></span>
+          <span class="ld-rating__value" aria-hidden="true"></span>
+          <button type="button" class="ld-btn ld-btn--sm ld-rating__clear" style="display: none">Clear</button>
+        </fieldset>
+      </div>
+      <div class="stack" id="ratings">
+        <span class="ld-rating ld-rating--display" data-value="4.3" data-count="128"></span>
+        <span class="ld-rating ld-rating--display" data-value="4.97" data-count="35"></span>
+        <span class="ld-rating ld-rating--display" data-value="2.06" data-count="1"></span>
+        <span class="ld-rating ld-rating--display" data-value="0" data-count="0"></span>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="presence-h">
+    <h2 id="presence-h">Live cursors and presence</h2>
+    <p>The app reports positions ten times a second; each cursor glides between reports (it jumps under reduced
+      motion). Colours come from a hash of the user id, so people keep theirs. A cursor that sits still fades out, and
+      your own pointer is never drawn. The avatar stack says who is here.</p>
+    <div class="row" style="justify-content: space-between; margin-bottom: 1rem">
+      <ul class="ld-avatar-stack" id="here" aria-label="Here now"></ul>
+      <label class="ld-choice"><input type="checkbox" role="switch" class="ld-switch" id="raw"> Raw 10 Hz updates</label>
+    </div>
+    <div class="canvas" id="canvas">
+      <p>A shared canvas. Remote cursors never take a click.</p>
+      <div class="ld-presence" id="cursors" aria-hidden="true"></div>
+    </div>
+  </section>
+  <p><a href="layout-settings.html">See the settings page</a>, which puts inline editing, switches, autosave and an
+    accordion together.</p>
+</main>
+
+<script type="module" src="surfaces-demo.js"></script>
+<script type="module" src="presence-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

@@ -216,6 +216,34 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   matched letters in teal.
 - **Key hint** `.ld-kbd` — a sunken well with a lit top edge and a heavier
   foot, faint mono 11px.
+- **Accordion** `.ld-accordion` (+ `__item`, `__summary`, `__panel`) — native
+  `<details>`/`<summary>`: glass panes with a lit top edge and Sora headers; the
+  whole row is the button, focus a teal inset ring. A faint chevron turns teal
+  and flips on the panel's own duration and curve while the height opens
+  (`interpolate-size` + `::details-content`; it snaps where unsupported and under
+  reduced motion). An open pane takes the level-1 glow.
+- **Inline edit** `.ld-inline-edit` (+ `--multiline`, `__display`, `__text`, `__icon`, `__input`; `data-ld-edit`,
+  `data-ld-saved`) — the text and the
+  input share one box (font, padding, 1px edge), so the swap moves nothing; only
+  the edge lights teal with a soft glow. A pencil shows on hover and keyboard
+  focus, always on touch; saving is a glowing orchid spinner, then a teal check;
+  errors take the rose edge and the field error line.
+- **Star rating** `.ld-rating` (+ `__legend`, `__options`, `__option`, `__input`, `__glyph`,
+  `__value`, `__clear`; `--display`, `__stars`, `__count`) — faint
+  outline stars; chosen stars are solid orchid with a glow, clipped to
+  `--ld-fill` for fractional averages. The hover preview lights teal (only where
+  hover is real); keyboard focus rings the star in teal.
+- **Settings** `.ld-settings` (+ `__nav`, `__link`, `__body`, `__section`, `--danger`,
+  `__header`, `__title`, `__description`, `__row`, `__label`, `__hint`, `__control`) — the section nav
+  sticks beside the sections when the container has room (a scrolling row
+  otherwise); the current link takes the teal path. Sections are glass panes; the
+  danger zone comes last, edged and lit rose.
+- **Presence** `.ld-presence`, `.ld-cursor` (+ `__pointer`, `__name`; `data-ld-color`,
+  `data-ld-idle`), `.ld-avatar-stack`, `.ld-avatar` (+ `--overflow`, `__img`) — remote
+  cursors are light: a pointer and an uppercase mono tag in the person's colour
+  with a glow of the same hue. Eight bright slots (`--ld-presence-1..8`) carry
+  obsidian ink. The layer sits on `--ld-z-sticky` and never takes a click; idle
+  cursors fade out. Avatars are discs on their colour, ringed in obsidian.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

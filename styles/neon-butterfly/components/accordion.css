@@ -1,0 +1,90 @@
+/* neon-butterfly — accordion / disclosure (the React Accordion). A console
+ * listing: one hairline frame, rows split by hairlines, uppercase tracked
+ * headers. The switchboard `>` leads each row and turns down, lime, as the
+ * panel opens — on the panel's own curve and duration. Native <details>: the
+ * summary is the whole row and a real button. Smooth height comes from
+ * interpolate-size + ::details-content; elsewhere it snaps. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion {
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  -webkit-backdrop-filter: blur(var(--ld-blur));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item {
+  interpolate-size: allow-keywords;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item + .ld-accordion__item {
+  border-block-start: 1px solid var(--ld-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-3);
+  padding: var(--ld-space-3);
+  color: var(--ld-on-surface);
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  list-style: none;
+  cursor: pointer;
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard), background-color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary::before {
+  content: ">";
+  flex: none;
+  inline-size: 1ch;
+  color: var(--ld-faint);
+  transition: rotate var(--ld-duration-base) var(--ld-ease-standard), color var(--ld-duration-base) var(--ld-ease-standard);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary:hover {
+  color: var(--ld-primary);
+  background: rgba(210, 187, 255, 0.05);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary:hover::before {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary:focus-visible {
+  outline: 1px solid var(--ld-primary-border);
+  outline-offset: -1px;
+  color: var(--ld-primary);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item[open] > .ld-accordion__summary {
+  color: var(--ld-primary);
+  text-shadow: 0 0 8px var(--ld-primary-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item[open] > .ld-accordion__summary::before {
+  rotate: 90deg;
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__panel {
+  display: flow-root;
+  padding: 0 var(--ld-space-3) var(--ld-space-3) calc(var(--ld-space-3) * 2 + 1ch);
+  color: var(--ld-faint);
+  font-size: var(--ld-text-sm);
+  line-height: 1.6;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__panel > :first-child { margin-top: 0; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__panel > :last-child { margin-bottom: 0; }
+
+@supports (interpolate-size: allow-keywords) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size var(--ld-duration-base) var(--ld-ease-standard),
+      content-visibility var(--ld-duration-base) var(--ld-ease-standard) allow-discrete;
+  }
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item[open]::details-content {
+    block-size: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__summary::before,
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-accordion__item::details-content {
+    transition: none;
+  }
+}

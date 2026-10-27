@@ -249,6 +249,38 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   focus; key hint while empty, a round clear button once filled.
 - **Key hint** `.ld-kbd` — a little white key on the outline hairline with a
   heavier foot, mono 11px.
+- **Accordion** `.ld-accordion` (+ `__item`, `__summary`, `__panel`) — native
+  `<details>`/`<summary>`: separate white glass cards, Plus Jakarta headers, the
+  whole row the button; an open card floats up to Level 2 glass. The chevron sits
+  in a round sunken bubble that turns solid violet and flips on the panel's own
+  duration and curve (the enter curve) while the height opens
+  (`interpolate-size` with `::details-content`; it snaps where unsupported and
+  under reduced motion).
+- **Inline edit** `.ld-inline-edit` (+ `--multiline`, `__display`, `__text`, `__icon`, `__input`; `data-ld-edit`,
+  `data-ld-saved`) — the text and the
+  input share one box, so the swap moves nothing; hover washes the text white,
+  editing lights the edge sky blue inside the 4px ring. A pencil shows on hover
+  and keyboard focus, always on touch; saving is a violet spinner, then a
+  deep-green check; errors take the red edge and the field error line.
+- **Star rating** `.ld-rating` (+ `__legend`, `__options`, `__option`, `__input`, `__glyph`,
+  `__value`, `__clear`; `--display`, `__stars`, `__count`) — rounded outline
+  stars on the outline grey; chosen stars are solid violet and pop to 1.1 on the
+  spring, clipped to `--ld-fill` for fractional averages; the hover preview is
+  sky blue (only where hover is real). The average is in the display face, the
+  count in mono.
+- **Settings** `.ld-settings` (+ `__nav`, `__link`, `__body`, `__section`, `--danger`,
+  `__header`, `__title`, `__description`, `__row`, `__label`, `__hint`, `__control`) — the section nav
+  sticks beside the sections when the container has room (a scrolling row of
+  pills otherwise); the current link is the solid violet pill. Sections are
+  white glass cards; the danger zone comes last as a pale red card with the
+  alert's 4px red rule.
+- **Presence** `.ld-presence`, `.ld-cursor` (+ `__pointer`, `__name`; `data-ld-color`,
+  `data-ld-idle`), `.ld-avatar-stack`, `.ld-avatar` (+ `--overflow`, `__img`) — remote
+  cursors are friendly: a deep-coloured pointer with a white edge on a tinted
+  shadow and a pill tag in the display face. Eight deep slots
+  (`--ld-presence-1..8`, 3:1 on the sky and on white) carry white ink; the vivid
+  palette hues would not. The layer sits on `--ld-z-sticky` and never takes a
+  click; idle cursors fade out. Avatars are discs with a white ring.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

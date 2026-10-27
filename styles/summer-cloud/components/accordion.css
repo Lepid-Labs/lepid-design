@@ -1,0 +1,90 @@
+/* summer-cloud — accordion / disclosure (the React Accordion). Separate white
+ * glass cards; an open card floats up to Level 2 glass. The chevron sits in a
+ * round sky-tint bubble that turns violet and flips on the same curve and
+ * duration as the panel opening. Native <details>: the summary is the whole
+ * row and a real button. Smooth height comes from interpolate-size +
+ * ::details-content; elsewhere it snaps. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion {
+  display: grid;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item {
+  interpolate-size: allow-keywords;
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  -webkit-backdrop-filter: blur(var(--ld-blur));
+  box-shadow: var(--ld-elevation-1);
+  transition: background-color var(--ld-duration-base) var(--ld-ease-enter), box-shadow var(--ld-duration-base) var(--ld-ease-enter);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item[open] {
+  background: var(--ld-surface-glass-high);
+  box-shadow: var(--ld-elevation-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-3);
+  padding: var(--ld-space-3) var(--ld-space-4);
+  border-radius: inherit;
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  list-style: none;
+  cursor: pointer;
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary::after {
+  content: "";
+  flex: none;
+  margin-inline-start: auto;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: 50%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23484457' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / 1rem no-repeat, var(--ld-surface-sunken);
+  transition: rotate var(--ld-duration-base) var(--ld-ease-enter), background-color var(--ld-duration-base) var(--ld-ease-enter);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary:hover {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item[open] > .ld-accordion__summary {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item[open] > .ld-accordion__summary::after {
+  rotate: 180deg;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / 1rem no-repeat, var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__panel {
+  display: flow-root;
+  padding: 0 var(--ld-space-4) var(--ld-space-3);
+  color: var(--ld-faint);
+  line-height: 1.6;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__panel > :first-child { margin-top: 0; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__panel > :last-child { margin-bottom: 0; }
+
+@supports (interpolate-size: allow-keywords) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size var(--ld-duration-base) var(--ld-ease-enter),
+      content-visibility var(--ld-duration-base) var(--ld-ease-enter) allow-discrete;
+  }
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item[open]::details-content {
+    block-size: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__summary::after,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-accordion__item::details-content {
+    transition: none;
+  }
+}
