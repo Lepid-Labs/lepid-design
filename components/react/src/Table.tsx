@@ -4,11 +4,17 @@ import { isRowActivationClick, isRowActivationKey, ROW_NESTED_CONTROLS, tableAtt
 export type TableProps = TableHTMLAttributes<HTMLTableElement> & {
   /** Clickable rows: pointer cursor, focus ring, selected state. Maps to .ld-table--interactive. */
   interactive?: boolean;
+  /** Row height: `compact` (.ld-table--compact) or `comfortable` (.ld-table--comfortable, zebra stripes). */
+  density?: "compact" | "comfortable";
+  /** Keep the header row in view (.ld-table--sticky, on --ld-z-sticky). It sticks to the nearest
+   *  scroll container: the page, or a `.ld-table-scroll` wrapper given a max height. */
+  stickyHeader?: boolean;
 };
 
-/** Styled `<table>`. Compose with native thead/tbody/th/td; use TableRow for clickable body rows. */
-export function Table({ interactive, className, ...rest }: TableProps) {
-  return <table {...tableAttrs({ interactive, className })} {...rest} />;
+/** Styled `<table>`. Compose with native thead/tbody/th/td; use TableRow for clickable body rows,
+ *  SortHeader for sortable columns, and TableSelectAll / TableSelectCell for row selection. */
+export function Table({ interactive, density, stickyHeader, className, ...rest }: TableProps) {
+  return <table {...tableAttrs({ interactive, density, stickyHeader, className })} {...rest} />;
 }
 
 export type TableRowProps = HTMLAttributes<HTMLTableRowElement> & {

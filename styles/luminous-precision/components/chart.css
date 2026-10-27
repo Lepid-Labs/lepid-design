@@ -1,0 +1,149 @@
+/* luminous-precision — charts: light as data. Bars are translucent orchid panes
+ * with a lit edge, the called-out bar glows teal, lines are thin and glowing, and
+ * gridlines are barely there. Series also differ by dash and marker, never only
+ * by hue. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart {
+  --ld-chart-1: var(--ld-primary);
+  --ld-chart-2: var(--ld-accent);
+  --ld-chart-3: var(--ld-info);
+  --ld-chart-4: var(--ld-warning);
+  min-width: 0;
+  margin: 0;
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__title {
+  margin-bottom: var(--ld-space-2);
+  font-family: var(--ld-font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--ld-font-mono);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__grid {
+  stroke: var(--ld-border);
+  stroke-dasharray: 2 4;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__baseline,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__axis-line {
+  stroke: var(--ld-border-lit);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__tick {
+  fill: var(--ld-faint);
+  font-size: 11px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__axis-label {
+  margin: var(--ld-space-1) 0 0;
+  fill: var(--ld-faint);
+  color: var(--ld-faint);
+  font-size: 11px;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__axis-label--x {
+  text-align: center;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__break {
+  fill: none;
+  stroke: var(--ld-warning);
+  stroke-width: 1.5;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__bar {
+  fill: var(--ld-chart-1);
+  fill-opacity: 0.45;
+  stroke: var(--ld-chart-1);
+  rx: 3px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__bar--highlight {
+  fill: var(--ld-chart-2);
+  fill-opacity: 0.7;
+  stroke: var(--ld-chart-2);
+  filter: drop-shadow(0 0 6px var(--ld-accent-glow));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__value {
+  fill: var(--ld-on-surface);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__bar-group--highlight .ld-chart__value {
+  fill: var(--ld-accent);
+  font-weight: 700;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__series--0 { --ld-chart-color: var(--ld-chart-1); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__series--1 { --ld-chart-color: var(--ld-chart-2); --ld-chart-dash: 6 4; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__series--2 { --ld-chart-color: var(--ld-chart-3); --ld-chart-dash: 1.5 4; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__series--3 { --ld-chart-color: var(--ld-chart-4); --ld-chart-dash: 8 3 1.5 3; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__line {
+  fill: none;
+  stroke: var(--ld-chart-color);
+  stroke-width: 2;
+  stroke-dasharray: var(--ld-chart-dash, none);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--ld-chart-color) 45%, transparent));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__points {
+  fill: var(--ld-chart-color);
+  stroke: var(--ld-bg);
+  stroke-width: 1.5;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__label {
+  fill: var(--ld-chart-color);
+  font-size: 11px;
+  font-weight: 600;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data {
+  margin-top: var(--ld-space-2);
+  font-size: 12px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data > summary {
+  width: fit-content;
+  color: var(--ld-faint);
+  font-size: 12px;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data > summary:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data[open] > summary {
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data > summary:focus-visible {
+  outline: 1px solid var(--ld-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chart__data[open] > summary {
+  margin-bottom: var(--ld-space-2);
+}
+
+/* Sparkline: a word-sized line in orchid, its latest point a teal dot. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sparkline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  vertical-align: middle;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sparkline__svg {
+  display: block;
+  overflow: visible;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sparkline__line {
+  fill: none;
+  stroke: var(--ld-primary);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sparkline__dot {
+  fill: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-sparkline__value {
+  color: var(--ld-on-surface);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}

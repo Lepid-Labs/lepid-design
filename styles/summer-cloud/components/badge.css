@@ -47,31 +47,3 @@
 @media (prefers-reduced-motion: reduce) {
   :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-badge--pulse { animation: none; }
 }
-
-/* Chip — the filter variant: outlined until selected. */
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--ld-space-1);
-  padding: var(--ld-space-2) var(--ld-space-3);
-  background: none;
-  border: 1px solid var(--ld-outline);
-  border-radius: var(--ld-radius-pill);
-  color: var(--ld-faint);
-  font-family: var(--ld-font-display);
-  font-size: 12px;
-  font-weight: var(--ld-font-weight-medium);
-  cursor: pointer;
-  transition: background var(--ld-transition), color var(--ld-transition),
-    border-color var(--ld-transition);
-}
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip:hover,
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip:focus-visible {
-  background: var(--ld-sky-tint);
-}
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip--selected,
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chip[aria-pressed="true"] {
-  background: var(--ld-primary-bright);
-  border-color: transparent;
-  color: #fff;
-}

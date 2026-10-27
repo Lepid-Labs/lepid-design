@@ -1,0 +1,150 @@
+/* summer-cloud — charts: airy and confident. Bars are soft lavender pills with
+ * rounded ends, the called-out bar is the full violet, lines are thick and round on
+ * white, and the labels take the mono data voice. Series also differ by dash and
+ * marker, never only by hue; every series colour holds 3:1 on white. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart {
+  --ld-chart-1: var(--ld-primary);
+  --ld-chart-2: var(--ld-accent-deep);
+  --ld-chart-3: var(--ld-success-deep);
+  --ld-chart-4: var(--ld-danger-deep);
+  min-width: 0;
+  margin: 0;
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__title {
+  margin-bottom: var(--ld-space-2);
+  font-family: var(--ld-font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: var(--ld-font-mono);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__grid {
+  stroke: rgba(201, 195, 218, 0.55);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__baseline,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__axis-line {
+  stroke: var(--ld-outline);
+  stroke-width: 1.5;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__tick {
+  fill: var(--ld-faint);
+  font-size: 11px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__axis-label {
+  margin: var(--ld-space-1) 0 0;
+  fill: var(--ld-faint);
+  color: var(--ld-faint);
+  font-family: var(--ld-font-mono);
+  font-size: 11px;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__axis-label--x {
+  text-align: center;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__break {
+  fill: none;
+  stroke: var(--ld-danger-deep);
+  stroke-width: 1.5;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__bar {
+  fill: color-mix(in srgb, var(--ld-primary-bright) 65%, #fff); /* 3:1 on white */
+  rx: 6px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__bar--highlight {
+  fill: var(--ld-chart-1);
+  filter: drop-shadow(0 4px 8px rgba(93, 43, 255, 0.3));
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__value {
+  fill: var(--ld-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__bar-group--highlight .ld-chart__value {
+  fill: var(--ld-primary);
+  font-weight: 700;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__series--0 { --ld-chart-color: var(--ld-chart-1); }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__series--1 { --ld-chart-color: var(--ld-chart-2); --ld-chart-dash: 7 5; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__series--2 { --ld-chart-color: var(--ld-chart-3); --ld-chart-dash: 1 5; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__series--3 { --ld-chart-color: var(--ld-chart-4); --ld-chart-dash: 9 4 1 4; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__line {
+  fill: none;
+  stroke: var(--ld-chart-color);
+  stroke-width: 2.5;
+  stroke-dasharray: var(--ld-chart-dash, none);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__points {
+  fill: var(--ld-chart-color);
+  stroke: #fff;
+  stroke-width: 2;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__label {
+  fill: var(--ld-chart-color);
+  font-family: var(--ld-font-display);
+  font-size: 12px;
+  font-weight: 700;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__data {
+  margin-top: var(--ld-space-2);
+  font-size: 12px;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__data > summary {
+  width: fit-content;
+  padding: 0 var(--ld-space-2);
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-accent-deep);
+  font-family: var(--ld-font-display);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__data > summary:hover {
+  background: var(--ld-sky-tint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__data > summary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-chart__data[open] > summary {
+  margin-bottom: var(--ld-space-2);
+}
+
+/* Sparkline: a round violet stroke ending in a dot ringed in white. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sparkline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+  vertical-align: middle;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sparkline__svg {
+  display: block;
+  overflow: visible;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sparkline__line {
+  fill: none;
+  stroke: var(--ld-primary-bright);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sparkline__dot {
+  fill: var(--ld-primary);
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-sparkline__value {
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}

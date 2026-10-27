@@ -17,6 +17,62 @@ export {
   type TableOptions,
   type TableRowOptions,
 } from "./table-state.js";
+export {
+  SortHeader,
+  TableSelectAll,
+  TableSelectCell,
+  TableSkeletonRows,
+  type SortHeaderProps,
+  type TableSelectAllProps,
+  type TableSelectCellProps,
+  type TableSkeletonRowsProps,
+} from "./TableCells.js";
+export { useRowSelection, type RowSelection } from "./useRowSelection.js";
+export {
+  ariaSort,
+  compareValues,
+  nextSort,
+  pageSelection,
+  sortRows,
+  togglePage,
+  toggleRow,
+  type PageSelection,
+  type SortDirection,
+  type SortState,
+} from "./table-rows.js";
+export { BulkActionBar, type BulkActionBarProps } from "./BulkActionBar.js";
+export {
+  Pagination,
+  PageSummary,
+  PageSizeSelect,
+  LoadMore,
+  type PaginationProps,
+  type PageSummaryProps,
+  type PageSizeSelectProps,
+  type LoadMoreProps,
+} from "./Pagination.js";
+export { pageRange, pageSpan, pageAfterResize, type PageItem, type PageSpan } from "./page-range.js";
+export { Chip, FilterChip, ChipGroup, type ChipProps, type FilterChipProps, type ChipGroupProps } from "./Chip.js";
+export { BarChart, type BarChartProps, type BarDatum } from "./BarChart.js";
+export { LineChart, type LineChartProps, type LineSeries } from "./LineChart.js";
+export { Sparkline, type SparklineProps } from "./Sparkline.js";
+export type { ChartBaseProps } from "./ChartFrame.js";
+export {
+  bandLayout,
+  barExtent,
+  extremes,
+  formatTick,
+  labelEvery,
+  linePath,
+  linearScale,
+  niceScale,
+  spreadLabels,
+  tickStep,
+  type Band,
+  type Domain,
+  type Extremes,
+  type NiceScale,
+} from "./chart-scale.js";
 export { LogBlock, type LogBlockProps } from "./LogBlock.js";
 export { logAttrs, isPinnedToBottom, LOG_PIN_TOLERANCE, type LogOptions } from "./log-state.js";
 export { CodeBlock, type CodeBlockProps } from "./CodeBlock.js";

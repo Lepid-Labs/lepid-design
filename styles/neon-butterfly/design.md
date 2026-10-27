@@ -117,7 +117,38 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **Alert** `.ld-alert` — left accent bar carries the semantic color.
 - **Dialog** `.ld-dialog` — native `<dialog>`, lilac border + glow, blurred backdrop.
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — active tab underlined in lilac with text glow; the underline is one lit bar that stretches to the new tab and snaps back (same slide tokens).
-- **Table** `.ld-table` — lilac header rule, glass row hover. `.ld-table--interactive` adds the pointer, a lilac focus outline, and a selected row (`aria-selected`) with a lilac left bar and inner glow.
+- **Table** `.ld-table` — lilac header rule, glass row hover. `.ld-table--interactive` adds the pointer, a lilac focus outline, and a selected row (`aria-selected`) with a lilac left bar and inner glow; selected rows look the same in any table.
+  `.ld-table__sort` headers are hairline buttons with dim twin arrows; the
+  sorted column (`aria-sort`) turns lilac and its one arrow lights lime.
+  `.ld-table__select` cells hold a full-cell checkbox target; the
+  indeterminate select-all is a lime dash. `--sticky` keeps the header on
+  navy glass on `--ld-z-sticky`; `--compact` is a tight console listing,
+  `--comfortable` opens and stripes rows in faint lilac (`--ld-table-pad-y`).
+  `.ld-num` right-aligns on tabular figures; `.ld-table-scroll` scrolls a wide
+  or tall table in its own box.
+- **Bulk action bar** `.ld-bulk-bar` (+ `--top`, `__count`, `__actions`) — a
+  frosted navy console strip with a lilac hairline and glow, sticky along the
+  bottom edge on `--ld-z-sticky` (in the flow, so it never covers the last
+  row; the page gets scroll padding while it shows). The count reads like a
+  prompt in lime with a blinking block cursor (steady under reduced motion);
+  it snaps in from below.
+- **Pagination** `.ld-pagination` (+ `__list`, `__link`, `__prev`, `__next`,
+  `__page`, `__ellipsis`, `__text`, `__summary`, `__size`),
+  `.ld-pagination-bar`, `.ld-load-more` — hairline console cells in tracked
+  uppercase; the current page is a solid lilac block, chevrons light lime on
+  hover. Previous/Next drop their words below 30rem.
+- **Chip** `.ld-chip` (+ `--removable`, `__label`, `__remove`;
+  `.ld-chip-group`, `--scroll`, `__chips`, `__count`, `__clear`) — hairline
+  console tags (one radius, no pills) in tracked uppercase; pressed
+  (`aria-pressed`, `--selected`) takes a lime edge, glow and check. The remove
+  button is a square 24px target that turns pink; the live count is lime.
+- **Chart** `.ld-chart` (`__title`, `__svg`, `__grid`, `__baseline`,
+  `__break`, `__tick`, `__axis-label`, `__bar`, `__bar--highlight`,
+  `__value`, `__series--0..3`, `__line`, `__points`, `__label`, `__data`),
+  `.ld-sparkline` — an oscilloscope: lilac hairline bars over a faint fill,
+  the called-out bar burning lime, crisp glowing traces with hollow markers on
+  a dotted grid, tracked uppercase labels. Series run lilac, lime, info,
+  warning (`--ld-chart-1..4`) and differ by dash and marker too.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing lilac indicators.
 - **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — navy
   hairline wells a thin, sharp lilac scanline sweeps, like a console

@@ -1,12 +1,13 @@
 /* neon-butterfly — table */
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table {
+  --ld-table-pad-y: var(--ld-space-2);
   width: 100%;
   border-collapse: collapse;
   font-size: var(--ld-text-sm);
   color: var(--ld-on-surface);
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th {
-  padding: var(--ld-space-2) var(--ld-space-3);
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
   border-bottom: 1px solid var(--ld-primary-border);
   color: var(--ld-faint);
   text-align: left;
@@ -16,14 +17,120 @@
   letter-spacing: var(--ld-tracking-wide);
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table td {
-  padding: var(--ld-space-2) var(--ld-space-3);
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
   border-bottom: 1px solid var(--ld-border);
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr {
   transition: background var(--ld-transition);
 }
+/* Density: compact is a tight console listing; comfortable opens the rows and
+ * stripes them in a faint lilac (the stripe sits under hover and selection). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--compact {
+  --ld-table-pad-y: var(--ld-space-1);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--comfortable {
+  --ld-table-pad-y: var(--ld-space-3);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--comfortable td {
+  border-bottom-color: transparent;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--comfortable tbody tr:where(:nth-child(even)) {
+  background: rgba(210, 187, 255, 0.035);
+}
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr:hover {
   background: var(--ld-surface-glass);
+}
+/* Numbers right-align on tabular figures, so digits line up down the column. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table .ld-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sticky header: the row stays over the body on the sticky layer, on solid navy
+ * with its lilac rule drawn as a shadow (a collapsed border scrolls away). */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--sticky thead th {
+  position: sticky;
+  top: var(--ld-table-sticky-top, 0);
+  z-index: var(--ld-z-sticky);
+  background: color-mix(in srgb, var(--ld-bg) 92%, transparent);
+  backdrop-filter: blur(var(--ld-blur));
+  box-shadow: inset 0 -1px 0 var(--ld-primary-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table-scroll {
+  /* sized by its container, never by the table: a wide table scrolls instead of
+   * stretching the grid or flex track it sits in */
+  contain: inline-size;
+  overflow: auto;
+  max-block-size: var(--ld-table-max-height, none);
+  overscroll-behavior: contain;
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table-scroll:focus-visible {
+  outline: 1px solid var(--ld-primary-border);
+}
+
+/* Sortable header: the label is a button; both arrows rest dim so the column
+ * reads as sortable without a hover. The sorted column turns lilac and its one
+ * arrow lights lime, the activity signal. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  margin: calc(-1 * var(--ld-space-1)) calc(-1 * var(--ld-space-2));
+  padding: var(--ld-space-1) var(--ld-space-2);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--ld-radius);
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color var(--ld-transition), border-color var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__sort:hover {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__sort:focus-visible {
+  outline: none;
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  box-shadow: 0 0 8px var(--ld-primary-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__sort-icon {
+  flex: none;
+  width: 0.75em;
+  height: 1em;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__sort-icon path {
+  opacity: 0.35;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th[aria-sort] {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th[aria-sort="ascending"] .ld-table__sort-asc,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th[aria-sort="descending"] .ld-table__sort-desc {
+  opacity: 1;
+  stroke: var(--ld-accent);
+  filter: drop-shadow(0 0 3px var(--ld-accent-glow));
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th[aria-sort="ascending"] .ld-table__sort-desc,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table th[aria-sort="descending"] .ld-table__sort-asc {
+  opacity: 0;
+}
+
+/* Selection column: the label fills the cell, so the whole cell is the target. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table .ld-table__select {
+  width: 1px;
+  padding: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table__select-hit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
+  cursor: pointer;
+  user-select: none;
 }
 
 /* Interactive rows (.ld-table--interactive): the cursor is the affordance —
@@ -41,7 +148,8 @@
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr:active {
   background: rgba(210, 187, 255, 0.08);
 }
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr[aria-selected="true"] {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table--interactive tbody tr[aria-selected="true"],
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-table tbody tr[aria-selected="true"] {
   background: rgba(210, 187, 255, 0.12);
   box-shadow: inset 2px 0 0 0 var(--ld-primary), inset 0 0 10px rgba(210, 187, 255, 0.25);
 }

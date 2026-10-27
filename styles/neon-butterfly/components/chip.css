@@ -1,0 +1,120 @@
+/* neon-butterfly — filter chips: hairline console tags in tracked uppercase mono
+ * (one radius everywhere, no pills). A pressed chip takes a lime hairline, glow and
+ * check, so it never differs by colour alone. Applied filters keep a lilac edge
+ * and a square remove button that turns pink. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  min-height: 2rem;
+  padding: var(--ld-space-1) var(--ld-space-3);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
+  font: inherit;
+  font-size: 11px;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--ld-transition), border-color var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip:hover {
+  color: var(--ld-primary);
+  border-color: var(--ld-primary-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip:focus-visible {
+  outline: none;
+  color: var(--ld-primary);
+  border-color: var(--ld-primary);
+  box-shadow: 0 0 10px var(--ld-primary-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip--selected,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip[aria-pressed="true"] {
+  color: var(--ld-accent);
+  background: rgba(57, 255, 20, 0.06);
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip--selected::before,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip[aria-pressed="true"]::before {
+  content: "";
+  width: 0.9em;
+  height: 0.9em;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1.5 6.5l3 3L10.5 2.5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='square'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip--removable {
+  padding-inline-end: var(--ld-space-1);
+  color: var(--ld-on-surface);
+  border-color: var(--ld-primary-border);
+  cursor: default;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip__remove {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-block: -0.25rem;
+  padding: 0;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: calc(var(--ld-radius) / 2);
+  color: var(--ld-faint);
+  cursor: pointer;
+  transition: color var(--ld-transition), border-color var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip__remove svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip__remove:hover {
+  color: var(--ld-danger);
+  border-color: color-mix(in srgb, var(--ld-danger) 50%, transparent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip__remove:focus-visible {
+  outline: none;
+  color: var(--ld-primary);
+  border-color: var(--ld-primary);
+}
+
+/* Group: chips, then the live count and Clear all. Wraps by default; --scroll keeps
+ * one row that scrolls sideways, fading at the end so more reads as more. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ld-space-2) var(--ld-space-3);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip-group__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-2);
+  min-width: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip-group__count {
+  margin-inline-start: auto;
+  color: var(--ld-accent);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip-group--scroll {
+  flex-wrap: nowrap;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-chip-group--scroll .ld-chip-group__chips {
+  flex: 1;
+  flex-wrap: nowrap;
+  contain: inline-size; /* the row scrolls; it never widens its container */
+  overflow-x: auto;
+  padding: 4px 2rem 4px 4px;
+  scrollbar-width: thin;
+  mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+}

@@ -178,7 +178,7 @@ A search experience has five parts. Design all five, not just the box.
 | Suggestions and recent | Recent queries or likely targets before the user types much | `recent` in `CommandPalette`; your own list under a `SearchInput` |
 | Results | Ranked, with the matched words marked, and the count announced | `fuzzyMatch` + `highlight`, `.ld-match`, a polite status |
 | No results | Say what was searched and offer a way out: clear, widen, fix the spelling | `EmptyState variant="no-results"` |
-| Filters | Narrow by type, date or owner without retyping | Filter chips, in a later release |
+| Filters | Narrow by type, date or owner without retyping, with the result count live | `Chip`, `FilterChip`, `ChipGroup count` ([data.md](data.md)) |
 
 ```tsx
 const queries = useMemo(() => debounceQuery(runSearch), []);

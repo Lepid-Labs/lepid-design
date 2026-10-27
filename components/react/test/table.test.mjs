@@ -17,6 +17,14 @@ test("tableAttrs: plain table is the base class; interactive adds the modifier; 
   assert.equal(tableAttrs({ interactive: false }).className, "ld-table");
 });
 
+test("tableAttrs: density and sticky header add their modifiers", () => {
+  assert.equal(tableAttrs({ density: "compact" }).className, "ld-table ld-table--compact");
+  assert.equal(
+    tableAttrs({ interactive: true, density: "comfortable", stickyHeader: true }).className,
+    "ld-table ld-table--interactive ld-table--comfortable ld-table--sticky",
+  );
+});
+
 test("tableRowAttrs: a plain row gets nothing", () => {
   assert.deepEqual(tableRowAttrs({}), {});
 });
