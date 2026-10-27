@@ -1,0 +1,146 @@
+/* luminous-precision — menu (the React Menu and ContextMenu): an indigo glass pane on
+ * the floating glow, in the top layer (auto popover). Anchor positioning opens it
+ * below its trigger and flips it at the viewport edges; otherwise the component
+ * writes top/left. The focused item (focus follows the pointer) is the electric-teal
+ * path of the rest of the theme: an orchid tint and a 2px teal bar. Checkbox and
+ * radio items draw their state in a leading slot that the other items line up with. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu {
+  --ld-menu-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ld-menu-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3.5'/%3E%3C/svg%3E");
+  position: fixed;
+  z-index: var(--ld-z-dropdown);
+  inset: auto;
+  margin: 4px 0;
+  position-area: block-end span-inline-end;
+  position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  min-width: 12rem;
+  max-width: calc(100vw - 1rem);
+  max-height: min(24rem, calc(100dvh - 1rem));
+  padding: 0.25rem;
+  overflow-y: auto;
+  background: color-mix(in srgb, var(--ld-surface) 92%, transparent);
+  border: 1px solid var(--ld-border);
+  border-top-color: var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  -webkit-backdrop-filter: blur(var(--ld-blur));
+  box-shadow: var(--ld-elevation-3);
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-mono);
+  font-size: var(--ld-text-sm);
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-exit), translate var(--ld-duration-fast) var(--ld-ease-exit),
+    display var(--ld-duration-fast) allow-discrete, overlay var(--ld-duration-fast) allow-discrete;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu[data-ld-side="top"] {
+  position-area: block-start span-inline-end;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu:popover-open {
+  transition-timing-function: var(--ld-ease-enter);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu:not(:popover-open) {
+  opacity: 0;
+}
+@starting-style {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu:popover-open {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.4375rem 0.625rem;
+  border-radius: calc(var(--ld-radius) - 0.125rem);
+  color: var(--ld-on-surface);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item:focus {
+  background: rgba(198, 165, 255, 0.1);
+  box-shadow: inset 2px 0 0 var(--ld-accent);
+  color: var(--ld-primary);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item--danger {
+  color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item--danger:focus {
+  background: rgba(255, 77, 109, 0.12);
+  box-shadow: inset 2px 0 0 var(--ld-danger);
+  color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[aria-disabled="true"]:focus {
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 2px 0 0 var(--ld-faint);
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__icon > svg {
+  width: 1rem;
+  height: 1rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item:focus .ld-menu__icon {
+  color: currentColor;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__label {
+  flex: 1;
+  min-width: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__shortcut {
+  margin-inline-start: auto;
+}
+
+/* the state slot: empty when off, a teal check or dot when on */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[role="menuitemcheckbox"]::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[role="menuitemradio"]::before {
+  content: "";
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  background: var(--ld-accent);
+  mask: var(--ld-menu-check) center / contain no-repeat;
+  opacity: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[role="menuitemradio"]::before {
+  mask-image: var(--ld-menu-dot);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__item[aria-checked="true"]::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--ld-accent-glow));
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu:has([role="menuitemcheckbox"], [role="menuitemradio"]) .ld-menu__item[role="menuitem"] {
+  padding-inline-start: 2.25rem;
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__group-label {
+  padding: 0.5rem 0.625rem 0.25rem;
+  color: var(--ld-faint);
+  font-size: 11px;
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu__separator {
+  height: 1px;
+  margin: 0.25rem 0.375rem;
+  background: var(--ld-border);
+}
+/* a long press would otherwise raise the platform's own callout */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-context-target {
+  -webkit-touch-callout: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-menu {
+    transition-property: opacity, display, overlay;
+  }
+}

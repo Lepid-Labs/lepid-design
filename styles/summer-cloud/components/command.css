@@ -1,0 +1,119 @@
+/* summer-cloud — command palette (the React CommandPalette): an .ld-dialog of Level
+ * 2 white glass set high on the screen, with a large Plus Jakarta input that blooms
+ * the sky focus ring, then the grouped listbox. The active option (aria-
+ * activedescendant, so focus stays in the input) is a violet wash in a rounded pill
+ * with violet text; matched letters (.ld-match, in search.css) sit on a pale violet
+ * marker. Empty and no-results states are .ld-empty. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  max-height: min(32rem, 76dvh);
+  margin-block: max(1rem, 12dvh) auto;
+  padding: 0;
+  overflow: hidden;
+  background: var(--ld-surface-glass-high);
+  backdrop-filter: blur(var(--ld-blur-high));
+  -webkit-backdrop-filter: blur(var(--ld-blur-high));
+  border-radius: var(--ld-radius-lg);
+  box-shadow: var(--ld-elevation-4);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command:not([open]) {
+  display: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--ld-surface);
+  border: 1px solid transparent;
+  border-radius: var(--ld-radius);
+  transition: border-color var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__search:focus-within {
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__icon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  outline: none;
+  color: var(--ld-on-surface);
+  font: var(--ld-font-weight-medium) 1.125rem var(--ld-font-display);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__input::placeholder {
+  color: var(--ld-outline);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__list {
+  flex: 1;
+  min-height: 0;
+  padding: 0 0.5rem 0.5rem;
+  overflow-y: auto;
+  scroll-padding-block: 0.5rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__group + .ld-command__group {
+  margin-top: 0.5rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__group-label {
+  padding: 0.5rem 0.75rem 0.25rem;
+  color: var(--ld-faint);
+  font: 500 11px var(--ld-font-mono);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.75rem;
+  color: var(--ld-on-surface);
+  font: var(--ld-font-weight-medium) var(--ld-text-sm) var(--ld-font-display);
+  cursor: pointer;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option[aria-selected="true"] {
+  background: rgba(69, 0, 217, 0.08);
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option-icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option-icon > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__option[aria-selected="true"] .ld-command__option-icon {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command__loading {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem 1.5rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-command .ld-empty {
+  padding: var(--ld-space-4) var(--ld-space-4) var(--ld-space-5);
+}

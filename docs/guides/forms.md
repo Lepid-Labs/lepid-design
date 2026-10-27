@@ -114,7 +114,9 @@ whatever blocks the action, say what it is:
 
 `disabledReason` makes the button `aria-disabled="true"`, styled the same as `:disabled` but still focusable, ties the
 reason to it with `aria-describedby`, and renders the reason as visible text (`.ld-btn-reason`) right after it. Clicks
-are swallowed; you can still listen for them and move focus to the field that is missing.
+are swallowed; you can still listen for them and move focus to the field that is missing. Where a line of text
+does not fit (a dense toolbar), `reasonAs="tooltip"` shows the reason in a `Tooltip` on hover, keyboard focus and a
+tap instead ([overlays.md](overlays.md)).
 
 | Use | When |
 | --- | --- |

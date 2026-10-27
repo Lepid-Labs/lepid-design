@@ -1,0 +1,156 @@
+/* summer-cloud — menu (the React Menu and ContextMenu): a Level 2 white glass card
+ * (0.8 white, 20px blur) on the floating violet shadow, in the top layer (auto
+ * popover). Anchor positioning opens it below its trigger and flips it at the
+ * viewport edges; otherwise the component writes top/left. Items are Plus Jakarta
+ * 600 in sentence case; the focused one (focus follows the pointer) is a violet
+ * wash with violet text. Checked items fill a violet disc with a white check or
+ * dot. It springs open from 96% and fades out on the exit curve. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu {
+  --ld-menu-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.3 2.3 4.7-4.9' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --ld-menu-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3' fill='%23fff'/%3E%3C/svg%3E");
+  position: fixed;
+  z-index: var(--ld-z-dropdown);
+  inset: auto;
+  margin: 6px 0;
+  position-area: block-end span-inline-end;
+  position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  min-width: 13rem;
+  max-width: calc(100vw - 1rem);
+  max-height: min(24rem, calc(100dvh - 1rem));
+  padding: 0.375rem;
+  overflow-y: auto;
+  background: var(--ld-surface-glass-high);
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur-high));
+  -webkit-backdrop-filter: blur(var(--ld-blur-high));
+  box-shadow: var(--ld-elevation-3);
+  color: var(--ld-on-surface);
+  font: var(--ld-font-weight-medium) var(--ld-text-sm) var(--ld-font-display);
+  transform-origin: top left;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-exit), scale var(--ld-duration-fast) var(--ld-ease-exit),
+    display var(--ld-duration-fast) allow-discrete, overlay var(--ld-duration-fast) allow-discrete;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu[data-ld-side="top"] {
+  position-area: block-start span-inline-end;
+  transform-origin: bottom left;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu:popover-open {
+  transition-duration: var(--ld-duration-base);
+  transition-timing-function: var(--ld-ease-spring);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu:not(:popover-open) {
+  opacity: 0;
+  scale: 0.96;
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu:popover-open {
+    opacity: 0;
+    scale: 0.96;
+  }
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.625rem;
+  color: var(--ld-on-surface);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item:focus {
+  background: rgba(69, 0, 217, 0.08);
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(12, 179, 255, 0.35);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item--danger {
+  color: var(--ld-danger-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item--danger:focus {
+  background: rgba(255, 77, 77, 0.12);
+  color: var(--ld-danger-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[aria-disabled="true"]:focus {
+  background: rgba(23, 28, 31, 0.04);
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__icon > svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item:focus .ld-menu__icon {
+  color: currentColor;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__label {
+  flex: 1;
+  min-width: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__shortcut {
+  margin-inline-start: auto;
+}
+
+/* the state slot: an outlined ring when off, a violet disc with a white mark when on */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[role="menuitemcheckbox"]::before,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[role="menuitemradio"]::before {
+  content: "";
+  flex: none;
+  box-sizing: border-box;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid var(--ld-outline);
+  border-radius: 0.375rem;
+  background: var(--ld-surface) center / 100% no-repeat;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[role="menuitemradio"]::before {
+  border-radius: 50%;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[role="menuitemcheckbox"][aria-checked="true"]::before {
+  border-color: var(--ld-primary);
+  background-color: var(--ld-primary);
+  background-image: var(--ld-menu-check);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__item[role="menuitemradio"][aria-checked="true"]::before {
+  border-color: var(--ld-primary);
+  background-color: var(--ld-primary);
+  background-image: var(--ld-menu-dot);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu:has([role="menuitemcheckbox"], [role="menuitemradio"]) .ld-menu__item[role="menuitem"] {
+  padding-inline-start: calc(0.75rem + 1.125rem + 0.625rem);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__group-label {
+  padding: 0.5rem 0.75rem 0.25rem;
+  color: var(--ld-faint);
+  font: 500 11px var(--ld-font-mono);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu__separator {
+  height: 1px;
+  margin: 0.375rem 0.5rem;
+  background: var(--ld-outline);
+  opacity: 0.6;
+}
+/* a long press would otherwise raise the platform's own callout */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-context-target {
+  -webkit-touch-callout: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-menu {
+    transition-property: opacity, display, overlay;
+  }
+}

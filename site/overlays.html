@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Overlays · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .spread { justify-content: space-between; }
+  .files { list-style: none; margin: 0; padding: 0; }
+  .files li { display: flex; gap: 0.75rem; align-items: center; padding: 0.5rem 0.75rem; border-radius: 0.5rem; }
+  .files li:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+  .files svg, .ld-icon-btn svg { width: 1.25em; height: 1.25em; }
+  .results { list-style: none; margin: 1rem 0 0; padding: 0; min-height: 8rem; }
+  .results li { padding: 0.375rem 0; }
+  output { display: block; margin-top: 0.5rem; font-size: 12px; opacity: 0.75; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · overlays</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section>
+    <h2>Tooltips</h2>
+    <p>Rest the pointer (or tab with the keyboard) on a button: the first tooltip waits 400&nbsp;ms, the next one
+      along the toolbar shows at once. Move onto the tooltip and it stays; <kbd class="ld-kbd">Esc</kbd> hides it.</p>
+    <div class="row">
+      <div class="row" role="toolbar" aria-label="Formatting" style="gap: 0.25rem">
+        <button type="button" class="ld-icon-btn" data-tip="Copy link" data-tip-kind="label"><svg aria-hidden="true"><use href="icons.svg#copy"/></svg></button>
+        <button type="button" class="ld-icon-btn" data-tip="Star pipeline" data-tip-kind="label"><svg aria-hidden="true"><use href="icons.svg#star"/></svg></button>
+        <button type="button" class="ld-icon-btn" data-tip="Notifications" data-tip-kind="label"><svg aria-hidden="true"><use href="icons.svg#bell"/></svg></button>
+        <button type="button" class="ld-icon-btn" data-tip="Settings" data-tip-kind="label"><svg aria-hidden="true"><use href="icons.svg#settings"/></svg></button>
+      </div>
+      <button type="button" class="ld-btn" data-tip="Builds main and ships it to production">Deploy</button>
+      <button type="button" class="ld-btn ld-btn--primary" aria-disabled="true" data-tip="Add a title before publishing"
+        data-tip-side="bottom" data-tip-tap>Publish</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Menu button</h2>
+    <p>Click, <kbd class="ld-kbd">Enter</kbd>, <kbd class="ld-kbd">Space</kbd> or <kbd class="ld-kbd">↓</kbd> opens on the
+      first item, <kbd class="ld-kbd">↑</kbd> on the last. Arrows, <kbd class="ld-kbd">Home</kbd>,
+      <kbd class="ld-kbd">End</kbd> and typing a letter move; <kbd class="ld-kbd">Esc</kbd> and <kbd class="ld-kbd">Tab</kbd>
+      close it. It flips at the viewport edge.</p>
+    <div class="row spread">
+      <button type="button" class="ld-btn" id="actions-btn" popovertarget="actions-menu" aria-haspopup="menu"
+        aria-controls="actions-menu" aria-expanded="false" style="anchor-name: --demo-actions">Actions</button>
+      <button type="button" class="ld-icon-btn" id="more-btn" popovertarget="more-menu" aria-haspopup="menu"
+        aria-controls="more-menu" aria-expanded="false" aria-label="More" style="anchor-name: --demo-more"><svg aria-hidden="true"><use href="icons.svg#menu"/></svg></button>
+    </div>
+    <output id="menu-log" aria-live="polite"></output>
+    <div class="ld-menu" id="actions-menu" role="menu" popover="auto" aria-labelledby="actions-btn" style="position-anchor: --demo-actions">
+      <div role="menuitem" tabindex="-1" class="ld-menu__item"><span class="ld-menu__icon" aria-hidden="true"><svg><use href="icons.svg#copy"/></svg></span><span class="ld-menu__label">Duplicate</span><kbd class="ld-kbd ld-menu__shortcut">⌘D</kbd></div>
+      <div role="menuitem" tabindex="-1" class="ld-menu__item"><span class="ld-menu__icon" aria-hidden="true"><svg><use href="icons.svg#folder"/></svg></span><span class="ld-menu__label">Move to…</span></div>
+      <div role="menuitem" tabindex="-1" class="ld-menu__item" aria-disabled="true"><span class="ld-menu__icon" aria-hidden="true"><svg><use href="icons.svg#users"/></svg></span><span class="ld-menu__label">Share (no access)</span></div>
+      <div role="separator" class="ld-menu__separator"></div>
+      <div role="menuitem" tabindex="-1" class="ld-menu__item ld-menu__item--danger"><span class="ld-menu__icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h12M8 6V4h4v2M6 6l.8 10h6.4L14 6"/></svg></span><span class="ld-menu__label">Delete</span><kbd class="ld-kbd ld-menu__shortcut">⌫</kbd></div>
+    </div>
+    <div class="ld-menu" id="more-menu" role="menu" popover="auto" aria-label="More" style="position-anchor: --demo-more">
+      <div role="group" aria-labelledby="g-view" class="ld-menu__group">
+        <div role="presentation" id="g-view" class="ld-menu__group-label">View</div>
+        <div role="menuitemcheckbox" tabindex="-1" aria-checked="true" class="ld-menu__item"><span class="ld-menu__label">Show grid</span><kbd class="ld-kbd ld-menu__shortcut">G</kbd></div>
+        <div role="menuitemcheckbox" tabindex="-1" aria-checked="false" class="ld-menu__item"><span class="ld-menu__label">Show rulers</span></div>
+      </div>
+      <div role="separator" class="ld-menu__separator"></div>
+      <div role="group" aria-labelledby="g-sort" class="ld-menu__group">
+        <div role="presentation" id="g-sort" class="ld-menu__group-label">Sort by</div>
+        <div role="menuitemradio" tabindex="-1" aria-checked="true" class="ld-menu__item"><span class="ld-menu__label">Name</span></div>
+        <div role="menuitemradio" tabindex="-1" aria-checked="false" class="ld-menu__item"><span class="ld-menu__label">Date modified</span></div>
+        <div role="menuitemradio" tabindex="-1" aria-checked="false" class="ld-menu__item"><span class="ld-menu__label">Size</span></div>
+      </div>
+      <div role="separator" class="ld-menu__separator"></div>
+      <div role="menuitem" tabindex="-1" class="ld-menu__item"><span class="ld-menu__label">Export…</span><kbd class="ld-kbd ld-menu__shortcut">⇧⌘E</kbd></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Context menu</h2>
+    <p>Right-click a file, long-press it on touch, or focus it and press <kbd class="ld-kbd">Shift</kbd>+<kbd
+      class="ld-kbd">F10</kbd>. Every action here is also in the Actions menu above: a context menu is a shortcut,
+      never the only way.</p>
+    <ul class="ld-card files ld-context-target" id="files">
+      <li tabindex="0"><svg aria-hidden="true"><use href="icons.svg#doc"/></svg>release-notes.md</li>
+      <li tabindex="0"><svg aria-hidden="true"><use href="icons.svg#chart"/></svg>q3-latency.csv</li>
+      <li tabindex="0"><svg aria-hidden="true"><use href="icons.svg#folder"/></svg>runbooks</li>
+    </ul>
+    <div class="ld-menu" id="file-menu" role="menu" popover="auto" aria-label="File actions"></div>
+  </section>
+
+  <section>
+    <h2>Sheets and drawers</h2>
+    <p>Each opens as a modal <code>&lt;dialog&gt;</code> and slides in from its edge. <kbd class="ld-kbd">Esc</kbd> or a
+      click on the backdrop closes it; drag the bottom sheet's handle down to dismiss it.</p>
+    <div class="row">
+      <button type="button" class="ld-btn" data-sheet="sheet-bottom">Bottom sheet</button>
+      <button type="button" class="ld-btn" data-sheet="sheet-end">Drawer (end)</button>
+      <button type="button" class="ld-btn" data-sheet="sheet-start">Drawer (start)</button>
+    </div>
+    <dialog class="ld-dialog ld-dialog--sheet" id="sheet-bottom" aria-labelledby="sheet-bottom-title">
+      <div class="ld-dialog__handle" aria-hidden="true"></div>
+      <h2 class="ld-dialog__title" id="sheet-bottom-title">Share pipeline</h2>
+      <p>Anyone with the link can view runs and logs. Editors can also trigger deploys.</p>
+      <div class="ld-dialog__actions"><button type="button" class="ld-btn" data-close>Cancel</button>
+        <button type="button" class="ld-btn ld-btn--primary" data-close>Copy link</button></div>
+    </dialog>
+    <dialog class="ld-dialog ld-dialog--drawer" id="sheet-end" aria-labelledby="sheet-end-title">
+      <h2 class="ld-dialog__title" id="sheet-end-title">Run details</h2>
+      <p>web-frontend · #4127 · started 2 minutes ago by the merge queue.</p>
+      <div class="ld-dialog__actions"><button type="button" class="ld-btn" data-close>Close</button></div>
+    </dialog>
+    <dialog class="ld-dialog ld-dialog--drawer ld-dialog--drawer-start" id="sheet-start" aria-labelledby="sheet-start-title">
+      <h2 class="ld-dialog__title" id="sheet-start-title">Filters</h2>
+      <p>Narrow the run list by branch, status and who started it.</p>
+      <div class="ld-dialog__actions"><button type="button" class="ld-btn" data-close>Done</button></div>
+    </dialog>
+  </section>
+
+  <section>
+    <h2>Command palette</h2>
+    <p>Press <kbd class="ld-kbd">⌘K</kbd> / <kbd class="ld-kbd">Ctrl+K</kbd> anywhere. Typing filters fuzzily ("gtst" finds
+      "Go to settings"); <kbd class="ld-kbd">↑</kbd> <kbd class="ld-kbd">↓</kbd> move, <kbd class="ld-kbd">Enter</kbd> runs,
+      and what you ran comes first next time.</p>
+    <div class="row">
+      <button type="button" class="ld-btn" id="palette-open">Open palette <kbd class="ld-kbd">⌘K</kbd></button>
+      <label class="ld-choice"><input type="checkbox" class="ld-checkbox" id="palette-slow"> Load commands slowly</label>
+    </div>
+    <output id="palette-log" aria-live="polite"></output>
+    <dialog class="ld-dialog ld-command" id="palette" aria-label="Command palette">
+      <div class="ld-command__search">
+        <svg class="ld-command__icon" aria-hidden="true"><use href="icons.svg#search"/></svg>
+        <input class="ld-command__input" id="palette-input" role="combobox" aria-label="Command palette" aria-expanded="false"
+          aria-controls="palette-list" aria-autocomplete="list" autocomplete="off" spellcheck="false"
+          placeholder="Type a command or search…">
+        <kbd class="ld-kbd">Esc</kbd>
+      </div>
+      <div class="ld-command__list" id="palette-list" role="listbox" aria-label="Command palette"></div>
+      <div id="palette-state"></div>
+      <div role="status" class="sr-only" id="palette-status"></div>
+    </dialog>
+  </section>
+
+  <section>
+    <h2>Search</h2>
+    <p>Press <kbd class="ld-kbd">/</kbd> to jump here. The query goes out 250&nbsp;ms after you stop typing, never twice
+      for the same words, and at once when you clear it.</p>
+    <div class="ld-search" style="max-width: 28rem">
+      <svg class="ld-search__icon" aria-hidden="true"><use href="icons.svg#search"/></svg>
+      <input type="search" class="ld-input ld-search__input" id="search" placeholder="Search runbooks" aria-label="Search runbooks"
+        aria-keyshortcuts="/" aria-controls="search-results">
+      <kbd class="ld-kbd ld-search__hint" aria-hidden="true">/</kbd>
+      <button type="button" class="ld-icon-btn ld-search__clear" aria-label="Clear search" title="Clear search"><svg
+        viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l8 8M14 6l-8 8"/></svg></button>
+    </div>
+    <ul class="results" id="search-results" aria-live="polite"></ul>
+    <output id="search-log"></output>
+  </section>
+</main>
+
+<script type="module" src="overlays-demo.js"></script>
+<script type="module" src="search-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

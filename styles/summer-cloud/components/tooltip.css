@@ -1,0 +1,50 @@
+/* summer-cloud — tooltip (the React Tooltip): the one dark thing on the page, a soft
+ * ink bubble with white Inter text on a violet-tinted shadow, so it reads over
+ * glass and sky alike. In the top layer (Popover API); anchor positioning sets it
+ * above its trigger and flips it below at the viewport edge, else the component
+ * measures and writes top/left. It pops in on the spring from 94% and fades out
+ * on the exit curve. Reduced motion: a fade. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip {
+  position: fixed;
+  z-index: var(--ld-z-tooltip);
+  inset: auto;
+  margin: 0 0 8px;
+  position-area: block-start;
+  position-try-fallbacks: flip-block;
+  max-width: min(18rem, calc(100vw - 1rem));
+  padding: 0.375rem 0.75rem;
+  overflow: visible;
+  background: var(--ld-on-surface);
+  border: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 8px rgba(93, 43, 255, 0.12), 0 12px 28px rgba(93, 43, 255, 0.22);
+  color: #fff;
+  font: var(--ld-font-weight-medium) 13px/1.4 var(--ld-font-body);
+  transform-origin: bottom center;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-exit), scale var(--ld-duration-fast) var(--ld-ease-exit),
+    display var(--ld-duration-fast) allow-discrete, overlay var(--ld-duration-fast) allow-discrete;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip[data-ld-side="bottom"] {
+  margin: 8px 0 0;
+  position-area: block-end;
+  transform-origin: top center;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip:popover-open {
+  transition-duration: var(--ld-duration-base);
+  transition-timing-function: var(--ld-ease-spring);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip:not(:popover-open) {
+  opacity: 0;
+  scale: 0.94;
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip:popover-open {
+    opacity: 0;
+    scale: 0.94;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-tooltip {
+    transition-property: opacity, display, overlay;
+  }
+}

@@ -1,7 +1,8 @@
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import { IconButton } from "./IconButton.js";
 import { cx } from "./cx.js";
+import { followTopModal } from "./follow-modal.js";
 import { SR_ONLY } from "./sr-only.js";
 import {
   addToast,
@@ -94,11 +95,14 @@ export interface ToasterProps {
 
 /** Renders what `toast()` queues: bottom-right, top on narrow screens, at most three
  *  at a time. Clocks stop while the stack is hovered or focused and while the tab is
- *  hidden. Info, success and warning are read politely; errors assertively. Mount once. */
+ *  hidden. Info, success and warning are read politely; errors assertively. It stays
+ *  above, and usable in, an open modal dialog. Mount once. */
 export function Toaster({ label = "Notifications", hotkey = "F8", className }: ToasterProps) {
   const q = useSyncExternalStore(subscribe, snapshot, snapshot);
   const shown = visibleToasts(q);
   const region = useRef<HTMLElement>(null);
+  const home = useRef<HTMLSpanElement>(null);
+  const box = useRef<HTMLDivElement>(null);
   const back = useRef<HTMLElement | null>(null);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -108,6 +112,17 @@ export function Toaster({ label = "Notifications", hotkey = "F8", className }: T
   const paused = hidden || (!empty && (hovered || focused));
 
   useEffect(() => update(pauseToasts(queue, paused, Date.now())), [paused]);
+
+  // The stack is a manual popover, in the top layer above whatever was there when it
+  // showed, and its box follows an open modal inside, so toasts stay visible and usable.
+  // React still finds the box: it only touches its children, and it is home before
+  // React removes it (layout cleanups run first).
+  const raise = () => {
+    const s = region.current;
+    if (s?.isConnected && !s.matches(":popover-open")) s.showPopover();
+  };
+  useLayoutEffect(raise, [empty]);
+  useLayoutEffect(() => followTopModal(box.current!, home.current!, raise), []);
 
   useEffect(() => {
     // the region unmounts without a pointerleave or blur
@@ -171,28 +186,33 @@ export function Toaster({ label = "Notifications", hotkey = "F8", className }: T
 
   return (
     <>
-      {!empty && (
-        <section
-          ref={region}
-          className={cx("ld-toaster", className)}
-          aria-label={`${label} (${hotkey})`}
-          data-ld-paused={paused || undefined}
-          onPointerEnter={() => setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
-          onFocus={() => setFocused(true)}
-          onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocused(false)}
-        >
-          {shown.map((t) => (
-            <ToastView key={t.id} item={t} onClose={(reason, el) => closeFrom(t.id, reason, el)} />
-          ))}
-        </section>
-      )}
-      {/* always mounted, so a new toast is a change screen readers pick up */}
-      <div role="status" aria-atomic="false" style={SR_ONLY}>
-        {spoken(false)}
-      </div>
-      <div role="alert" aria-atomic="false" style={SR_ONLY}>
-        {spoken(true)}
+      <span ref={home} hidden />
+      {/* moves into an open modal (follow-modal.ts) */}
+      <div ref={box} style={{ display: "contents" }}>
+        {!empty && (
+          <section
+            ref={region}
+            popover="manual"
+            className={cx("ld-toaster", className)}
+            aria-label={`${label} (${hotkey})`}
+            data-ld-paused={paused || undefined}
+            onPointerEnter={() => setHovered(true)}
+            onPointerLeave={() => setHovered(false)}
+            onFocus={() => setFocused(true)}
+            onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setFocused(false)}
+          >
+            {shown.map((t) => (
+              <ToastView key={t.id} item={t} onClose={(reason, el) => closeFrom(t.id, reason, el)} />
+            ))}
+          </section>
+        )}
+        {/* always mounted, so a new toast is a change screen readers pick up */}
+        <div role="status" aria-atomic="false" style={SR_ONLY}>
+          {spoken(false)}
+        </div>
+        <div role="alert" aria-atomic="false" style={SR_ONLY}>
+          {spoken(true)}
+        </div>
       </div>
     </>
   );
@@ -237,6 +257,7 @@ function ToastView({
       aria-labelledby={labelId}
       onKeyDown={(e) => {
         if (e.key !== "Escape") return;
+        e.preventDefault(); // dismiss the toast, not the dialog it may sit in
         e.stopPropagation();
         onClose("dismiss", e.currentTarget);
       }}

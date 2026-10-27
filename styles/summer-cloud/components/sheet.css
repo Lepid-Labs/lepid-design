@@ -1,0 +1,119 @@
+/* summer-cloud — sheet and drawer (the React Sheet): .ld-dialog modals pinned to an
+ * edge, as Level 2 white glass on the modal violet shadow. --sheet floats up from
+ * the bottom with a soft pill handle; --drawer slides in from the end edge
+ * (--drawer-start: the start edge) with its inner corners rounded at 1.5rem.
+ * Arrival rides the spring over the slow duration (a little overshoot, then it
+ * settles); departure takes the exit curve, fast. The handle turns violet while
+ * held. Both clear notches and home indicators. Reduced motion: a fade. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer {
+  --ld-sheet-from: 0 100%;
+  z-index: var(--ld-z-modal);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: var(--ld-surface-glass-high);
+  border: 1px solid var(--ld-border);
+  backdrop-filter: blur(var(--ld-blur-high));
+  -webkit-backdrop-filter: blur(var(--ld-blur-high));
+  box-shadow: var(--ld-elevation-4);
+  transition: translate var(--ld-duration-slow) var(--ld-ease-spring), opacity var(--ld-duration-base) var(--ld-ease-enter),
+    display var(--ld-duration-slow) allow-discrete, overlay var(--ld-duration-slow) allow-discrete;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet {
+  inset: auto 0 0;
+  width: min(40rem, 100%);
+  max-height: calc(100dvh - max(3rem, env(safe-area-inset-top) + 1.5rem));
+  margin-inline: auto;
+  padding: 0.5rem max(var(--ld-space-5), env(safe-area-inset-right)) max(var(--ld-space-5), env(safe-area-inset-bottom))
+    max(var(--ld-space-5), env(safe-area-inset-left));
+  border-bottom: 0;
+  border-radius: var(--ld-radius-lg) var(--ld-radius-lg) 0 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer {
+  --ld-sheet-from: 100% 0;
+  inset-block: 0;
+  inset-inline: auto 0;
+  width: min(24rem, calc(100vw - 3rem));
+  height: 100dvh;
+  padding: max(var(--ld-space-5), env(safe-area-inset-top)) var(--ld-space-5) max(var(--ld-space-5), env(safe-area-inset-bottom));
+  padding-inline-end: max(var(--ld-space-5), env(safe-area-inset-right));
+  border-block: 0;
+  border-inline-end: 0;
+  border-radius: var(--ld-radius-lg) 0 0 var(--ld-radius-lg);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer-start {
+  --ld-sheet-from: -100% 0;
+  inset-inline: 0 auto;
+  padding-inline: max(var(--ld-space-5), env(safe-area-inset-left)) var(--ld-space-5);
+  border-inline-start: 0;
+  border-inline-end: 1px solid var(--ld-border);
+  border-radius: 0 var(--ld-radius-lg) var(--ld-radius-lg) 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer:dir(rtl) {
+  --ld-sheet-from: -100% 0;
+  border-radius: 0 var(--ld-radius-lg) var(--ld-radius-lg) 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer-start:dir(rtl) {
+  --ld-sheet-from: 100% 0;
+  border-radius: var(--ld-radius-lg) 0 0 var(--ld-radius-lg);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet:not([open]),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer:not([open]) {
+  translate: var(--ld-sheet-from);
+  transition-duration: var(--ld-duration-fast);
+  transition-timing-function: var(--ld-ease-exit);
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet[open],
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer[open] {
+    translate: var(--ld-sheet-from);
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet::backdrop,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer::backdrop {
+  transition: opacity var(--ld-duration-base) var(--ld-ease-standard), display var(--ld-duration-base) allow-discrete,
+    overlay var(--ld-duration-base) allow-discrete;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet:not([open])::backdrop,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer:not([open])::backdrop {
+  opacity: 0;
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet[open]::backdrop,
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer[open]::backdrop {
+    opacity: 0;
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog__handle {
+  display: block;
+  width: 2.75rem;
+  height: 5px;
+  margin: 0 auto var(--ld-space-2);
+  padding-block: 0.5rem;
+  box-sizing: content-box;
+  background: var(--ld-outline) content-box;
+  border-radius: var(--ld-radius-pill);
+  cursor: grab;
+  touch-action: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog__handle:active {
+  background-color: var(--ld-primary);
+  cursor: grabbing;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet:not([open]),
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer:not([open]) {
+    translate: none;
+    opacity: 0;
+  }
+  @starting-style {
+    :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--sheet[open],
+    :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-dialog--drawer[open] {
+      translate: none;
+      opacity: 0;
+    }
+  }
+}

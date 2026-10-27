@@ -2,6 +2,7 @@ import { useId } from "react";
 import type { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
 import { buttonAttrs } from "./button-state.js";
 import { SR_ONLY } from "./sr-only.js";
+import { mergeTriggerProps, useTooltip } from "./Tooltip.js";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual emphasis. Maps to .ld-btn--{variant}. */
@@ -17,6 +18,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Why the button can't be used yet. Makes it `aria-disabled` (still focusable and
    *  announced, clicks ignored) and shows this text right after it, tied by aria-describedby. */
   disabledReason?: ReactNode;
+  /** Where the reason shows. "text" (default) is the visible line after the button;
+   *  "tooltip" puts it in a Tooltip on hover, keyboard focus and a tap on the button,
+   *  for dense toolbars where a line of text does not fit. */
+  reasonAs?: "text" | "tooltip";
 }
 
 const swallow = (e: MouseEvent) => e.preventDefault(); // also stops a submit button submitting
@@ -27,6 +32,7 @@ export function Button({
   busy,
   busyLabel = "Loading",
   disabledReason,
+  reasonAs = "text",
   className,
   onClick,
   "aria-disabled": ariaDisabled,
@@ -35,25 +41,37 @@ export function Button({
 }: ButtonProps) {
   const reasonId = useId();
   const hasReason = !!disabledReason;
+  const tip = useTooltip({ content: disabledReason, side: "bottom" });
+  const asTip = hasReason && reasonAs === "tooltip";
   const { inert, ...attrs } = buttonAttrs({
     variant,
     size,
     busy,
-    reasonId: hasReason ? reasonId : undefined,
+    reasonId: hasReason ? (asTip ? (tip.triggerProps["aria-describedby"] as string) : reasonId) : undefined,
     ariaDisabled,
     describedBy,
     className,
   });
+  const own = { ...rest, ...attrs, onClick: inert ? swallow : onClick };
   // always a fragment, so the button keeps its place (and focus) when a reason comes or goes
   return (
     <>
-      <button {...rest} {...attrs} onClick={inert ? swallow : onClick} />
+      {asTip ? (
+        <button
+          {...mergeTriggerProps(own, tip.triggerProps)}
+          // touch has no hover: a tap on the blocked button says why
+          onClick={(e) => (swallow(e), tip.show(e.currentTarget))}
+        />
+      ) : (
+        <button {...own} />
+      )}
       {busy !== undefined && (
         <span style={SR_ONLY} role="status">
           {busy ? busyLabel : ""}
         </span>
       )}
-      {hasReason && (
+      {asTip && tip.tooltip}
+      {hasReason && !asTip && (
         <span className="ld-btn-reason" id={reasonId}>
           {disabledReason}
         </span>

@@ -25,6 +25,7 @@ before designing new screens; feed it to Stitch to generate on-system mockups.
 Motion, elevation and z-index scales, hover rules, and the interactive card: [docs/guides/foundation.md](docs/guides/foundation.md).
 Field states, busy and reasoned-disabled buttons, password, one-time-code and masked inputs: [docs/guides/forms.md](docs/guides/forms.md).
 Loading timing, skeletons, empty states, toasts with undo, autosave status, and choosing a notification surface: [docs/guides/feedback.md](docs/guides/feedback.md).
+Tooltips, menus, context menus, sheets and drawers, the command palette, search, and choosing an overlay: [docs/guides/overlays.md](docs/guides/overlays.md).
 
 `styles/manifest.json` (exported as `@lepid-labs/styles/manifest`) is the
 machine-readable roster: every theme's name, scheme, and webfont links, plus

@@ -135,9 +135,40 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   action is a lime ghost `--sm` button; its countdown is a segmented lime bar
   that shortens by clipping and stops under `[data-ld-paused]`. Stack
   bottom-right on `--ld-z-toast`, top edge below 48rem, safe-area aware.
+  A manual popover: it shows above an open modal and follows it, so its
+  buttons work there.
 - **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) —
   uppercase tracked 11px: a blinking lime block cursor while saving, lime
   check once saved, amber cloud offline, pink bang and danger text on error.
+- **Tooltip** `.ld-tooltip` (`data-ld-side`) — a navy readout boxed in a
+  lilac hairline with a lilac glow, uppercase tracked bold mono 11px in lilac,
+  in the top layer on `--ld-z-tooltip`. Anchored above its trigger, flipping
+  below; it cuts on instantly and fades off.
+- **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
+  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  context-menu region) — a frosted navy panel in a lilac hairline on
+  `--ld-elevation-3`; items are uppercase tracked mono. The focused item is the
+  switchboard row: lilac text on a faint lilac wash, its `>` chevron lit lime.
+  Checkbox and radio items read `[x]` / `(*)` in lime; separators are dashed;
+  danger items are hot pink; disabled items dim but stay focusable. Snaps open,
+  cuts off on close.
+- **Sheet / drawer** `.ld-dialog--sheet`, `.ld-dialog--drawer`
+  (`--drawer-start`), `.ld-dialog__handle` — the navy dialog pinned to an edge,
+  with the lilac hairline and glow on its inner edge only and the one 0.5rem
+  radius. Runs in on the enter curve (`@starting-style`) and is cut away on the
+  sharp exit; a fade under reduced motion. The handle is a lilac bar that turns
+  lime while held. Safe-area aware.
+- **Command palette** `.ld-command` (+ `__search`, `__icon`, `__input`,
+  `__list`, `__group`, `__group-label`, `__option`, `__option-icon`, `__label`,
+  `__shortcut`, `__loading`) — reads like a prompt: a lime `>` leads the input
+  line, which underlines lilac with focus. The active option is lilac on a
+  lilac wash in a lilac hairline; matched letters (`.ld-match`) are bold lime.
+- **Search** `.ld-search` (+ `__input`, `__icon`, `__hint`, `__clear`) — an
+  `.ld-input` with a lime caret and the glyph inset, lit lime with focus (a
+  lilac-and-lime spinner while loading); key cap hint while empty, clear button
+  once filled.
+- **Key hint** `.ld-kbd` — a key cap drawn in a faint hairline, uppercase
+  bold mono 10px.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

@@ -4,10 +4,12 @@
  * violet-tinted floating shadow; the variant rides on a filled icon disc in its
  * deep (readable) hue and the title, so it is never colour alone. Toasts pop in
  * on the spring. An action toast drains a violet pill countdown along its foot,
- * which stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab). */
+ * which stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab).
+ * The React stack is a manual popover, so it shows above an open modal dialog. */
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toaster {
   --ld-toast-from: 0 0.75rem;
   position: fixed;
+  inset: auto;
   z-index: var(--ld-z-toast);
   right: max(var(--ld-space-3), env(safe-area-inset-right));
   bottom: max(var(--ld-space-3), env(safe-area-inset-bottom));
@@ -15,6 +17,13 @@
   flex-direction: column;
   gap: var(--ld-space-2);
   width: min(24rem, calc(100vw - 2 * var(--ld-space-3)));
+  /* the React stack is a manual popover: drop the UA's popover box */
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  border: 0;
+  color: inherit;
 }
 @media (width <= 48rem) {
   :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toaster {

@@ -119,6 +119,7 @@ export {
   type ToastVariant,
 } from "./toast-queue.js";
 export { scheduleUndoable, UNDO_MS, type Undoable, type UndoClock, type UndoStatus } from "./undoable.js";
+export { followTopModal } from "./follow-modal.js";
 export { SaveStatus, SAVE_LABELS, type SaveStatusProps } from "./SaveStatus.js";
 export { useAutosave, type Autosave, type AutosaveOptions } from "./useAutosave.js";
 export {
@@ -134,6 +135,52 @@ export {
   type SaveStatusKind,
 } from "./autosave-state.js";
 export { Dialog, type DialogProps } from "./Dialog.js";
+export { Sheet, type SheetProps } from "./Sheet.js";
+export { sheetOffset, shouldDismissSheet, SHEET_DISMISS_FRACTION, SHEET_FLING_SPEED } from "./sheet-drag.js";
+export { Tooltip, useTooltip, type TooltipProps, type TooltipOptions } from "./Tooltip.js";
+export { tooltipDelay, TOOLTIP_DELAY_MS, TOOLTIP_HANDOFF_MS, TOOLTIP_HIDE_MS } from "./tooltip-state.js";
+export { placeBeside, placeAtPoint, type Box, type Size, type Side, type BesideOptions } from "./floating.js";
+export {
+  Menu,
+  MenuItem,
+  MenuCheckboxItem,
+  MenuRadioItem,
+  MenuGroup,
+  MenuSeparator,
+  type MenuProps,
+  type MenuItemProps,
+  type MenuCheckboxItemProps,
+  type MenuRadioItemProps,
+} from "./Menu.js";
+export { ContextMenu, type ContextMenuProps } from "./ContextMenu.js";
+export {
+  menuMove,
+  menuTypeahead,
+  typeaheadBuffer,
+  TYPEAHEAD_RESET_MS,
+  LONG_PRESS_MS,
+  LONG_PRESS_SLOP,
+} from "./menu-nav.js";
+export { CommandPalette, type CommandPaletteProps, type Command } from "./CommandPalette.js";
+export {
+  filterCommands,
+  fuzzyMatch,
+  highlight,
+  pushRecent,
+  type CommandLike,
+  type CommandGroup,
+  type CommandResult,
+  type FuzzyMatch,
+  type Range,
+} from "./command-filter.js";
+export { SearchInput, type SearchInputProps } from "./SearchInput.js";
+export {
+  debounceQuery,
+  normalizeQuery,
+  SEARCH_DEBOUNCE_MS,
+  type QueryDebouncer,
+  type SearchTimers,
+} from "./search-query.js";
 export { Tabs, type TabsProps, type TabItem } from "./Tabs.js";
 export { slideDir, type SlideDir } from "./slide-dir.js";
 export { useSlideDir } from "./useSlideDir.js";

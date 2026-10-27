@@ -36,7 +36,14 @@ component styles in an app — consume the system.
    get Undo (`scheduleUndoable`), not a confirm; only irreversible ones confirm
    (`HoldButton`, `Dialog`). When to use which surface:
    `docs/guides/feedback.md`.
-7. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+7. **The lightest overlay that does the job.** Tooltip for a label or a note
+   (never anything essential), toast for a result, `Menu` for a few actions on
+   one thing (`ContextMenu` only as a shortcut to actions shown elsewhere),
+   drawer `Sheet` for side content, bottom `Sheet` for a phone task, `Dialog`
+   for a decision; one modal at a time. ⌘K is the app's `CommandPalette`;
+   `SearchInput` searches one collection in place. When to use which:
+   `docs/guides/overlays.md`.
+8. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
    not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
@@ -88,9 +95,9 @@ non-React apps):
 
 | React | CSS class | Notes |
 | --- | --- | --- |
-| `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger`; `busy` (→ `aria-busy`: spinner over a same-width label, clicks ignored, focus kept, `busyLabel` announced) instead of `disabled` while a request runs; `disabledReason` (→ focusable `aria-disabled` + visible `.ld-btn-reason` via `aria-describedby`) when the user can unblock it |
+| `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger`; `busy` (→ `aria-busy`: spinner over a same-width label, clicks ignored, focus kept, `busyLabel` announced) instead of `disabled` while a request runs; `disabledReason` (→ focusable `aria-disabled` + visible `.ld-btn-reason` via `aria-describedby`) when the user can unblock it; `reasonAs="tooltip"` shows that reason in a tooltip (hover, focus, tap) for dense toolbars |
 | `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state; one pressed segment gets a sliding pill (plain HTML: set `data-ld-dir="forward"\|"back"` on the track when selection moves) |
-| `IconButton` | `.ld-icon-btn` | icon-only control; `label` required (→ `aria-label` + `title`); `active` (on a link also `aria-current="page"`), `variant="danger"`; `as="a"` or a router Link for nav; toggle: pass `aria-pressed` |
+| `IconButton` | `.ld-icon-btn` | icon-only control; `label` required (→ `aria-label` + `title`); `active` (on a link also `aria-current="page"`), `variant="danger"`; `as="a"` or a router Link for nav; toggle: pass `aria-pressed`; `tooltip` shows `label` in a styled `Tooltip` that names the control instead of `title` |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
 | `Card` | `.ld-card` | glass panel; `interactive` (`--interactive`) makes it one clickable target: mark its primary link or button `className="ld-card__link"` (its hit area covers the card, nested controls keep their clicks); hover lift, focus ring, press |
 | `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |
@@ -104,11 +111,17 @@ non-React apps):
 | `Badge` | `.ld-badge` | semantic variants; `size="sm"` (`--sm`) for dashboard pills, `pulse` (`--pulse`) for the one glowing call to action |
 | `Alert` | `.ld-alert` | `variant` + optional `title` |
 | `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
+| `Sheet` | `.ld-dialog--sheet`, `.ld-dialog--drawer` (`--drawer-start`), `.ld-dialog__handle` | `Dialog` props + `side`: `bottom` (grab handle, drag down to dismiss) or `start`/`end` drawer; backdrop click and Escape close; slides on `@starting-style`, safe-area aware |
+| `Tooltip` / `useTooltip` | `.ld-tooltip` | wraps one focusable child; `content`, `kind` (`description` → `aria-describedby`, `label` → `aria-labelledby`), `side`; 400 ms delay, instant hand-off, hover/focus, stays while hovered, Escape hides; Popover `hint` (else `manual`) + anchor positioning |
+| `Menu` + `MenuItem`/`MenuCheckboxItem`/`MenuRadioItem`/`MenuGroup`/`MenuSeparator` | `.ld-menu`, `.ld-menu__item` (`--danger`), `__icon`, `__label`, `__shortcut`, `__group-label`, `__separator` | APG menu button: `trigger` element gets `popovertarget` + ARIA; arrows, Home/End, typeahead, Escape/Tab close and return focus; `disabled`, `variant="danger"`, `shortcut` hint; flips at edges |
+| `ContextMenu` | `.ld-context-target` + `.ld-menu` | region prop `menu` (the same items); right-click, 500 ms long-press, Shift+F10 / ContextMenu key; opens at the pointer, clamped to the viewport |
+| `CommandPalette` | `.ld-command` (+ `__search`, `__input`, `__list`, `__group-label`, `__option`, `__shortcut`, `__loading`), `.ld-match` | ⌘K/Ctrl+K; `commands: {id, label, group?, keywords?, shortcut?, icon?, onSelect?}[]`, `recent` ids (keep with `pushRecent`), `loading`, `onQueryChange`; APG combobox with `aria-activedescendant`, fuzzy filter + highlight, Skeleton/EmptyState states |
+| `SearchInput` | `.ld-search` (+ `__input`, `__icon`, `__hint`, `__clear`), `.ld-kbd` | `type="search"` with glyph, clear button, `shortcut` key (e.g. `/`) + hint, `loading` spinner; keep a placeholder. Debounce with `debounceQuery(onQuery)` (250 ms, instant clear, no repeats) |
 | `Tabs` | `.ld-tabs` | `items: {id, label, content}[]`; the underline slides between tabs (plain HTML: set `data-ld-dir="forward"\|"back"` on `.ld-tabs` when selection moves) |
 | `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
 | `Skeleton` | `.ld-skeleton` (`--text`/`--circle`/`--block`) | placeholder in the content's shape; `lines`, `width`, `height`; `aria-hidden`, put `aria-busy` on the loading region. Gate any indicator with `useLoadingIndicator(loading)` (400 ms delay, 500 ms minimum) |
 | `EmptyState` | `.ld-empty` | `variant`: `first-use`/`no-results`/`cleared`; `icon`, `title` (`titleAs`), body as children, `actions`. Inside a `StatusCard` use `StatusCardEmpty` instead |
-| `Toaster` + `toast()` | `.ld-toaster`, `.ld-toast--<variant>` | mount `<Toaster />` once; `toast({ message, title, variant, duration, action, undo, id })` from anywhere, `toast.dismiss(id)`. Max 3 shown, clocks pause on hover/focus/hidden tab, errors stay and are assertive, F8 jumps in, Escape dismisses |
+| `Toaster` + `toast()` | `.ld-toaster`, `.ld-toast--<variant>` | mount `<Toaster />` once; `toast({ message, title, variant, duration, action, undo, id })` from anywhere, `toast.dismiss(id)`. Max 3 shown, clocks pause on hover/focus/hidden tab, errors stay and are assertive, F8 jumps in, Escape dismisses; stays above (and usable in) an open modal |
 | `scheduleUndoable` | (with `toast({ undo })`) | deferred commit: `scheduleUndoable({ commit, undo, delay })`; as a toast's `undo` it gets an Undo button and countdown, commits when the toast closes otherwise or the page unloads |
 | `SaveStatus` + `useAutosave` | `.ld-save-status[data-ld-save]` | `useAutosave(save)` → `{ status, state, edit, retry }` (800 ms debounce, 5 s max wait, offline queue, unload guard); `<SaveStatus status savedAt onRetry>` announces only offline, errors and the recovery |
 | `Stepper` | `.ld-stepper` | milestone rail; `steps: {id, label, icon?}[]`, `current` index derives complete/current/upcoming and the rail fill; `aria-current="step"` on the active node |

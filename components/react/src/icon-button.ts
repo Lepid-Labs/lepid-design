@@ -13,13 +13,17 @@ export interface IconButtonOptions {
   title?: string;
   /** The rendered element is a native `<button>` (not `<a>` / a router Link). */
   isButton?: boolean;
+  /** Id of a Tooltip showing `label`: it becomes the name (`aria-labelledby`) and
+   *  replaces the native `title`, so the label is not shown or read twice. */
+  tooltipId?: string;
   className?: string;
 }
 
 export interface IconButtonAttrs {
   className: string;
-  "aria-label": string;
-  title: string;
+  "aria-label"?: string;
+  "aria-labelledby"?: string;
+  title?: string;
   type?: "button";
   "aria-current"?: "page";
 }
@@ -32,6 +36,7 @@ export function iconButtonAttrs({
   variant = "default",
   title,
   isButton = true,
+  tooltipId,
   className,
 }: IconButtonOptions): IconButtonAttrs {
   const attrs: IconButtonAttrs = {
@@ -43,8 +48,7 @@ export function iconButtonAttrs({
     ]
       .filter(Boolean)
       .join(" "),
-    "aria-label": label,
-    title: title ?? label,
+    ...(tooltipId ? { "aria-labelledby": tooltipId } : { "aria-label": label, title: title ?? label }),
   };
   if (isButton) attrs.type = "button";
   else if (active) attrs["aria-current"] = "page";

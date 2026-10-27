@@ -4,10 +4,12 @@
  * glow take the variant's hue; a masked icon and the uppercase title carry it
  * too, so it is never colour alone. Toasts snap in from the side like a console
  * line. An action toast drains a segmented lime countdown along its foot, which
- * stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab). */
+ * stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab).
+ * The React stack is a manual popover, so it shows above an open modal dialog. */
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-toaster {
   --ld-toast-from: 1rem 0;
   position: fixed;
+  inset: auto;
   z-index: var(--ld-z-toast);
   right: max(var(--ld-space-3), env(safe-area-inset-right));
   bottom: max(var(--ld-space-3), env(safe-area-inset-bottom));
@@ -15,6 +17,13 @@
   flex-direction: column;
   gap: var(--ld-space-2);
   width: min(24rem, calc(100vw - 2 * var(--ld-space-3)));
+  /* the React stack is a manual popover: drop the UA's popover box */
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background: none;
+  border: 0;
+  color: inherit;
 }
 @media (width <= 48rem) {
   :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-toaster {

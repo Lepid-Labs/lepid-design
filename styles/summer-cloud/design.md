@@ -183,9 +183,39 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   in on the spring (a fade under reduced motion). The countdown is a floating
   violet pill bar that stops under `[data-ld-paused]`. Stack bottom-right on
   `--ld-z-toast`, top edge below 48rem, safe-area aware.
+  A manual popover: it shows above an open modal and follows it, so its
+  buttons work there.
 - **Save status** `.ld-save-status` (+ `__text`, `__retry`; `data-ld-save`) — a
   white pill of mono 12px text: violet spinner while saving, deep green check
   once saved, a pale amber pill offline, a pale red pill with Retry on error.
+- **Tooltip** `.ld-tooltip` (`data-ld-side`) — the one dark thing on the
+  page: a soft ink bubble with white Inter 13px on a violet-tinted shadow, so it
+  reads over glass and sky alike, in the top layer on `--ld-z-tooltip`.
+  Anchored above its trigger, flipping below; pops in on the spring from 94%.
+- **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
+  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  context-menu region) — a Level 2 white glass card (20px blur) on
+  `--ld-elevation-3`, Plus Jakarta 600 items, mono uppercase group labels. The
+  focused item is a violet wash with violet text (plus the sky ring for the
+  keyboard). Checked items fill a violet disc or rounded square with a white
+  mark; danger items use danger deep. Springs open from 96%.
+- **Sheet / drawer** `.ld-dialog--sheet`, `.ld-dialog--drawer`
+  (`--drawer-start`), `.ld-dialog__handle` — Level 2 white glass on the modal
+  shadow, inner corners at 1.5rem. Floats in on the spring over the slow
+  duration (`@starting-style`) and leaves on the exit curve; a fade under
+  reduced motion. The handle is an outline-grey pill that turns violet while
+  held. Safe-area aware.
+- **Command palette** `.ld-command` (+ `__search`, `__icon`, `__input`,
+  `__list`, `__group`, `__group-label`, `__option`, `__option-icon`, `__label`,
+  `__shortcut`, `__loading`) — a 1.5rem glass card set high on the screen; the
+  input is a white field in Plus Jakarta 1.125rem that blooms the sky ring. The
+  active option is a violet wash; matched letters (`.ld-match`) sit on a pale
+  violet marker.
+- **Search** `.ld-search` (+ `__input`, `__icon`, `__hint`, `__clear`) — a pill
+  `.ld-input` with the glyph inset (violet spinner while loading), violet with
+  focus; key hint while empty, a round clear button once filled.
+- **Key hint** `.ld-kbd` — a little white key on the outline hairline with a
+  heavier foot, mono 11px.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,
