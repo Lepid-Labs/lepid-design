@@ -43,7 +43,13 @@ component styles in an app — consume the system.
    for a decision; one modal at a time. ⌘K is the app's `CommandPalette`;
    `SearchInput` searches one collection in place. When to use which:
    `docs/guides/overlays.md`.
-8. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+8. **A change takes effect at the weight of a mistake.** Preferences save as
+   they change (`useAutosave` + a `SaveStatus` per section), short text is an
+   `InlineEdit` (Enter or blur saves, Escape restores), secrets need an explicit
+   button, and the irreversible goes last in a danger zone behind a typed
+   confirmation. Settings layout: `docs/guides/settings.md`; accordion, inline
+   edit, rating and presence: `docs/guides/surfaces.md`.
+9. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
    not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
@@ -139,6 +145,11 @@ non-React apps):
 | `Pagination`/`PageSummary`/`PageSizeSelect`/`LoadMore` | `.ld-pagination` (`__list`, `__link`, `__ellipsis`, `__summary`, `__size`), `.ld-pagination-bar`, `.ld-load-more` | numbered pages from `pageRange(current, total, siblings)` (first, last, neighbours, ellipsis; fixed item count), `aria-current="page"`, `href` for URL pages; "Showing 21–40 of 312" (`pageSpan`) announced; native page-size select (`pageAfterResize`); `LoadMore` for cursor feeds (busy, then "That's everything") |
 | `Chip`/`FilterChip`/`ChipGroup` | `.ld-chip` (`--removable`, `__remove`), `.ld-chip-group` (`--scroll`, `__chips`, `__count`, `__clear`) | toggle chip (`pressed` → `aria-pressed`, check icon); applied filter with a named remove button (focus moves to the next); group `label`, live `count` ("12 results"), `onClearAll`, `scroll` for one sideways row. OR within a group, AND across groups |
 | `BarChart`/`LineChart`/`Sparkline` | `.ld-chart` (+ parts), `.ld-sparkline` | dependency-free SVG in theme colours (`--ld-chart-1..4`): `title` (the takeaway), `yLabel`, `xLabel`, `unit`, `description`; bars always from zero, nice ticks, `highlight`; lines direct-labelled, dashed/marked per series, `null` gaps, `zero={false}` draws an axis break; `role="img"` + `<desc>` + a "Show data" table. Geometry: `niceScale`, `linearScale`, `bandLayout`, `barExtent`, `linePath`, `spreadLabels` |
+| `Accordion`/`AccordionItem` | `.ld-accordion` (`__item`, `__summary`, `__panel`) | native `<details>`/`<summary>`: `title`, `open` (initial), `onToggle`; `<Accordion exclusive>` gives the items one `name` (one open at a time, for steps; leave it off for FAQs). Height animates via `interpolate-size` + `::details-content` (snaps where unsupported or under reduced motion); the theme draws the chevron. Plain HTML: the classes on `details`/`summary`/`div` |
+| `InlineEdit` | `.ld-inline-edit` (`--multiline`, `__display`, `__text`, `__icon`, `__input`; `data-ld-edit`, `data-ld-saved`) | text that becomes an input in the same box: `value`, `onSave` (reject to roll back; its message shows in the field error line), `label`, `validate`, `multiline`, `placeholder`, `type`. Click/Enter/F2 opens, Enter or blur saves (Ctrl/⌘+Enter in a textarea), Escape restores, focus returns to the text; pencil on hover/focus and always on touch. State machine: `inlineEdit`, `inlineEditKey` |
+| `StarRating` | `.ld-rating` (`__options`, `__option`, `__input`, `__glyph`, `__value`, `__clear`), `.ld-rating--display` (`__stars`, `__count`) | with `onChange`: a radio group (`label` legend, one tab stop, arrows, hover preview where hover is real, `clearable`); without: read-only `value` average + `count` → "4.3 (128)", fractional fill (`starFills`, `--ld-fill`), never rounded up to a perfect score (`roundRating`), `role="img"` |
+| `PresenceCursors` / `AvatarStack` / `Avatar` | `.ld-presence`, `.ld-cursor` (`__pointer`, `__name`, `data-ld-color`, `data-ld-idle`), `.ld-avatar-stack`, `.ld-avatar` (`--overflow`, `__img`) | presentational only: `users` `{ id, name, x, y, lastSeen, avatar }` (px from the positioned parent), `selfId` never drawn, `idleMs` fade; cursors glide (`followPoint`, jump under reduced motion), colour from `presenceColor(id)` (8 theme slots with contrast), layer on `--ld-z-sticky`, `pointer-events: none`, `aria-hidden`. `AvatarStack` `max` folds the rest into a named "+N" and is the accessible who-is-here |
+| (CSS only) | `.ld-settings` (`__nav`, `__link`, `__body`, `__section`, `--danger`, `__header`, `__title`, `__description`, `__row`, `__label`, `__hint`, `__control`) | settings layout: sticky section nav beside grouped sections when the container has room, a scrolling row otherwise; preferences autosave with a `SaveStatus` per section, identity fields use `InlineEdit`, secrets an explicit button, the danger zone goes last with a type-the-name `Dialog`. See `docs/guides/settings.md` and `site/layout-settings.html` |
 
 Theme-specific additions (styled only under that theme — check before using):
 `summer-cloud` adds `.ld-card--floating` and `.ld-btn--ghost`. (`.ld-chip` and

@@ -200,6 +200,34 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   once filled.
 - **Key hint** `.ld-kbd` — a key cap drawn in a faint hairline, uppercase
   bold mono 10px.
+- **Accordion** `.ld-accordion` (+ `__item`, `__summary`, `__panel`) — native
+  `<details>`/`<summary>` as a console listing: one hairline frame, rows split by
+  hairlines, uppercase tracked headers; the whole row is the button. The
+  switchboard `>` leads each row and turns down, lime, on the panel's own
+  duration and curve while the height opens (`interpolate-size` +
+  `::details-content`; it snaps where unsupported and under reduced motion).
+- **Inline edit** `.ld-inline-edit` (+ `--multiline`, `__display`, `__text`, `__icon`, `__input`; `data-ld-edit`,
+  `data-ld-saved`) — the text and the
+  input share one box, so the swap moves nothing; hover dashes the edge, editing
+  lights it lilac with a lime caret. A pencil shows on hover and keyboard focus,
+  always on touch; saving is a blinking lime block cursor, then a lime check;
+  errors take the pink edge and the field error line.
+- **Star rating** `.ld-rating` (+ `__legend`, `__options`, `__option`, `__input`, `__glyph`,
+  `__value`, `__clear`; `--display`, `__stars`, `__count`) — hairline
+  outline stars; chosen stars burn gold with a glow, clipped to `--ld-fill` for
+  fractional averages; the hover preview is lilac (only where hover is real).
+- **Settings** `.ld-settings` (+ `__nav`, `__link`, `__body`, `__section`, `--danger`,
+  `__header`, `__title`, `__description`, `__row`, `__label`, `__hint`, `__control`) — the section nav
+  sticks beside the sections when the container has room (a scrolling row
+  otherwise) and reads like the switchboard: the current link is lilac with a
+  lime `>`. Sections are frosted hairline panels with `//` headings; the danger
+  zone comes last in a dashed pink frame headed `!!`.
+- **Presence** `.ld-presence`, `.ld-cursor` (+ `__pointer`, `__name`; `data-ld-color`,
+  `data-ld-idle`), `.ld-avatar-stack`, `.ld-avatar` (+ `--overflow`, `__img`) — remote
+  cursors are console beacons: a neon pointer edged in navy with its own glow and
+  a square tag in bold tracked capitals. Eight neon slots (`--ld-presence-1..8`)
+  carry navy ink. The layer sits on `--ld-z-sticky` and never takes a click; idle
+  cursors fade out. Avatars take the one 0.5rem radius.
 - **App shell** `.ld-shell` (+ `__skip`, `__header`, `__toggle`, `__brand`,
   `__actions`, `__nav`, `__scrim`, `__main`, `__footer`; `.ld-topnav`/`__item`;
   `.ld-sidenav` + `__section`, `__heading`, `__item`, `__icon`, `__label`,

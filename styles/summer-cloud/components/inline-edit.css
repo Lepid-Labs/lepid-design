@@ -1,0 +1,117 @@
+/* summer-cloud — inline edit (the React InlineEdit). The text and the input
+ * share one box: same font, padding and 1px edge, so the swap moves nothing;
+ * editing lights the edge sky blue inside the theme's 4px ring. Hover washes
+ * the text white; a pencil marks it as editable on hover and keyboard focus,
+ * and always on touch. Saving is a violet spinner, then a deep-green check;
+ * errors take the red edge and the field's error line. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit {
+  display: grid;
+  min-inline-size: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__input {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  margin: 0;
+  padding: var(--ld-space-1) calc(var(--ld-space-2) * 2 + 1em) var(--ld-space-1) var(--ld-space-2);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: start;
+  transition: background-color var(--ld-duration-fast) var(--ld-ease-standard),
+    border-color var(--ld-duration-fast) var(--ld-ease-standard), box-shadow var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display {
+  position: relative;
+  display: block;
+  cursor: text;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display:hover {
+  background: var(--ld-sky-tint);
+  border-color: var(--ld-outline);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display:focus-visible,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__input {
+  outline: none;
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__input::placeholder,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__text--empty {
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__input[aria-invalid="true"] {
+  border-color: var(--ld-danger);
+  box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__text--empty {
+  font-style: italic;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit--multiline .ld-inline-edit__text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit--multiline .ld-inline-edit__input {
+  display: block;
+  resize: none;
+  field-sizing: content;
+  overflow: auto;
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__icon {
+  position: absolute;
+  inset-block-start: calc(var(--ld-space-1) + 1px);
+  inset-inline-end: var(--ld-space-2);
+  box-sizing: border-box;
+  inline-size: 1em;
+  block-size: 1lh;
+  background: var(--ld-faint);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.5 2.5l3 3-8 8-3.5.5.5-3.5zM9 4l3 3'/%3E%3C/svg%3E") center / 0.9em no-repeat;
+  opacity: 0;
+  transition: opacity var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display:hover .ld-inline-edit__icon,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__display:focus-visible .ld-inline-edit__icon {
+  opacity: 1;
+  background: var(--ld-primary);
+}
+@media (hover: none) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit__icon { opacity: 1; }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit[data-ld-edit="saving"] .ld-inline-edit__display {
+  cursor: progress;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit[data-ld-edit="saving"] .ld-inline-edit__icon {
+  opacity: 1;
+  inline-size: 0.85em;
+  block-size: 0.85em;
+  margin-block-start: calc((1lh - 0.85em) / 2);
+  background: none;
+  border: 2px solid var(--ld-primary);
+  border-right-color: transparent;
+  border-radius: 50%;
+  mask: none;
+  animation: ld-sc-edit-spin 0.7s linear infinite;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit[data-ld-saved] .ld-inline-edit__icon {
+  opacity: 1;
+  background: var(--ld-success-deep);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+@keyframes ld-sc-edit-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-inline-edit[data-ld-edit="saving"] .ld-inline-edit__icon { animation-duration: 2s; }
+}

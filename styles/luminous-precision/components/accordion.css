@@ -1,0 +1,86 @@
+/* luminous-precision — accordion / disclosure (the React Accordion). Native
+ * <details>/<summary>: the summary is the whole row (a real button with its
+ * expanded state), glass panes with a lit top edge, a faint chevron that turns
+ * teal and flips on the same curve and duration as the panel opening. Smooth
+ * height comes from interpolate-size + ::details-content; elsewhere it snaps. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion {
+  display: grid;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item {
+  interpolate-size: allow-keywords;
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-top-color: var(--ld-border-lit);
+  border-radius: var(--ld-radius-lg);
+  backdrop-filter: blur(var(--ld-blur));
+  -webkit-backdrop-filter: blur(var(--ld-blur));
+  transition: box-shadow var(--ld-duration-base) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item[open] {
+  box-shadow: var(--ld-elevation-1);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--ld-space-3);
+  padding: var(--ld-space-3) var(--ld-space-4);
+  border-radius: inherit;
+  color: var(--ld-on-surface);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  list-style: none;
+  cursor: pointer;
+  transition: color var(--ld-duration-fast) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary::after {
+  content: "";
+  flex: none;
+  margin-inline-start: auto;
+  inline-size: 1rem;
+  block-size: 1rem;
+  background: var(--ld-faint);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: rotate var(--ld-duration-base) var(--ld-ease-standard), background-color var(--ld-duration-base) var(--ld-ease-standard);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary:hover {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--ld-accent), 0 0 10px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item[open] > .ld-accordion__summary::after {
+  rotate: 180deg;
+  background: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__panel {
+  display: flow-root;
+  padding: 0 var(--ld-space-4) var(--ld-space-3);
+  color: var(--ld-faint);
+  font-size: var(--ld-text-sm);
+  line-height: 1.6;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__panel > :first-child { margin-top: 0; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__panel > :last-child { margin-bottom: 0; }
+
+@supports (interpolate-size: allow-keywords) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size var(--ld-duration-base) var(--ld-ease-standard),
+      content-visibility var(--ld-duration-base) var(--ld-ease-standard) allow-discrete;
+  }
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item[open]::details-content {
+    block-size: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__summary::after,
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-accordion__item::details-content {
+    transition: none;
+  }
+}

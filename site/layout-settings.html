@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" data-ld-style="luminous-precision">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }</style>
+</head>
+<body>
+<!-- Settings layout: .ld-settings with __nav and __body; grouped .ld-settings__section blocks of __row (label + control).
+     Low-stakes preferences save as you change them (SaveStatus per section); identity fields are inline edits that save
+     on Enter; the password needs an explicit button; the danger zone comes last and asks for the workspace's name. -->
+<div class="ld-shell">
+  <a class="ld-shell__skip" href="#main">Skip to content</a>
+  <header class="ld-shell__header">
+    <button type="button" class="ld-shell__toggle" aria-label="Toggle navigation" aria-controls="app-nav" aria-expanded="true"><svg><use href="icons.svg#menu"/></svg></button>
+    <a class="ld-shell__brand" href="index.html"><svg><use href="icons.svg#mark"/></svg><span>lepid</span></a>
+    <div class="ld-shell__actions">
+      <label class="ld-shell__picker" style="display:flex;align-items:center;gap:0.5rem">
+        <span class="ld-label" style="margin:0">style</span>
+        <select id="style-select" class="ld-select ld-btn--sm" style="width:auto;max-width:11rem"></select>
+      </label>
+    </div>
+  </header>
+  <aside class="ld-shell__nav" id="app-nav">
+    <nav class="ld-sidenav" aria-label="Main">
+      <div class="ld-sidenav__section" role="group" aria-labelledby="nav-previews">
+        <div class="ld-sidenav__heading" id="nav-previews">Previews</div>
+        <a class="ld-sidenav__item" href="shell.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#grid"/></svg></span><span class="ld-sidenav__label">App shell</span></a>
+        <a class="ld-sidenav__item" href="layout-dashboard.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#chart"/></svg></span><span class="ld-sidenav__label">Dashboard</span></a>
+        <a class="ld-sidenav__item" href="layout-list-detail.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#inbox"/></svg></span><span class="ld-sidenav__label">List + detail</span></a>
+        <a class="ld-sidenav__item" href="layout-docs.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#doc"/></svg></span><span class="ld-sidenav__label">Docs</span></a>
+        <a class="ld-sidenav__item" href="layout-centered.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#star"/></svg></span><span class="ld-sidenav__label">Centered</span></a>
+        <a class="ld-sidenav__item" href="layout-feed.html"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#home"/></svg></span><span class="ld-sidenav__label">Feed (nav only)</span></a>
+        <a class="ld-sidenav__item" href="layout-settings.html" aria-current="page"><span class="ld-sidenav__icon" aria-hidden="true"><svg><use href="icons.svg#settings"/></svg></span><span class="ld-sidenav__label">Settings</span></a>
+      </div>
+    </nav>
+  </aside>
+  <div class="ld-shell__scrim" aria-hidden="true"></div>
+  <main class="ld-shell__main" id="main" tabindex="-1">
+    <div class="ld-page">
+      <header class="ld-page__header">
+        <div class="ld-page__heading">
+          <h1 class="ld-page__title">Settings</h1>
+          <p class="ld-page__subtitle">Preferences save as you change them.</p>
+        </div>
+      </header>
+      <div class="ld-settings">
+        <nav class="ld-settings__nav" aria-label="Settings sections" id="settings-nav">
+          <a class="ld-settings__link" href="#profile" aria-current="true">Profile</a>
+          <a class="ld-settings__link" href="#notifications">Notifications</a>
+          <a class="ld-settings__link" href="#appearance">Appearance</a>
+          <a class="ld-settings__link" href="#security">Security</a>
+          <a class="ld-settings__link" href="#danger">Danger zone</a>
+        </nav>
+        <div class="ld-settings__body">
+          <section class="ld-settings__section" id="profile" aria-labelledby="profile-h">
+            <header class="ld-settings__header">
+              <h2 class="ld-settings__title" id="profile-h">Profile</h2>
+              <p class="ld-settings__description">How you appear to your team. Click a value to change it; Enter saves, Escape cancels.</p>
+            </header>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><span class="ld-label">Display name</span></div>
+              <div class="ld-settings__control"><div class="ld-inline-edit" id="name"></div></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><span class="ld-label">Email</span><p class="ld-settings__hint">We send a link to confirm a new address.</p></div>
+              <div class="ld-settings__control"><div class="ld-inline-edit" id="email"></div></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><span class="ld-label">Bio</span><p class="ld-settings__hint">Ctrl+Enter or ⌘+Enter saves.</p></div>
+              <div class="ld-settings__control"><div class="ld-inline-edit" id="bio"></div></div>
+            </div>
+          </section>
+
+          <section class="ld-settings__section" id="notifications" aria-labelledby="notifications-h" data-autosave>
+            <header class="ld-settings__header">
+              <h2 class="ld-settings__title" id="notifications-h">Notifications</h2>
+              <span class="ld-save-status" data-ld-save="idle"><span class="ld-save-status__text"></span><button type="button"
+                class="ld-btn ld-btn--sm ld-save-status__retry" style="display: none">Retry</button><span class="sr-only" role="status"></span></span>
+              <p class="ld-settings__description">Email only; in-app notifications are always on.</p>
+            </header>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="n-mentions">Mentions and replies</label><p class="ld-settings__hint" id="n-mentions-hint">When someone @mentions you or replies to your comment.</p></div>
+              <div class="ld-settings__control"><input type="checkbox" role="switch" class="ld-switch" id="n-mentions" aria-describedby="n-mentions-hint" checked></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="n-deploys">Failed deploys</label><p class="ld-settings__hint" id="n-deploys-hint">Only for pipelines you own.</p></div>
+              <div class="ld-settings__control"><input type="checkbox" role="switch" class="ld-switch" id="n-deploys" aria-describedby="n-deploys-hint" checked></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="n-digest">Activity digest</label></div>
+              <div class="ld-settings__control"><select class="ld-select" id="n-digest"><option>Never</option><option selected>Weekly</option><option>Daily</option></select></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="n-product">Product news</label></div>
+              <div class="ld-settings__control"><input type="checkbox" role="switch" class="ld-switch" id="n-product"></div>
+            </div>
+          </section>
+
+          <section class="ld-settings__section" id="appearance" aria-labelledby="appearance-h" data-autosave>
+            <header class="ld-settings__header">
+              <h2 class="ld-settings__title" id="appearance-h">Appearance</h2>
+              <span class="ld-save-status" data-ld-save="idle"><span class="ld-save-status__text"></span><button type="button"
+                class="ld-btn ld-btn--sm ld-save-status__retry" style="display: none">Retry</button><span class="sr-only" role="status"></span></span>
+              <p class="ld-settings__description">A changed setting can be reset on its own, without touching the others.</p>
+            </header>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="a-density">Density</label></div>
+              <div class="ld-settings__control"><select class="ld-select" id="a-density" data-default="Comfortable"><option>Comfortable</option><option>Compact</option></select></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="a-week">Week starts on</label></div>
+              <div class="ld-settings__control"><select class="ld-select" id="a-week" data-default="Monday"><option>Monday</option><option>Sunday</option><option>Saturday</option></select></div>
+            </div>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><label class="ld-label" for="a-motion">Reduce motion</label><p class="ld-settings__hint" id="a-motion-hint">Also follows your system setting.</p></div>
+              <div class="ld-settings__control"><input type="checkbox" role="switch" class="ld-switch" id="a-motion" aria-describedby="a-motion-hint" data-default="false"></div>
+            </div>
+          </section>
+
+          <section class="ld-settings__section" id="security" aria-labelledby="security-h">
+            <header class="ld-settings__header">
+              <h2 class="ld-settings__title" id="security-h">Security</h2>
+              <p class="ld-settings__description">A new password takes effect when you press Update, not before.</p>
+            </header>
+            <form class="ld-settings__row" id="password-form" novalidate style="align-items: start">
+              <div class="ld-settings__label"><span class="ld-label">Password</span><p class="ld-settings__hint">Last changed 4 months ago.</p></div>
+              <div class="ld-settings__control" style="display:grid;justify-content:stretch">
+                <div class="ld-field" data-password>
+                  <label class="ld-label" for="p-current">Current password</label>
+                  <div class="ld-password"><div class="ld-password__control">
+                    <input class="ld-input ld-password__input" id="p-current" type="password" autocomplete="current-password" required>
+                    <button type="button" class="ld-icon-btn ld-password__toggle" aria-label="Show password" title="Show password" aria-pressed="false" aria-controls="p-current"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18" display="none"/></svg></button>
+                  </div></div>
+                </div>
+                <div class="ld-field" data-password>
+                  <label class="ld-label" for="p-new">New password</label>
+                  <div class="ld-password"><div class="ld-password__control">
+                    <input class="ld-input ld-password__input" id="p-new" type="password" autocomplete="new-password" minlength="12" required aria-describedby="p-new-hint">
+                    <button type="button" class="ld-icon-btn ld-password__toggle" aria-label="Show password" title="Show password" aria-pressed="false" aria-controls="p-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path d="M3 3l18 18" display="none"/></svg></button>
+                  </div></div>
+                  <p class="ld-field__hint" id="p-new-hint">At least 12 characters.</p>
+                  <p class="ld-field__message ld-field__message--error" id="p-new-message" aria-live="polite"></p>
+                </div>
+                <div><button type="submit" class="ld-btn ld-btn--primary" id="p-submit">Update password</button><span class="sr-only" role="status" id="p-status"></span></div>
+              </div>
+            </form>
+            <details class="ld-accordion__item" style="margin-top: 1rem">
+              <summary class="ld-accordion__summary">Advanced</summary>
+              <div class="ld-accordion__panel">
+                <div class="ld-settings__row" style="border:0;padding-top:0">
+                  <div class="ld-settings__label"><span class="ld-label">Other sessions</span><p class="ld-settings__hint">3 browsers and 1 phone are signed in.</p></div>
+                  <div class="ld-settings__control"><button type="button" class="ld-btn ld-btn--sm">Sign out everywhere else</button></div>
+                </div>
+              </div>
+            </details>
+          </section>
+
+          <section class="ld-settings__section ld-settings__section--danger" id="danger" aria-labelledby="danger-h">
+            <header class="ld-settings__header">
+              <h2 class="ld-settings__title" id="danger-h">Danger zone</h2>
+              <p class="ld-settings__description">These cannot be undone.</p>
+            </header>
+            <div class="ld-settings__row">
+              <div class="ld-settings__label"><span class="ld-label">Delete workspace</span><p class="ld-settings__hint" id="del-hint">Removes acme-web, its 14 pipelines and every run. Members lose access at once.</p></div>
+              <div class="ld-settings__control"><button type="button" class="ld-btn ld-btn--danger" id="del-open" aria-describedby="del-hint">Delete workspace…</button></div>
+            </div>
+            <p class="ld-settings__hint" role="status" id="del-done"></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="ld-shell__footer">
+    <span>© Lepid Labs</span>
+    <span>lepid-design · <a href="index.html">components</a></span>
+  </footer>
+</div>
+
+<dialog class="ld-dialog" id="del-dialog" aria-labelledby="del-title">
+  <form method="dialog" id="del-form">
+    <h2 class="ld-dialog__title" id="del-title">Delete acme-web?</h2>
+    <p>This deletes 14 pipelines and 3,212 runs. It cannot be undone.</p>
+    <div class="ld-field">
+      <label class="ld-label" for="del-confirm">Type <strong>acme-web</strong> to confirm</label>
+      <input class="ld-input" id="del-confirm" autocomplete="off" autocapitalize="none" spellcheck="false">
+    </div>
+    <div class="ld-dialog__actions">
+      <button type="button" class="ld-btn" value="cancel" id="del-cancel">Cancel</button>
+      <button type="submit" class="ld-btn ld-btn--danger" id="del-submit" aria-disabled="true" aria-describedby="del-reason">Delete workspace</button>
+      <span class="ld-btn-reason" id="del-reason">Type the workspace name first.</span>
+    </div>
+  </form>
+</dialog>
+
+<script src="picker.js"></script>
+<script src="shell-demo.js"></script>
+<script type="module" src="settings-demo.js"></script>
+</body>
+</html>

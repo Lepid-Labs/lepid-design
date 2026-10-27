@@ -190,6 +190,40 @@ export {
   type AutosaveState,
   type SaveStatusKind,
 } from "./autosave-state.js";
+export { Accordion, AccordionItem, type AccordionProps, type AccordionItemProps } from "./Accordion.js";
+export { InlineEdit, type InlineEditProps } from "./InlineEdit.js";
+export {
+  inlineEdit,
+  inlineEditKey,
+  inlineEditState,
+  INLINE_EDIT_SAVED_MS,
+  type EditKey,
+  type InlineEditEvent,
+  type InlineEditMode,
+  type InlineEditState,
+} from "./inline-edit.js";
+export { StarRating, type StarRatingProps } from "./StarRating.js";
+export { formatRating, ratingLabel, roundRating, starFills, RATING_MAX } from "./rating.js";
+export {
+  PresenceCursors,
+  Avatar,
+  AvatarStack,
+  type PresenceCursorsProps,
+  type PresenceUser,
+  type AvatarProps,
+  type AvatarStackProps,
+} from "./Presence.js";
+export {
+  avatarOverflow,
+  followPoint,
+  initials,
+  isIdle,
+  presenceColor,
+  CURSOR_HALF_LIFE_MS,
+  PRESENCE_COLORS,
+  PRESENCE_IDLE_MS,
+  type Point,
+} from "./presence-state.js";
 export { Dialog, type DialogProps } from "./Dialog.js";
 export { Sheet, type SheetProps } from "./Sheet.js";
 export { sheetOffset, shouldDismissSheet, SHEET_DISMISS_FRACTION, SHEET_FLING_SPEED } from "./sheet-drag.js";
