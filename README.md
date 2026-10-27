@@ -335,13 +335,25 @@ is the toggle/drawer behaviour to copy.
 pnpm install
 pnpm build
 pnpm --filter @lepid-labs/styles test   # theme contract, TS consumer, and release-bump tests
-pnpm --filter @lepid-labs/ui-react test # hold-to-confirm controller behaviour
+pnpm --filter @lepid-labs/ui-react test # builds dist, then helper and render tests
 ```
 
-The contract test enforces the theme rules: every selector guarded by its
-`data-ld-style`, keyframe names unique, the baseline token set complete, and
-manifest/exports/directories in sync. A new theme that passes it works in
-every manifest-reading consumer.
+The contract test (`styles/test/contract/`) enforces the theme rules: every
+selector guarded by its `data-ld-style`, keyframe names unique, the baseline
+token set complete, and manifest/exports/directories in sync
+(`themes.test.mjs`), plus one file per component group naming the hooks every
+theme must style. A new theme that passes it works in every manifest-reading
+consumer.
+
+The React package has two kinds of test, both plain `node --test`.
+`test/<helper>.test.mjs` runs the pure state helpers straight from `src/`
+(Node strips the types). `test/<slice>.render.test.mjs` renders the real
+components with `react-dom` into a [happy-dom](https://github.com/capricorn86/happy-dom)
+window set up by `test/dom.mjs`, and checks markup, ARIA wiring, keyboard
+paths, state changes and cleanup on unmount. Type stripping cannot run JSX, so
+render tests import the built `dist/`, and the package's `test` script runs
+`tsc` first. happy-dom has no Popover API, top layer, CSS anchor positioning,
+`ResizeObserver` or layout, so what depends on those is checked in a browser.
 
 ## Publishing
 
