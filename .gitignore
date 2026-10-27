@@ -3,8 +3,9 @@ dist/
 *.tgz
 .DS_Store
 
-# local preview symlink (Pages workflow copies styles for real)
+# local preview symlinks (Pages workflow copies styles and the built helpers for real)
 site/styles
+site/ui
 
 # Claude Code local tooling
 .claude/

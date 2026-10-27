@@ -1,0 +1,23 @@
+/* luminous-precision — one-time-code cells (the React OtpInput): a row of
+ * .ld-input wells, one digit each. Empty cells show a faint dot (drawn, so
+ * nothing is read aloud); the focused cell takes the teal line and glow,
+ * filled cells light their edge, and the field's error/success states apply
+ * to every cell. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-otp {
+  display: flex;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-otp .ld-otp__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 3rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  caret-color: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-otp .ld-otp__cell:placeholder-shown {
+  background-image: radial-gradient(circle, var(--ld-faint) 0 2px, transparent 2.5px);
+}

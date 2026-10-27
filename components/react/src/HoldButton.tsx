@@ -3,8 +3,9 @@ import type { CSSProperties, FocusEvent, KeyboardEvent, PointerEvent, ReactNode 
 import type { ButtonProps } from "./Button.js";
 import { cx } from "./cx.js";
 import { createHoldController, type HoldController, type HoldState } from "./hold.js";
+import { SR_ONLY } from "./sr-only.js";
 
-export interface HoldButtonProps extends Omit<ButtonProps, "onClick"> {
+export interface HoldButtonProps extends Omit<ButtonProps, "onClick" | "busy" | "busyLabel" | "disabledReason"> {
   /** Commitment window in ms. Defaults to the theme's --ld-hold-duration (300 ms). */
   duration?: number;
   /** Fires once when the hold completes. */
@@ -21,18 +22,6 @@ export interface HoldButtonProps extends Omit<ButtonProps, "onClick"> {
   /** Announced to assistive tech once the hold fires. Default "Confirmed". */
   confirmedLabel?: string;
 }
-
-const SR_ONLY: CSSProperties = {
-  position: "absolute",
-  width: 1,
-  height: 1,
-  margin: -1,
-  padding: 0,
-  overflow: "hidden",
-  clip: "rect(0 0 0 0)",
-  whiteSpace: "nowrap",
-  border: 0,
-};
 
 const HOLD_KEYS = new Set([" ", "Enter"]);
 

@@ -23,6 +23,7 @@ Each theme ships a `design.md` — a Stitch-compatible written spec of the
 aesthetic (palette, typography, shape rules, component inventory). Read it
 before designing new screens; feed it to Stitch to generate on-system mockups.
 Motion, elevation and z-index scales, hover rules, and the interactive card: [docs/guides/foundation.md](docs/guides/foundation.md).
+Field states, busy and reasoned-disabled buttons, password, one-time-code and masked inputs: [docs/guides/forms.md](docs/guides/forms.md).
 
 `styles/manifest.json` (exported as `@lepid-labs/styles/manifest`) is the
 machine-readable roster: every theme's name, scheme, and webfont links, plus

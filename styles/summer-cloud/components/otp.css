@@ -1,0 +1,26 @@
+/* summer-cloud — one-time-code cells (the React OtpInput): a row of soft
+ * sunken tiles, one bold violet digit each in the display face. Empty tiles
+ * show an outline dot (drawn, so nothing is read aloud); a filled tile floats
+ * up to white like any filled field, and the field's error/success states
+ * apply to every tile. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-otp {
+  display: flex;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-otp .ld-otp__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 3.25rem;
+  height: 3.5rem;
+  padding: 0;
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
+  font-size: 1.5rem;
+  font-weight: var(--ld-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  caret-color: var(--ld-accent);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-otp .ld-otp__cell:placeholder-shown {
+  background-image: radial-gradient(circle, var(--ld-outline) 0 2.5px, transparent 3px);
+}

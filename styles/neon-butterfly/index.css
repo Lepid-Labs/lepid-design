@@ -12,6 +12,9 @@
 @import "./components/button-group.css";
 @import "./components/icon-button.css";
 @import "./components/form.css";
+@import "./components/field.css";
+@import "./components/password.css";
+@import "./components/otp.css";
 @import "./components/badge.css";
 @import "./components/alert.css";
 @import "./components/dialog.css";

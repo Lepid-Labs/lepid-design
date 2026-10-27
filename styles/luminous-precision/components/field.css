@@ -1,0 +1,87 @@
+/* luminous-precision — field states, hint and status line (the React Field).
+ * Error is aria-invalid="true" on the control; success is .ld-field--success
+ * on the field. Each state lights the edge in its own colour, and the status
+ * line carries an icon so no state rests on colour alone. */
+
+/* filled: the hairline lights once a value is in. Keyed on the placeholder, so
+ * the control needs one (placeholder=" " for an invisible one); :where() keeps
+ * it below focus. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input:where([placeholder]:not(:placeholder-shown)),
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-textarea:where([placeholder]:not(:placeholder-shown)) {
+  border-color: var(--ld-border-lit);
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-select[aria-invalid="true"] {
+  border-color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[aria-invalid="true"]:focus,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-textarea[aria-invalid="true"]:focus,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-select[aria-invalid="true"]:focus {
+  box-shadow: 0 0 8px rgba(255, 77, 109, 0.45);
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-input,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-textarea,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-select {
+  border-color: var(--ld-success);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-input:focus,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-textarea:focus,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field--success .ld-select:focus {
+  box-shadow: 0 0 8px rgba(71, 227, 78, 0.35);
+}
+
+/* disabled: an unlit, hatched well — unavailable, never mistaken for loading */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input:disabled,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-textarea:disabled,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-select:disabled {
+  border-color: var(--ld-border);
+  color: var(--ld-faint);
+  cursor: not-allowed;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input:disabled,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-textarea:disabled {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 5px, rgba(255, 255, 255, 0.035) 5px 10px),
+    var(--ld-surface-sunken);
+}
+
+/* read-only: no well, a dashed hairline — the value reads as text you can copy */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-input[readonly],
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-textarea[readonly] {
+  background: transparent;
+  border-style: dashed;
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__hint {
+  margin: var(--ld-space-1) 0 0;
+  color: var(--ld-faint);
+  font-size: 12px;
+}
+
+/* status line: empty (and no height) until an error or success fills it */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__message {
+  margin: 0;
+  font-size: 12px;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__message:not(:empty) {
+  margin-top: var(--ld-space-1);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__message--error {
+  --ld-field-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 4.5h1.8l-.3 5H7.4zM8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  color: var(--ld-danger);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__message--success {
+  --ld-field-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  color: var(--ld-success);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-field__message:not(:empty)::before {
+  content: "";
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.4em;
+  vertical-align: -0.25em;
+  background: currentColor;
+  mask: var(--ld-field-icon) center / contain no-repeat;
+}

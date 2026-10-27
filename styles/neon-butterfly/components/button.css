@@ -52,10 +52,53 @@
   border-color: var(--ld-danger);
   color: var(--ld-danger);
 }
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:disabled {
+/* aria-disabled="true" looks the same as :disabled but stays focusable, so its
+ * reason (.ld-btn-reason, via aria-describedby) can be reached and read */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:disabled,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-disabled="true"] {
   opacity: 0.5;
   cursor: not-allowed;
   animation: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-disabled="true"]:focus-visible {
+  opacity: 0.8;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn-reason {
+  display: block;
+  margin-top: var(--ld-space-1);
+  color: var(--ld-faint);
+  font-size: 12px;
+}
+
+/* busy: aria-busy="true" — a spinner with a lime leading arc (the activity
+ * signal) over the label, which is hidden but keeps its width; focus stays */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-busy="true"] {
+  position: relative;
+  cursor: progress;
+  animation: none;
+  -webkit-text-fill-color: transparent;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-busy="true"] > * {
+  visibility: hidden;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-busy="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 1.1em;
+  height: 1.1em;
+  margin: auto;
+  border: 2px solid currentColor;
+  border-top-color: var(--ld-accent);
+  border-right-color: transparent;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 3px var(--ld-accent-glow));
+  animation: ld-nb-btn-spin 0.7s linear infinite;
+}
+@keyframes ld-nb-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -65,5 +108,9 @@
   :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:hover,
   :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn:focus-visible {
     animation: none;
+  }
+  /* the spinner is the only sign of progress: slow it, never stop it */
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-btn[aria-busy="true"]::after {
+    animation-duration: 2s;
   }
 }

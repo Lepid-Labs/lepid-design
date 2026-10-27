@@ -41,6 +41,7 @@
   --ld-warning: #f2c025;
   --ld-danger: #ff4d4d;
   --ld-danger-deep: #cc1f1f; /* (extra) danger where white text sits on it */
+  --ld-success-deep: #0f6a24; /* (extra) success as text: the switch green fails contrast */
 
   /* sky gradient (extra) */
   --ld-sky-start: #f0f4f8;

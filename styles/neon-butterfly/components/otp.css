@@ -1,0 +1,27 @@
+/* neon-butterfly — one-time-code cells (the React OtpInput): a row of
+ * .ld-input wells, one digit each, with a lime caret. Empty cells show a faint
+ * dot (drawn, so nothing is read aloud); entered digits glow lilac, and the
+ * field's error/success states apply to every cell. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-otp {
+  display: flex;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-otp .ld-otp__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 3rem;
+  height: 3.25rem;
+  padding: 0;
+  font-size: 1.25rem;
+  font-weight: var(--ld-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  caret-color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-otp .ld-otp__cell:placeholder-shown {
+  background-image: radial-gradient(circle, var(--ld-faint) 0 2px, transparent 2.5px);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-otp .ld-otp__cell:not(:placeholder-shown) {
+  color: var(--ld-primary);
+  text-shadow: 0 0 8px var(--ld-primary-glow);
+}
