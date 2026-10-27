@@ -16,7 +16,7 @@ component styles in an app — consume the system.
    `--ld-ease-*`), shadow (`--ld-elevation-1..4`), and z-index (`--ld-z-*`
    layers) value. If a needed token doesn't exist, propose adding it to
    `lepid-design` rather than hardcoding. When to use each level:
-   `docs/components/foundation.md`.
+   `docs/guides/foundation.md`.
 2. **Existing components first.** Before building UI, check the component
    inventory below. App-local components are only for genuinely app-specific
    composites — and should still be built from `ld-*` classes.

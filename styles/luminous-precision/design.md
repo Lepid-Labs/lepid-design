@@ -58,7 +58,7 @@ tonal layers and glow, not drop shadows. Never pure white or pure black.
 - Hover motion runs only where hover is real (`@media (hover: hover)`); every
   hover state has a `:focus-visible` or `:focus-within` twin for the keyboard.
 - Layers take the shared `--ld-z-*` scale, never a literal z-index (see
-  `docs/components/foundation.md`).
+  `docs/guides/foundation.md`).
 - 8px spacing rhythm; generous negative space so glows can breathe.
 
 ## Components

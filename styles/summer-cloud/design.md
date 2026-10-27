@@ -77,7 +77,7 @@ Every stack falls back to a system family.
 - Hover motion runs only where hover is real (`@media (hover: hover)`); every
   hover state has a `:focus-visible` or `:focus-within` twin for the keyboard.
 - Layers take the shared `--ld-z-*` scale, never a literal z-index (see
-  `docs/components/foundation.md`).
+  `docs/guides/foundation.md`).
 - Focus is a 4px sky-blue ring (`0 0 0 4px rgba(12,179,255,0.2)`), never an
   outline suppression without a replacement.
 - Spacing is strictly multiples of 8px. When in doubt, add 8.
