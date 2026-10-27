@@ -29,7 +29,14 @@ component styles in an app — consume the system.
    text, never colour alone), validated on blur and then live; a running
    request is `busy`, not `disabled`; a blocked action the user can fix gets a
    `disabledReason`. When to use which: `docs/guides/forms.md`.
-6. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+6. **Feedback fits the wait and the weight.** No indicator under ~400 ms and
+   none that flashes (`useLoadingIndicator`); a `Skeleton` for content of known
+   shape, `Progress` for long measured work. Empty lists get an `EmptyState`
+   with a next step. Results of actions go in a `toast()`; reversible actions
+   get Undo (`scheduleUndoable`), not a confirm; only irreversible ones confirm
+   (`HoldButton`, `Dialog`). When to use which surface:
+   `docs/guides/feedback.md`.
+7. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
    not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
@@ -99,6 +106,11 @@ non-React apps):
 | `Dialog` | `.ld-dialog` | native `<dialog>`, `open`/`onClose`/`actions` |
 | `Tabs` | `.ld-tabs` | `items: {id, label, content}[]`; the underline slides between tabs (plain HTML: set `data-ld-dir="forward"\|"back"` on `.ld-tabs` when selection moves) |
 | `Progress`/`Spinner` | `.ld-progress`/`.ld-spinner` | |
+| `Skeleton` | `.ld-skeleton` (`--text`/`--circle`/`--block`) | placeholder in the content's shape; `lines`, `width`, `height`; `aria-hidden`, put `aria-busy` on the loading region. Gate any indicator with `useLoadingIndicator(loading)` (400 ms delay, 500 ms minimum) |
+| `EmptyState` | `.ld-empty` | `variant`: `first-use`/`no-results`/`cleared`; `icon`, `title` (`titleAs`), body as children, `actions`. Inside a `StatusCard` use `StatusCardEmpty` instead |
+| `Toaster` + `toast()` | `.ld-toaster`, `.ld-toast--<variant>` | mount `<Toaster />` once; `toast({ message, title, variant, duration, action, undo, id })` from anywhere, `toast.dismiss(id)`. Max 3 shown, clocks pause on hover/focus/hidden tab, errors stay and are assertive, F8 jumps in, Escape dismisses |
+| `scheduleUndoable` | (with `toast({ undo })`) | deferred commit: `scheduleUndoable({ commit, undo, delay })`; as a toast's `undo` it gets an Undo button and countdown, commits when the toast closes otherwise or the page unloads |
+| `SaveStatus` + `useAutosave` | `.ld-save-status[data-ld-save]` | `useAutosave(save)` → `{ status, state, edit, retry }` (800 ms debounce, 5 s max wait, offline queue, unload guard); `<SaveStatus status savedAt onRetry>` announces only offline, errors and the recovery |
 | `Stepper` | `.ld-stepper` | milestone rail; `steps: {id, label, icon?}[]`, `current` index derives complete/current/upcoming and the rail fill; `aria-current="step"` on the active node |
 | `AppShell` | `.ld-shell` | app frame; `header`/`nav`/`footer` all optional (missing tracks collapse); paints the theme background under unfilled header/nav; the header spans full width above the nav (toggle + brand at its left); nav collapses to an icon rail (wide), drawer or `mobileNav="tabbar"` below 48rem; plain HTML sets `data-ld-nav-collapsed`/`data-ld-nav-open` on the root |
 | `AppHeader`/`ShellToggle`/`TopNav`/`TopNavItem` | `.ld-shell__header` etc. | sticky top bar: toggle, `brand`, `nav`, right-aligned `actions` |

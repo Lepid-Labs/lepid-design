@@ -27,7 +27,7 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
-      # the forms demo imports the components' pure helpers from ui/
+      # the forms and feedback demos import the components' pure helpers from ui/
       - run: pnpm install --frozen-lockfile && pnpm build
       - name: Assemble site
         run: |

@@ -1,0 +1,80 @@
+/* summer-cloud — empty state: what a list, table or panel shows when it holds
+ * nothing. A round white glass bubble for the icon, a Plus Jakarta title, faint
+ * Inter body, then the next step.
+ *   --first-use   nothing made yet: a larger violet bubble that floats
+ *   --no-results  a search or filter matched nothing: compact, outlined bubble
+ *   --cleared     all done: a pale green bubble with a deep green glyph */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: var(--ld-space-5) var(--ld-space-4);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  text-align: center;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  margin-bottom: var(--ld-space-1);
+  background: var(--ld-surface-glass-high);
+  border: 1px solid var(--ld-border-lit);
+  border-radius: 50%;
+  box-shadow: var(--ld-elevation-1);
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__icon > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__title {
+  margin: 0;
+  font-family: var(--ld-font-display);
+  font-size: 1.125rem;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-tight);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__body {
+  max-width: 38ch;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__body > p { margin: 0; }
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-2);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty--first-use .ld-empty__icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  background: var(--ld-primary);
+  border-color: transparent;
+  box-shadow: var(--ld-shadow-raised);
+  color: var(--ld-on-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty--first-use .ld-empty__icon > svg {
+  width: 2rem;
+  height: 2rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty--no-results {
+  padding-block: var(--ld-space-4);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty--no-results .ld-empty__icon {
+  background: transparent;
+  border: 1.5px dashed var(--ld-outline);
+  box-shadow: none;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-empty--cleared .ld-empty__icon {
+  background: color-mix(in srgb, var(--ld-success) 18%, var(--ld-surface));
+  border-color: transparent;
+  color: var(--ld-success-deep);
+}

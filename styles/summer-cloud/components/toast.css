@@ -1,0 +1,111 @@
+/* summer-cloud — toasts (the React Toaster). The stack sits bottom-right on the
+ * toast layer, clear of notches; below 48rem it spans the top edge instead,
+ * newest nearest the edge. Each toast is a high-tier white glass card on a
+ * violet-tinted floating shadow; the variant rides on a filled icon disc in its
+ * deep (readable) hue and the title, so it is never colour alone. Toasts pop in
+ * on the spring. An action toast drains a violet pill countdown along its foot,
+ * which stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toaster {
+  --ld-toast-from: 0 0.75rem;
+  position: fixed;
+  z-index: var(--ld-z-toast);
+  right: max(var(--ld-space-3), env(safe-area-inset-right));
+  bottom: max(var(--ld-space-3), env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-space-2);
+  width: min(24rem, calc(100vw - 2 * var(--ld-space-3)));
+}
+@media (width <= 48rem) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toaster {
+    --ld-toast-from: 0 -0.75rem;
+    top: max(var(--ld-space-2), env(safe-area-inset-top));
+    right: max(var(--ld-space-2), env(safe-area-inset-right));
+    bottom: auto;
+    left: max(var(--ld-space-2), env(safe-area-inset-left));
+    flex-direction: column-reverse;
+    width: auto;
+  }
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast {
+  --ld-toast-tone: var(--ld-accent-deep);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 7h1.8v5H7.1zM8 3.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--ld-space-2);
+  padding: 0.875rem 0.625rem 0.875rem 1rem;
+  background: var(--ld-surface-glass-high);
+  border: 1px solid var(--ld-border-lit);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur-high));
+  -webkit-backdrop-filter: blur(var(--ld-blur-high));
+  box-shadow: var(--ld-elevation-3);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  overflow: hidden;
+  animation: ld-sc-toast-in var(--ld-duration-slow) var(--ld-ease-spring);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast::before {
+  content: "";
+  width: 1.375rem;
+  height: 1.375rem;
+  align-self: start;
+  background: var(--ld-toast-tone);
+  mask: var(--ld-toast-icon) center / contain no-repeat;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast--success {
+  --ld-toast-tone: var(--ld-success-deep);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm3.3 4.3L7 9.6 4.9 7.5 3.8 8.6 7 11.8l5.4-5.4z'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast--warning {
+  --ld-toast-tone: #8a6100;
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2l7.2 13.3H.8zM7.2 6h1.6l-.3 4.4h-1zM8 11.3a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast--danger {
+  --ld-toast-tone: var(--ld-danger-deep);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 4.5h1.8l-.3 5H7.4zM8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  border-left: 4px solid var(--ld-danger);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast__body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast__title {
+  margin-bottom: 0.125rem;
+  color: var(--ld-toast-tone);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-bold);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast__countdown {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.3rem;
+  left: 1rem;
+  height: 3px;
+  background: var(--ld-primary);
+  border-radius: var(--ld-radius-pill);
+  transform-origin: left;
+  animation: ld-sc-toast-countdown var(--ld-toast-duration) linear forwards;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toaster[data-ld-paused] .ld-toast__countdown {
+  animation-play-state: paused;
+}
+@keyframes ld-sc-toast-in {
+  from { opacity: 0; translate: var(--ld-toast-from); scale: 0.94; }
+}
+@keyframes ld-sc-toast-fade {
+  from { opacity: 0; }
+}
+@keyframes ld-sc-toast-countdown {
+  to { transform: scaleX(0); }
+}
+/* the countdown keeps draining: it is the time left, not decoration */
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-toast {
+    animation-name: ld-sc-toast-fade;
+    animation-timing-function: var(--ld-ease-standard);
+  }
+}

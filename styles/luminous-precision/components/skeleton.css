@@ -1,0 +1,41 @@
+/* luminous-precision — skeleton: the shape of content still loading. A dim
+ * orchid light passes across a sunken well; under reduced motion the well
+ * holds a still orchid tint instead.
+ *   .ld-skeleton--text    a line of body copy
+ *   .ld-skeleton--circle  an avatar (width is the diameter)
+ *   .ld-skeleton--block   an image, chart or card body
+ * Always aria-hidden; the region being loaded carries aria-busy="true". */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-skeleton {
+  display: block;
+  background-color: var(--ld-surface-sunken);
+  background-image: linear-gradient(100deg, transparent 40%, rgba(198, 165, 255, 0.14) 50%, transparent 60%);
+  background-size: 300% 100%;
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  animation: ld-lp-skeleton-sweep 1.6s var(--ld-ease-standard) infinite;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-skeleton--text {
+  height: 0.75em;
+  margin: 0.4em 0;
+  border-radius: 0.25rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-skeleton--circle {
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-skeleton--block {
+  height: 6rem;
+  border-radius: var(--ld-radius-lg);
+}
+@keyframes ld-lp-skeleton-sweep {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-skeleton {
+    animation: none;
+    background-image: none;
+    background-color: color-mix(in srgb, var(--ld-primary) 7%, var(--ld-surface-sunken));
+  }
+}

@@ -1,0 +1,57 @@
+/* neon-butterfly — autosave status (the React SaveStatus). Uppercase tracked
+ * 11px console text led by a glyph per data-ld-save state: a blinking lime
+ * block cursor while saving, a lime check once saved, an amber cloud offline,
+ * a pink bang on error (with an .ld-btn--sm Retry). Pending shows a faint dot;
+ * idle shows nothing. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status {
+  --ld-save-icon: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 1.75rem;
+  color: var(--ld-faint);
+  font-size: 11px;
+  font-weight: var(--ld-font-weight-bold);
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status::before {
+  content: "";
+  flex: none;
+  width: 1.1em;
+  height: 1.1em;
+  background: currentColor;
+  mask: var(--ld-save-icon) center / contain no-repeat;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="idle"]::before { content: none; }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="pending"] {
+  --ld-save-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="saving"] { color: var(--ld-on-surface); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="saving"]::before {
+  width: 0.55em;
+  height: 1.1em;
+  background: var(--ld-accent);
+  mask: none;
+  box-shadow: 0 0 6px var(--ld-accent-glow);
+  animation: ld-nb-save-blink 0.9s steps(1, end) infinite;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="saved"] {
+  --ld-save-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="saved"]::before { background: var(--ld-accent); }
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="offline"] {
+  --ld-save-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 12.5h-1a3 3 0 0 1-.3-6A4.2 4.2 0 0 1 11 4.7M12.4 7a2.8 2.8 0 0 1-.4 5.5H8.5M2.5 2.5l11 11'/%3E%3C/svg%3E");
+  color: var(--ld-warning);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="error"] {
+  --ld-save-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 4.5h1.8l-.3 5H7.4zM8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  color: var(--ld-danger);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status__retry { margin-left: 0.25em; }
+@keyframes ld-nb-save-blink {
+  50% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-save-status[data-ld-save="saving"]::before { animation-duration: 2s; }
+}

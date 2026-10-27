@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feedback · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.5rem; align-items: start; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .person { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; align-items: center; padding: 0.5rem 0; }
+  .results { min-height: 9.5rem; margin-top: 1rem; }
+  .results ul, .inbox { list-style: none; margin: 0; padding: 0; }
+  .inbox li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.5rem 0; }
+  output { display: block; margin-top: 0.5rem; font-size: 12px; opacity: 0.75; }
+  textarea.ld-textarea { min-height: 7rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · feedback</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section>
+    <h2>Loading: nothing, then a skeleton, never a flash</h2>
+    <p>Nothing shows for the first 400&nbsp;ms; once the skeleton appears it stays at least 500&nbsp;ms. The
+      list carries <code>aria-busy</code> the whole time; the skeleton itself is hidden from screen readers.</p>
+    <div class="row">
+      <button type="button" class="ld-btn" data-load="200">Fast (200 ms)</button>
+      <button type="button" class="ld-btn" data-load="450">Just over (450 ms)</button>
+      <button type="button" class="ld-btn" data-load="1800">Slow (1.8 s)</button>
+    </div>
+    <output id="load-log" aria-live="polite"></output>
+    <div class="ld-card results" id="people"></div>
+    <template id="people-skeleton">
+      <div class="person"><span class="ld-skeleton ld-skeleton--circle" aria-hidden="true"></span>
+        <div><span class="ld-skeleton ld-skeleton--text" aria-hidden="true" style="width: 40%"></span>
+          <span class="ld-skeleton ld-skeleton--text" aria-hidden="true" style="width: 70%"></span></div></div>
+    </template>
+  </section>
+
+  <section>
+    <h2>Skeleton variants</h2>
+    <div class="cols">
+      <div class="ld-card" aria-hidden="true">
+        <span class="ld-skeleton ld-skeleton--block"></span>
+        <span class="ld-skeleton ld-skeleton--text"></span>
+        <span class="ld-skeleton ld-skeleton--text"></span>
+        <span class="ld-skeleton ld-skeleton--text" style="width: 60%"></span>
+      </div>
+      <div class="ld-card" aria-hidden="true">
+        <div class="person"><span class="ld-skeleton ld-skeleton--circle"></span>
+          <span class="ld-skeleton ld-skeleton--text" style="width: 50%"></span></div>
+        <div class="person"><span class="ld-skeleton ld-skeleton--circle" style="width: 2rem"></span>
+          <span class="ld-skeleton ld-skeleton--text" style="width: 65%"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Empty states</h2>
+    <div class="cols">
+      <div class="ld-card ld-empty ld-empty--first-use">
+        <span class="ld-empty__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v10H3z"/><path d="M12 12v5M9.5 14.5h5"/></svg></span>
+        <h3 class="ld-empty__title">No projects yet</h3>
+        <div class="ld-empty__body">Projects keep your pipelines, secrets and runbooks together.</div>
+        <div class="ld-empty__actions"><button type="button" class="ld-btn ld-btn--primary">New project</button>
+          <a class="ld-btn" href="#">Import from a repo</a></div>
+      </div>
+      <div class="ld-card ld-empty ld-empty--no-results">
+        <span class="ld-empty__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5M9 9l4 4M13 9l-4 4"/></svg></span>
+        <h3 class="ld-empty__title">No runs match “deploy” in the last 7 days</h3>
+        <div class="ld-empty__body">Try a wider date range, or clear the filters.</div>
+        <div class="ld-empty__actions"><button type="button" class="ld-btn">Clear filters</button></div>
+      </div>
+      <div class="ld-card ld-empty ld-empty--cleared">
+        <span class="ld-empty__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <h3 class="ld-empty__title">All caught up</h3>
+        <div class="ld-empty__body">No alerts need you. New ones show up here.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Toasts</h2>
+    <p>At most three show; the rest wait. Hover or focus the stack, or switch tabs, and every clock stops.
+      Errors stay until dismissed and are read assertively. <kbd>F8</kbd> jumps to the newest toast;
+      <kbd>Esc</kbd> dismisses the one you are in.</p>
+    <div class="row">
+      <button type="button" class="ld-btn" data-toast="info">Info</button>
+      <button type="button" class="ld-btn" data-toast="success">Success</button>
+      <button type="button" class="ld-btn" data-toast="warning">Warning</button>
+      <button type="button" class="ld-btn ld-btn--danger" data-toast="danger">Error</button>
+      <button type="button" class="ld-btn" data-toast="action">With an action</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Undo instead of confirm</h2>
+    <p>Archiving happens at once; the commit waits out the toast's countdown, which pauses with it. Undo puts the
+      row back; closing the toast (or leaving the page) commits.</p>
+    <div class="ld-card">
+      <ul class="inbox" id="inbox"></ul>
+    </div>
+    <output id="undo-log" aria-live="polite"></output>
+  </section>
+
+  <section>
+    <h2>Autosave</h2>
+    <p>Saves 800&nbsp;ms after you stop typing (5&nbsp;s at most while you keep going). Only going offline, a
+      failure and the recovery are announced. Toggle the network or make the next save fail.</p>
+    <div class="ld-field" style="max-width: 36rem">
+      <div class="row" style="justify-content: space-between">
+        <label class="ld-label" for="draft" style="margin: 0">Release notes</label>
+        <span class="ld-save-status" id="save" data-ld-save="idle"><span class="ld-save-status__text"></span><button
+          type="button" class="ld-btn ld-btn--sm ld-save-status__retry" style="display: none">Retry</button><span
+          class="sr-only" role="status"></span></span>
+      </div>
+      <textarea class="ld-textarea" id="draft" placeholder="What changed?"></textarea>
+    </div>
+    <div class="row" style="margin-top: 1rem">
+      <label class="ld-choice"><input type="checkbox" role="switch" class="ld-switch" id="sim-offline"> Offline</label>
+      <label class="ld-choice"><input type="checkbox" class="ld-checkbox" id="sim-fail"> Fail the next save</label>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="feedback-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

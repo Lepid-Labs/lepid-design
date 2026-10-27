@@ -1,0 +1,40 @@
+/* neon-butterfly — skeleton: the shape of content still loading. A thin, sharp
+ * lilac scanline sweeps a navy well like a console redrawing; under reduced
+ * motion the well holds a still lilac tint instead.
+ *   .ld-skeleton--text    a line of body copy
+ *   .ld-skeleton--circle  an avatar (width is the diameter)
+ *   .ld-skeleton--block   an image, chart or card body
+ * Always aria-hidden; the region being loaded carries aria-busy="true". */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-skeleton {
+  display: block;
+  background-color: var(--ld-surface);
+  background-image: linear-gradient(90deg, transparent 47%, rgba(210, 187, 255, 0.32) 50%, transparent 53%);
+  background-size: 300% 100%;
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  animation: ld-nb-skeleton-scan 1.1s linear infinite;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-skeleton--text {
+  height: 0.7em;
+  margin: 0.45em 0;
+  border-radius: 2px;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-skeleton--circle {
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-skeleton--block {
+  height: 6rem;
+}
+@keyframes ld-nb-skeleton-scan {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-skeleton {
+    animation: none;
+    background-image: none;
+    background-color: color-mix(in srgb, var(--ld-primary) 9%, var(--ld-surface));
+  }
+}

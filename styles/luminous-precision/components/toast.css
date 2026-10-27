@@ -1,0 +1,114 @@
+/* luminous-precision — toasts (the React Toaster). The stack sits bottom-right on
+ * the toast layer, clear of notches; below 48rem it spans the top edge instead,
+ * newest nearest the edge. Each toast is an indigo glass pane on the floating
+ * glow; a 3px left bar and a masked icon carry the variant, so it is never
+ * colour alone. An action toast drains a teal countdown along its foot, which
+ * stops while the stack is paused ([data-ld-paused]: hover, focus, hidden tab). */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toaster {
+  --ld-toast-from: 0 0.5rem;
+  position: fixed;
+  z-index: var(--ld-z-toast);
+  right: max(var(--ld-space-3), env(safe-area-inset-right));
+  bottom: max(var(--ld-space-3), env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: var(--ld-space-2);
+  width: min(24rem, calc(100vw - 2 * var(--ld-space-3)));
+}
+@media (width <= 48rem) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toaster {
+    --ld-toast-from: 0 -0.5rem;
+    top: max(var(--ld-space-2), env(safe-area-inset-top));
+    right: max(var(--ld-space-2), env(safe-area-inset-right));
+    bottom: auto;
+    left: max(var(--ld-space-2), env(safe-area-inset-left));
+    flex-direction: column-reverse;
+    width: auto;
+  }
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast {
+  --ld-toast-tone: var(--ld-info);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 7h1.8v5H7.1zM8 3.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--ld-space-2);
+  padding: 0.75rem 0.5rem 0.75rem 0.875rem;
+  background: color-mix(in srgb, var(--ld-surface) 88%, transparent);
+  border: 1px solid var(--ld-border);
+  border-top-color: var(--ld-border-lit);
+  border-left: 3px solid var(--ld-toast-tone);
+  border-radius: var(--ld-radius);
+  backdrop-filter: blur(var(--ld-blur));
+  -webkit-backdrop-filter: blur(var(--ld-blur));
+  box-shadow: var(--ld-elevation-3);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  overflow: hidden;
+  animation: ld-lp-toast-in var(--ld-duration-base) var(--ld-ease-enter);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast::before {
+  content: "";
+  width: 1.15rem;
+  height: 1.15rem;
+  align-self: start;
+  margin-top: 0.1rem;
+  background: var(--ld-toast-tone);
+  mask: var(--ld-toast-icon) center / contain no-repeat;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast--success {
+  --ld-toast-tone: var(--ld-success);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm3.3 4.3L7 9.6 4.9 7.5 3.8 8.6 7 11.8l5.4-5.4z'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast--warning {
+  --ld-toast-tone: var(--ld-warning);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1.2l7.2 13.3H.8zM7.2 6h1.6l-.3 4.4h-1zM8 11.3a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast--danger {
+  --ld-toast-tone: var(--ld-danger);
+  --ld-toast-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 4.5h1.8l-.3 5H7.4zM8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast__body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast__title {
+  margin-bottom: 0.125rem;
+  color: var(--ld-toast-tone);
+  font-family: var(--ld-font-display);
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: -0.01em;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast__action {
+  border-color: color-mix(in srgb, var(--ld-accent) 50%, transparent);
+  color: var(--ld-accent);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast__countdown {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--ld-accent);
+  box-shadow: 0 0 6px var(--ld-accent-glow);
+  transform-origin: left;
+  animation: ld-lp-toast-countdown var(--ld-toast-duration) linear forwards;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toaster[data-ld-paused] .ld-toast__countdown {
+  animation-play-state: paused;
+}
+@keyframes ld-lp-toast-in {
+  from { opacity: 0; translate: var(--ld-toast-from); }
+}
+@keyframes ld-lp-toast-fade {
+  from { opacity: 0; }
+}
+@keyframes ld-lp-toast-countdown {
+  to { transform: scaleX(0); }
+}
+/* the countdown keeps draining: it is the time left, not decoration */
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-toast { animation-name: ld-lp-toast-fade; }
+}

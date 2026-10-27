@@ -1,0 +1,76 @@
+/* luminous-precision — empty state: what a list, table or panel shows when it
+ * holds nothing. A glass icon well, a Sora title, faint body, then the next step.
+ *   --first-use   nothing made yet: a larger well lit in orchid
+ *   --no-results  a search or filter matched nothing: compact, dashed well
+ *   --cleared     all done: the well takes the success light */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: var(--ld-space-5) var(--ld-space-4);
+  color: var(--ld-on-surface);
+  font-size: var(--ld-text-sm);
+  text-align: center;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--ld-space-1);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-top-color: var(--ld-border-lit);
+  border-radius: var(--ld-radius-lg);
+  color: var(--ld-faint);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__icon > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__title {
+  margin: 0;
+  font-family: var(--ld-font-display);
+  font-size: 1rem;
+  font-weight: var(--ld-font-weight-medium);
+  letter-spacing: -0.01em;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__body {
+  max-width: 38ch;
+  color: var(--ld-faint);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__body > p { margin: 0; }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-2);
+}
+
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty--first-use .ld-empty__icon {
+  width: 4rem;
+  height: 4rem;
+  border-color: var(--ld-primary-border);
+  color: var(--ld-primary);
+  box-shadow: var(--ld-elevation-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty--first-use .ld-empty__icon > svg {
+  width: 2rem;
+  height: 2rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty--no-results {
+  padding-block: var(--ld-space-4);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty--no-results .ld-empty__icon {
+  background: transparent;
+  border-style: dashed;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-empty--cleared .ld-empty__icon {
+  border-color: color-mix(in srgb, var(--ld-success) 45%, transparent);
+  color: var(--ld-success);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--ld-success) 25%, transparent);
+}

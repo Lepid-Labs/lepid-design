@@ -21,6 +21,10 @@
 @import "./components/tabs.css";
 @import "./components/table.css";
 @import "./components/progress.css";
+@import "./components/skeleton.css";
+@import "./components/empty.css";
+@import "./components/toast.css";
+@import "./components/save-status.css";
 @import "./components/stepper.css";
 @import "./components/muted.css";
 @import "./components/pre.css";
