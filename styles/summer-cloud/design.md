@@ -65,10 +65,19 @@ Every stack falls back to a system family.
 - Depth is **blur + tinted shadow**, never grey drop shadows. Shadows are tinted
   with `#5d2bff`: `0 20px 40px rgba(93,43,255,0.08)` at rest,
   `0 4px 14px rgba(93,43,255,0.39)` for raised CTAs.
-- Two elevation tiers only — Level 1 glass (0.6 white / 12px blur) for content,
+- Two glass tiers only — Level 1 glass (0.6 white / 12px blur) for content,
   Level 2 (0.8 white / 20px blur + lift) for interactive and floating things.
+- Shadows follow `--ld-elevation-1..4` (rest, lifted, floating, modal): a violet
+  contact shadow under a soft spread that grows with each level. Level 1 is the
+  resting shadow above (`--ld-shadow` is its older name).
 - **Bouncy, not linear.** Buttons scale to 1.03 on hover and 0.95 on press with
-  `cubic-bezier(0.34,1.56,0.64,1)`; floating cards translate `-4px`.
+  `cubic-bezier(0.34,1.56,0.64,1)`; floating cards translate `-4px`. Durations
+  `--ld-duration-fast/base/slow` are 0.2/0.3/0.65s, and `--ld-ease-spring`
+  overshoots and rings out.
+- Hover motion runs only where hover is real (`@media (hover: hover)`); every
+  hover state has a `:focus-visible` or `:focus-within` twin for the keyboard.
+- Layers take the shared `--ld-z-*` scale, never a literal z-index (see
+  `docs/guides/foundation.md`).
 - Focus is a 4px sky-blue ring (`0 0 0 4px rgba(12,179,255,0.2)`), never an
   outline suppression without a replacement.
 - Spacing is strictly multiples of 8px. When in doubt, add 8.
@@ -80,6 +89,10 @@ Class prefix `ld-` (shared across themes so `@lepid-labs/ui-react` stays
 theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 
 - **Card** `.ld-card` — glass panel; `--floating` adds the Level 2 hover lift.
+  `--interactive` makes it one clickable target (its primary link carries
+  `.ld-card__link`): hover floats it 4px on the spring into Level 2 glass and
+  `--ld-elevation-2`, keyboard focus draws the sky-blue ring, a press pushes it
+  back down.
 - **Status card** `.ld-status-card` — dense dashboard card on high glass, raised shadow on hover (from pulse's repo
   card): 3px left edge takes a semantic `--<tone>`, `data-ld-attention="<tone>"`
   adds an outline + glow ring, `data-ld-changed` replays a 30s tint flash.

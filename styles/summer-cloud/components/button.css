@@ -17,8 +17,8 @@
     background var(--ld-transition),
     border-color var(--ld-transition),
     color var(--ld-transition),
-    box-shadow 0.2s ease,
-    transform 0.2s var(--ld-ease-bounce);
+    box-shadow var(--ld-duration-fast) ease,
+    transform var(--ld-duration-fast) var(--ld-ease-bounce);
 }
 /* --sm: compact size for inline/table-row actions, scaled to .ld-badge
  * (composes with any variant; keeps the pill radius from .ld-btn). */
@@ -31,10 +31,16 @@
   background: rgba(255, 255, 255, 0.6);
   border-color: var(--ld-primary-border);
   color: var(--ld-primary);
-  transform: scale(1.03);
   outline: none;
 }
+/* the bounce is motion: keyboard focus always, a pointer only where hover is real */
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:hover {
+    transform: scale(1.03);
+  }
+}
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:focus-visible {
+  transform: scale(1.03);
   box-shadow: 0 0 0 4px var(--ld-accent-glow);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-btn:active {

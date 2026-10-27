@@ -22,9 +22,11 @@ live, with a style selector, plus full-page app shell and layout previews. Deplo
 Each theme ships a `design.md` — a Stitch-compatible written spec of the
 aesthetic (palette, typography, shape rules, component inventory). Read it
 before designing new screens; feed it to Stitch to generate on-system mockups.
+Motion, elevation and z-index scales, hover rules, and the interactive card: [docs/guides/foundation.md](docs/guides/foundation.md).
 
 `styles/manifest.json` (exported as `@lepid-labs/styles/manifest`) is the
-machine-readable roster: every theme's name, scheme, and webfont links.
+machine-readable roster: every theme's name, scheme, and webfont links, plus
+the `contract` version of the shared token set (bumped when the set grows).
 Consumers that validate a configured theme name or inject font links should
 read it instead of hardcoding a list — a new theme then works by name alone.
 

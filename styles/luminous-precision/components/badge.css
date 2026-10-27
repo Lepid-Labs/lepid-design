@@ -25,7 +25,8 @@
   letter-spacing: 0.06em;
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-badge[href] { text-decoration: none; }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-badge[href]:hover { filter: brightness(1.1); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-badge[href]:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-badge[href]:focus-visible { filter: brightness(1.1); }
 
 /* Pulse — the one solid, glowing call to action (work is waiting on you). */
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-badge--pulse {

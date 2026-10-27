@@ -103,8 +103,15 @@
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item:focus-visible {
   border-color: var(--ld-primary-border);
   color: var(--ld-primary);
-  transform: translateX(3px);
   outline: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item:focus-visible {
+  transform: translateX(3px);
+}
+@media (hover: hover) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item:hover {
+    transform: translateX(3px);
+  }
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item:hover .ld-sidenav__icon,
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-sidenav__item:focus-visible .ld-sidenav__icon {

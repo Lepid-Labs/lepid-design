@@ -20,7 +20,8 @@
   overflow: hidden;
   transition: background var(--ld-transition), box-shadow var(--ld-transition);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card:hover { box-shadow: 0 0 12px var(--ld-primary-glow); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card:focus-within { box-shadow: var(--ld-elevation-2); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card--info    { border-left-color: var(--ld-info); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card--success { border-left-color: var(--ld-success); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card--warning { border-left-color: var(--ld-warning); }
@@ -31,7 +32,8 @@
   outline: 1px solid color-mix(in srgb, var(--ld-status-attention) 70%, transparent);
   box-shadow: 0 0 14px color-mix(in srgb, var(--ld-status-attention) 35%, transparent);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card[data-ld-attention]:hover {
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card[data-ld-attention]:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card[data-ld-attention]:focus-within {
   box-shadow: 0 0 18px color-mix(in srgb, var(--ld-status-attention) 55%, transparent);
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card[data-ld-attention="info"]    { --ld-status-attention: var(--ld-info); }
@@ -78,7 +80,8 @@
   text-decoration: none;
   transition: color var(--ld-transition);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__title[href]:hover { color: var(--ld-primary); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__title[href]:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__title[href]:focus-visible { color: var(--ld-primary); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__prefix { color: var(--ld-faint); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__prefix::after { content: " // "; opacity: 0.5; }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__meta {
@@ -110,7 +113,8 @@
   text-decoration: none;
   transition: background 0.1s;
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__row[href]:hover { background: color-mix(in srgb, var(--ld-primary) 8%, transparent); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__row[href]:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__row[href]:focus-visible { background: color-mix(in srgb, var(--ld-primary) 8%, transparent); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__row-lead {
   min-width: 1.5rem;
   font-size: 11px;
@@ -143,7 +147,8 @@
   text-decoration: none;
   transition: color var(--ld-transition);
 }
-:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__footer[href]:hover { color: var(--ld-accent); }
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__footer[href]:hover,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__footer[href]:focus-visible { color: var(--ld-accent); }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-status-card__empty {
   margin: 0;
   padding: 0.375rem 0.875rem 0.5rem;

@@ -35,7 +35,7 @@
   position: absolute;
   inset-inline-start: var(--ld-space-2);
   inset-block-start: -10rem;
-  z-index: 50;
+  z-index: var(--ld-z-tooltip); /* topmost: the skip link rides the tooltip layer */
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-shell__skip:focus {
   inset-block-start: var(--ld-space-2);
@@ -45,7 +45,7 @@
   grid-area: header;
   position: sticky;
   inset-block-start: 0;
-  z-index: 20;
+  z-index: var(--ld-z-header);
   display: flex;
   align-items: center;
   gap: var(--ld-space-3);
@@ -108,7 +108,7 @@
   position: sticky;
   inset-block-start: var(--ld-shell-top);
   align-self: start;
-  z-index: 10;
+  z-index: var(--ld-z-sticky);
   inline-size: var(--ld-shell-nav-w);
   block-size: calc(100dvh - var(--ld-shell-top));
   overflow: hidden auto;
@@ -261,7 +261,7 @@
     inset-block: var(--ld-shell-top) 0;
     inset-inline-start: 0;
     align-self: stretch; /* fixed boxes honour align-self; "start" would shrink-wrap the drawer */
-    z-index: 40;
+    z-index: var(--ld-z-modal);
     inline-size: min(var(--ld-shell-nav-w) + 3rem, 85vw);
     block-size: auto;
     transform: translateX(-100%);
@@ -277,7 +277,7 @@
     display: block;
     position: fixed;
     inset: var(--ld-shell-top) 0 0;
-    z-index: 30;
+    z-index: var(--ld-z-overlay);
   }
 
   /* Tab bar: the nav docks at the bottom; sections flatten into one row. */

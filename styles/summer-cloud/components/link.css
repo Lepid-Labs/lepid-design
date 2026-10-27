@@ -26,9 +26,13 @@
   color: var(--ld-primary);
   outline: none;
 }
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-link:hover::after,
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-link:focus-visible::after {
   transform: translateX(4px);
+}
+@media (hover: hover) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-link:hover::after {
+    transform: translateX(4px);
+  }
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-link:active {
   transform: scale(0.95);

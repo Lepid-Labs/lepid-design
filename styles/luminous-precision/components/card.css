@@ -10,3 +10,72 @@
 }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card > :first-child { margin-top: 0; }
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card > :last-child { margin-bottom: 0; }
+
+/* Interactive card (.ld-card--interactive): the whole card is one target.
+ * Its primary link or button carries .ld-card__link, whose ::after stretches
+ * over the card, so a click anywhere follows it; nested links, buttons and
+ * fields sit above that overlay and keep their own clicks. Keep the link's
+ * ancestors up to the card unpositioned, or the overlay shrinks to them.
+ * Hover lifts it 2px onto a wider orchid glow, keyboard focus draws a teal
+ * ring around it, and a press settles it back down. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive {
+  position: relative;
+  isolation: isolate;
+  cursor: pointer;
+  transition:
+    transform var(--ld-duration-fast) var(--ld-ease-enter),
+    box-shadow var(--ld-duration-fast) var(--ld-ease-enter);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive .ld-card__link {
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer; /* the primary control may be a <button> */
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive .ld-card__link::after {
+  content: "";
+  position: absolute;
+  inset: -1px; /* over the 1px border, so the ring hugs the card's edge */
+  border-radius: var(--ld-radius-lg);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive :is(a[href], button, input, select, textarea, summary, label, [role="button"], [role="link"], [contenteditable="true"]):not(.ld-card__link) {
+  position: relative;
+  z-index: 1;
+}
+@media (hover: hover) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ld-elevation-2);
+  }
+}
+/* keyboard focus lands on the link: its ring is drawn around the whole card */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive .ld-card__link:focus-visible {
+  outline: none;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive .ld-card__link:focus-visible::after {
+  outline: 1px solid var(--ld-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 12px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:has(.ld-card__link:focus-visible) {
+  transform: translateY(-2px);
+  box-shadow: var(--ld-elevation-2);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:has(.ld-card__link:active) {
+  transform: none;
+  box-shadow: var(--ld-elevation-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:hover {
+    transform: none;
+  }
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:has(.ld-card__link:focus-visible),
+  :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-card--interactive:has(.ld-card__link:active) {
+    transform: none;
+  }
+}

@@ -19,7 +19,8 @@
   cursor: pointer;
   transition: color var(--ld-transition), border-color var(--ld-transition);
 }
-:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab:hover {
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab:hover,
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab:focus-visible {
   color: var(--ld-on-surface);
 }
 :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-tab--active,

@@ -61,13 +61,46 @@
   --ld-radius: 0.5rem;
   --ld-radius-lg: 0.5rem; /* one radius everywhere is the look */
   --ld-blur: 12px;
-  --ld-transition: 0.3s;
   --ld-hold-duration: 250ms; /* (extra) hold-to-confirm commitment window */
+
+  /* motion — snappy with a sharp cut-off on exit, like a console clearing.
+   * Exits run at fast, entrances at base; the spring settles over slow.
+   * --ld-transition stays a bare time (rules also use it as a delay). */
+  --ld-duration-fast: 0.15s;
+  --ld-duration-base: 0.3s;
+  --ld-duration-slow: 0.55s;
+  --ld-transition: var(--ld-duration-base);
+  --ld-ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* in-place state changes */
+  --ld-ease-enter: cubic-bezier(0.2, 0.9, 0.3, 1); /* decelerate: arrivals */
+  --ld-ease-exit: cubic-bezier(0.55, 0, 1, 0.45); /* accelerate: departures */
+  /* spring that overshoots once, then settles */
+  --ld-ease-spring: linear(0, 0.066, 0.22, 0.407, 0.591, 0.75, 0.876, 0.966, 1.024, 1.055, 1.067, 1.066, 1.057, 1.045, 1.032, 1.021, 1.011, 1.004, 1, 0.997, 0.996, 0.995, 0.996, 0.997, 1);
   /* (extra) sliding indicator — tabs underline, button-group pill. The edge
-   * nearer the target leads; the far edge trails on a spring that overshoots
-   * inward, so the light stretches across the gap and snaps back to shape. */
-  --ld-slide-lead: 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
-  --ld-slide-trail: 0.55s linear(0, 0.066, 0.22, 0.407, 0.591, 0.75, 0.876, 0.966, 1.024, 1.055, 1.067, 1.066, 1.057, 1.045, 1.032, 1.021, 1.011, 1.004, 1, 0.997, 0.996, 0.995, 0.996, 0.997, 1);
+   * nearer the target leads; the far edge trails on --ld-ease-spring, so the
+   * indicator stretches across the gap and snaps back to shape. */
+  --ld-slide-lead: 0.22s var(--ld-ease-enter);
+  --ld-slide-trail: var(--ld-duration-slow) var(--ld-ease-spring);
+
+  /* elevation — glow, not shadow: lilac light widens with each level; the
+   * floating level adds a lilac hairline and a dark drop to part from what
+   * is beneath */
+  --ld-elevation-1: 0 0 6px rgba(210, 187, 255, 0.15);
+  --ld-elevation-2: 0 0 12px var(--ld-primary-glow);
+  --ld-elevation-3: 0 0 0 1px var(--ld-primary-border), 0 0 20px rgba(210, 187, 255, 0.35), 0 16px 40px rgba(0, 0, 0, 0.5);
+  --ld-elevation-4: 0 0 30px rgba(210, 187, 255, 0.25);
+
+  /* layers — z-index scale, identical in every theme so overlays interleave
+   * the same way whichever theme is active. Anything that floats over the
+   * page takes one of these; stacking inside one component (-1, 1) stays
+   * literal, under isolation: isolate where it could leak. */
+  --ld-z-base: 0;
+  --ld-z-sticky: 10; /* sticky side nav, sticky table headers */
+  --ld-z-header: 20; /* app header: content and sticky parts scroll under it */
+  --ld-z-dropdown: 25; /* menus, popovers, listboxes not in the top layer */
+  --ld-z-overlay: 30; /* scrims */
+  --ld-z-modal: 40; /* drawers, sheets, dialogs not in the top layer */
+  --ld-z-toast: 45; /* notifications: above the modal that raised them */
+  --ld-z-tooltip: 50; /* hints and the skip link: topmost */
 
   /* spacing */
   --ld-space-1: 0.25rem;
