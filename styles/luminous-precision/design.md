@@ -134,7 +134,38 @@ Class prefix `ld-` (shared token/class contract with the other themes).
 - **Table** `.ld-table` — lit header rule; row hover shifts glass and lights
   the teal left bar. `.ld-table--interactive` adds the pointer, an orchid
   focus outline, and a selected row (`aria-selected`) held in orchid glow
-  with the teal bar.
+  with the teal bar; selected rows look the same in any table.
+  `.ld-table__sort` headers are chromeless buttons with dim twin arrows; the
+  sorted column (`aria-sort`) lights teal with one arrow. `.ld-table__select`
+  cells hold a full-cell checkbox target (`.ld-table__select-hit`); the
+  indeterminate select-all is a glowing teal bar. `--sticky` keeps the header
+  on blurred obsidian on `--ld-z-sticky`; `--compact` tightens to a hairline
+  grid, `--comfortable` opens and stripes rows (`--ld-table-pad-y`). `.ld-num`
+  right-aligns on tabular figures. `.ld-table-scroll` scrolls a wide or tall
+  table in its own box.
+- **Bulk action bar** `.ld-bulk-bar` (+ `--top`, `__count`, `__actions`) —
+  an indigo glass slab on `--ld-elevation-3`, sticky along the bottom edge on
+  `--ld-z-sticky` (in the flow, so it never covers the last row; the page gets
+  scroll padding while it shows). It rises 0.5rem into place; the count is
+  uppercase teal with a glow.
+- **Pagination** `.ld-pagination` (+ `__list`, `__link`, `__prev`, `__next`,
+  `__page`, `__ellipsis`, `__text`, `__summary`, `__size`),
+  `.ld-pagination-bar`, `.ld-load-more` — chromeless mono cells; the current
+  page (`aria-current`) is an orchid-lit pane with a lit top edge, focus the
+  teal path, the ends dim to 0.4. Previous/Next drop their words below 30rem.
+- **Chip** `.ld-chip` (+ `--removable`, `__label`, `__remove`;
+  `.ld-chip-group`, `--scroll`, `__chips`, `__count`, `__clear`) — glass
+  pills on a hairline; pressed (`aria-pressed`, `--selected`) lights orchid
+  and leads with a check. The remove button is a round 24px target that turns
+  rose. `--scroll` is one sideways row that fades at the end.
+- **Chart** `.ld-chart` (`__title`, `__svg`, `__grid`, `__baseline`,
+  `__break`, `__tick`, `__axis-label`, `__bar`, `__bar--highlight`,
+  `__value`, `__series--0..3`, `__line`, `__points`, `__label`, `__data`),
+  `.ld-sparkline` — light as data: translucent orchid bars with a lit edge,
+  the called-out bar glowing teal, thin glowing lines, gridlines barely there,
+  Sora caption, faint mono ticks. Series run orchid, teal, info blue, amber
+  (`--ld-chart-1..4`) and differ by dash and marker too; the axis break is
+  amber.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing orchid
   indicators (`--accent` bar variant in teal).
 - **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — sunken

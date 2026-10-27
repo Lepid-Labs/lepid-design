@@ -1,12 +1,13 @@
 /* summer-cloud — table: mono header labels, sky-tint row hover */
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table {
+  --ld-table-pad-y: var(--ld-space-3);
   width: 100%;
   border-collapse: collapse;
   font-size: var(--ld-text-sm);
   color: var(--ld-on-surface);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th {
-  padding: var(--ld-space-3);
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
   border-bottom: 1px solid var(--ld-outline);
   color: var(--ld-faint);
   text-align: left;
@@ -17,20 +18,122 @@
   letter-spacing: var(--ld-tracking-wide);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table td {
-  padding: var(--ld-space-3);
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
   border-bottom: 1px solid rgba(201, 195, 218, 0.4);
 }
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table tbody tr {
   transition: background var(--ld-transition);
 }
+/* Density: compact halves the air (still on the 8px rhythm); comfortable opens the
+ * rows further and stripes them in white glass (under hover and selection). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--compact {
+  --ld-table-pad-y: var(--ld-space-1);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--comfortable {
+  --ld-table-pad-y: var(--ld-space-4);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--comfortable td {
+  border-bottom-color: transparent;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--comfortable tbody tr:where(:nth-child(even)) {
+  background: rgba(255, 255, 255, 0.45);
+}
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table tbody tr:hover {
   background: var(--ld-sky-tint);
 }
-/* Numeric cells take the mono voice — prices and data read as utility-grade. */
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table td.ld-num,
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th.ld-num {
+/* Numeric cells take the mono voice — prices and data read as utility-grade —
+ * right-aligned on tabular figures so digits line up down the column. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table .ld-num {
   font-family: var(--ld-font-mono);
+  font-variant-numeric: tabular-nums;
   text-align: right;
+}
+
+/* Sticky header: the row stays over the body on the sticky layer, on high white
+ * glass, its rule drawn as a shadow (a collapsed border scrolls away). */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--sticky thead th {
+  position: sticky;
+  top: var(--ld-table-sticky-top, 0);
+  z-index: var(--ld-z-sticky);
+  background: var(--ld-surface-glass-high);
+  backdrop-filter: blur(var(--ld-blur-high));
+  box-shadow: inset 0 -1px 0 var(--ld-outline);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table-scroll {
+  /* sized by its container, never by the table: a wide table scrolls instead of
+   * stretching the grid or flex track it sits in */
+  contain: inline-size;
+  overflow: auto;
+  max-block-size: var(--ld-table-max-height, none);
+  overscroll-behavior: contain;
+  border-radius: var(--ld-radius);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table-scroll:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+
+/* Sortable header: the label is a pill button; both arrows rest dim so the column
+ * reads as sortable without a hover, and the sorted column turns violet with one
+ * arrow. Focus is the sky ring. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  margin: calc(-1 * var(--ld-space-1)) calc(-1 * var(--ld-space-2));
+  padding: var(--ld-space-1) var(--ld-space-2);
+  background: none;
+  border: 0;
+  border-radius: var(--ld-radius-pill);
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color var(--ld-transition), background var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__sort:hover {
+  background: var(--ld-sky-tint);
+  color: var(--ld-on-surface);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__sort:focus-visible {
+  outline: none;
+  color: var(--ld-on-surface);
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__sort-icon {
+  flex: none;
+  width: 0.75em;
+  height: 1em;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__sort-icon path {
+  opacity: 0.4;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th[aria-sort] {
+  color: var(--ld-primary);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th[aria-sort="ascending"] .ld-table__sort-asc,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th[aria-sort="descending"] .ld-table__sort-desc {
+  opacity: 1;
+  stroke-width: 2.2;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th[aria-sort="ascending"] .ld-table__sort-desc,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table th[aria-sort="descending"] .ld-table__sort-asc {
+  opacity: 0;
+}
+
+/* Selection column: the label fills the cell, so the whole cell is the target. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table .ld-table__select {
+  width: 1px;
+  padding: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table__select-hit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ld-table-pad-y) var(--ld-space-3);
+  cursor: pointer;
+  user-select: none;
 }
 
 /* Interactive rows (.ld-table--interactive): the cursor is the affordance —
@@ -48,7 +151,8 @@
 :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr:active {
   background: rgba(12, 179, 255, 0.08);
 }
-:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr[aria-selected="true"] {
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table--interactive tbody tr[aria-selected="true"],
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-table tbody tr[aria-selected="true"] {
   background: rgba(93, 43, 255, 0.07);
   box-shadow: inset 3px 0 0 0 var(--ld-primary);
 }

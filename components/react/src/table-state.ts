@@ -9,13 +9,25 @@ export const ROW_NESTED_CONTROLS =
 export interface TableOptions {
   /** Rows are clickable: pointer cursor, focus ring, selected state. */
   interactive?: boolean;
+  /** Row height: `compact` for scanning many rows, `comfortable` (zebra stripes) for reading. */
+  density?: "compact" | "comfortable";
+  /** The header row stays in view while the body scrolls. */
+  stickyHeader?: boolean;
   className?: string;
 }
 
 /** Class list for the `<table>`. */
-export function tableAttrs({ interactive, className }: TableOptions): { className: string } {
+export function tableAttrs({ interactive, density, stickyHeader, className }: TableOptions): { className: string } {
   return {
-    className: ["ld-table", interactive && "ld-table--interactive", className].filter(Boolean).join(" "),
+    className: [
+      "ld-table",
+      interactive && "ld-table--interactive",
+      density && `ld-table--${density}`,
+      stickyHeader && "ld-table--sticky",
+      className,
+    ]
+      .filter(Boolean)
+      .join(" "),
   };
 }
 

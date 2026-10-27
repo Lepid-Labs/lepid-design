@@ -1,0 +1,113 @@
+/* luminous-precision — filter chips: glass pills with a hairline; a pressed chip
+ * lights orchid and leads with a check, so it never differs by colour alone.
+ * Applied filters carry a round remove button that turns rose. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-1);
+  min-height: 2rem;
+  padding: var(--ld-space-1) var(--ld-space-3);
+  background: var(--ld-surface-glass);
+  border: 1px solid var(--ld-border);
+  border-radius: 999px;
+  color: var(--ld-faint);
+  font: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--ld-transition), background var(--ld-transition), border-color var(--ld-transition),
+    box-shadow var(--ld-transition);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip:hover {
+  color: var(--ld-on-surface);
+  border-color: var(--ld-border-lit);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip:focus-visible {
+  outline: none;
+  border-color: var(--ld-accent);
+  box-shadow: 0 0 8px var(--ld-accent-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip--selected,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip[aria-pressed="true"] {
+  color: var(--ld-primary);
+  background: rgba(198, 165, 255, 0.12);
+  border-color: var(--ld-primary-border);
+  box-shadow: 0 0 10px var(--ld-primary-glow);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip--selected::before,
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip[aria-pressed="true"]::before {
+  content: "";
+  width: 0.85em;
+  height: 0.85em;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip--removable {
+  padding-inline-end: var(--ld-space-1);
+  color: var(--ld-on-surface);
+  border-color: var(--ld-primary-border);
+  cursor: default;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip__remove {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-block: -0.25rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  color: var(--ld-faint);
+  cursor: pointer;
+  transition: color var(--ld-transition), background var(--ld-transition);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip__remove svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip__remove:hover {
+  color: var(--ld-danger);
+  background: rgba(255, 77, 109, 0.12);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip__remove:focus-visible {
+  outline: 1px solid var(--ld-accent);
+  color: var(--ld-on-surface);
+}
+
+/* Group: chips, then the live count and Clear all. Wraps by default; --scroll keeps
+ * one row that scrolls sideways, fading at the end so more reads as more. */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ld-space-2) var(--ld-space-3);
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip-group__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-2);
+  min-width: 0;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip-group__count {
+  margin-inline-start: auto;
+  color: var(--ld-faint);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip-group--scroll {
+  flex-wrap: nowrap;
+}
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-chip-group--scroll .ld-chip-group__chips {
+  flex: 1;
+  flex-wrap: nowrap;
+  contain: inline-size; /* the row scrolls; it never widens its container */
+  overflow-x: auto;
+  padding: 4px 2rem 4px 4px;
+  scrollbar-width: thin;
+  mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+}

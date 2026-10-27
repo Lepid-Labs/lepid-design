@@ -1,0 +1,67 @@
+/* summer-cloud — bulk action bar: a floating pill of high white glass on a violet
+ * shadow, sticky along the bottom edge on the sticky layer. It bounces up into
+ * place on the spring (a fade under reduced motion); the count is violet in the
+ * display face. It is sticky, not fixed, so it keeps its own space in the flow and
+ * never covers the last row. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar {
+  position: sticky;
+  bottom: max(var(--ld-space-3), env(safe-area-inset-bottom));
+  z-index: var(--ld-z-sticky);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ld-space-2) var(--ld-space-3);
+  margin-block: var(--ld-space-3) 0;
+  padding: var(--ld-space-2) var(--ld-space-2) var(--ld-space-2) var(--ld-space-4);
+  background: var(--ld-surface-glass-high);
+  backdrop-filter: blur(var(--ld-blur-high));
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius-lg);
+  box-shadow: var(--ld-elevation-3);
+  transition: opacity var(--ld-duration-base) var(--ld-ease-enter), translate var(--ld-duration-slow) var(--ld-ease-spring);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar[hidden] {
+  display: none;
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar--top {
+  top: var(--ld-bulk-bar-top, var(--ld-space-3));
+  bottom: auto;
+  margin-block: 0 var(--ld-space-3);
+}
+@starting-style {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar--top {
+    translate: 0 -1.5rem;
+  }
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar__count {
+  color: var(--ld-primary);
+  font-family: var(--ld-font-display);
+  font-size: var(--ld-text-sm);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ld-space-2);
+  margin-inline-end: auto;
+}
+/* Keep keyboard focus clear of the bar (WCAG 2.4.11): scrolling to a focused row
+ * stops short of it. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *):root:has(.ld-bulk-bar:not([hidden], .ld-bulk-bar--top)) {
+  scroll-padding-block-end: 6rem;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *):root:has(.ld-bulk-bar--top:not([hidden])) {
+  scroll-padding-block-start: 6rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-bulk-bar {
+    translate: none;
+  }
+}

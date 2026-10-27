@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Data · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 60rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .stack { display: grid; gap: 0.75rem; margin-bottom: 1rem; }
+  .gallery { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); }
+  .events { list-style: none; margin: 0; padding: 0; font-size: 0.875rem; }
+  .events li { padding: 0.375rem 0; border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent); }
+  .ld-table-scroll { --ld-table-max-height: 26rem; }
+  output { display: block; margin-top: 0.5rem; font-size: 12px; opacity: 0.75; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · data</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section aria-labelledby="runs-h">
+    <h2 id="runs-h">Pipeline runs</h2>
+    <p>Sort a column (press again for descending, a third time for the original order), tick rows (Shift+click
+      selects a range), and act on them from the bar that appears. Delete takes effect at once with an undo. The
+      filters narrow the list and say how many runs are left.</p>
+
+    <div class="stack">
+      <div class="ld-chip-group ld-chip-group--scroll" role="group" aria-label="Status" id="status-chips"></div>
+      <div class="ld-chip-group ld-chip-group--scroll" role="group" aria-label="Pipeline" id="pipeline-chips"></div>
+      <div class="ld-chip-group" role="group" aria-label="Applied filters" id="applied">
+        <div class="ld-chip-group__chips" id="applied-chips"></div>
+        <span class="ld-chip-group__count" role="status" id="result-count"></span>
+        <button type="button" class="ld-btn ld-btn--sm ld-chip-group__clear" id="clear-filters">Clear all</button>
+      </div>
+      <div class="row" style="justify-content: space-between">
+        <div class="ld-btn-group" role="group" aria-label="Row density" id="density">
+          <button type="button" class="ld-btn ld-btn--sm" data-density="compact" aria-pressed="false">Compact</button>
+          <button type="button" class="ld-btn ld-btn--sm" data-density="" aria-pressed="true">Default</button>
+          <button type="button" class="ld-btn ld-btn--sm" data-density="comfortable" aria-pressed="false">Comfortable</button>
+        </div>
+        <button type="button" class="ld-btn ld-btn--sm" id="reload">Reload (slow)</button>
+      </div>
+    </div>
+
+    <div class="ld-table-scroll" tabindex="0" aria-labelledby="runs-h">
+      <table class="ld-table ld-table--interactive ld-table--sticky" id="runs">
+        <thead>
+          <tr>
+            <th scope="col" class="ld-table__select"><label class="ld-table__select-hit"><input type="checkbox"
+              class="ld-checkbox" id="select-page" aria-label="Select all runs on this page"></label></th>
+            <th scope="col" data-sort="num"><button type="button" class="ld-table__sort">Run<svg class="ld-table__sort-icon" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ld-table__sort-asc" d="M3 6.5 6 3.5l3 3"/><path class="ld-table__sort-desc" d="M3 9.5l3 3 3-3"/></svg></button></th>
+            <th scope="col" data-sort="pipeline"><button type="button" class="ld-table__sort">Pipeline<svg class="ld-table__sort-icon" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ld-table__sort-asc" d="M3 6.5 6 3.5l3 3"/><path class="ld-table__sort-desc" d="M3 9.5l3 3 3-3"/></svg></button></th>
+            <th scope="col">Status</th>
+            <th scope="col" class="ld-num" data-sort="secs"><button type="button" class="ld-table__sort">Duration<svg class="ld-table__sort-icon" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ld-table__sort-asc" d="M3 6.5 6 3.5l3 3"/><path class="ld-table__sort-desc" d="M3 9.5l3 3 3-3"/></svg></button></th>
+            <th scope="col" class="ld-num" data-sort="started"><button type="button" class="ld-table__sort">Started<svg class="ld-table__sort-icon" viewBox="0 0 12 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="ld-table__sort-asc" d="M3 6.5 6 3.5l3 3"/><path class="ld-table__sort-desc" d="M3 9.5l3 3 3-3"/></svg></button></th>
+          </tr>
+        </thead>
+        <tbody id="runs-body"></tbody>
+      </table>
+    </div>
+
+    <div role="status" class="sr-only" id="bulk-status"></div>
+    <div class="ld-bulk-bar" role="region" aria-label="Bulk actions" id="bulk" hidden>
+      <span class="ld-bulk-bar__count" id="bulk-count"></span>
+      <div class="ld-bulk-bar__actions">
+        <button type="button" class="ld-btn ld-btn--sm" id="bulk-rerun">Re-run</button>
+        <button type="button" class="ld-btn ld-btn--sm ld-btn--danger" id="bulk-delete">Delete</button>
+      </div>
+      <button type="button" class="ld-btn ld-btn--sm ld-bulk-bar__all" id="bulk-all"></button>
+      <button type="button" class="ld-btn ld-btn--sm ld-bulk-bar__clear" id="bulk-clear">Clear</button>
+    </div>
+
+    <div class="ld-pagination-bar">
+      <p class="ld-pagination__summary" role="status" id="summary"></p>
+      <nav class="ld-pagination" aria-label="Pagination"><ul class="ld-pagination__list" id="pages"></ul></nav>
+      <span class="ld-pagination__size">
+        <label class="ld-label" for="page-size">Rows per page</label>
+        <select class="ld-select" id="page-size"><option>5</option><option selected>10</option><option>20</option><option>50</option></select>
+      </span>
+    </div>
+    <output id="runs-log" aria-live="polite"></output>
+  </section>
+
+  <section aria-labelledby="feed-h">
+    <h2 id="feed-h">Load more (cursor)</h2>
+    <p>An activity feed pages by cursor, so new events at the top never shift what you have already seen. The button
+      stays where it is while loading and once the feed runs out.</p>
+    <ul class="events" id="events"></ul>
+    <div class="ld-load-more">
+      <p class="ld-pagination__summary" role="status" id="events-summary"></p>
+      <button type="button" class="ld-btn" id="events-more">Load more</button>
+      <span class="sr-only" role="status" id="events-busy"></span>
+    </div>
+  </section>
+
+  <section aria-labelledby="charts-h">
+    <h2 id="charts-h">Charts</h2>
+    <p>Bars start at zero, ticks land on round numbers, lines are named where they end, and every chart keeps its
+      numbers behind “Show data”. The uptime chart opts out of the zero baseline and says so with a break on its axis.</p>
+    <div class="gallery">
+      <div id="chart-deploys"></div>
+      <div id="chart-builds"></div>
+      <div id="chart-uptime"></div>
+      <div>
+        <table class="ld-table ld-table--compact">
+          <caption class="sr-only">Build time by pipeline, last 14 runs</caption>
+          <thead><tr><th scope="col">Pipeline</th><th scope="col">Last 14 runs</th></tr></thead>
+          <tbody id="sparks"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="ld-toaster" aria-label="Notifications" id="toaster"></section>
+<div role="status" class="sr-only" id="toast-said"></div>
+
+<script type="module" src="data-demo.js"></script>
+<script type="module" src="chart-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

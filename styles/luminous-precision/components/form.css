@@ -76,6 +76,12 @@
   box-shadow: inset 0 0 0 3px var(--ld-surface), inset 0 0 0 1rem var(--ld-accent),
     0 0 6px var(--ld-accent-glow);
 }
+/* indeterminate (a select-all over a partly selected page): a glowing teal bar */
+:where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-checkbox:indeterminate {
+  border-color: var(--ld-accent);
+  background: linear-gradient(var(--ld-accent), var(--ld-accent)) center / 55% 2px no-repeat, var(--ld-surface);
+  box-shadow: 0 0 6px var(--ld-accent-glow);
+}
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-checkbox:focus-visible,
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-radio:focus-visible,
 :where([data-ld-style="luminous-precision"], [data-ld-style="luminous-precision"] *).ld-switch:focus-visible {

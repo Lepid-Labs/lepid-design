@@ -1,0 +1,118 @@
+/* neon-butterfly — pagination: hairline console cells in tracked mono; the current
+ * page is a solid lilac block, focus a lilac glow, and Previous/Next snap their
+ * chevrons in lime on hover. Load-more and the page-size picker share the faint
+ * uppercase summary line. */
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ld-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ld-space-1);
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--ld-space-2);
+  background: none;
+  border: 1px solid var(--ld-border);
+  border-radius: var(--ld-radius);
+  color: var(--ld-faint);
+  font: inherit;
+  font-size: 12px;
+  font-weight: var(--ld-font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ld-tracking-wide);
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color var(--ld-transition), border-color var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link svg {
+  width: 1em;
+  height: 1em;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link:hover {
+  color: var(--ld-primary);
+  border-color: var(--ld-primary-border);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link:hover svg {
+  color: var(--ld-accent);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link:focus-visible {
+  outline: none;
+  color: var(--ld-primary);
+  border-color: var(--ld-primary);
+  box-shadow: 0 0 10px var(--ld-primary-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link[aria-current="page"] {
+  color: var(--ld-on-primary);
+  background: var(--ld-primary);
+  border-color: var(--ld-primary);
+  box-shadow: 0 0 12px var(--ld-primary-glow);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link[aria-disabled="true"] {
+  opacity: 0.35;
+  border-color: var(--ld-border);
+  color: var(--ld-faint);
+  cursor: not-allowed;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__link[aria-disabled="true"] svg {
+  color: inherit;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__ellipsis {
+  min-width: 1.5rem;
+  color: var(--ld-faint);
+  text-align: center;
+}
+/* Below 30rem Previous/Next keep only their chevrons; the words stay in the name. */
+@media (max-width: 30rem) {
+  :where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2) var(--ld-space-4);
+  margin-top: var(--ld-space-3);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__summary {
+  margin: 0;
+  color: var(--ld-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ld-tracking-wide);
+  text-transform: uppercase;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__size {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__size .ld-label {
+  margin: 0;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-pagination__size .ld-select {
+  width: auto;
+}
+:where([data-ld-style="neon-butterfly"], [data-ld-style="neon-butterfly"] *).ld-load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-4);
+}

@@ -1,0 +1,108 @@
+/* summer-cloud — pagination: round pill cells in the display face; the current page
+ * is a solid violet disc on its tinted shadow, hover a sky wash, focus the sky
+ * ring. Load-more and the page-size picker share the mono summary line. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ld-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ld-space-1);
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 var(--ld-space-3);
+  background: none;
+  border: 0;
+  border-radius: var(--ld-radius-pill);
+  color: var(--ld-faint);
+  font-family: var(--ld-font-display);
+  font-size: var(--ld-text-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--ld-transition), background var(--ld-transition), box-shadow var(--ld-transition);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link svg {
+  width: 1em;
+  height: 1em;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link:hover {
+  color: var(--ld-on-surface);
+  background: var(--ld-sky-tint);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ld-accent-glow);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link[aria-current="page"] {
+  color: var(--ld-on-primary);
+  background: var(--ld-primary);
+  box-shadow: 0 4px 14px rgba(93, 43, 255, 0.39);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link[aria-current="page"]:focus-visible {
+  box-shadow: 0 0 0 4px var(--ld-accent-glow), 0 4px 14px rgba(93, 43, 255, 0.39);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__link[aria-disabled="true"] {
+  opacity: 0.4;
+  background: none;
+  cursor: not-allowed;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__ellipsis {
+  min-width: 1.5rem;
+  color: var(--ld-faint);
+  text-align: center;
+}
+/* Below 30rem Previous/Next keep only their chevrons; the words stay in the name. */
+@media (max-width: 30rem) {
+  :where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ld-space-2) var(--ld-space-4);
+  margin-top: var(--ld-space-3);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__summary {
+  margin: 0;
+  color: var(--ld-faint);
+  font-family: var(--ld-font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ld-tracking-wide);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__size {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ld-space-2);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__size .ld-label {
+  margin: 0;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-pagination__size .ld-select {
+  width: auto;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-load-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ld-space-2);
+  margin-top: var(--ld-space-4);
+}

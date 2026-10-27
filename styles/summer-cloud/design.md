@@ -157,14 +157,47 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Badge** `.ld-badge` + semantic modifiers — solid pills, mono uppercase.
   `--sm` is the 9px dashboard pill; `--pulse` the amber call to action with a
   breathing glow.
-  **Chip** `.ld-chip` — outlined filter chip; `--selected` fills violet.
 - **Alert** `.ld-alert` — glass card with a 4px semantic left rule.
 - **Dialog** `.ld-dialog` — native `<dialog>`, opaque white, blurred backdrop.
 - **Tabs** `.ld-tabs`/`.ld-tab`/`.ld-tabpanel` — violet underline when active; it stretches to the new tab and bounces back to width (same slide tokens).
 - **Table** `.ld-table` — mono uppercase headers, sky-tint row hover; add
   `.ld-num` to numeric cells for the mono/right-aligned treatment.
   `.ld-table--interactive` adds the pointer, a sky focus outline, and a
-  selected row (`aria-selected`) with a violet wash and left bar.
+  selected row (`aria-selected`) with a violet wash and left bar; selected
+  rows look the same in any table. `.ld-num` now also sets tabular figures.
+  `.ld-table__sort` headers are pill buttons with dim twin arrows; the sorted
+  column (`aria-sort`) turns violet with one arrow, focus is the sky ring.
+  `.ld-table__select` cells hold a full-cell checkbox target; the
+  indeterminate select-all is a white bar on violet. `--sticky` keeps the
+  header on high white glass on `--ld-z-sticky`; `--compact` halves the air,
+  `--comfortable` opens and stripes rows in white glass (`--ld-table-pad-y`).
+  `.ld-table-scroll` scrolls a wide or tall table in its own box.
+- **Bulk action bar** `.ld-bulk-bar` (+ `--top`, `__count`, `__actions`) — a
+  floating pill of high white glass on the violet level-3 shadow, sticky along
+  the bottom edge on `--ld-z-sticky` (in the flow, so it never covers the last
+  row; the page gets scroll padding while it shows). It bounces up on the
+  spring (a fade under reduced motion); the count is violet Plus Jakarta 700.
+- **Pagination** `.ld-pagination` (+ `__list`, `__link`, `__prev`, `__next`,
+  `__page`, `__ellipsis`, `__text`, `__summary`, `__size`),
+  `.ld-pagination-bar`, `.ld-load-more` — round pill cells in the display
+  face; the current page is a solid violet disc on its tinted shadow, hover a
+  sky wash, focus the sky ring; the summary takes the mono voice.
+  Previous/Next drop their words below 30rem.
+- **Chip** `.ld-chip` (+ `--removable`, `__label`, `__remove`;
+  `.ld-chip-group`, `--scroll`, `__chips`, `__count`, `__clear`) — now in
+  every theme (`components/chip.css`). Outlined pills until pressed
+  (`aria-pressed`, `--selected`), then solid violet led by a white check.
+  Applied filters are white glass pills with a violet edge and a round 24px
+  remove button that warms red. `--scroll` is one sideways row that fades at
+  the end.
+- **Chart** `.ld-chart` (`__title`, `__svg`, `__grid`, `__baseline`,
+  `__break`, `__tick`, `__axis-label`, `__bar`, `__bar--highlight`,
+  `__value`, `__series--0..3`, `__line`, `__points`, `__label`, `__data`),
+  `.ld-sparkline` — airy and confident: lavender bars with rounded ends (3:1
+  on white), the called-out bar in full violet on a tinted shadow, thick round
+  lines with white-ringed markers, mono ticks and a Plus Jakarta caption.
+  Series run violet, deep sky, deep green, deep red (`--ld-chart-1..4`, every
+  one 3:1 on white) and differ by dash and marker too.
 - **Progress** `.ld-progress`, **Spinner** `.ld-spinner` — glowing violet.
 - **Skeleton** `.ld-skeleton` (`--text`, `--circle`, `--block`) — soft
   violet-tinted glass with a wide white glare drifting across; text lines are
