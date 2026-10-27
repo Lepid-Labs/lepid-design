@@ -79,6 +79,10 @@ Class prefix `ld-` (shared token/class contract with the other themes).
 - **Button** `.ld-btn` — ghost by default; `--primary` is the one solid fill
   (orchid, dark text), `--accent` teal ghost, `--danger` rose ghost. `--sm` is a
   compact size scaled to `.ld-badge`, for inline and table-row actions.
+  `aria-busy="true"` hides the label (it keeps its width) under a glowing
+  spinner and stops the pulse. `aria-disabled="true"` looks like `:disabled`
+  but stays focusable (it brightens to 0.8 on focus so the edge reads), with
+  its reason in `.ld-btn-reason`, faint 12px text below.
 - **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
   `__meter`) — hold-to-confirm: a 3px conic ring around the icon well fills
   as `--ld-hold` goes 0→1; `--danger` paints it rose, `--primary` orchid,
@@ -105,6 +109,19 @@ Class prefix `ld-` (shared token/class contract with the other themes).
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`,
   `.ld-field`, `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` —
   checked/focus states glow teal.
+- **Field states** (`components/field.css`) — filled (needs a placeholder)
+  lights the hairline; error (`aria-invalid="true"`) a rose edge and glow;
+  success (`.ld-field--success`) a green edge and glow; disabled a hatched,
+  unlit well in faint text; read-only drops the well for a dashed hairline.
+  `.ld-field__hint` is faint 12px; `.ld-field__message--error` / `--success`
+  leads with a masked circle-bang / check icon, so no state is colour alone.
+- **Password** `.ld-password` (+ `__control`, `__input`, `__toggle`,
+  `__strength`, `__meter`, `__score`, `__rules`, `__rule`, `__rule--met`) —
+  the reveal `.ld-icon-btn` sits inside the input's right edge; the meter bar
+  glows rose, amber, then green with `data-ld-strength` 0–4 beside an
+  uppercase score; checklist rings become lit green checks.
+- **One-time code** `.ld-otp` / `.ld-otp__cell` — a row of input wells, one
+  digit each, teal caret; empty cells show a faint drawn dot.
 - **Badge** `.ld-badge` — pill chip: 15% tint of its hue behind
   full-saturation text (+ semantic modifiers). `--sm` is the 9px dashboard
   pill; `--pulse` the one solid amber call to action with a breathing glow.

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-ld-style="neon-butterfly">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms · lepid-design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/all.css">
+<style>
+  /* showcase chrome only — component styling comes entirely from the theme */
+  body { padding: 2rem 1rem 4rem; }
+  main { max-width: 56rem; margin: 0 auto; display: grid; gap: 2.5rem; }
+  header.page { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  header.page h1 { margin: 0; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  .picker { display: flex; align-items: center; gap: 0.5rem; }
+  .picker .ld-select { width: auto; }
+  section h2 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin: 0 0 1rem; }
+  section > p { margin: 0 0 1rem; }
+  .states { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0 1.5rem; align-items: start; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.5rem; align-items: start; }
+  .row { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start; }
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  output { display: block; margin-top: 0.25rem; font-size: 12px; opacity: 0.75; }
+</style>
+</head>
+<body class="ld-bg">
+<main>
+  <header class="page">
+    <h1><a href="index.html" style="color: inherit">lepid-design</a> · forms</h1>
+    <label class="picker">
+      <span class="ld-label" style="margin:0">style</span>
+      <select id="style-select" class="ld-select"></select>
+    </label>
+  </header>
+
+  <section>
+    <h2>Field states</h2>
+    <p>Each state as the React <code>Field</code> renders it. Focus is live: Tab through.</p>
+    <div class="states">
+      <div class="ld-field">
+        <label class="ld-label" for="s-default">Default</label>
+        <input class="ld-input" id="s-default" placeholder="you@example.com" aria-describedby="s-default-hint">
+        <p class="ld-field__hint" id="s-default-hint">Hint text sits under the control.</p>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="s-filled">Filled</label>
+        <input class="ld-input" id="s-filled" placeholder="you@example.com" value="ada@example.com">
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="s-error">Error</label>
+        <input class="ld-input" id="s-error" placeholder="you@example.com" value="ada@example" aria-invalid="true"
+          aria-describedby="s-error-message" aria-errormessage="s-error-message">
+        <p class="ld-field__message ld-field__message--error" id="s-error-message">Add the domain ending, like .com.</p>
+      </div>
+      <div class="ld-field ld-field--success">
+        <label class="ld-label" for="s-success">Success</label>
+        <input class="ld-input" id="s-success" placeholder="handle" value="ada" aria-describedby="s-success-message">
+        <p class="ld-field__message ld-field__message--success" id="s-success-message">That handle is free.</p>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="s-disabled">Disabled</label>
+        <input class="ld-input" id="s-disabled" value="Locked by your admin" disabled>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="s-readonly">Read-only</label>
+        <input class="ld-input" id="s-readonly" value="acct_7Q2F9" readonly>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Validation timing</h2>
+    <p>Reward early, punish late: nothing turns red while you type; leaving the field checks it; once it shows
+      an error, every keystroke re-checks so the error clears the moment it is fixed.</p>
+    <div class="cols">
+      <div class="ld-field" data-validate>
+        <label class="ld-label" id="v-email-label" for="v-email">Email</label>
+        <input class="ld-input" id="v-email" type="email" placeholder="you@example.com" autocomplete="email"
+          aria-describedby="v-email-hint">
+        <p class="ld-field__hint" id="v-email-hint">We send the receipt here.</p>
+        <p class="ld-field__message" id="v-email-message" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Buttons: busy, and disabled with a reason</h2>
+    <p>Busy keeps the button's width and focus, ignores repeat presses and announces itself. The publish
+      button stays focusable and says what is missing; pressing it takes you there.</p>
+    <div class="row">
+      <div>
+        <button type="button" class="ld-btn ld-btn--primary" id="b-save">Save changes</button>
+        <span class="sr-only" role="status" id="b-save-status"></span>
+      </div>
+      <div>
+        <button type="button" class="ld-btn ld-btn--accent" id="b-publish" aria-disabled="true"
+          aria-describedby="b-publish-why">Publish</button>
+        <span class="ld-btn-reason" id="b-publish-why">Add a title before publishing.</span>
+      </div>
+      <button type="button" class="ld-btn" disabled>Plain disabled</button>
+    </div>
+    <div class="ld-field" style="max-width: 24rem; margin-top: 1rem">
+      <label class="ld-label" for="b-title">Title</label>
+      <input class="ld-input" id="b-title" placeholder="Release notes">
+    </div>
+  </section>
+
+  <section>
+    <h2>Password</h2>
+    <div class="cols">
+      <div class="ld-field" data-password="new">
+        <label class="ld-label" for="p-new">New password</label>
+        <div class="ld-password">
+          <div class="ld-password__control">
+            <input class="ld-input ld-password__input" id="p-new" type="password" autocomplete="new-password"
+              autocapitalize="none" spellcheck="false" aria-describedby="p-new-rules">
+            <button type="button" class="ld-icon-btn ld-password__toggle" aria-label="Show password" title="Show password"
+              aria-pressed="false" aria-controls="p-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle
+              cx="12" cy="12" r="3"/><path d="M3 3l18 18" display="none"/></svg></button>
+          </div>
+          <div class="ld-password__strength">
+            <div class="ld-progress ld-password__meter" role="progressbar" aria-label="Password strength"
+              aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Empty"><div class="ld-progress__bar" style="width: 0%"></div></div>
+            <span class="ld-password__score" aria-live="polite"></span>
+          </div>
+          <ul class="ld-password__rules" id="p-new-rules"></ul>
+        </div>
+      </div>
+      <div class="ld-field" data-password="current">
+        <label class="ld-label" for="p-current">Current password</label>
+        <div class="ld-password">
+          <div class="ld-password__control">
+            <input class="ld-input ld-password__input" id="p-current" type="password" autocomplete="current-password"
+              autocapitalize="none" spellcheck="false">
+            <button type="button" class="ld-icon-btn ld-password__toggle" aria-label="Show password" title="Show password"
+              aria-pressed="false" aria-controls="p-current"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle
+              cx="12" cy="12" r="3"/><path d="M3 3l18 18" display="none"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>One-time code</h2>
+    <p>Paste or type a code; arrows, Home/End and Backspace move between cells. <code>123456</code> verifies.</p>
+    <div class="ld-field" id="otp-field" style="max-width: 24rem">
+      <label class="ld-label" id="otp-label" for="otp">Verification code</label>
+      <div class="ld-otp" role="group" aria-labelledby="otp-label" data-otp="6"></div>
+      <p class="ld-field__hint" id="otp-hint">Sent by text to the number ending 42.</p>
+      <p class="ld-field__message" id="otp-message" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Masked input</h2>
+    <p>Formats as you type and on paste; the caret stays after the character you typed, and Backspace over a
+      separator removes the digit before it. The raw value is what a form submits.</p>
+    <div class="states">
+      <div class="ld-field">
+        <label class="ld-label" for="m-card">Card number</label>
+        <input class="ld-input" id="m-card" data-mask="9999 9999 9999 9999" inputmode="numeric" autocomplete="cc-number"
+          placeholder="1234 5678 9012 3456">
+        <output for="m-card"></output>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="m-exp">Expiry</label>
+        <input class="ld-input" id="m-exp" data-mask="99/99" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY">
+        <output for="m-exp"></output>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="m-phone">Phone</label>
+        <input class="ld-input" id="m-phone" data-mask="(999) 999-9999" inputmode="numeric" autocomplete="tel-national"
+          placeholder="(555) 123-4567">
+        <output for="m-phone"></output>
+      </div>
+      <div class="ld-field">
+        <label class="ld-label" for="m-date">Date</label>
+        <input class="ld-input" id="m-date" data-mask="99/99/9999" inputmode="numeric" placeholder="DD/MM/YYYY">
+        <output for="m-date"></output>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="forms-demo.js"></script>
+<script src="picker.js"></script>
+</body>
+</html>

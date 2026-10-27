@@ -1,0 +1,90 @@
+/* summer-cloud — field states, hint and status line (the React Field).
+ * Error is aria-invalid="true" on the control; success is .ld-field--success
+ * on the field. A sunken field floats up to white once it holds a value; error
+ * and success tint the edge and the focus ring, and the status line carries an
+ * icon in the readable deep shade, so no state rests on colour alone. */
+
+/* filled: up from the sunken well to white glass. Keyed on the placeholder, so
+ * the control needs one (placeholder=" " for an invisible one); :where() keeps
+ * it below focus. */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-input:where([placeholder]:not(:placeholder-shown)),
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-textarea:where([placeholder]:not(:placeholder-shown)) {
+  background-color: var(--ld-surface);
+  border-color: var(--ld-outline);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-select[aria-invalid="true"] {
+  border-color: var(--ld-danger);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-select[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 4px rgba(255, 77, 77, 0.2);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-input,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-textarea,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-select {
+  border-color: var(--ld-success);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-input:focus,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-textarea:focus,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field--success .ld-select:focus {
+  box-shadow: 0 0 0 4px rgba(48, 227, 48, 0.2);
+}
+
+/* disabled: a hatched, flat well — unavailable, never mistaken for loading */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-input:disabled,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-textarea:disabled,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-select:disabled {
+  border-color: transparent;
+  color: var(--ld-faint);
+  cursor: not-allowed;
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-input:disabled,
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-textarea:disabled {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(69, 0, 217, 0.05) 6px 12px),
+    var(--ld-surface-sunken);
+}
+
+/* read-only: no well, a dashed outline — the value reads as text you can copy */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-input[readonly],
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-textarea[readonly] {
+  background: transparent;
+  border: 1px dashed var(--ld-outline);
+}
+
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__hint {
+  margin: var(--ld-space-1) 0 0;
+  padding-left: var(--ld-space-1);
+  color: var(--ld-faint);
+  font-size: 13px;
+}
+
+/* status line: empty (and no height) until an error or success fills it */
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__message {
+  margin: 0;
+  padding-left: var(--ld-space-1);
+  font-size: 13px;
+  font-weight: var(--ld-font-weight-medium);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__message:not(:empty) {
+  margin-top: var(--ld-space-1);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__message--error {
+  --ld-field-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zM7.1 4.5h1.8l-.3 5H7.4zM8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z'/%3E%3C/svg%3E");
+  color: var(--ld-danger-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__message--success {
+  --ld-field-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  color: var(--ld-success-deep);
+}
+:where([data-ld-style="summer-cloud"], [data-ld-style="summer-cloud"] *).ld-field__message:not(:empty)::before {
+  content: "";
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.4em;
+  vertical-align: -0.2em;
+  background: currentColor;
+  mask: var(--ld-field-icon) center / contain no-repeat;
+}

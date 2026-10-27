@@ -25,7 +25,11 @@ component styles in an app — consume the system.
 4. **Hover is never the only path.** Hover motion goes inside
    `@media (hover: hover)`; every hover state gets a `:focus-visible` (or
    `:focus-within`) twin; anything revealed on hover is always visible on touch.
-5. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
+5. **Forms explain themselves.** Errors go through `Field`'s `error` (icon +
+   text, never colour alone), validated on blur and then live; a running
+   request is `busy`, not `disabled`; a blocked action the user can fix gets a
+   `disabledReason`. When to use which: `docs/guides/forms.md`.
+6. **Gaps go upstream.** A missing component belongs in `lepid-design` as a PR,
    not in the app. File an issue on `lepid-labs/lepid-design` if not building it now.
 
 ## Consuming
@@ -77,7 +81,7 @@ non-React apps):
 
 | React | CSS class | Notes |
 | --- | --- | --- |
-| `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger` |
+| `Button` | `.ld-btn` | variants: `primary`, `accent`, `danger`; `busy` (→ `aria-busy`: spinner over a same-width label, clicks ignored, focus kept, `busyLabel` announced) instead of `disabled` while a request runs; `disabledReason` (→ focusable `aria-disabled` + visible `.ld-btn-reason` via `aria-describedby`) when the user can unblock it |
 | `ButtonGroup` | `.ld-btn-group` | one long track of `Button`s (`role="group"`, pass `aria-label`); `block` for full-width equal segments; toggle/segmented use: set `aria-pressed` on each `Button` — caller owns the state; one pressed segment gets a sliding pill (plain HTML: set `data-ld-dir="forward"\|"back"` on the track when selection moves) |
 | `IconButton` | `.ld-icon-btn` | icon-only control; `label` required (→ `aria-label` + `title`); `active` (on a link also `aria-current="page"`), `variant="danger"`; `as="a"` or a router Link for nav; toggle: pass `aria-pressed` |
 | `HoldButton` | `.ld-btn--hold` | hold-to-confirm; `onConfirm` fires once when the ring completes; `duration`, `hint`, `icon`, `showMeter`, `confirmOnKeyboardTap` |
@@ -85,6 +89,10 @@ non-React apps):
 | `StatusCard` | `.ld-status-card` | dashboard card: `tone` edge, `attention` ring, `changedAt` flash, `prefix`/`title`/`href`, `meta`, `note`, `watermark`; body from `StatusCardRows`/`StatusCardRow`/`StatusCardFooter`/`StatusCardEmpty` |
 | `NavLink` | `.ld-link` | chevron + glow hover |
 | `Input`/`Textarea`/`Select` | `.ld-input` etc. | pair with `Field`/`Label` |
+| `Field` | `.ld-field`, `__hint`, `__message--error`/`--success`, `.ld-field--success` | label + one control + `hint`, `error` (→ `aria-invalid`, icon), `success`; wires ids and `aria-describedby`/`aria-errormessage`, polite status line. Validate with `nextFieldStatus` (blur first, then live once in error). States: filled (needs a placeholder), `:disabled`, `[readonly]` |
+| `PasswordField` | `.ld-password` | reveal toggle (`aria-pressed`, keeps focus and caret); `mode="new"` adds strength meter (`passwordStrength`) + ticking checklist (`rules`) and `autocomplete="new-password"`; default `current-password` |
+| `OtpInput` | `.ld-otp`, `.ld-otp__cell` | one-time code: `length` cells as one field, paste/SMS autofill fills all, `onComplete`, `name` submits; inside `Field` shares its label and error |
+| `MaskedInput` | `.ld-input` | formats as you type (`mask`, `MASKS.card`/`phone`/`expiry`/`date`), caret never jumps; `value`/`onValueChange` are the raw value, `name` submits it. Pure `applyMask` for other inputs |
 | `Checkbox`/`Radio`/`Switch` | `.ld-checkbox` etc. | `label` prop wraps in `.ld-choice` |
 | `Badge` | `.ld-badge` | semantic variants; `size="sm"` (`--sm`) for dashboard pills, `pulse` (`--pulse`) for the one glowing call to action |
 | `Alert` | `.ld-alert` | `variant` + optional `title` |

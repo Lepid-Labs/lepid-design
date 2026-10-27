@@ -29,6 +29,7 @@ Derived from the Stitch project *Summer Cloud UI System*
 | Warning | `#f2c025` | Caution states, "New" badges |
 | Danger | `#ff4d4d` (retail red) | Errors, "Sale" badges, alert rules — carries dark text, never white |
 | Danger deep | `#cc1f1f` | Danger where white text sits on it (destructive buttons) |
+| Success deep | `#0f6a24` | Success as *text* (field messages, met checklist rules) — the switch green fails contrast |
 | Border | `rgba(255,255,255,0.4)` | Glass edges — the highlight that makes glass read as glass |
 | Outline | `#c9c3da` | Hairlines on opaque surfaces (chips, table rules, checkboxes) |
 | Sky tint | `rgba(255,255,255,0.7)` | Hover wash on ghost/nav elements |
@@ -103,7 +104,11 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
 - **Button** `.ld-btn` — glass by default; `--primary` (solid violet CTA, one
   per view), `--accent` (sky-edged glass), `--ghost`, `--danger`. `--sm` is a
   compact size scaled to `.ld-badge`, for inline/table-row actions; the pill
-  shape is kept.
+  shape is kept. `aria-busy="true"` holds the pill still and hides the label
+  (it keeps its width) under a spinner in the label's colour.
+  `aria-disabled="true"` looks like `:disabled` but stays focusable (0.8 and
+  the sky ring on focus), with its reason in `.ld-btn-reason`, faint 13px Inter
+  below.
 - **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
   `__meter`) — hold-to-confirm: a 3px conic **violet** ring around the icon
   well fills as `--ld-hold` goes 0→1, on the glass pill. With `--danger` the
@@ -133,6 +138,22 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — sunken fields, no
   resting border, sky-blue ring on focus. The switch is the oversized
   "cloud-toggle": squishy, and green when live.
+- **Field states** (`components/field.css`) — filled (needs a placeholder)
+  floats up from the sunken well to white with an outline hairline; error
+  (`aria-invalid="true"`) a red edge and soft red ring; success
+  (`.ld-field--success`) a green edge and ring; disabled a violet-hatched flat
+  well in faint text; read-only drops the well for a dashed outline.
+  `.ld-field__hint` is faint 13px Inter; `.ld-field__message--error` /
+  `--success` is 13px semibold in `--ld-danger-deep` / `--ld-success-deep`
+  (the bright hues fail contrast as text) behind a masked circle-bang / check.
+- **Password** `.ld-password` (+ `__control`, `__input`, `__toggle`,
+  `__strength`, `__meter`, `__score`, `__rules`, `__rule`, `__rule--met`) —
+  the reveal `.ld-icon-btn` sits inside the input's right edge; the pill meter
+  runs red, sunshine, then green with `data-ld-strength` 0–4 beside a mono
+  uppercase score; checklist rings become deep-green checks.
+- **One-time code** `.ld-otp` / `.ld-otp__cell` — soft sunken tiles, one bold
+  violet digit each in the display face; empty tiles show an outline dot, and
+  filled ones float up to white like any filled field.
 - **Badge** `.ld-badge` + semantic modifiers — solid pills, mono uppercase.
   `--sm` is the 9px dashboard pill; `--pulse` the amber call to action with a
   breathing glow.

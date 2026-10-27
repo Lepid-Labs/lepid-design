@@ -22,10 +22,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      # the forms demo imports the components' pure helpers from ui/
+      - run: pnpm install --frozen-lockfile && pnpm build
       - name: Assemble site
         run: |
           mkdir -p _dist/styles
           cp -r site/* _dist/
+          cp -r components/react/dist _dist/ui
           cp styles/manifest.json styles/all.css _dist/styles/
           for d in styles/*/; do
             [ "$(basename "$d")" = "test" ] && continue

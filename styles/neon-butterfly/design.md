@@ -69,7 +69,11 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
 - **NavLink** `.ld-link` — the switchboard link: `>` chevron turns lime on hover
   or keyboard focus.
 - **Button** `.ld-btn` — `--primary`, `--accent`, `--danger` variants; `--sm`
-  compact size (badge-scaled) for inline/table-row actions.
+  compact size (badge-scaled) for inline/table-row actions. `aria-busy="true"`
+  hides the label (it keeps its width) under a spinner whose leading arc is
+  lime, the activity signal. `aria-disabled="true"` looks like `:disabled` but
+  stays focusable (0.8 on focus so the edge reads), with its reason in
+  `.ld-btn-reason`, faint 12px text below.
 - **Hold button** `.ld-btn--hold` (+ `__ring`, `__body`, `__label`, `__hint`,
   `__meter`) — hold-to-confirm: a 3px conic ring around the icon well fills
   as `--ld-hold` goes 0→1. `--danger` paints it **lime** — this theme reads
@@ -94,6 +98,20 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   soft glow. `--danger` turns the glyph red on hover. Child `svg` 1.25em.
 - **Form** `.ld-input`, `.ld-textarea`, `.ld-select`, `.ld-label`, `.ld-field`,
   `.ld-checkbox`, `.ld-radio`, `.ld-switch`, `.ld-choice` — checked states glow lime.
+- **Field states** (`components/field.css`) — filled (needs a placeholder)
+  takes a dim lilac edge; error (`aria-invalid="true"`) a pink edge and glow;
+  success (`.ld-field--success`) a lime edge and glow; disabled a dark,
+  scan-lined well in faint text; read-only drops the well for a dashed
+  hairline. `.ld-field__hint` is faint 12px; `.ld-field__message--error` /
+  `--success` glows like a console line and leads with a masked circle-bang /
+  check icon, so no state is colour alone.
+- **Password** `.ld-password` (+ `__control`, `__input`, `__toggle`,
+  `__strength`, `__meter`, `__score`, `__rules`, `__rule`, `__rule--met`) —
+  the reveal `.ld-icon-btn` sits inside the input's right edge; the meter bar
+  runs pink, amber, then lime with `data-ld-strength` 0–4 beside an uppercase
+  score; checklist rings become glowing lime checks.
+- **One-time code** `.ld-otp` / `.ld-otp__cell` — a row of input wells, one
+  bold digit each glowing lilac, lime caret; empty cells show a faint drawn dot.
 - **Badge** `.ld-badge` + semantic modifiers; `--sm` is the 9px dashboard
   pill, `--pulse` the one solid amber call to action with a breathing glow.
 - **Alert** `.ld-alert` — left accent bar carries the semantic color.
