@@ -226,7 +226,8 @@ theme-agnostic). Variants use BEM-ish modifiers (`ld-btn--primary`).
   reads over glass and sky alike, in the top layer on `--ld-z-tooltip`.
   Anchored above its trigger, flipping below; pops in on the spring from 94%.
 - **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
-  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  `__shortcut`, `__group-label`, `__separator`, and `__header` +
+  `__header-text` for an account menu's who-is-signed-in; `.ld-context-target` on a
   context-menu region) — a Level 2 white glass card (20px blur) on
   `--ld-elevation-3`, Plus Jakarta 600 items, mono uppercase group labels. The
   focused item is a violet wash with violet text (plus the sky ring for the

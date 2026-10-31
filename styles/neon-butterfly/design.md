@@ -176,7 +176,8 @@ Class prefix `ld-`. Variants use BEM-ish modifiers (`ld-btn--accent`).
   in the top layer on `--ld-z-tooltip`. Anchored above its trigger, flipping
   below; it cuts on instantly and fades off.
 - **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
-  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  `__shortcut`, `__group-label`, `__separator`, and `__header` +
+  `__header-text` for an account menu's who-is-signed-in; `.ld-context-target` on a
   context-menu region) — a frosted navy panel in a lilac hairline on
   `--ld-elevation-3`; items are uppercase tracked mono. The focused item is the
   switchboard row: lilac text on a faint lilac wash, its `>` chevron lit lime.

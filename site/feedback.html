@@ -106,6 +106,30 @@
   </section>
 
   <section>
+    <h2>Access panels</h2>
+    <p>An <code>AccessPanel</code> stands in for the app when the visitor can't use it yet, with the one way forward.</p>
+    <div class="cols">
+      <div class="ld-card ld-empty">
+        <h3 class="ld-empty__title">Sign in to continue</h3>
+        <div class="ld-empty__body"><p>You need to sign in to use Inventory.</p></div>
+        <div class="ld-empty__actions"><button type="button" class="ld-btn ld-btn--primary">Sign in</button></div>
+      </div>
+      <div class="ld-card ld-empty">
+        <h3 class="ld-empty__title">No access</h3>
+        <div class="ld-empty__body"><p>You're signed in as <span><strong>Ada Lovelace</strong><span class="ld-muted">
+          (ada@example.test)</span></span>, but this account has no access to Inventory. Ask an administrator for access,
+          or sign in with another account.</p></div>
+        <div class="ld-empty__actions"><a class="ld-btn" href="#">Switch account</a></div>
+      </div>
+      <div class="ld-card ld-empty" role="alert">
+        <h3 class="ld-empty__title">Sign-in is unavailable</h3>
+        <div class="ld-empty__body"><p>The sign-in service can't be reached right now. Try again in a moment.</p></div>
+        <div class="ld-empty__actions"><button type="button" class="ld-btn">Try again</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>Toasts</h2>
     <p>At most three show; the rest wait. Hover or focus the stack, or switch tabs, and every clock stops.
       Errors stay until dismissed and are read assertively. <kbd>F8</kbd> jumps to the newest toast;

@@ -193,7 +193,8 @@ Class prefix `ld-` (shared token/class contract with the other themes).
   `--ld-z-tooltip`. Anchored above its trigger, flipping below; rises 2px on the
   enter curve, fades out faster.
 - **Menu** `.ld-menu` (+ `__item`, `__item--danger`, `__icon`, `__label`,
-  `__shortcut`, `__group-label`, `__separator`; `.ld-context-target` on a
+  `__shortcut`, `__group-label`, `__separator`, and `__header` +
+  `__header-text` for an account menu's who-is-signed-in; `.ld-context-target` on a
   context-menu region) — indigo glass on `--ld-elevation-3` with a lit top
   edge, anchored below its trigger and flipping at the edges. The focused item
   takes the teal path: orchid tint, orchid text, 2px teal bar. Checkbox and

@@ -282,6 +282,21 @@ number otherwise); pass `steps.length` as `current` when everything is done.
 ]} />
 ```
 
+`UserMenu`, `IdentityName` and `AccessPanel` are the signed-in-user UI. They
+only render what the app's auth layer reports: who is signed in, and which of
+four states it is in. `UserMenu` puts an avatar button at the end of the
+header that opens a `Menu` headed by the user; pass the account actions as
+items. `AccessPanel` stands in for the app when the visitor is signed out, has
+no access, or sign-in can't be reached, with the one action that moves them on.
+
+```tsx
+<AppHeader actions={<UserMenu user={user}>
+  <MenuItem onSelect={() => location.assign(profileUrl)}>Profile & sign-out</MenuItem>
+</UserMenu>} />
+
+<AccessPanel state="no-access" user={user} appName="Inventory" switchAccountHref={profileUrl} />
+```
+
 ### App shell and page layouts
 
 `AppShell` is the application frame: an optional sticky header, an optional

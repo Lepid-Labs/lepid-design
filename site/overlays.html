@@ -65,12 +65,15 @@
     <p>Click, <kbd class="ld-kbd">Enter</kbd>, <kbd class="ld-kbd">Space</kbd> or <kbd class="ld-kbd">↓</kbd> opens on the
       first item, <kbd class="ld-kbd">↑</kbd> on the last. Arrows, <kbd class="ld-kbd">Home</kbd>,
       <kbd class="ld-kbd">End</kbd> and typing a letter move; <kbd class="ld-kbd">Esc</kbd> and <kbd class="ld-kbd">Tab</kbd>
-      close it. It flips at the viewport edge.</p>
+      close it. It flips at the viewport edge. The avatar is a <code>UserMenu</code>: the signed-in account heads its
+      menu.</p>
     <div class="row spread">
       <button type="button" class="ld-btn" id="actions-btn" popovertarget="actions-menu" aria-haspopup="menu"
         aria-controls="actions-menu" aria-expanded="false" style="anchor-name: --demo-actions">Actions</button>
       <button type="button" class="ld-icon-btn" id="more-btn" popovertarget="more-menu" aria-haspopup="menu"
         aria-controls="more-menu" aria-expanded="false" aria-label="More" style="anchor-name: --demo-more"><svg aria-hidden="true"><use href="icons.svg#menu"/></svg></button>
+      <button type="button" class="ld-icon-btn" id="account-btn" popovertarget="account-menu" aria-haspopup="menu"
+        aria-controls="account-menu" aria-expanded="false" aria-label="Account: Ada Lovelace" style="anchor-name: --demo-account"><span class="ld-avatar" data-ld-color="3"><span aria-hidden="true">AL</span></span></button>
     </div>
     <output id="menu-log" aria-live="polite"></output>
     <div class="ld-menu" id="actions-menu" role="menu" popover="auto" aria-labelledby="actions-btn" style="position-anchor: --demo-actions">
@@ -95,6 +98,16 @@
       </div>
       <div role="separator" class="ld-menu__separator"></div>
       <div role="menuitem" tabindex="-1" class="ld-menu__item"><span class="ld-menu__label">Export…</span><kbd class="ld-kbd ld-menu__shortcut">⇧⌘E</kbd></div>
+    </div>
+    <div class="ld-menu" id="account-menu" role="menu" popover="auto" aria-label="Account" style="position-anchor: --demo-account">
+      <div role="group" aria-labelledby="g-account" class="ld-menu__group">
+        <div role="presentation" id="g-account" class="ld-menu__header">
+          <span class="ld-avatar" data-ld-color="3" aria-hidden="true"><span>AL</span></span>
+          <span class="ld-menu__header-text"><strong>Ada Lovelace</strong><span class="ld-muted">ada@example.test</span></span>
+        </div>
+        <div role="separator" class="ld-menu__separator"></div>
+        <div role="menuitem" tabindex="-1" class="ld-menu__item"><span class="ld-menu__label">Profile &amp; sign-out</span></div>
+      </div>
     </div>
   </section>
 
