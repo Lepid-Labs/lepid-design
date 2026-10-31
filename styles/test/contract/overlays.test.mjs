@@ -17,7 +17,7 @@ test("every theme carries the overlays contract", () => {
       ".ld-menu", '.ld-menu[data-ld-side="top"]', ".ld-menu__item", ".ld-menu__item:focus", ".ld-menu__item--danger",
       '.ld-menu__item[aria-disabled="true"]', ".ld-menu__icon", ".ld-menu__label", ".ld-menu__shortcut",
       '.ld-menu__item[role="menuitemcheckbox"]::before', '.ld-menu__item[role="menuitemradio"]::before',
-      ".ld-menu__group-label", ".ld-menu__separator", ".ld-context-target",
+      ".ld-menu__group-label", ".ld-menu__header", ".ld-menu__header-text", ".ld-menu__separator", ".ld-context-target",
     ],
     sheet: [
       ".ld-dialog--sheet", ".ld-dialog--drawer", ".ld-dialog--drawer-start", ".ld-dialog--sheet:not([open])",

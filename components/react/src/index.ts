@@ -155,6 +155,16 @@ export {
   type LoadingWindow,
 } from "./loading-delay.js";
 export { EmptyState, type EmptyStateProps } from "./EmptyState.js";
+export {
+  AccessPanel,
+  IdentityName,
+  UserMenu,
+  type AccessPanelProps,
+  type AccessState,
+  type IdentityNameProps,
+  type IdentityUser,
+  type UserMenuProps,
+} from "./Identity.js";
 export { Toaster, toast, type ToasterProps, type ToastOptions, type ToastAction } from "./Toaster.js";
 export {
   addToast,
