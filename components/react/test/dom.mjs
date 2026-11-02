@@ -14,7 +14,7 @@ export const window = new Window({ url: "http://localhost/" });
 const GLOBALS = [
   "window", "document", "navigator", "Node", "Element", "HTMLElement", "HTMLInputElement",
   "HTMLDialogElement", "Event", "KeyboardEvent", "MouseEvent", "PointerEvent", "FocusEvent",
-  "InputEvent", "DataTransfer", "File", "FileList", "MutationObserver", "CSS", "getComputedStyle",
+  "InputEvent", "DataTransfer", "File", "FileList", "FormData", "MutationObserver", "CSS", "getComputedStyle",
   "matchMedia", "requestAnimationFrame", "cancelAnimationFrame", "getSelection", "addEventListener",
   "removeEventListener", "innerWidth", "innerHeight", "scrollBy",
 ];
