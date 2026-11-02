@@ -1,0 +1,46 @@
+name: publish-github
+
+# Mirrors each release to GitHub Packages. Lepid apps install the private
+# @lepid-labs platform packages from GitHub Packages, and npm maps a scope to a
+# single registry, so those apps can only reach these packages there too.
+# Runs on the same tags as publish.yml; dispatch it with a tag to mirror a
+# release published before this workflow existed.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to mirror, e.g. v1.0.3
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://npm.pkg.github.com
+          scope: "@lepid-labs"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      # No --provenance: GitHub Packages doesn't accept it. The package inherits
+      # this public repository's visibility.
+      - run: npm publish --registry https://npm.pkg.github.com
+        working-directory: styles
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm publish --registry https://npm.pkg.github.com
+        working-directory: components/react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -41,6 +41,11 @@ read it instead of hardcoding a list — a new theme then works by name alone.
 Packages publish to the public npm registry (`@lepid-labs/styles`,
 `@lepid-labs/ui-react`) — no registry config or auth needed to install.
 
+Every release is mirrored to GitHub Packages too. Lepid apps map the
+`@lepid-labs` scope there for the private platform packages, and npm sends a
+scope to one registry only, so they install these from the mirror with the same
+`read:packages` token.
+
 **Since 0.3.0 every rule is scoped:** nothing applies until an element carries
 `data-ld-style="<theme>"`. Put it on `<html>` for a whole page, or on any
 container to theme just that subtree (safe for embedding into pages you don't
@@ -411,9 +416,12 @@ Manual. When main is ready to ship, run the `release` workflow from the
 Actions tab (**Run workflow**). It bumps both package versions (patch by
 default; a `type!:` subject or `BREAKING CHANGE:` footer in an unreleased
 commit bumps the major), tags, creates the GitHub release, and the tag
-triggers `publish.yml` — npm trusted publishing (OIDC, no stored token). If
-nothing under `styles/` or `components/` changed since the last tag, the run
-exits without releasing.
+triggers `publish.yml` — npm trusted publishing (OIDC, no stored token) — and
+`publish-github.yml`, which mirrors the same version to GitHub Packages with the
+workflow's `GITHUB_TOKEN`. If nothing under `styles/` or `components/` changed
+since the last tag, the run exits without releasing. To mirror a release made
+before the mirror existed, run `publish-github` from the Actions tab with its
+tag.
 
 To pin a specific version (a milestone like 1.0.0), set it in both
 `package.json` files in the PR; the release workflow publishes an untagged
