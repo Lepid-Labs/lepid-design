@@ -44,7 +44,9 @@ Packages publish to the public npm registry (`@lepid-labs/styles`,
 Every release is mirrored to GitHub Packages too. Lepid apps map the
 `@lepid-labs` scope there for the private platform packages, and npm sends a
 scope to one registry only, so they install these from the mirror with the same
-`read:packages` token.
+`read:packages` token. The mirror is private: an app's CI reads it with its
+`GITHUB_TOKEN` once each package grants that repository Actions access (package
+settings → Manage Actions access, role Read).
 
 **Since 0.3.0 every rule is scoped:** nothing applies until an element carries
 `data-ld-style="<theme>"`. Put it on `<html>` for a whole page, or on any
