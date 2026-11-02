@@ -34,8 +34,8 @@ jobs:
           scope: "@lepid-labs"
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      # No --provenance: GitHub Packages doesn't accept it. The package inherits
-      # this public repository's visibility.
+      # No --provenance: GitHub Packages doesn't accept it. The mirrored packages
+      # are private there; each consuming app's repository gets Actions access.
       - run: npm publish --registry https://npm.pkg.github.com
         working-directory: styles
         env:
