@@ -36,7 +36,8 @@ jobs:
           cp -r components/react/dist _dist/ui
           cp styles/manifest.json styles/all.css _dist/styles/
           for d in styles/*/; do
-            [ "$(basename "$d")" = "test" ] && continue
+            # node_modules holds pnpm's relative symlinks, which dangle once copied and break the artifact tar
+            case "$(basename "$d")" in test|node_modules) continue ;; esac
             cp -r "$d" "_dist/styles/$(basename "$d")"
           done
       - uses: actions/upload-pages-artifact@v3
