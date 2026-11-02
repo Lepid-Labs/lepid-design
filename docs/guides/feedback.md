@@ -164,7 +164,7 @@ click through it without reading.
 | --- | --- |
 | Reversible: archive, move, remove from a list, delete into a trash | Do it, then a toast with Undo |
 | Costly to redo but recoverable: a large delete | Do it, keep it recoverable (a trash, 30 days), offer Undo |
-| Irreversible, or it reaches other people: purge, revoke, send | Confirm first: `HoldButton`, or a `Dialog` that names what will happen |
+| Irreversible, or it reaches other people: purge, revoke, send | Confirm first: `HoldButton`, or `useConfirm` ([app.md](app.md)) naming what will happen |
 
 `scheduleUndoable` holds the commit (the request, the purge) back for the undo window. Pass it to `toast()` as `undo`:
 the toast gets an Undo button and a countdown, the window stops whenever the toast's clock does, Undo cancels the commit

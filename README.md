@@ -192,7 +192,7 @@ gets the same look from `.ld-table--interactive`, but must add
 long lines. With `follow` it keeps the newest line in view — but only while
 the reader is already at the bottom, so scrolling up to read history isn't
 yanked back. It is a `role="log"` live region; pass `live={false}` for very
-chatty streams. Fetching/streaming stays in the app.
+chatty streams. `useLineStream` feeds it from a streamed response (below).
 
 ```tsx
 <LogBlock follow maxHeight={320}>
@@ -295,6 +295,28 @@ no access, or sign-in can't be reached, with the one action that moves them on.
 </UserMenu>} />
 
 <AccessPanel state="no-access" user={user} appName="Inventory" switchAccountHref={profileUrl} />
+```
+
+The app kit is what every screen needs around its data, so apps stop rebuilding it: `useConfirm` (a promise
+`window.confirm` on the theme's dialog) and `ConfirmDialog`, `DataState` (a query's loading, error and empty states),
+`ErrorBoundary`, `useSubmit` (busy, double-submit guard, error message), `TagInput`, a router (`useRoute`, `Link`,
+`navigate`, `matchPath`, optional hash mode), `useLineStream` (lines or Server-Sent Events over fetch, with backoff),
+and `formatDate`, `formatRelative`, `formatDuration` and `errorMessage`. None of it fetches for you or imports
+react-query: `DataState` takes any `{ data, error, isPending }`. See
+[docs/guides/app.md](docs/guides/app.md).
+
+```tsx
+const [confirm, dialog] = useConfirm();
+const keys = useQuery({ queryKey: ["keys"], queryFn: listKeys });
+
+<DataState query={keys} empty={<EmptyState title="No API keys yet" />}>
+  {(keys) => keys.map((k) => (
+    <Button key={k.id} variant="danger" onClick={async () => {
+      if (await confirm({ title: `Revoke ${k.name}?`, confirmLabel: "Revoke", danger: true })) revoke(k.id);
+    }}>Revoke</Button>
+  ))}
+</DataState>
+{dialog}
 ```
 
 ### App shell and page layouts

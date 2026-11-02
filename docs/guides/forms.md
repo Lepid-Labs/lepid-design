@@ -98,6 +98,9 @@ submit button's submit. `busyLabel` is announced through a polite status region 
 Plain HTML: set `aria-busy="true"` on the `.ld-btn`, ignore clicks while it is set, and put the announcement in a
 visually hidden `role="status"` element outside the button.
 
+`useSubmit` ([app.md](app.md#submit-a-form-usesubmit)) gives a form the busy flag, the double-submit guard and the
+error message in one call.
+
 Wait for the server before you show success for anything that cannot be undone (payments, deletes). Optimistic
 updates are for cheap, reversible actions such as a like or a rename.
 

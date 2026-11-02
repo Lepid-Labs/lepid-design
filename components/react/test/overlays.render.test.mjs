@@ -67,6 +67,7 @@ test("Dialog: open drives showModal/close, the close event reaches onClose", asy
   await rerender(h(Dialog, { ...props, open: true }, "Body"));
   assert.equal(dialog.open, true);
   assert.equal($("h2.ld-dialog__title").textContent, "Rename");
+  assert.equal(dialog.getAttribute("aria-labelledby"), $("h2.ld-dialog__title").id, "named by its title");
   assert.equal($(".ld-dialog__actions button").textContent, "OK");
   await rerender(h(Dialog, { ...props, open: false }, "Body"));
   assert.equal(dialog.open, false);
@@ -78,6 +79,7 @@ test("Sheet: bottom sheet with a handle closes on a downward drag and a backdrop
   const { rerender } = await render(h(Sheet, { open: true, title: "Filters", onClose: () => closed.push(1) }, h("p", null, "Body")));
   const [dialog, handle] = [$("dialog"), $(".ld-dialog__handle")];
   assert.equal(dialog.className, "ld-dialog ld-dialog--sheet");
+  assert.equal(dialog.getAttribute("aria-labelledby"), $(".ld-dialog__title").id, "named by its title");
   assert.equal(handle.getAttribute("aria-hidden"), "true");
   await pointer(handle, "pointerdown", { pointerId: 1, clientY: 0 });
   await pointer(handle, "pointermove", { pointerId: 1, clientY: -40 });
