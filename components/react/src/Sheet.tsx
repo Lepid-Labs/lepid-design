@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import type { MouseEvent, PointerEvent } from "react";
 import { cx } from "./cx.js";
 import type { DialogProps } from "./Dialog.js";
@@ -20,6 +20,7 @@ const outside = (e: MouseEvent<HTMLDialogElement>) => {
  *  and closes on Escape, a click on the backdrop, or (bottom) dragging the handle down. */
 export function Sheet({ open, onClose, side = "bottom", title, actions, className, onClick, children, ...rest }: SheetProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   const drag = useRef<{ start: number; y: number; t: number; v: number }>(undefined);
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export function Sheet({ open, onClose, side = "bottom", title, actions, classNam
     <dialog
       ref={ref}
       className={cx("ld-dialog", side === "bottom" ? "ld-dialog--sheet" : `ld-dialog--drawer ld-dialog--drawer-${side}`, className)}
+      aria-labelledby={title !== undefined ? titleId : undefined}
       onClose={onClose}
       onClick={(e) => {
         onClick?.(e);
@@ -74,7 +76,7 @@ export function Sheet({ open, onClose, side = "bottom", title, actions, classNam
           onPointerCancel={release}
         />
       )}
-      {title !== undefined && <h2 className="ld-dialog__title">{title}</h2>}
+      {title !== undefined && <h2 id={titleId} className="ld-dialog__title">{title}</h2>}
       {children}
       {actions !== undefined && <div className="ld-dialog__actions">{actions}</div>}
     </dialog>
