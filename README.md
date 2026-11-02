@@ -319,6 +319,19 @@ const keys = useQuery({ queryKey: ["keys"], queryFn: listKeys });
 {dialog}
 ```
 
+The views build whole pages from data and action descriptors: `ListView` (a table with row links, row actions and bulk
+actions), `DetailView` (one item, its header and actions) and `FormView` (fields read as `FormData`, as a page or a
+dialog). An action with `confirm` gets the confirm dialog, its busy button and an error toast without the app writing
+any of it. See [docs/guides/views.md](docs/guides/views.md).
+
+```tsx
+<ListView title="Books" query={books} empty="No books yet"
+  columns={[{ header: "Title", cell: (b) => b.title }]}
+  rowHref={(b) => `/books/${b.id}`}
+  rowActions={[{ label: "Delete", danger: true, confirm: (b) => `Delete ${b.title}?`,
+    run: (b) => api.del(`/api/books/${b.id}`).then(() => books.refetch()) }]} />
+```
+
 ### App shell and page layouts
 
 `AppShell` is the application frame: an optional sticky header, an optional
